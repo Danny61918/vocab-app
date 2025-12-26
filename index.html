@@ -5,10 +5,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vocabulary Master - 英文單字快速複習</title>
-    <!-- Tailwind CSS CDN (用於開發環境快速預覽) -->
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- 模組路徑映射：確保在本地直接開啟與編譯環境下都能運作 -->
     <script type="importmap">
 {
   "imports": {
@@ -22,12 +21,10 @@
   }
 }
 </script>
-  <link rel="stylesheet" href="/index.css">
-</head>
+  </head>
   <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
-    <!-- 加上 ?v=6.3 以強制瀏覽器更新快取 -->
-    <script type="module" src="./index.tsx?v=6.3"></script>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <!-- 移除 ?v=6.3，Vite 打包時會自動處理版本控制 -->
+    <script type="module" src="./index.tsx"></script>
+  </body>
 </html>
