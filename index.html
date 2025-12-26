@@ -5,26 +5,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vocabulary Master - 英文單字快速複習</title>
-    <!-- Tailwind CSS CDN -->
+    <!-- Tailwind CSS CDN 依然保留，用於開發便利 -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script type="importmap">
+  <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.455.0",
-    "recharts": "https://aistudiocdn.com/recharts@^2.13.0",
     "vite": "https://esm.sh/vite@^7.3.0",
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "recharts": "https://esm.sh/recharts@^3.6.0"
   }
 }
 </script>
-  </head>
+</head>
   <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
-    <!-- 移除 ?v=6.3，Vite 打包時會自動處理版本控制 -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>

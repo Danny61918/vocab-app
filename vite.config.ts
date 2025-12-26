@@ -4,11 +4,12 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // 關鍵：確保在 GitHub Pages 子路徑下能正確找到檔案
+  base: './', // 確保在 GitHub Pages 環境下路徑正確
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     sourcemap: false,
-    minify: 'terser'
+    // 移除 minify: 'terser'，改用預設的 esbuild 即可
+    minify: 'esbuild'
   }
 });
