@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # 當代碼推送到 main 分支時觸發
+    branches: [ main ] # 確保分支名稱與您的 GitHub 一致 (通常是 main)
+  workflow_dispatch: # 允許手動觸發執行
 
 permissions:
   contents: read
