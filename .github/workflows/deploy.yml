@@ -3,8 +3,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ] # 確保分支名稱與您的 GitHub 一致 (通常是 main)
-  workflow_dispatch: # 允許手動觸發執行
+    branches: [ main ] 
+  workflow_dispatch: 
 
 permissions:
   contents: read
@@ -21,7 +21,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          # 移除了 cache: 'npm' 以避免報錯
           
       - name: Install dependencies
         run: npm install
