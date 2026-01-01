@@ -186,7 +186,12 @@ const serverData: Word[] = [
     { "id": 183, "date": "2025-12-23", "english": "help sb. with sth.", "chinese": "幫助(誰)做了...", "part_of_speech": "(ph.)" },
     { "id": 184, "date": "2025-12-23", "english": "be made of", "chinese": "用...做成", "part_of_speech": "(ph.)" },
     { "id": 185, "date": "2025-12-23", "english": "spend the weekend", "chinese": "度過週末", "part_of_speech": "(ph.)" },
-    { "id": 186, "date": "2025-12-23", "english": "boat/sea/sky", "chinese": "小船/海/天空", "part_of_speech": "(n.)" }
+    { "id": 186, "date": "2025-12-23", "english": "boat/sea/sky", "chinese": "小船/海/天空", "part_of_speech": "(n.)" },
+    { "id": 187, "date": "2026-01-02", "english": "Broccoli", "chinese": "花椰菜", "part_of_speech": "(n.)" },
+    { "id": 188, "date": "2026-01-02", "english": "Spinach", "chinese": "菠菜", "part_of_speech": "(n.)" },
+    { "id": 189, "date": "2026-01-02", "english": "Strawberry", "chinese": "草莓", "part_of_speech": "(n.)" },
+    { "id": 190, "date": "2026-01-02", "english": "flour", "chinese": "麵粉", "part_of_speech": "(n.)" },
+    { "id": 191, "date": "2026-01-02", "english": "butter", "chinese": "奶油", "part_of_speech": "(n.)" },
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
