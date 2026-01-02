@@ -192,8 +192,31 @@ const serverData: Word[] = [
     { "id": 189, "date": "2026-01-02", "english": "Strawberry", "chinese": "草莓", "part_of_speech": "(n.)" },
     { "id": 190, "date": "2026-01-02", "english": "flour", "chinese": "麵粉", "part_of_speech": "(n.)" },
     { "id": 191, "date": "2026-01-02", "english": "butter", "chinese": "奶油", "part_of_speech": "(n.)" },
+    { "id": 192, "date": "2026-01-05", "english": "Cocoa", "chinese": "可可粉", "part_of_speech": "(n.)" },
+    { "id": 193, "date": "2026-01-05", "english": "Asparagus", "chinese": "蘆筍", "part_of_speech": "(n.)" },
+    { "id": 194, "date": "2026-01-05", "english": "Coconut", "chinese": "椰子", "part_of_speech": "(n.)" },
+    { "id": 195, "date": "2026-01-05", "english": "egg", "chinese": "蛋", "part_of_speech": "(n.)" },
+    { "id": 196, "date": "2026-01-05", "english": "cheese", "chinese": "起司、乳酪", "part_of_speech": "(n.)" },
+    { "id": 197, "date": "2026-01-05", "english": "think about", "chinese": "思考;考慮", "part_of_speech": "(ph.)" },
+    { "id": 198, "date": "2026-01-07", "english": "biscuit", "chinese": "餅乾", "part_of_speech": "(n.)" },
+    { "id": 199, "date": "2026-01-07", "english": "Sugar", "chinese": "糖", "part_of_speech": "(n.)" },
+    { "id": 200, "date": "2026-01-07", "english": "Supermarket", "chinese": "超級市場", "part_of_speech": "(n.)" },
+    { "id": 201, "date": "2026-01-07", "english": "present", "chinese": "禮物", "part_of_speech": "(n.)" },
+    { "id": 202, "date": "2026-01-07", "english": "surprise", "chinese": "驚喜、驚訝", "part_of_speech": "(n.)" },
+    { "id": 203, "date": "2026-01-07", "english": "make friends with", "chinese": "交朋友", "part_of_speech": "(ph.)" },
+    { "id": 204, "date": "2026-01-08", "english": "cry", "chinese": "哭", "part_of_speech": "(v.)" },
+    { "id": 205, "date": "2026-01-08", "english": "door", "chinese": "門", "part_of_speech": "(n.)" },
+    { "id": 206, "date": "2026-01-08", "english": "together", "chinese": "一起", "part_of_speech": "(adv.)" },
+    { "id": 207, "date": "2026-01-08", "english": "knock", "chinese": "敲;擊", "part_of_speech": "(v.)" },
+    { "id": 208, "date": "2026-01-08", "english": "family", "chinese": "家庭", "part_of_speech": "(n.)" },
+    { "id": 209, "date": "2026-01-08", "english": "run away from", "chinese": "逃離; 躲避", "part_of_speech": "(ph.)" },
+    { "id": 210, "date": "2026-01-09", "english": "young", "chinese": "年輕的", "part_of_speech": "(adj.)" },
+    { "id": 211, "date": "2026-01-09", "english": "worry", "chinese": "擔心;發愁", "part_of_speech": "(v.)" },
+    { "id": 212, "date": "2026-01-09", "english": "size", "chinese": "尺寸;大小", "part_of_speech": "(n.)" },
+    { "id": 213, "date": "2026-01-09", "english": "team", "chinese": "團隊;隊", "part_of_speech": "(n.)" },
+    { "id": 214, "date": "2026-01-09", "english": "score", "chinese": "得分", "part_of_speech": "(v.)" },
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
 
-export default processedData;
+export default processedData; 
