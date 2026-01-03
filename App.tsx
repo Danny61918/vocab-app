@@ -143,7 +143,7 @@ function App() {
                   </div>
                 </div>
 
-                {(selectedGameType === GameType.MULTIPLE_CHOICE || selectedGameType === GameType.CLOZE || selectedGameType === GameType.CHINESE_TO_ENGLISH) && (
+                {(selectedGameType === GameType.MULTIPLE_CHOICE || selectedGameType === GameType.CLOZE || selectedGameType === GameType.CHINESE_TO_ENGLISH || selectedGameType === GameType.MATCHING) && (
                   <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">難度 (Difficulty)</label>
                     <div className="flex gap-2">

@@ -35,6 +35,8 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
   const [playerName, setPlayerName] = useState(getLastPlayerName());
   const [nameSaved, setNameSaved] = useState(false);
 
+  const [selectedPos, setSelectedPos] = useState<string | null>(null);
+  const [selectedMeaningId, setSelectedMeaningId] = useState<number | null>(null);
   const timerRef = useRef<number | null>(null);
 
   useEffect(() => {
@@ -50,6 +52,8 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
     const shuffled = shuffleArray([...sourceWords]);
     setQuestionQueue(shuffled);
     setGameState('PLAYING');
+    setSelectedPos(null);
+    setSelectedMeaningId(null);
     
     if (shuffled.length > 0) {
         const firstQ = generateQuestion(sourceWords, gameType, difficulty, shuffled[0]);
@@ -107,13 +111,45 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
      
      setLastAnswerCorrect(null);
      setUserClozeInput('');
+     setSelectedPos(null);
+     setSelectedMeaningId(null);
      setCurrentIndex(nextIndex);
   };
 
-  const handleAnswer = (answer: string | number) => {
+  // 使用 useMemo 確保詞性選項在答題過程中固定，並在選項單一時自動補足干擾項
+  const posOptions = React.useMemo(() => {
+      if (!currentQuestion || gameType !== GameType.MATCHING) return [];
+      
+      const isComplex = difficulty === Difficulty.MEDIUM || difficulty === Difficulty.HARD;
+      if (!isComplex) return [];
+
+      const options = currentQuestion.options as Word[];
+      const existingPos = new Set(options.map(o => o.part_of_speech));
+      
+      // 如果不重複的詞性少於 4 個，則補入隨機詞性作為干擾
+      if (existingPos.size < 4) {
+          const commonPos = ['(n.)', '(v.)', '(adj.)', '(adv.)', '(prep.)', '(phr.)', '(pron.)'];
+          const pool = commonPos.filter(p => !existingPos.has(p));
+          const shuffledPool = shuffleArray(pool);
+          
+          for (const p of shuffledPool) {
+              if (existingPos.size >= 4) break;
+              existingPos.add(p);
+          }
+      }
+      
+      return shuffleArray(Array.from(existingPos));
+  }, [currentQuestion, gameType, difficulty]);
+
+  const handleAnswer = (answer: string | number, complexPosCheck?: string) => {
     if (!currentQuestion || lastAnswerCorrect !== null) return;
 
-    const isCorrect = answer === currentQuestion.correctAnswer;
+    let isCorrect = answer === currentQuestion.correctAnswer;
+    
+    if (complexPosCheck) {
+        isCorrect = isCorrect && complexPosCheck === currentQuestion.targetWord.part_of_speech;
+    }
+
     setLastAnswerCorrect(isCorrect);
     
     if (isCorrect) {
@@ -130,6 +166,25 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
         loadNextQuestion();
       }
     }, 500);
+  };
+
+  const handleComplexSelection = (type: 'POS' | 'MEANING', value: string | number) => {
+      if (lastAnswerCorrect !== null) return;
+
+      let nextPos = selectedPos;
+      let nextMeaning = selectedMeaningId;
+
+      if (type === 'POS') {
+          nextPos = value as string;
+          setSelectedPos(nextPos);
+      } else {
+          nextMeaning = value as number;
+          setSelectedMeaningId(nextMeaning);
+      }
+
+      if (nextPos && nextMeaning !== null) {
+          handleAnswer(nextMeaning, nextPos);
+      }
   };
 
   const handleClozeSubmit = (e: React.FormEvent) => {
@@ -310,14 +365,16 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
 
         <div className="bg-blue-600 p-12 text-center text-white relative">
           <p className="text-blue-200 text-xs font-black uppercase tracking-widest mb-4 opacity-80">
-             {gameType === GameType.MATCHING ? 'Select Meaning' : (gameType === GameType.CLOZE ? 'Spell the word' : 'Vocabulary Challenge')}
+             {gameType === GameType.MATCHING ? ((difficulty === Difficulty.MEDIUM || difficulty === Difficulty.HARD) ? 'Match POS & Meaning' : 'Select Meaning') : (gameType === GameType.CLOZE ? 'Spell the word' : 'Vocabulary Challenge')}
           </p>
           <h2 className="text-4xl md:text-6xl font-black leading-tight drop-shadow-md">
             {currentQuestion ? (gameType === GameType.MATCHING ? currentQuestion.targetWord.english : currentQuestion.targetWord.chinese) : ''}
           </h2>
-          <div className="inline-block mt-6 px-4 py-1 bg-white/20 rounded-full text-sm font-bold backdrop-blur-md">
-             {currentQuestion?.targetWord.part_of_speech}
-          </div>
+          {!(gameType === GameType.MATCHING && (difficulty === Difficulty.MEDIUM || difficulty === Difficulty.HARD)) && (
+            <div className="inline-block mt-6 px-4 py-1 bg-white/20 rounded-full text-sm font-bold backdrop-blur-md">
+               {currentQuestion?.targetWord.part_of_speech}
+            </div>
+          )}
         </div>
 
         <div className="p-8 flex-1 flex flex-col justify-center bg-slate-50/50">
@@ -337,8 +394,46 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
                 </div>
             )}
             {gameType !== GameType.CLOZE && currentQuestion && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {currentQuestion.options.map((opt, idx) => {
+                <>
+                {(() => {
+                    const isComplexMatching = gameType === GameType.MATCHING && (difficulty === Difficulty.MEDIUM || difficulty === Difficulty.HARD);
+
+                    if (isComplexMatching) {
+                        return (
+                            <div className="grid grid-cols-2 gap-4 w-full">
+                                <div className="flex flex-col gap-3">
+                                    <div className="text-center text-slate-400 text-xs font-black uppercase tracking-widest">詞性 (POS)</div>
+                                    {posOptions.map((pos, idx) => (
+                                        <button 
+                                            key={idx} 
+                                            onClick={() => handleComplexSelection('POS', pos)} 
+                                            disabled={lastAnswerCorrect !== null} 
+                                            className={`p-6 text-xl font-black rounded-2xl border-4 shadow-md transition-all active:scale-95 disabled:opacity-50 ${selectedPos === pos ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-white hover:border-blue-200'}`}
+                                        >
+                                            {pos}
+                                        </button>
+                                    ))}
+                                </div>
+                                <div className="flex flex-col gap-3">
+                                    <div className="text-center text-slate-400 text-xs font-black uppercase tracking-widest">意思 (Meaning)</div>
+                                    {(currentQuestion.options as Word[]).map((opt, idx) => (
+                                        <button 
+                                            key={idx} 
+                                            onClick={() => handleComplexSelection('MEANING', opt.id)} 
+                                            disabled={lastAnswerCorrect !== null} 
+                                            className={`p-6 text-xl font-black rounded-2xl border-4 shadow-md transition-all active:scale-95 disabled:opacity-50 ${selectedMeaningId === opt.id ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-700 border-white hover:border-blue-200'}`}
+                                        >
+                                            {opt.chinese}
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        );
+                    }
+
+                    return (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {currentQuestion.options.map((opt, idx) => {
                         const isWordObj = typeof opt !== 'string';
                         const display = isWordObj ? (opt as Word).chinese : (opt as string);
                         const pos = isWordObj ? (opt as Word).part_of_speech : '';
@@ -349,8 +444,11 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
                                 {pos && <span className="block text-xs text-slate-300 font-bold mt-1 group-hover:text-blue-300">{pos}</span>}
                             </button>
                         );
-                    })}
-                </div>
+                        })}
+                        </div>
+                    );
+                    })()}
+                </>
             )}
         </div>
       </div>
