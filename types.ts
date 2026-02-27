@@ -5,6 +5,7 @@ export interface Word {
   english: string;
   part_of_speech: string;
   date?: string; // YYYY-MM-DD
+  example?: string;
 }
 
 export enum GameType {
