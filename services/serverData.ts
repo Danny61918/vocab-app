@@ -390,6 +390,36 @@ const serverData: Word[] = [
     { "id": 389, "date": "2026-03-06", "english": "hedge", "chinese": "樹籬", "part_of_speech": "(n.)", "example": "My dad likes to trim (v. 修剪) the hedges at the weekend and make them look like a big green wall." },
     { "id": 390, "date": "2026-03-06", "english": "adult", "chinese": "成人", "part_of_speech": "(n.)", "example": "When you become an adult, you can drive, get a job, and do things on your own. However, you have to take responsibility for your decisions." },
     { "id": 391, "date": "2026-03-06", "english": "talk about", "chinese": "討論、談論", "part_of_speech": "(ph.)", "example": "Tony and I are talking about the new movie that we are going to watch next weekend." },
+    // 2026-03-09 (Monday)
+    { "id": 392, "date": "2026-03-09", "english": "prefer", "chinese": "更(較)喜歡", "part_of_speech": "(v.)", "example": "I prefer vanilla ice cream to chocolate because it tastes sweeter." },
+    { "id": 393, "date": "2026-03-09", "english": "ladder", "chinese": "梯子", "part_of_speech": "(n.)", "example": "He climbed the ladder to reach the roof after he made sure it was stable." },
+    { "id": 394, "date": "2026-03-09", "english": "hole", "chinese": "洞、孔", "part_of_speech": "(n.)", "example": "Woodpeckers(n. 啄木鳥) make holes in tree trunks in order to get to the sap(n. 樹汁)." },
+    { "id": 395, "date": "2026-03-09", "english": "through", "chinese": "穿越、通過；從頭至尾", "part_of_speech": "(prep.)", "example": "* go through (ph.) 通過、經歷、查閱. There is a hole in the hedge, and the dog is going through it to look for its ball." },
+    { "id": 396, "date": "2026-03-09", "english": "ticket", "chinese": "票、券", "part_of_speech": "(n.)", "example": "* buy a ticket 買票. How do I buy a train ticket using an automatic ticket vending machine?" },
+    { "id": 397, "date": "2026-03-09", "english": "be crazy about", "chinese": "對...著迷、對...很狂熱", "part_of_speech": "(ph.)", "example": "Liz is crazy about snakes. She keeps several different kinds of snakes as her pets." },
+
+    // 2026-03-11 (Wednesday)
+    { "id": 398, "date": "2026-03-11", "english": "special", "chinese": "特別的；專門的", "part_of_speech": "(adj.)", "example": "The park has a special area for picnics. This gym offers(v. 提議、提供) special discounts for students." },
+    { "id": 399, "date": "2026-03-11", "english": "offer", "chinese": "(短期的)折扣、提議", "part_of_speech": "(n.)", "example": "* special offers 特別優惠(服務)、特價. There is an offer at Pizza Hut today. If we order one pizza, the second one is free. Shall we have pizza for dinner?" },
+    { "id": 400, "date": "2026-03-11", "english": "figure", "chinese": "數字；外形；畫像、塑像", "part_of_speech": "(n.)", "example": "* animal figure 動物模型. My little brother likes to play with animal figures during bath time." },
+    { "id": 401, "date": "2026-03-11", "english": "climbing wall", "chinese": "攀岩牆", "part_of_speech": "(n.)", "example": "The kids really loved the climbing wall in the park during the summer camp. However, they felt it was a bit high when they reached the top." },
+    { "id": 402, "date": "2026-03-11", "english": "route", "chinese": "路線", "part_of_speech": "(n.)", "example": "Follow me! I know a short route to Taipei 101 that doesn't have any traffic lights." },
+    { "id": 403, "date": "2026-03-11", "english": "keep away from", "chinese": "遠離、避開", "part_of_speech": "(ph.)", "example": "You need to keep away from the bully in your class. He is mean to everyone." },
+
+    // 2026-03-12 (Thursday)
+    { "id": 404, "date": "2026-03-12", "english": "rock climbing", "chinese": "攀岩運動", "part_of_speech": "(n.)", "example": "After taking lessons for several months, I'm ready to try rock climbing outdoors." },
+    { "id": 405, "date": "2026-03-12", "english": "alone", "chinese": "單獨地、獨自地", "part_of_speech": "(adv.)", "example": "The little boy was scared when his parents left him alone in the house. Traveling alone can sometimes be a little difficult." },
+    { "id": 406, "date": "2026-03-12", "english": "corner", "chinese": "角落、轉角", "part_of_speech": "(n.)", "example": "Be careful! Don't bump into(ph. 撞到) the corner of the table. There's a coffee shop at the corner of the street." },
+    { "id": 407, "date": "2026-03-12", "english": "textbook", "chinese": "教科書", "part_of_speech": "(n.)", "example": "Make sure you bring your English textbook this weekend to review for the upcoming exam." },
+    { "id": 408, "date": "2026-03-12", "english": "empty", "chinese": "空的", "part_of_speech": "(adj.)", "example": "* (v.) 倒空、變空. My water bottle is empty(adj.). May I have some more water? She was extremely thirsty and quickly emptied(v.) her drink, then ordered another one." },
+    { "id": 409, "date": "2026-03-12", "english": "as well", "chinese": "也；還有", "part_of_speech": "(ph.)", "example": "Joe hates snakes and keeps away from Liz because she always carries one of her pets in her pocket wherever she goes. She shows her pets to people she meets as well." },
+    // 2026-03-13 (Friday)
+    { "id": 410, "date": "2026-03-13", "english": "smile", "chinese": "微笑", "part_of_speech": "(v.)", "example": "If Tr. Owen smiled at me without saying another word, I would be in big trouble." },
+    { "id": 411, "date": "2026-03-13", "english": "arrive", "chinese": "到達、抵達", "part_of_speech": "(v.)", "example": "Please ensure everything is ready. We must depart before 12:30 and arrive at the airport before 2:00." },
+    { "id": 412, "date": "2026-03-13", "english": "subject", "chinese": "主題；科目", "part_of_speech": "(n.)", "example": "English is my favorite subject at school because I can speak it fluently. Some people think that math is the most important subject in school, while others think that Chinese is." },
+    { "id": 413, "date": "2026-03-13", "english": "already", "chinese": "已經、早已", "part_of_speech": "(adv.)", "example": "As I have already said, I doubt we'll have enough time to visit all the attractions you've planned." },
+    { "id": 414, "date": "2026-03-13", "english": "find", "chinese": "尋找；發現", "part_of_speech": "(n.)", "example": "find - found - found. I hope I can find my lost eraser as soon as possible, or I'll have to buy a new one." },
+    { "id": 415, "date": "2026-03-13", "english": "be different from", "chinese": "不同於；和...不一樣", "part_of_speech": "(ph.)", "example": "The way we shop today is different from how we shopped in the past." }
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
