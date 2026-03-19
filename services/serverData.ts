@@ -419,7 +419,39 @@ const serverData: Word[] = [
     { "id": 412, "date": "2026-03-13", "english": "subject", "chinese": "主題；科目", "part_of_speech": "(n.)", "example": "English is my favorite subject at school because I can speak it fluently. Some people think that math is the most important subject in school, while others think that Chinese is." },
     { "id": 413, "date": "2026-03-13", "english": "already", "chinese": "已經、早已", "part_of_speech": "(adv.)", "example": "As I have already said, I doubt we'll have enough time to visit all the attractions you've planned." },
     { "id": 414, "date": "2026-03-13", "english": "find", "chinese": "尋找；發現", "part_of_speech": "(n.)", "example": "find - found - found. I hope I can find my lost eraser as soon as possible, or I'll have to buy a new one." },
-    { "id": 415, "date": "2026-03-13", "english": "be different from", "chinese": "不同於；和...不一樣", "part_of_speech": "(ph.)", "example": "The way we shop today is different from how we shopped in the past." }
+    { "id": 415, "date": "2026-03-13", "english": "be different from", "chinese": "不同於；和...不一樣", "part_of_speech": "(ph.)", "example": "The way we shop today is different from how we shopped in the past." },
+
+    // 2026-03-16 (Monday)
+    { "id": 416, "date": "2026-03-16", "english": "boat trip(s)", "chinese": "乘船旅行", "part_of_speech": "(n.)", "example": "We went on a boat trip along the Seine during our vacation in Paris." },
+    { "id": 417, "date": "2026-03-16", "english": "take photos of", "chinese": "拍攝...的照片", "part_of_speech": "(ph.)", "example": "During our vacation, I made sure to take photos of all the beautiful scenery. Could you take a photo of my friend and me?" },
+    { "id": 418, "date": "2026-03-16", "english": "feed", "chinese": "餵、養；提供食物", "part_of_speech": "(v.)", "example": "feed - fed - fed. I need to feed my cat before I leave for work. Please don't feed the animals when you visit the zoo." },
+    { "id": 419, "date": "2026-03-16", "english": "lamb", "chinese": "小羊、羊肉", "part_of_speech": "(n.)", "example": "The farmer goes out every morning to feed the lambs in the field. Lamb is the most popular dish at this restaurant, and it's so delicious that it's difficult to get a reservation." },
+    { "id": 420, "date": "2026-03-16", "english": "notice", "chinese": "通知、告示", "part_of_speech": "(n.)", "example": "* read the notices 閱讀通知. I read the notice and found out that the office will be closed tomorrow." },
+    { "id": 421, "date": "2026-03-16", "english": "watch movies", "chinese": "看電影", "part_of_speech": "(ph.)", "example": "My family enjoys watching movies on TV at home. We have a lot of fun when we get together." },
+
+    // 2026-03-18 (Wednesday)
+    { "id": 422, "date": "2026-03-18", "english": "flag", "chinese": "旗、幟", "part_of_speech": "(n.)", "example": "The national flag of the Republic of China (Taiwan) has three colors: blue, white, and red." },
+    { "id": 423, "date": "2026-03-18", "english": "scarf", "chinese": "圍巾", "part_of_speech": "(n.)", "example": "* (plural) scarves. My mom taught me how to knit(v. 編織) a scarf, and now I wear it all the time in winter." },
+    { "id": 424, "date": "2026-03-18", "english": "wig", "chinese": "假髮", "part_of_speech": "(n.)", "example": "My sister wore a golden wig to cosplay as her favorite animated character at the exhibition." },
+    { "id": 425, "date": "2026-03-18", "english": "drum", "chinese": "鼓", "part_of_speech": "(n.)", "example": "She learned how to play the drums last year. Now, she practices every day to get better." },
+    { "id": 426, "date": "2026-03-18", "english": "half", "chinese": "一半的 / 一半", "part_of_speech": "(adj./n.)", "example": "Our teacher gives us half(adj.) an hour to finish the worksheet in class. You can eat that chocolate bar now, but you have to give half(n.) of it to your brother." },
+    { "id": 427, "date": "2026-03-18", "english": "have a lot of fun + V-ing / N.", "chinese": "玩得很開心", "part_of_speech": "(ph.)", "example": "Children have a lot of fun playing computer games at home." },
+
+    // 2026-03-19 (Thursday)
+    { "id": 428, "date": "2026-03-19", "english": "fan", "chinese": "粉絲；電扇、扇子", "part_of_speech": "(n.)", "example": "The fans of Chinese Taipei went crazy when we finally defeated South Korea in the WBC." },
+    { "id": 429, "date": "2026-03-19", "english": "quarter", "chinese": "四分之一", "part_of_speech": "(n.)", "example": "There are eight children in the park, and a quarter of them are boys. This pizza is divided into four quarters (pieces or slices), and each quarter (piece or slice) has different toppings." },
+    { "id": 430, "date": "2026-03-19", "english": "T-shirt / hat", "chinese": "T恤衫 / 帽子", "part_of_speech": "(n.)", "example": "He looks fashionable today because his T-shirt goes well with(ph. 與...相配) his woolly(adj. 羊毛的) hat." },
+    { "id": 431, "date": "2026-03-19", "english": "climb", "chinese": "爬、攀登", "part_of_speech": "(v.)", "example": "If you decide to climb Mt. Jade, make sure you're well prepared because it's not an easy hike." },
+    { "id": 432, "date": "2026-03-19", "english": "change", "chinese": "交換；改變", "part_of_speech": "(v.)", "example": "When the traffic light changes from red to green, we can cross the road. Have you changed your mind, or do you still want to proceed(v. 繼續做) as planned?" },
+    { "id": 433, "date": "2026-03-19", "english": "take pictures", "chinese": "拍照", "part_of_speech": "(ph.)", "example": "Our teacher always takes pictures when we go on field trips." },
+
+    // 2026-03-20 (Friday)
+    { "id": 434, "date": "2026-03-20", "english": "interesting", "chinese": "有趣的", "part_of_speech": "(adj.)", "example": "She told me an interesting story about her trip to America. She suggested an interesting idea at the meeting and it seems doable(adj. 可行的)." },
+    { "id": 435, "date": "2026-03-20", "english": "fly", "chinese": "蒼蠅", "part_of_speech": "(n.)", "example": "If you leave the fruit out of the fridge, flies will be attracted to it." },
+    { "id": 436, "date": "2026-03-20", "english": "hide", "chinese": "躲藏；遮掩", "part_of_speech": "(v.)", "example": "hide - hid - hidden. The cat likes to hide in small spaces, especially in boxes." },
+    { "id": 437, "date": "2026-03-20", "english": "boring", "chinese": "無聊的", "part_of_speech": "(adj.)", "example": "This movie on TV is boring. Let's find something else to watch." },
+    { "id": 438, "date": "2026-03-20", "english": "lizard", "chinese": "蜥蜴", "part_of_speech": "(n.)", "example": "When I was on vacation in Florida, I saw a lizard sunbathing on a rock by the beach." },
+    { "id": 439, "date": "2026-03-20", "english": "listen to...", "chinese": "聽(音樂、收音機、某人說話等)", "part_of_speech": "(ph.)", "example": "In my free time, I usually listen to classical music." }
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
