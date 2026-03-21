@@ -451,7 +451,39 @@ const serverData: Word[] = [
     { "id": 436, "date": "2026-03-20", "english": "hide", "chinese": "躲藏；遮掩", "part_of_speech": "(v.)", "example": "hide - hid - hidden. The cat likes to hide in small spaces, especially in boxes." },
     { "id": 437, "date": "2026-03-20", "english": "boring", "chinese": "無聊的", "part_of_speech": "(adj.)", "example": "This movie on TV is boring. Let's find something else to watch." },
     { "id": 438, "date": "2026-03-20", "english": "lizard", "chinese": "蜥蜴", "part_of_speech": "(n.)", "example": "When I was on vacation in Florida, I saw a lizard sunbathing on a rock by the beach." },
-    { "id": 439, "date": "2026-03-20", "english": "listen to...", "chinese": "聽(音樂、收音機、某人說話等)", "part_of_speech": "(ph.)", "example": "In my free time, I usually listen to classical music." }
+    { "id": 439, "date": "2026-03-20", "english": "listen to...", "chinese": "聽(音樂、收音機、某人說話等)", "part_of_speech": "(ph.)", "example": "In my free time, I usually listen to classical music." },
+
+    // 2026-03-23 (Monday)
+    { "id": 440, "date": "2026-03-23", "english": "get up", "chinese": "起床、起立", "part_of_speech": "(ph.)", "example": "Some mornings I am so tired and just can't get up. I want to stay in bed and sleep." },
+    { "id": 441, "date": "2026-03-23", "english": "have a shower (Br)", "chinese": "淋浴／洗澡", "part_of_speech": "(ph.)", "example": "* take a shower (US). I just went jogging in the park. I need to have a shower before I eat dinner." },
+    { "id": 442, "date": "2026-03-23", "english": "have breakfast / lunch / dinner", "chinese": "吃早／午／晚餐", "part_of_speech": "(ph.)", "example": "I always have breakfast with my family at 6:30 a.m. We decided to have lunch in the park today. Having dinner together as a family is a Sunday tradition for us." },
+    { "id": 443, "date": "2026-03-23", "english": "go to work", "chinese": "上班", "part_of_speech": "(ph.)", "example": "My father has to go to work very early, so we don't see him when we wake up." },
+    { "id": 444, "date": "2026-03-23", "english": "leave work", "chinese": "下班", "part_of_speech": "(ph.)", "example": "Tr. Owen always tries to leave work early because he wants to play his PS5." },
+    { "id": 445, "date": "2026-03-23", "english": "a number of", "chinese": "一些、許多", "part_of_speech": "(ph.)", "example": "A number of the students are going hiking today." },
+    { "id": 446, "date": "2026-03-23", "english": "leave school", "chinese": "放學；畢業", "part_of_speech": "(ph.)", "example": "Most days, right after we leave school, we take the bus to Sunshine." },
+    { "id": 447, "date": "2026-03-23", "english": "go to school", "chinese": "上學", "part_of_speech": "(ph.)", "example": "When you go to high school, you will have to go to school much earlier in the morning than you do now." },
+
+    // 2026-03-25 (Wednesday)
+    { "id": 448, "date": "2026-03-25", "english": "go to bed", "chinese": "睡覺", "part_of_speech": "(ph.)", "example": "My mom always tells us to go to bed before 9 o'clock so that we won't be tired the next morning." },
+    { "id": 449, "date": "2026-03-25", "english": "machine", "chinese": "機器", "part_of_speech": "(n.)", "example": "There is a vending machine on the platform that sells snacks. Maybe I should grab something to eat." },
+    { "id": 450, "date": "2026-03-25", "english": "at work", "chinese": "工作中", "part_of_speech": "(ph.)", "example": "My parents aren't at work today because it's a holiday. They are chilling(chill v. 放鬆、冷卻) at home and watching movies." },
+    { "id": 451, "date": "2026-03-25", "english": "cheer on", "chinese": "為...加油；給...打氣", "part_of_speech": "(ph.)", "example": "A good manager knows how to cheer on his team members, especially when they are facing a tight deadline." },
+
+    // 2026-03-26 (Thursday)
+    { "id": 452, "date": "2026-03-26", "english": "traffic jam", "chinese": "塞車", "part_of_speech": "(n.)", "example": "There is always a traffic jam at that intersection (n. 十字路口) on Friday nights because too many people are driving home." },
+    { "id": 453, "date": "2026-03-26", "english": "build", "chinese": "建造；建立", "part_of_speech": "(v.)", "example": "build - built - built. The workers are building a new school in our neighborhood, and it should be finished next year." },
+    { "id": 454, "date": "2026-03-26", "english": "call", "chinese": "給...取名；打電話；呼喊；把...看作", "part_of_speech": "(v.)", "example": "My parents named me Robert, but everyone calls me Bob. I heard someone call my name from across the street. I will call you as soon as I finish the project." },
+    { "id": 455, "date": "2026-03-26", "english": "phone", "chinese": "(n.) 電話；(v.) 致電", "part_of_speech": "(n./v.)", "example": "If the restaurant's phone(n.) lines are busy, we may try again later. Once you arrive at your destination, you should phone(v.) your parents." },
+    { "id": 456, "date": "2026-03-26", "english": "past", "chinese": "(adj.) 過去的；(n.) 過去", "part_of_speech": "(adj./n.)", "example": "Our past(adj.) meetings haven't been positive, so reaching an agreement tomorrow will be difficult for us. In the past(n.), many tasks were done by hand." },
+    { "id": 457, "date": "2026-03-26", "english": "shout at", "chinese": "對...大聲喊叫", "part_of_speech": "(ph.)", "example": "Please don't shout at the computer. It's not the machine's fault that the Internet is slow." },
+
+    // 2026-03-27 (Friday)
+    { "id": 458, "date": "2026-03-27", "english": "Internet", "chinese": "網際網路", "part_of_speech": "(n.)", "example": "* use the Internet 上網. It is very easy and convenient to find some useful information on the Internet. Students can make reports much more easily than before." },
+    { "id": 459, "date": "2026-03-27", "english": "message", "chinese": "訊息、消息", "part_of_speech": "(n.)", "example": "* send messages 傳送訊息. My friend just sent me a message saying that she would be running a little late." },
+    { "id": 460, "date": "2026-03-27", "english": "closely", "chinese": "密切地；仔細地", "part_of_speech": "(adv.)", "example": "The shop owner closely monitors(v. 監控、監視) costs and sales to ensure the business is profitable(adj. 有盈利的)." },
+    { "id": 461, "date": "2026-03-27", "english": "camera", "chinese": "照相機", "part_of_speech": "(n.)", "example": "Even though smartphones now offer high-quality photography, some people still use cameras to take pictures in professional or specific situations, such as weddings or sports events." },
+    { "id": 462, "date": "2026-03-27", "english": "travel", "chinese": "旅行、旅遊", "part_of_speech": "(v.)", "example": "I love traveling to different parts of the world and experiencing local cultures." },
+    { "id": 463, "date": "2026-03-27", "english": "go to the dentist", "chinese": "看牙醫", "part_of_speech": "(ph.)", "example": "I'm going to the dentist this afternoon for a routine check-up and teeth cleaning." }
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
