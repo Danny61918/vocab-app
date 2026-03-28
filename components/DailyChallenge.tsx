@@ -9,7 +9,8 @@ interface Props {
   onBack: () => void;
 }
 
-const STAGES = [
+// Base STAGES configuration, dynamically loaded in component
+const DEFAULT_STAGES = [
     { type: GameType.MULTIPLE_CHOICE, difficulty: Difficulty.MEDIUM, title: '第一關：單字記憶 (中級)' },
     { type: GameType.MATCHING, difficulty: Difficulty.MEDIUM, title: '第二關：單字配對 (中級)' },
     { type: GameType.CLOZE, difficulty: Difficulty.HARD, title: '第三關：終極克漏字 (高級)' },
@@ -26,6 +27,15 @@ const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [currentStage, setCurrentStage] = useState(0);
     const [results, setResults] = useState<TestResult[]>([]);
     const [gameState, setGameState] = useState<'INTRO' | 'PLAYING' | 'SUMMARY'>('INTRO');
+
+    const challengeStages = React.useMemo(() => {
+        const baseStages = [...DEFAULT_STAGES];
+        const examplesCount = targetWords.filter(w => w.example && w.example.trim().length > 0).length;
+        if (examplesCount >= 4) {
+            baseStages.push({ type: GameType.SENTENCE_CLOZE, difficulty: Difficulty.MEDIUM, title: '第四關：例句挖空 (進階)' });
+        }
+        return baseStages;
+    }, [targetWords]);
 
     useEffect(() => {
         const all = getWords();
@@ -63,7 +73,7 @@ const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const handleStageComplete = (result: TestResult) => {
         setResults(prev => [...prev, result]);
         saveResult(result);
-        if (currentStage < STAGES.length - 1) {
+        if (currentStage < challengeStages.length - 1) {
             setCurrentStage(prev => prev + 1);
         } else {
             setGameState('SUMMARY');
@@ -134,7 +144,7 @@ const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                 </div>
 
                 <div className="space-y-4 mb-10">
-                    {STAGES.map((stage, idx) => (
+                    {challengeStages.map((stage, idx) => (
                         <div key={idx} className="flex items-center gap-4 p-5 rounded-2xl bg-white border-2 border-slate-100 shadow-sm group hover:border-purple-200 transition-all">
                             <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center font-black text-white text-xl shadow-lg group-hover:bg-purple-600">
                                 {idx + 1}
@@ -238,17 +248,17 @@ const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         <div className="min-h-screen bg-slate-50 pb-20">
             <div className="max-w-4xl mx-auto px-6 py-8 flex justify-between items-center">
                 <div className="bg-white px-8 py-3 rounded-2xl shadow-xl border-4 border-white flex items-center gap-4">
-                    <div className="bg-purple-600 text-white px-3 py-1 rounded-lg text-sm font-black">關卡 {currentStage + 1} / 3</div>
+                    <div className="bg-purple-600 text-white px-3 py-1 rounded-lg text-sm font-black">關卡 {currentStage + 1} / {challengeStages.length}</div>
                     <div className="h-6 w-[2px] bg-slate-100"></div>
-                    <span className="text-slate-700 font-black text-lg">{STAGES[currentStage].title}</span>
+                    <span className="text-slate-700 font-black text-lg">{challengeStages[currentStage].title}</span>
                 </div>
                 <button onClick={onBack} className="bg-white text-slate-400 font-black px-6 py-3 rounded-2xl border-4 border-white shadow-xl hover:text-red-500 transition-colors">退出</button>
             </div>
             
             <QuizArea 
                 key={`${currentStage}-${actualTargetDate}`}
-                gameType={STAGES[currentStage].type}
-                difficulty={STAGES[currentStage].difficulty}
+                gameType={challengeStages[currentStage].type}
+                difficulty={challengeStages[currentStage].difficulty}
                 gameMode={GameMode.CHALLENGE}
                 targetWords={targetWords}
                 onExit={onBack}

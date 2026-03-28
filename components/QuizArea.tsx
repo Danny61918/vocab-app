@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Word, GameType, GameMode, Difficulty, Question, TestResult } from '../types';
 import { getWords, saveResult, getLeaderboard, getLastPlayerName, setLastPlayerName } from '../services/storage';
-import { generateQuestion, shuffleArray } from '../services/gameLogic';
+import { generateQuestion, shuffleArray, checkAnswerMatch } from '../services/gameLogic';
 import { CheckCircle, XCircle, Timer, ArrowRight, LogOut } from 'lucide-react';
 
 interface Props {
@@ -190,9 +190,10 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
   const handleClozeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!currentQuestion || lastAnswerCorrect !== null) return;
-    const input = userClozeInput.trim().toLowerCase();
-    const correct = (currentQuestion.correctAnswer as string).toLowerCase();
-    handleAnswer(input === correct ? currentQuestion.correctAnswer : 'WRONG_INPUT');
+    const input = userClozeInput;
+    const correct = currentQuestion.correctAnswer as string;
+    const isMatch = checkAnswerMatch(input, correct);
+    handleAnswer(isMatch ? currentQuestion.correctAnswer : 'WRONG_INPUT');
   };
 
   useEffect(() => {
@@ -365,11 +366,21 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
 
         <div className="bg-blue-600 p-12 text-center text-white relative">
           <p className="text-blue-200 text-xs font-black uppercase tracking-widest mb-4 opacity-80">
-             {gameType === GameType.MATCHING ? ((difficulty === Difficulty.MEDIUM || difficulty === Difficulty.HARD) ? 'Match POS & Meaning' : 'Select Meaning') : (gameType === GameType.CLOZE ? 'Spell the word' : 'Vocabulary Challenge')}
+             {gameType === GameType.MATCHING ? ((difficulty === Difficulty.MEDIUM || difficulty === Difficulty.HARD) ? 'Match POS & Meaning' : 'Select Meaning') : (gameType === GameType.CLOZE ? 'Spell the word' : (gameType === GameType.SENTENCE_CLOZE ? 'Fill in the blank' : 'Vocabulary Challenge'))}
           </p>
-          <h2 className="text-4xl md:text-6xl font-black leading-tight drop-shadow-md">
-            {currentQuestion ? (gameType === GameType.MATCHING ? currentQuestion.targetWord.english : currentQuestion.targetWord.chinese) : ''}
-          </h2>
+          {gameType === GameType.SENTENCE_CLOZE ? (
+              <div className="flex flex-col gap-4 max-w-2xl mx-auto mt-6">
+                  {currentQuestion?.exampleText?.split(/(?<=[.!?])\s+/).filter(line => line.trim().length > 0).map((line, idx) => (
+                      <div key={idx} className="bg-white/20 p-5 md:p-6 rounded-2xl border-2 border-white/30 shadow-lg text-lg md:text-2xl font-black leading-relaxed text-left drop-shadow-sm">
+                          {line}
+                      </div>
+                  ))}
+              </div>
+          ) : (
+              <h2 className="text-4xl md:text-6xl font-black leading-tight drop-shadow-md">
+                {currentQuestion ? (gameType === GameType.MATCHING ? currentQuestion.targetWord.english : currentQuestion.targetWord.chinese) : ''}
+              </h2>
+          )}
           {!(gameType === GameType.MATCHING && (difficulty === Difficulty.MEDIUM || difficulty === Difficulty.HARD)) && (
             <div className="inline-block mt-6 px-4 py-1 bg-white/20 rounded-full text-sm font-bold backdrop-blur-md">
                {currentQuestion?.targetWord.part_of_speech}

@@ -7,7 +7,7 @@ import WordManager from './components/WordManager';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import Leaderboard from './components/Leaderboard';
 import DailyChallenge from './components/DailyChallenge';
-import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, Filter, CalendarRange, Hourglass, RefreshCw } from 'lucide-react';
+import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw } from 'lucide-react';
 
 const APP_VERSION = '6.3'; // 目前應用程式版本
 
@@ -140,6 +140,10 @@ function App() {
                       <div className="font-bold">單字克漏字 (Cloze)</div>
                        <div className={`text-xs ${selectedGameType === GameType.CLOZE ? 'text-blue-200' : 'text-slate-400'}`}>拼寫填空練習</div>
                     </button>
+                    <button onClick={() => setSelectedGameType(GameType.SENTENCE_CLOZE)} className={`p-3 rounded-lg text-left transition ${selectedGameType === GameType.SENTENCE_CLOZE ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-50 text-slate-600 hover:bg-slate-100'}`}>
+                      <div className="font-bold">例句填空 (Sentence Cloze)</div>
+                      <div className={`text-xs ${selectedGameType === GameType.SENTENCE_CLOZE ? 'text-blue-200' : 'text-slate-400'}`}>根據上下文選出正確單字</div>
+                    </button>
                   </div>
                 </div>
 
@@ -214,7 +218,7 @@ function App() {
                             <span className="font-bold">每日挑戰</span>
                         </div>
                         <h3 className="text-2xl font-black">{dailyWordsCount > 0 ? `今日任務: ${dailyWordsCount} 個單字` : '選擇挑戰日期'}</h3>
-                        <p className="text-purple-100 text-sm mt-1">三階段闖關：記憶 · 配對 · 克漏字</p>
+                        <p className="text-purple-100 text-sm mt-1">多階段闖關：記憶 · 配對 · 克漏字 · (例句)</p>
                     </div>
                     <div className="bg-white text-purple-600 p-3 rounded-full shadow-lg group-hover:bg-purple-50 transition"><Play size={24} fill="currentColor" /></div>
                 </button>

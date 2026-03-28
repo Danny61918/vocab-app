@@ -46,6 +46,46 @@ const generateTypos = (word: string, count: number): string[] => {
   return Array.from(typos);
 };
 
+// Helper: 清理單字字串以便在例句中尋找並挖空 (例如: "(play) badminton" -> "badminton")
+const getCoreWordForMasking = (englishStr: string): string => {
+  // 移除括號及其內部文字
+  let cleaned = englishStr.replace(/\(.*?\)/g, '').trim();
+  // 如果有斜線或破折號 (如 "high / low" 或是 "find - found")，只取第一個單字作為主要挖空目標
+  cleaned = cleaned.split(/[\/-]/)[0].trim();
+  return cleaned;
+};
+
+const normalizeString = (str: string): string => {
+  return str.toLowerCase().replace(/[\\s\\-_.,?!']/g, '');
+};
+
+export const checkAnswerMatch = (userInput: string, correctAnswer: string): boolean => {
+  const input = userInput.toLowerCase().trim();
+  const correct = correctAnswer.toLowerCase().trim();
+  
+  if (input === correct) return true;
+
+  // Handle slashes: "high / low"
+  const possibleAnswers = correct.split('/').map(s => s.trim());
+  
+  for (const possible of possibleAnswers) {
+      if (input === possible) return true;
+      
+      const normalizedInput = normalizeString(input);
+      
+      // Rule A: Full normalized match (keep parentheses content, but remove brackets and spaces)
+      const normalizedPossible = normalizeString(possible.replace(/[()]/g, ''));
+      if (normalizedInput === normalizedPossible && normalizedInput.length > 0) return true;
+      
+      // Rule B: Ignore what's inside parentheses completely
+      const ignoreParentheses = possible.replace(/\\(.*?\\)/g, '');
+      const normalizedIgnore = normalizeString(ignoreParentheses);
+      if (normalizedInput === normalizedIgnore && normalizedInput.length > 0) return true;
+  }
+  
+  return false;
+};
+
 export const generateQuestion = (
   allWords: Word[],
   gameType: GameType,
@@ -58,8 +98,14 @@ export const generateQuestion = (
   if (forcedTarget) {
       targetWord = forcedTarget;
   } else {
-      const targetIndex = Math.floor(Math.random() * allWords.length);
-      targetWord = allWords[targetIndex];
+      let validPool = allWords;
+      // 如果是例句填空模式，優先從「有例句」的單字中隨機挑選
+      if (gameType === GameType.SENTENCE_CLOZE) {
+          const withExamples = allWords.filter(w => w.example && w.example.trim().length > 0);
+          if (withExamples.length > 0) validPool = withExamples;
+      }
+      const targetIndex = Math.floor(Math.random() * validPool.length);
+      targetWord = validPool[targetIndex];
   }
   
   // 2. Generate Options
@@ -111,7 +157,8 @@ export const generateQuestion = (
     return {
       targetWord,
       options,
-      correctAnswer: targetWord.english
+      correctAnswer: targetWord.english,
+      exampleText: targetWord.example
     };
 
   } else if (gameType === GameType.MATCHING) {
@@ -131,7 +178,8 @@ export const generateQuestion = (
     return {
         targetWord,
         options, // options are Word objects here
-        correctAnswer: targetWord.id
+        correctAnswer: targetWord.id,
+        exampleText: targetWord.example
     };
 
   } else if (gameType === GameType.CLOZE) {
@@ -179,7 +227,40 @@ export const generateQuestion = (
         targetWord,
         options: [], // No options for cloze, user types
         correctAnswer: targetWord.english,
-        clozeMask: mask
+        clozeMask: mask,
+        exampleText: targetWord.example
+    };
+
+  } else if (gameType === GameType.SENTENCE_CLOZE) {
+    // 新模式：例句填空 (從四個選項中選出適合填入例句的單字)
+    const others = allWords.filter(w => w.id !== targetWord.id);
+    let distractors = shuffleArray(others).slice(0, 3);
+    options = shuffleArray([...distractors.map(d => d.english), targetWord.english]);
+
+    let sentenceMask = "此單字尚未提供例句。";
+    if (targetWord.example) {
+        const coreWord = getCoreWordForMasking(targetWord.english);
+        
+        if (coreWord) {
+           // 使用 Regex 進行大小寫不敏感的替換，將目標單字變成底線
+           const regex = new RegExp(coreWord, 'gi');
+           const replaced = targetWord.example.replace(regex, '________');
+           // 如果遇到像是 "be worried about" 但句中是 "are worried about" 導致沒被替換到的情況
+           // 就當作純閱讀理解題，保留原句
+           sentenceMask = replaced;
+        } else {
+           sentenceMask = targetWord.example;
+        }
+    } else {
+        // Fallback 保護機制
+        sentenceMask = `Which word means "${targetWord.chinese}"?`;
+    }
+
+    return {
+      targetWord,
+      options,
+      correctAnswer: targetWord.english,
+      exampleText: sentenceMask // 將挖空後的例句傳給 UI 顯示
     };
   }
 

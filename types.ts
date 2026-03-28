@@ -13,6 +13,7 @@ export enum GameType {
   MATCHING = 'MATCHING', // English -> Choose Chinese+POS
   CLOZE = 'CLOZE', // Fill in the blank
   CHINESE_TO_ENGLISH = 'CHINESE_TO_ENGLISH', // New: Chinese (Meaning) -> Choose English
+  SENTENCE_CLOZE = 'SENTENCE_CLOZE', // New: Fill in the missing word in the example sentence
 }
 
 export enum Difficulty {
@@ -32,6 +33,7 @@ export interface Question {
   options: string[] | Word[]; // Strings for Multi-choice/Hard, Words for Matching
   correctAnswer: string | number; // String answer or Word ID
   clozeMask?: string; // For Cloze mode (e.g., "a_p_e")
+  exampleText?: string; // For displaying the example sentence
 }
 
 export interface TestResult {
