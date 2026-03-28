@@ -483,7 +483,46 @@ const serverData: Word[] = [
     { "id": 460, "date": "2026-03-27", "english": "closely", "chinese": "密切地；仔細地", "part_of_speech": "(adv.)", "example": "The shop owner closely monitors(v. 監控、監視) costs and sales to ensure the business is profitable(adj. 有盈利的)." },
     { "id": 461, "date": "2026-03-27", "english": "camera", "chinese": "照相機", "part_of_speech": "(n.)", "example": "Even though smartphones now offer high-quality photography, some people still use cameras to take pictures in professional or specific situations, such as weddings or sports events." },
     { "id": 462, "date": "2026-03-27", "english": "travel", "chinese": "旅行、旅遊", "part_of_speech": "(v.)", "example": "I love traveling to different parts of the world and experiencing local cultures." },
-    { "id": 463, "date": "2026-03-27", "english": "go to the dentist", "chinese": "看牙醫", "part_of_speech": "(ph.)", "example": "I'm going to the dentist this afternoon for a routine check-up and teeth cleaning." }
+    { "id": 463, "date": "2026-03-27", "english": "go to the dentist", "chinese": "看牙醫", "part_of_speech": "(ph.)", "example": "I'm going to the dentist this afternoon for a routine check-up and teeth cleaning." },
+    
+    // 2026-03-30
+    { "id": 464, "date": "2026-03-30", "english": "shop", "chinese": "買、購買", "part_of_speech": "(v.)", "example": "Where do you shop for groceries? If I need to buy in bulk(ph. 大量), I usually go to Costco." },
+    { "id": 465, "date": "2026-03-30", "english": "few", "chinese": "很少的、一點點", "part_of_speech": "(adj.)", "example": "* a few (ph.) 一些、幾個; * quite a few (ph.) 許多、相當多. There are only a few people on the train, so I can easily find a seat." },
+    { "id": 466, "date": "2026-03-30", "english": "tell", "chinese": "講、述、告訴", "part_of_speech": "(v.)", "example": "tell - told - told. Tr. Owen told me a secret—that he always tells the truth and never lies." },
+    { "id": 467, "date": "2026-03-30", "english": "sport(s)", "chinese": "體育、運動", "part_of_speech": "(n.)", "example": "I think the 2026 FIFA World Cup is the biggest sports event of the year. Tr. Owen is really hoping that the Netherlands national football team can win their first World Cup." },
+    { "id": 468, "date": "2026-03-30", "english": "hobby", "chinese": "愛好、嗜好", "part_of_speech": "(n.)", "example": "Collecting stamps is my mom's hobby, and she has been doing it for over thirty years." },
+    { "id": 469, "date": "2026-03-30", "english": "stay up (late)", "chinese": "熬夜", "part_of_speech": "(ph.)", "example": "I should try not to stay up past midnight on weekdays, or I'll fall asleep at work." },
+    
+    // 2026-04-01
+    { "id": 470, "date": "2026-04-01", "english": "photo", "chinese": "照片、相片", "part_of_speech": "(n.)", "example": "My parents always take photos when we celebrate my birthday. They keep them carefully and look at them when they miss me." },
+    { "id": 471, "date": "2026-04-01", "english": "popular", "chinese": "受歡迎的、大眾的", "part_of_speech": "(adj.)", "example": "Japan is a popular tourist destination for Taiwanese people, so there are always many people traveling there during the holidays." },
+    { "id": 472, "date": "2026-04-01", "english": "information", "chinese": "資料、消息", "part_of_speech": "(n.)", "example": "We can find a lot of useful information on the internet, but we have to decide what we can trust." },
+    { "id": 473, "date": "2026-04-01", "english": "chart", "chinese": "圖表", "part_of_speech": "(n.)", "example": "Each section(n. 部分) of the chart is a different color, so you can easily find the information you need." },
+    { "id": 474, "date": "2026-04-01", "english": "collect", "chinese": "收藏、聚集", "part_of_speech": "(v.)", "example": "I like to collect old coins because I consider(v. 認為) them precious(adj. 珍貴的) and believe they can be sold for a high price someday." },
+    { "id": 475, "date": "2026-04-01", "english": "It's time to...", "chinese": "是...的時候了", "part_of_speech": "(ph.)", "example": "It's time to think about where we want to go for our next vacation." },
+    
+    // 2026-04-02
+    { "id": 476, "date": "2026-04-02", "english": "set up", "chinese": "建立；安排；安裝；準備", "part_of_speech": "(ph.)", "example": "My grandfather set up his business in 1970, and it has become a famous company around the world. The meeting room has been set up with all the necessary equipment. We need to start setting up early for the Chinese New Year dinner. Can you help set the table and decorate?" },
+    { "id": 477, "date": "2026-04-02", "english": "plug", "chinese": "(v.) 宣傳；堵、塞、插入；(n.) 插頭", "part_of_speech": "(v./n.)", "example": "The interview was the only opportunity for this team to plug(v.) their new scientific achievement. I plugged(v.) the charger into the wall. Don't pull the plug(n.) with wet hands. You could hurt yourself." },
+    { "id": 478, "date": "2026-04-02", "english": "switch", "chinese": "(v.) 打開/關閉；轉換；(n.) 開關", "part_of_speech": "(v./n.)", "example": "Can you switch(v.) off the lights when you leave? Don't forget to turn off the light switch(n.) when you leave the house." },
+    { "id": 479, "date": "2026-04-02", "english": "happen", "chinese": "發生", "part_of_speech": "(v.)", "example": "What happened at the meeting yesterday? Your problem has happened more than once. You need to find a way to improve your behavior, or it may affect how others respond to you." },
+    { "id": 480, "date": "2026-04-02", "english": "everyone", "chinese": "每個人", "part_of_speech": "(pron.)", "example": "Everyone cheered when the team scored the winning goal. Everyone has their own ideas for solving the problem. Therefore, don't just follow others because yours might be better than theirs." },
+    { "id": 481, "date": "2026-04-02", "english": "head for + a place", "chinese": "朝...走去", "part_of_speech": "(ph.)", "example": "As soon as the bell rang, the students headed for the exit and got ready for lunch." },
+    
+    // 2026-04-03
+    { "id": 482, "date": "2026-04-03", "english": "movie theater", "chinese": "電影院", "part_of_speech": "(n.)", "example": "We went to the movie theater to watch a funny cartoon and ate some popcorn." },
+    { "id": 483, "date": "2026-04-03", "english": "concert", "chinese": "音樂會", "part_of_speech": "(n.)", "example": "My sister played the piano at the school concert, and we all clapped for her." },
+    { "id": 484, "date": "2026-04-03", "english": "playground", "chinese": "操場；遊戲場", "part_of_speech": "(n.)", "example": "After school, I like to run and play on the slides with my friends at the playground." },
+    { "id": 485, "date": "2026-04-03", "english": "wonderful", "chinese": "令人驚嘆的；絕妙的；極好的", "part_of_speech": "(adj.)", "example": "We had a wonderful time at the zoo yesterday. We saw many cute animals!" },
+    { "id": 486, "date": "2026-04-03", "english": "gym", "chinese": "體育館；健身房", "part_of_speech": "(n.)", "example": "It was raining outside, so we went to the gym to play basketball." },
+    { "id": 487, "date": "2026-04-03", "english": "leaf / leaves", "chinese": "葉片；樹葉", "part_of_speech": "(n.)", "example": "In autumn, the leaves turn yellow and fall from the trees to the ground." },
+    { "id": 488, "date": "2026-04-03", "english": "draw", "chinese": "繪畫", "part_of_speech": "(v.)", "example": "I want to draw a beautiful picture of a rainbow for my mom's birthday." },
+    { "id": 489, "date": "2026-04-03", "english": "picture", "chinese": "圖畫、照片", "part_of_speech": "(n.)", "example": "Look at this picture! I painted a big blue house and a green tree." },
+    { "id": 490, "date": "2026-04-03", "english": "music", "chinese": "音樂", "part_of_speech": "(n.)", "example": "I like to listen to happy music and dance in my room when I am happy." },
+    { "id": 491, "date": "2026-04-03", "english": "listen", "chinese": "聽", "part_of_speech": "(v.)", "example": "Please listen to the teacher carefully so you know how to do the homework." },
+    { "id": 492, "date": "2026-04-03", "english": "fantastic", "chinese": "極好的；幻想的；難以置信的", "part_of_speech": "(adj.)", "example": "The magic show was fantastic! The magician made a rabbit come out of a hat." },
+    { "id": 493, "date": "2026-04-03", "english": "different", "chinese": "不一樣的；另類的", "part_of_speech": "(adj.)", "example": "These two toy cars are different. One is bright red and the other is dark blue." }
+    
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
