@@ -29,7 +29,8 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [gameState, setGameState] = useState<'LOADING' | 'PLAYING' | 'FINISHED'>('LOADING');
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState<boolean | null>(null);
-  const [userClozeInput, setUserClozeInput] = useState('');
+  const [clozeInputs, setClozeInputs] = useState<string[]>([]);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const [isNewRecord, setIsNewRecord] = useState(false);
   
   const [playerName, setPlayerName] = useState(getLastPlayerName());
@@ -58,6 +59,10 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
     if (shuffled.length > 0) {
         const firstQ = generateQuestion(sourceWords, gameType, difficulty, shuffled[0]);
         setCurrentQuestion(firstQ);
+        if (gameType === GameType.CLOZE) {
+           setClozeInputs(Array((firstQ.correctAnswer as string).length).fill(''));
+           inputRefs.current = [];
+        }
     }
   }, [targetWords, onExit, gameType, difficulty]);
 
@@ -88,6 +93,7 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
 
   const loadNextQuestion = () => {
      const nextIndex = currentIndex + 1;
+     let nextQ: Question;
      
      if (nextIndex >= questionQueue.length) {
          if (gameMode === GameMode.PRACTICE) {
@@ -97,7 +103,7 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
                  [reshuffled[0], reshuffled[1]] = [reshuffled[1], reshuffled[0]];
              }
              setQuestionQueue(prev => [...prev, ...reshuffled]);
-             const nextQ = generateQuestion(words, gameType, difficulty, reshuffled[0]);
+             nextQ = generateQuestion(words, gameType, difficulty, reshuffled[0]);
              setCurrentQuestion(nextQ);
          } else {
              finishGame();
@@ -105,12 +111,13 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
          }
      } else {
          const target = questionQueue[nextIndex];
-         const nextQ = generateQuestion(words, gameType, difficulty, target);
+         nextQ = generateQuestion(words, gameType, difficulty, target);
          setCurrentQuestion(nextQ);
      }
      
      setLastAnswerCorrect(null);
-     setUserClozeInput('');
+     setClozeInputs(Array((nextQ.correctAnswer as string).length).fill(''));
+     inputRefs.current = [];
      setSelectedPos(null);
      setSelectedMeaningId(null);
      setCurrentIndex(nextIndex);
@@ -187,10 +194,36 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
       }
   };
 
-  const handleClozeSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleClozeChange = (index: number, value: string) => {
+    if (lastAnswerCorrect !== null) return;
+    const char = value.slice(-1).toLowerCase();
+    
+    // Auto-focus next logic happens via refs
+    const newInputs = [...clozeInputs];
+    newInputs[index] = char;
+    setClozeInputs(newInputs);
+    
+    if (char && index < clozeInputs.length - 1) {
+       inputRefs.current[index + 1]?.focus();
+    }
+  };
+
+  const handleClozeKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (lastAnswerCorrect !== null) return;
+    if (e.key === 'Backspace' && !clozeInputs[index] && index > 0) {
+        inputRefs.current[index - 1]?.focus();
+    } else if (e.key === 'ArrowLeft' && index > 0) {
+        inputRefs.current[index - 1]?.focus();
+    } else if (e.key === 'ArrowRight' && index < clozeInputs.length - 1) {
+        inputRefs.current[index + 1]?.focus();
+    } else if (e.key === 'Enter') {
+        submitCloze();
+    }
+  };
+
+  const submitCloze = () => {
     if (!currentQuestion || lastAnswerCorrect !== null) return;
-    const input = userClozeInput;
+    const input = clozeInputs.join('');
     const correct = currentQuestion.correctAnswer as string;
     const isMatch = checkAnswerMatch(input, correct);
     handleAnswer(isMatch ? currentQuestion.correctAnswer : 'WRONG_INPUT');
@@ -390,18 +423,35 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
 
         <div className="p-8 flex-1 flex flex-col justify-center bg-slate-50/50">
             {gameType === GameType.CLOZE && currentQuestion && (
-                <div className="w-full max-w-md mx-auto space-y-6">
-                    <div className="text-center">
-                        <p className="text-5xl font-mono tracking-[0.2em] font-black text-slate-800 mb-8 bg-white py-8 rounded-3xl shadow-inner border-2 border-slate-100">
-                            {userClozeInput || currentQuestion.clozeMask}
+                <div className="w-full max-w-2xl mx-auto space-y-8 mt-4">
+                    <div className="text-center mb-6">
+                        <p className="text-4xl md:text-5xl font-mono tracking-[0.3em] font-black text-slate-800 bg-white py-6 px-4 rounded-3xl shadow-inner border-2 border-slate-100 uppercase">
+                            {currentQuestion.clozeMask}
                         </p>
                     </div>
-                    <form onSubmit={handleClozeSubmit} className="flex gap-3">
-                        <input autoFocus type="text" className="flex-1 border-4 border-white bg-white shadow-xl rounded-2xl p-5 text-2xl text-center focus:border-blue-500 outline-none font-black transition-all" placeholder="輸入完整英文..." value={userClozeInput} onChange={(e) => setUserClozeInput(e.target.value)} />
-                        <button type="submit" className="bg-blue-600 text-white rounded-2xl px-8 hover:bg-blue-700 shadow-xl active:scale-95 transition-all">
-                            <ArrowRight size={32} />
+                    <div className="flex justify-center gap-2 md:gap-3 flex-wrap">
+                        {clozeInputs.map((val, idx) => (
+                             <input
+                                key={idx}
+                                ref={el => { inputRefs.current[idx] = el; }}
+                                type="text"
+                                maxLength={1}
+                                autoComplete="off"
+                                autoCorrect="off"
+                                autoCapitalize="none"
+                                spellCheck={false}
+                                className="w-10 h-14 md:w-16 md:h-20 border-4 border-slate-200 bg-white shadow-md rounded-2xl text-2xl md:text-4xl text-center focus:border-blue-500 focus:scale-110 outline-none font-black text-slate-700 transition-all uppercase placeholder-transparent"
+                                value={val}
+                                onChange={e => handleClozeChange(idx, e.target.value)}
+                                onKeyDown={e => handleClozeKeyDown(idx, e)}
+                             />
+                        ))}
+                    </div>
+                    <div className="flex justify-center mt-8">
+                        <button onClick={() => submitCloze()} className="bg-blue-600 text-white rounded-2xl px-12 py-4 font-black text-xl hover:bg-blue-700 shadow-xl active:scale-95 transition-all flex items-center gap-3">
+                            送出答案 <ArrowRight size={28} />
                         </button>
-                    </form>
+                    </div>
                 </div>
             )}
             {gameType !== GameType.CLOZE && currentQuestion && (

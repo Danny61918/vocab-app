@@ -184,7 +184,7 @@ export const generateQuestion = (
 
   } else if (gameType === GameType.CLOZE) {
     // Calculate how many chars to hide based on difficulty
-    const word = targetWord.english;
+    const word = getCoreWordForMasking(targetWord.english);
     let ratio = 0.5; // EASY default
     if (difficulty === Difficulty.MEDIUM) ratio = 0.75;
     if (difficulty === Difficulty.HARD) ratio = 0.9;
@@ -226,7 +226,7 @@ export const generateQuestion = (
     return {
         targetWord,
         options: [], // No options for cloze, user types
-        correctAnswer: targetWord.english,
+        correctAnswer: word,
         clozeMask: mask,
         exampleText: targetWord.example
     };
