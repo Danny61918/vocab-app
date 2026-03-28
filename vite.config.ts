@@ -8,8 +8,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    sourcemap: false,
-    // 移除 minify: 'terser'，改用預設的 esbuild 即可
-    minify: 'esbuild'
+    sourcemap: false
   }
 });
