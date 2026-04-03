@@ -484,7 +484,7 @@ const serverData: Word[] = [
     { "id": 461, "date": "2026-03-27", "english": "camera", "chinese": "照相機", "part_of_speech": "(n.)", "example": "Even though smartphones now offer high-quality photography, some people still use cameras to take pictures in professional or specific situations, such as weddings or sports events." },
     { "id": 462, "date": "2026-03-27", "english": "travel", "chinese": "旅行、旅遊", "part_of_speech": "(v.)", "example": "I love traveling to different parts of the world and experiencing local cultures." },
     { "id": 463, "date": "2026-03-27", "english": "go to the dentist", "chinese": "看牙醫", "part_of_speech": "(ph.)", "example": "I'm going to the dentist this afternoon for a routine check-up and teeth cleaning." },
-    
+
     // 2026-03-30
     { "id": 464, "date": "2026-03-30", "english": "shop", "chinese": "買、購買", "part_of_speech": "(v.)", "example": "Where do you shop for groceries? If I need to buy in bulk(ph. 大量), I usually go to Costco." },
     { "id": 465, "date": "2026-03-30", "english": "few", "chinese": "很少的、一點點", "part_of_speech": "(adj.)", "example": "* a few (ph.) 一些、幾個; * quite a few (ph.) 許多、相當多. There are only a few people on the train, so I can easily find a seat." },
@@ -492,7 +492,7 @@ const serverData: Word[] = [
     { "id": 467, "date": "2026-03-30", "english": "sport(s)", "chinese": "體育、運動", "part_of_speech": "(n.)", "example": "I think the 2026 FIFA World Cup is the biggest sports event of the year. Tr. Owen is really hoping that the Netherlands national football team can win their first World Cup." },
     { "id": 468, "date": "2026-03-30", "english": "hobby", "chinese": "愛好、嗜好", "part_of_speech": "(n.)", "example": "Collecting stamps is my mom's hobby, and she has been doing it for over thirty years." },
     { "id": 469, "date": "2026-03-30", "english": "stay up (late)", "chinese": "熬夜", "part_of_speech": "(ph.)", "example": "I should try not to stay up past midnight on weekdays, or I'll fall asleep at work." },
-    
+
     // 2026-04-01
     { "id": 470, "date": "2026-04-01", "english": "photo", "chinese": "照片、相片", "part_of_speech": "(n.)", "example": "My parents always take photos when we celebrate my birthday. They keep them carefully and look at them when they miss me." },
     { "id": 471, "date": "2026-04-01", "english": "popular", "chinese": "受歡迎的、大眾的", "part_of_speech": "(adj.)", "example": "Japan is a popular tourist destination for Taiwanese people, so there are always many people traveling there during the holidays." },
@@ -500,7 +500,7 @@ const serverData: Word[] = [
     { "id": 473, "date": "2026-04-01", "english": "chart", "chinese": "圖表", "part_of_speech": "(n.)", "example": "Each section(n. 部分) of the chart is a different color, so you can easily find the information you need." },
     { "id": 474, "date": "2026-04-01", "english": "collect", "chinese": "收藏、聚集", "part_of_speech": "(v.)", "example": "I like to collect old coins because I consider(v. 認為) them precious(adj. 珍貴的) and believe they can be sold for a high price someday." },
     { "id": 475, "date": "2026-04-01", "english": "It's time to...", "chinese": "是...的時候了", "part_of_speech": "(ph.)", "example": "It's time to think about where we want to go for our next vacation." },
-    
+
     // 2026-04-02
     { "id": 476, "date": "2026-04-02", "english": "set up", "chinese": "建立；安排；安裝；準備", "part_of_speech": "(ph.)", "example": "My grandfather set up his business in 1970, and it has become a famous company around the world. The meeting room has been set up with all the necessary equipment. We need to start setting up early for the Chinese New Year dinner. Can you help set the table and decorate?" },
     { "id": 477, "date": "2026-04-02", "english": "plug", "chinese": "(v.) 宣傳；堵、塞、插入；(n.) 插頭", "part_of_speech": "(v./n.)", "example": "The interview was the only opportunity for this team to plug(v.) their new scientific achievement. I plugged(v.) the charger into the wall. Don't pull the plug(n.) with wet hands. You could hurt yourself." },
@@ -508,7 +508,7 @@ const serverData: Word[] = [
     { "id": 479, "date": "2026-04-02", "english": "happen", "chinese": "發生", "part_of_speech": "(v.)", "example": "What happened at the meeting yesterday? Your problem has happened more than once. You need to find a way to improve your behavior, or it may affect how others respond to you." },
     { "id": 480, "date": "2026-04-02", "english": "everyone", "chinese": "每個人", "part_of_speech": "(pron.)", "example": "Everyone cheered when the team scored the winning goal. Everyone has their own ideas for solving the problem. Therefore, don't just follow others because yours might be better than theirs." },
     { "id": 481, "date": "2026-04-02", "english": "head for + a place", "chinese": "朝...走去", "part_of_speech": "(ph.)", "example": "As soon as the bell rang, the students headed for the exit and got ready for lunch." },
-    
+
     // 2026-04-03
     { "id": 482, "date": "2026-04-03", "english": "movie theater", "chinese": "電影院", "part_of_speech": "(n.)", "example": "We went to the movie theater to watch a funny cartoon and ate some popcorn." },
     { "id": 483, "date": "2026-04-03", "english": "concert", "chinese": "音樂會", "part_of_speech": "(n.)", "example": "My sister played the piano at the school concert, and we all clapped for her." },
@@ -521,8 +521,39 @@ const serverData: Word[] = [
     { "id": 490, "date": "2026-04-03", "english": "music", "chinese": "音樂", "part_of_speech": "(n.)", "example": "I like to listen to happy music and dance in my room when I am happy." },
     { "id": 491, "date": "2026-04-03", "english": "listen", "chinese": "聽", "part_of_speech": "(v.)", "example": "Please listen to the teacher carefully so you know how to do the homework." },
     { "id": 492, "date": "2026-04-03", "english": "fantastic", "chinese": "極好的；幻想的；難以置信的", "part_of_speech": "(adj.)", "example": "The magic show was fantastic! The magician made a rabbit come out of a hat." },
-    { "id": 493, "date": "2026-04-03", "english": "different", "chinese": "不一樣的；另類的", "part_of_speech": "(adj.)", "example": "These two toy cars are different. One is bright red and the other is dark blue." }
-    
+    { "id": 493, "date": "2026-04-03", "english": "different", "chinese": "不一樣的；另類的", "part_of_speech": "(adj.)", "example": "These two toy cars are different. One is bright red and the other is dark blue." },
+
+    // 2026-04-06
+    { "id": 494, "date": "2026-04-06", "english": "adult", "chinese": "成人", "part_of_speech": "(n.)", "example": "When you become an adult, you can drive a car and go to work." },
+    { "id": 495, "date": "2026-04-06", "english": "difficult", "chinese": "困難的；艱難地", "part_of_speech": "(adj.)", "example": "This math question is very difficult, and I need the teacher's help." },
+    { "id": 496, "date": "2026-04-06", "english": "touch", "chinese": "碰、觸、摸", "part_of_speech": "(v.)", "example": "Never touch the hot stove because you might burn your hand." },
+    { "id": 497, "date": "2026-04-06", "english": "wet", "chinese": "濕的；潮濕的", "part_of_speech": "(adj.)", "example": "Don't touch plugs with wet hands, or it could be very dangerous." },
+    { "id": 498, "date": "2026-04-06", "english": "dim", "chinese": "暗淡的、昏暗的", "part_of_speech": "(adj.)", "example": "The light in the room is too dim, so we should turn on another lamp to read." },
+    { "id": 499, "date": "2026-04-06", "english": "bright", "chinese": "光明的、明亮的；鮮艷的", "part_of_speech": "(adj.)", "example": "The sun is so bright today that I need to wear my sunglasses outside." },
+
+    // 2026-04-08
+    { "id": 500, "date": "2026-04-08", "english": "hundreds of", "chinese": "許多的、成百上千", "part_of_speech": "(ph.)", "example": "There are hundreds of books in the library, and I want to read them one by one with my friends." },
+    { "id": 501, "date": "2026-04-08", "english": "solar power", "chinese": "太陽能", "part_of_speech": "(n.)", "example": "* solar energy. Solar power is a clean and renewable energy source that helps protect the environment because it can reduce carbon emissions." },
+    { "id": 502, "date": "2026-04-08", "english": "energy", "chinese": "精力；能量", "part_of_speech": "(n.)", "example": "People who exercise regularly are usually full of energy throughout the day. If the system produces more energy than is currently required, it can store the surplus(n. 多餘) in batteries." },
+    { "id": 503, "date": "2026-04-08", "english": "amazing", "chinese": "驚人的；令人驚喜的", "part_of_speech": "(adj.)", "example": "The magician was amazing. He made a car disappear and pulled a tiger out of a suitcase!" },
+    { "id": 504, "date": "2026-04-08", "english": "advert(s)", "chinese": "廣告、宣傳", "part_of_speech": "(n.)", "example": "* advertisement. I think having an effective advert really helps sell more products, so let's explore promotion channels like public transport and online platforms." },
+    { "id": 505, "date": "2026-04-08", "english": "as busy as a bee", "chinese": "忙得不停", "part_of_speech": "(ph.)", "example": "My mother is always as busy as a bee in the morning, preparing breakfast and getting everyone ready for school." },
+
+    // 2026-04-09
+    { "id": 506, "date": "2026-04-09", "english": "mint", "chinese": "薄荷", "part_of_speech": "(n.)", "example": "Mint ice cream is my favorite dessert on hot days because it makes me feel refreshed." },
+    { "id": 507, "date": "2026-04-09", "english": "kit", "chinese": "工具箱、成套工具", "part_of_speech": "(n.)", "example": "It's important to prepare everything, so I always bring a first aid kit with me when I go hiking." },
+    { "id": 508, "date": "2026-04-09", "english": "bulb", "chinese": "燈泡", "part_of_speech": "(n.)", "example": "We need to buy a new LED bulb because this one has burnt out." },
+    { "id": 509, "date": "2026-04-09", "english": "battery", "chinese": "電池", "part_of_speech": "(n.)", "example": "We have to change the batteries in the clock because it is running slow." },
+    { "id": 510, "date": "2026-04-09", "english": "wire", "chinese": "電線；金屬絲", "part_of_speech": "(n.)", "example": "Do not cut any of the wires inside the computer, or it will not work anymore." },
+    { "id": 511, "date": "2026-04-09", "english": "as sick as a dog", "chinese": "非常虛弱；病得很重", "part_of_speech": "(ph.)", "example": "I missed the party last night because I had a terrible cold and was as sick as a dog." },
+
+    // 2026-04-10
+    { "id": 512, "date": "2026-04-10", "english": "motor", "chinese": "發動機；馬達", "part_of_speech": "(n.)", "example": "There is something wrong with the vacuum's motor, and I can't get it to start. I have to take it to be repaired." },
+    { "id": 513, "date": "2026-04-10", "english": "circuit", "chinese": "電路、回路", "part_of_speech": "(n.)", "example": "Complete the circuit by twisting the ends of the two wires together." },
+    { "id": 514, "date": "2026-04-10", "english": "electricity", "chinese": "電、電能", "part_of_speech": "(n.)", "example": "The electricity went out during the typhoon, and we had to use candles." },
+    { "id": 515, "date": "2026-04-10", "english": "dangerous", "chinese": "危險的、有威脅的", "part_of_speech": "(adj.)", "example": "It's dangerous to use your mobile device when you are driving because it distracts you from the road." },
+    { "id": 516, "date": "2026-04-10", "english": "on or off", "chinese": "開啟的或是關閉的", "part_of_speech": "(adj.)", "example": "A: Why doesn't the TV work? B: You should check if the switch is on or off." },
+    { "id": 517, "date": "2026-04-10", "english": "as hungry as a bear", "chinese": "非常餓", "part_of_speech": "(ph.)", "example": "After hiking for five hours, the whole team was as hungry as a bear." }
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
