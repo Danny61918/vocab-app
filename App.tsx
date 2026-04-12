@@ -7,11 +7,12 @@ import WordManager from './components/WordManager';
 import AnalyticsDashboard from './components/AnalyticsDashboard';
 import Leaderboard from './components/Leaderboard';
 import DailyChallenge from './components/DailyChallenge';
-import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw } from 'lucide-react';
+import GrammarChallenge from './components/GrammarChallenge';
+import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles } from 'lucide-react';
 
-const APP_VERSION = '6.3'; // 目前應用程式版本
+const APP_VERSION = '6.4'; // 目前應用程式版本
 
-type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE';
+type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -95,6 +96,8 @@ function App() {
             onExit={() => setCurrentView('MENU')} 
           />
         );
+      case 'GRAMMAR_CHALLENGE':
+        return <GrammarChallenge onExit={() => setCurrentView('MENU')} />;
       case 'DAILY_CHALLENGE':
         return <DailyChallenge onBack={() => setCurrentView('MENU')} />;
       case 'MANAGER':
@@ -210,6 +213,18 @@ function App() {
               </div>
 
               <div className="flex flex-col gap-4">
+                <button onClick={() => setCurrentView('GRAMMAR_CHALLENGE')} className="relative overflow-hidden bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white p-8 rounded-[2.5rem] shadow-2xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-orange-700">
+                    <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Sparkles size={120} /></div>
+                    <div className="flex-1 text-left relative z-10">
+                        <div className="flex items-center gap-2 mb-2">
+                            <span className="bg-white/30 px-3 py-1 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-inner">New!</span>
+                        </div>
+                        <h3 className="text-4xl md:text-5xl font-black mb-2 drop-shadow-md">✨ 文法大挑戰</h3>
+                        <p className="text-red-100 text-xl font-bold">無盡模式 ✚ 動畫特效，來挑戰 Combo 吧！</p>
+                    </div>
+                    <div className="bg-white text-orange-500 p-5 rounded-full shadow-xl group-hover:bg-yellow-50 transition relative z-10"><Play size={40} fill="currentColor" /></div>
+                </button>
+
                 <button onClick={() => setCurrentView('DAILY_CHALLENGE')} className="relative overflow-hidden bg-gradient-to-r from-purple-600 to-pink-500 text-white p-6 rounded-2xl shadow-xl hover:scale-[1.02] transition-transform flex items-center justify-between group">
                     <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Calendar size={100} /></div>
                     <div>

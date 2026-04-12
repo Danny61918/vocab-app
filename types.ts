@@ -63,3 +63,19 @@ export interface LeaderboardEntry {
   date: string;
   playerName?: string;
 }
+
+export enum GrammarCategory {
+  PREPOSITION_TIME = 'PREPOSITION_TIME',
+  PREPOSITION_PLACE = 'PREPOSITION_PLACE',
+  TENSE_PRESENT_SIMPLE = 'TENSE_PRESENT_SIMPLE',
+  TENSE_PRESENT_CONTINUOUS = 'TENSE_PRESENT_CONTINUOUS',
+}
+
+export interface GrammarQuestion {
+  id: string;
+  category: GrammarCategory;
+  sentenceContext: string;
+  options: string[];
+  correctAnswer: string;
+  ruleReminder: string;
+}
