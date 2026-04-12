@@ -41,9 +41,9 @@ export const saveResult = (result: TestResult): void => {
   history.push(result);
   localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(history));
   updateStats(result);
-  
+
   if (result.mode !== GameMode.CHALLENGE) {
-      saveToLeaderboard(result);
+    saveToLeaderboard(result);
   }
 };
 
@@ -54,19 +54,19 @@ export const getWordStats = (): Record<number, WordStats> => {
 
 const updateStats = (result: TestResult) => {
   const stats = getWordStats();
-  
+
   // 記錄所有出現過的單字嘗試
   const allAttemptedIds = [...new Set([...result.correctIds, ...result.wrongIds])];
-  
+
   allAttemptedIds.forEach(wordId => {
     if (!stats[wordId]) {
       stats[wordId] = { wordId, attempts: 0, errors: 0 };
     }
-    
+
     // 計算該單字在此次測試中答對與答錯的次數
     const correctCount = result.correctIds.filter(id => id === wordId).length;
     const errorCount = result.wrongIds.filter(id => id === wordId).length;
-    
+
     stats[wordId].attempts += (correctCount + errorCount);
     stats[wordId].errors += errorCount;
   });
@@ -75,11 +75,11 @@ const updateStats = (result: TestResult) => {
 };
 
 export const getLastPlayerName = (): string => {
-    return localStorage.getItem(STORAGE_KEY_LAST_PLAYER) || '';
+  return localStorage.getItem(STORAGE_KEY_LAST_PLAYER) || '';
 }
 
 export const setLastPlayerName = (name: string) => {
-    localStorage.setItem(STORAGE_KEY_LAST_PLAYER, name);
+  localStorage.setItem(STORAGE_KEY_LAST_PLAYER, name);
 }
 
 const getLeaderboardKey = (mode: GameMode, type: GameType, difficulty?: Difficulty) => {
@@ -117,13 +117,13 @@ export const saveToLeaderboard = (result: TestResult) => {
 };
 
 export const clearAllData = () => {
-    localStorage.removeItem(STORAGE_KEY_WORDS);
-    localStorage.removeItem(STORAGE_KEY_HISTORY);
-    localStorage.removeItem(STORAGE_KEY_STATS);
-    Object.keys(localStorage).forEach(key => {
-        if(key.startsWith(STORAGE_KEY_LEADERBOARD_PREFIX)) {
-            localStorage.removeItem(key);
-        }
-    });
-    window.location.reload();
+  localStorage.removeItem(STORAGE_KEY_WORDS);
+  localStorage.removeItem(STORAGE_KEY_HISTORY);
+  localStorage.removeItem(STORAGE_KEY_STATS);
+  Object.keys(localStorage).forEach(key => {
+    if (key.startsWith(STORAGE_KEY_LEADERBOARD_PREFIX)) {
+      localStorage.removeItem(key);
+    }
+  });
+  window.location.reload();
 }
