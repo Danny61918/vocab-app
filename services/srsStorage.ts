@@ -13,6 +13,7 @@ export interface VocabMastery {
 export interface LevelProgress {
   highestUnlockedLevel: number;
   unlockedMonsters: number[];
+  lastEscapeDate?: string;
 }
 
 // Ensure the mastery dictionary is loaded
@@ -37,7 +38,8 @@ export function loadLevelProgress(): LevelProgress {
     const parsed = JSON.parse(data);
     return {
       highestUnlockedLevel: parsed.highestUnlockedLevel || 1,
-      unlockedMonsters: parsed.unlockedMonsters || []
+      unlockedMonsters: parsed.unlockedMonsters || [],
+      lastEscapeDate: parsed.lastEscapeDate
     };
   } catch {
     return { highestUnlockedLevel: 1, unlockedMonsters: [] };
@@ -69,6 +71,14 @@ export function unlockNextLevel(currentLevel: number) {
   }
 }
 
+export function unlockMonster(id: number) {
+  const progress = loadLevelProgress();
+  if (!progress.unlockedMonsters.includes(id)) {
+    progress.unlockedMonsters.push(id);
+    saveLevelProgress(progress);
+  }
+}
+
 export function checkAndUnlockLegendaryMonsters(masteredCount: number): number[] {
   const progress = loadLevelProgress();
   const newlyUnlocked: number[] = [];
@@ -89,6 +99,41 @@ export function checkAndUnlockLegendaryMonsters(masteredCount: number): number[]
   }
   
   return newlyUnlocked;
+}
+
+export function processSpontaneousEscapes(): number[] {
+  const progress = loadLevelProgress();
+  const today = new Date().toLocaleDateString();
+
+  if (progress.lastEscapeDate === today) {
+    return []; // Already processed today
+  }
+
+  // Get standard monsters that are currently unlocked
+  const standardUnlocked = progress.unlockedMonsters.filter(id => id <= 20);
+  
+  if (standardUnlocked.length === 0) {
+    progress.lastEscapeDate = today;
+    saveLevelProgress(progress);
+    return [];
+  }
+
+  // Determine how many evade: 2 to 5, but bounded by how many are available
+  const escapeCount = Math.min(
+    Math.floor(Math.random() * 4) + 2, // 2 to 5
+    standardUnlocked.length
+  );
+
+  // Shuffle and pick
+  const shuffled = standardUnlocked.sort(() => 0.5 - Math.random());
+  const escapedIds = shuffled.slice(0, escapeCount);
+
+  // Update progress
+  progress.unlockedMonsters = progress.unlockedMonsters.filter(id => !escapedIds.includes(id));
+  progress.lastEscapeDate = today;
+  saveLevelProgress(progress);
+
+  return escapedIds;
 }
 
 export const WORDS_PER_LEVEL = 10;

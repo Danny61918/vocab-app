@@ -34,5 +34,11 @@ export const MONSTER_DATA: Record<number, Monster> = {
   // --- Legendary Boss Monsters (21-23) ---
   21: { id: 21, name: '雷霆機關神', image: 'monsters/mon_10.png', filter: 'drop-shadow(0 0 20px yellow) hue-rotate(45deg) saturate(2)', isLegendary: true },
   22: { id: 22, name: '聖靈幽火', image: 'monsters/mon_11.png', filter: 'drop-shadow(0 0 20px cyan)', isLegendary: true },
-  23: { id: 23, name: '黃金究極王', image: 'monsters/mon_01.png', filter: 'hue-rotate(60deg) saturate(2) drop-shadow(0 0 40px gold)', isLegendary: true }
+  23: { id: 23, name: '黃金究極王', image: 'monsters/mon_01.png', filter: 'hue-rotate(60deg) saturate(2) drop-shadow(0 0 40px gold)', isLegendary: true },
+
+  // --- Grammar Boss Monsters (24-27) ---
+  24: { id: 24, name: '時光幽魂', image: 'monsters/mon_25.png', filter: 'drop-shadow(0 0 15px purple)', isLegendary: true },
+  25: { id: 25, name: '大地護衛', image: 'monsters/mon_24.png', filter: 'drop-shadow(0 0 15px green)', isLegendary: true },
+  26: { id: 26, name: '永恆機甲', image: 'monsters/mon_23.png', filter: 'drop-shadow(0 0 15px blue)', isLegendary: true },
+  27: { id: 27, name: '烈焰之舞', image: 'monsters/mon_22.png', filter: 'drop-shadow(0 0 15px red)', isLegendary: true }
 };

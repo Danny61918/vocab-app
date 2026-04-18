@@ -199,3 +199,10 @@ export const getRandomGrammarQuestions = (count: number = 10): GrammarQuestion[]
   const shuffled = [...GRAMMAR_QUESTIONS].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
+
+export const GRAMMAR_BOSS_MAP: Record<GrammarCategory, number> = {
+  [GrammarCategory.PREPOSITION_TIME]: 24, // 時光幽魂
+  [GrammarCategory.PREPOSITION_PLACE]: 25, // 大地護衛
+  [GrammarCategory.TENSE_PRESENT_SIMPLE]: 26, // 永恆機甲
+  [GrammarCategory.TENSE_PRESENT_CONTINUOUS]: 27, // 烈焰之舞
+};
