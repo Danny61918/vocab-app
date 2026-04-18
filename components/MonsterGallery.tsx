@@ -82,7 +82,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
               <div className="w-32 h-32 mt-6 mb-4 flex items-center justify-center relative">
                 {isUnlocked ? (
                   <img 
-                    src={`/${monster.image}`} 
+                    src={monster.image} 
                     alt={monster.name} 
                     className="max-w-full max-h-full object-contain animate-fade-in drop-shadow-md"
                     style={{ filter: monster.filter }}
@@ -90,7 +90,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
                 ) : (
                   <div className="w-full h-full opacity-30 brightness-0 flex items-center justify-center relative">
                     <img 
-                      src={`/${monster.image}`} 
+                      src={monster.image} 
                       alt="Locked" 
                       className="max-w-full max-h-full object-contain drop-shadow-[0_0_8px_rgba(0,0,0,1)]"
                       style={{ filter: monster.filter }}
@@ -150,7 +150,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
               <div className="w-32 h-32 mt-6 mb-4 flex items-center justify-center relative">
                 {isUnlocked ? (
                   <img 
-                    src={`/${monster.image}`} 
+                    src={monster.image} 
                     alt={monster.name} 
                     className="max-w-full max-h-full object-contain animate-fade-in drop-shadow-[0_0_15px_rgba(255,0,0,0.2)]"
                     style={{ filter: monster.filter }}
@@ -158,7 +158,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
                 ) : (
                   <div className="w-full h-full opacity-30 brightness-0 flex items-center justify-center relative">
                     <img 
-                      src={`/${monster.image}`} 
+                      src={monster.image} 
                       alt="Locked" 
                       className="max-w-full max-h-full object-contain drop-shadow-[0_0_8px_rgba(0,0,0,1)]"
                       style={{ filter: monster.filter }}

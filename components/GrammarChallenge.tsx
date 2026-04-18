@@ -101,7 +101,7 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
             return (
               <div key={category} onClick={() => startBattle(category as GrammarCategory)} className="bg-white rounded-[3rem] p-6 border-b-8 border-rose-300 shadow-xl cursor-pointer hover:bg-rose-50 hover:scale-[1.03] transition-all flex flex-col items-center border-4">
                  <div className="w-32 h-32 mb-6">
-                   <img src={`/${monster.image}`} style={{filter: monster.filter}} className="w-full h-full object-contain drop-shadow-lg" />
+                   <img src={monster.image} style={{filter: monster.filter}} className="w-full h-full object-contain drop-shadow-lg" />
                  </div>
                  <h2 className="text-2xl font-black text-rose-800 mb-3">{monster.name}</h2>
                  <span className="bg-rose-100 text-rose-600 px-3 py-1 rounded-xl font-bold text-sm">
@@ -151,7 +151,7 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
            <div className="flex-1 max-w-[280px] ml-auto">
              <div className="flex items-center gap-4 bg-rose-950 px-4 py-3 rounded-2xl border-2 border-rose-800 relative overflow-hidden">
                <div className="absolute right-0 top-0 bottom-0 bg-red-600 opacity-30" style={{width: `${(bossHp / 15) * 100}%`, transition: 'width 0.4s ease-out'}}></div>
-               <img src={`/${monster.image}`} style={{filter: monster.filter}} className="w-12 h-12 object-contain z-10" />
+               <img src={monster.image} style={{filter: monster.filter}} className="w-12 h-12 object-contain z-10" />
                <div className="flex flex-col items-end z-10 font-sans w-full">
                   <span className="text-xs font-bold text-rose-300 mb-1">{monster.name} - HP {bossHp}/15</span>
                   <div className="text-sm font-black w-full bg-black/40 rounded-full h-4 overflow-hidden outline outline-1 outline-rose-700">
@@ -233,7 +233,7 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
         </p>
         <div className="relative mb-12">
            <div className="absolute inset-0 bg-yellow-200 blur-3xl rounded-full animate-pulse"></div>
-           <img src={`/${monster.image}`} style={{filter: monster.filter}} className="w-56 h-56 object-contain drop-shadow-2xl relative z-10" />
+           <img src={monster.image} style={{filter: monster.filter}} className="w-56 h-56 object-contain drop-shadow-2xl relative z-10" />
         </div>
         <button 
           onClick={() => setPhase('select')}
