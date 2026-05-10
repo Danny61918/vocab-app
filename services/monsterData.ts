@@ -40,5 +40,8 @@ export const MONSTER_DATA: Record<number, Monster> = {
   24: { id: 24, name: '時光幽魂', image: 'monsters/mon_25.png', filter: 'drop-shadow(0 0 15px purple)', isLegendary: true },
   25: { id: 25, name: '大地護衛', image: 'monsters/mon_24.png', filter: 'drop-shadow(0 0 15px green)', isLegendary: true },
   26: { id: 26, name: '永恆機甲', image: 'monsters/mon_23.png', filter: 'drop-shadow(0 0 15px blue)', isLegendary: true },
-  27: { id: 27, name: '烈焰之舞', image: 'monsters/mon_22.png', filter: 'drop-shadow(0 0 15px red)', isLegendary: true }
+  27: { id: 27, name: '烈焰之舞', image: 'monsters/mon_22.png', filter: 'drop-shadow(0 0 15px red)', isLegendary: true },
+  28: { id: 28, name: '雷電松鼠', image: 'monsters/mon_26.png', filter: '' },
+  29: { id: 29, name: '岩甲地鼠', image: 'monsters/mon_27.png', filter: '' },
+  30: { id: 30, name: '格鬥鋼拳', image: 'monsters/mon_28.png', filter: 'drop-shadow(0 0 15px red)', isLegendary: true },
 };
