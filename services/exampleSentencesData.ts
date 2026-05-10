@@ -166,5 +166,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "He stopped to pick up a coin he saw on the street.",
         "Can you pick up some milk from the supermarket?",
         "The wind started to pick up as the storm came closer."
+    ],
+    584: [
+        "A giraffe is famous for its very long neck.",
+        "I have a scarf around my neck.",
+        "The boy wore a warm scarf around his neck.",
+        "She wore a beautiful necklace around her neck.",
+        "The animal with the longest neck is the giraffe."
+    ],
+    585: [
+        "She put her hands on her hips.",
+        "She carried the baby on her hip.",
+        "He wore a tool belt around his hips.",
+        "The mother held the child on her right hip.",
+        "She stood with her hands on her hips."
+    ],
+    586: [
+        "My bag is heavy on my shoulder.",
+        "He patted me on the shoulder.",
+        "She rested her head on his shoulder.",
+        "The monkey climbed up and sat on my shoulder.",
+        "He carried the box on his shoulder."
+    ],
+    587: [
+        "I hit my elbow on the table.",
+        "She rested her elbows on the desk.",
+        "It is not polite to put your elbows on the dinner table.",
+        "He bent his elbow to throw the ball.",
+        "He used his elbow to push the door open."
+    ],
+    588: [
+        "I fell down and hurt my knee.",
+        "The boy has mud on his knees.",
+        "Bend your knees when you jump.",
+        "You need to wear pads on your knees when you roller skate.",
+        "He got down on one knee to tie his shoelace."
+    ],
+    589: [
+        "I have an idea to solve this difficult math problem.",
+        "Mom has an idea to surprise Dad on his birthday.",
+        "The boys have an idea to build a robot.",
+        "We have an idea to make the project better.",
+        "He has an idea to win the basketball game."
+    ],
+    590: [
+        "I wear a hat on my head.",
+        "You should wear a helmet to protect your head.",
+        "She shook her head to say no.",
+        "He has a lot of hair on his head.",
+        "She rested her head on the soft pillow."
+    ],
+    591: [
+        "Please wash your hands before dinner.",
+        "He held his mother's hand.",
+        "Raise your hand if you know the answer.",
+        "He caught the baseball with his left hand.",
+        "She clapped her hands with joy."
+    ],
+    592: [
+        "You have five toes on each foot.",
+        "My right foot is bigger than my left foot.",
+        "He stepped on my foot.",
+        "The shoe is too small for my foot.",
+        "He kicked the soccer ball with his right foot."
+    ],
+    593: [
+        "The table in the room is oval.",
+        "An egg is an oval shape.",
+        "He drew a large oval on the paper.",
+        "The mirror on the wall is oval.",
+        "She cut the paper into an oval."
+    ],
+    594: [
+        "The two pieces of paper overlap.",
+        "The leaves overlap each other on the tree.",
+        "Our classes overlap today.",
+        "Make sure the books do not overlap.",
+        "Do the two pictures overlap?"
+    ],
+    595: [
+        "We will go camping next weekend.",
+        "I like to go camping in the mountains.",
+        "They go camping every summer.",
+        "Are you going to go camping with us?",
+        "He bought a new tent to go camping."
+    ],
+    614: [
+        "The table is made of wood.",
+        "We need some wood to make a fire.",
+        "He cut the wood with a saw.",
+        "He put another piece of wood on the campfire.",
+        "The old house was built of wood."
+    ],
+    615: [
+        "We saw a bear in the woods.",
+        "It is dark in the woods at night.",
+        "The children like to play in the woods.",
+        "We went for a walk in the woods.",
+        "There are many tall trees in the woods."
+    ],
+    616: [
+        "Don't touch the hot cup.",
+        "Can you touch your toes?",
+        "The baby tried to touch the cat.",
+        "Please do not touch the paintings.",
+        "She touched his arm gently."
+    ],
+    617: [
+        "I will try to finish my homework.",
+        "You should try to eat some vegetables.",
+        "Let me try to open the door.",
+        "He tried his best to win the game.",
+        "I want to try a new sport."
+    ],
+    618: [
+        "We plan to hike in the mountains.",
+        "It takes two hours to hike up the hill.",
+        "They like to hike on the weekend.",
+        "Do you want to hike with me?",
+        "He wears strong shoes to hike."
+    ],
+    619: [
+        "The firefighters put out the fire.",
+        "Please put out the campfire before we leave.",
+        "He used water to put out the fire.",
+        "Put out your hand to feel the rain.",
+        "She put out some food for the birds."
+    ],
+    620: [
+        "We sing songs around the fire at camp.",
+        "I made many new friends at camp.",
+        "It was very cold at camp last night.",
+        "We sleep in a tent at camp.",
+        "There is a lake at camp."
+    ],
+    621: [
+        "Cover your mouth when you cough.",
+        "The snow covered the whole street.",
+        "She covered the baby with a blanket.",
+        "Please cover the food to keep it clean.",
+        "The clouds covered the sun."
+    ],
+    622: [
+        "The soccer game was very exciting.",
+        "We had an exciting adventure today.",
+        "It is exciting to learn new things.",
+        "Riding a roller coaster is exciting.",
+        "She told us an exciting story."
+    ],
+    623: [
+        "Can you think of a good idea?",
+        "I often think of my friends.",
+        "What do you think of this book?",
+        "We need to think of a plan.",
+        "I can't think of his name right now."
+    ],
+    624: [
+        "We need a plan for the weekend.",
+        "They plan to visit the zoo tomorrow.",
+        "I have a plan to surprise my mom.",
+        "What is your plan for the holiday?",
+        "She likes to plan everything carefully."
+    ],
+    625: [
+        "It was foolish of him to run in the dark.",
+        "It is foolish of me to forget my keys.",
+        "It was foolish of her to touch the hot pan.",
+        "It is foolish of you to walk in the rain without an umbrella.",
+        "It was foolish of them to leave the door open."
     ]
 };
