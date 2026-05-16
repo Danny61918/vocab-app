@@ -43,9 +43,16 @@ function App() {
   const [dateEnd, setDateEnd] = useState<string>('');
   const [dailyWordsCount, setDailyWordsCount] = useState(0);
 
+  const getLocalDateString = (d: Date): string => {
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${year}-${month}-${day}`;
+  };
+
   useEffect(() => {
     const all = getWords();
-    const today = new Date().toISOString().split('T')[0];
+    const today = getLocalDateString(new Date());
     const count = all.filter(w => w.date === today).length;
     setDailyWordsCount(count);
   }, [currentView]);
@@ -56,8 +63,8 @@ function App() {
       const end = new Date();
       const start = new Date();
       start.setDate(end.getDate() - 7);
-      setDateEnd(end.toISOString().split('T')[0]);
-      setDateStart(start.toISOString().split('T')[0]);
+      setDateEnd(getLocalDateString(end));
+      setDateStart(getLocalDateString(start));
       setScopeMode('CUSTOM');
       setUiScope('LAST7');
   };

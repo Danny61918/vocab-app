@@ -63,8 +63,36 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         setAvailableDates(dates);
         
         if (dates.length > 0) {
-            const today = new Date().toISOString().split('T')[0];
-            setSelectedDate(dates.includes(today) ? today : dates[0]);
+            const localDate = new Date();
+            const dayOfWeek = localDate.getDay();
+            
+            const targetDate = new Date(localDate);
+            if (dayOfWeek === 0) {
+                // Sunday -> Next Monday
+                targetDate.setDate(targetDate.getDate() + 1);
+            } else if (dayOfWeek === 6) {
+                // Saturday -> Next Monday
+                targetDate.setDate(targetDate.getDate() + 2);
+            } else {
+                // Weekday -> Next Day
+                targetDate.setDate(targetDate.getDate() + 1);
+            }
+
+            const targetStr = `${targetDate.getFullYear()}-${String(targetDate.getMonth() + 1).padStart(2, '0')}-${String(targetDate.getDate()).padStart(2, '0')}`;
+            
+            let nearestDate = dates[0];
+            let minDiff = Infinity;
+            
+            const targetTime = new Date(targetStr.replace(/-/g, '/')).getTime();
+            for (const d of dates) {
+                const dTime = new Date(d.replace(/-/g, '/')).getTime();
+                const diff = Math.abs(dTime - targetTime);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    nearestDate = d;
+                }
+            }
+            setSelectedDate(nearestDate);
         }
         setCurrentMonster(getRandomMonster());
     }, []);
