@@ -15,7 +15,13 @@ const WordManager: React.FC<Props> = ({ onBack }) => {
   const [infoMessage, setInfoMessage] = useState<{text: string, type: 'success' | 'error'} | null>(null);
 
   // New Word Form State
-  const [newDate, setNewDate] = useState(new Date().toISOString().split('T')[0]);
+  const [newDate, setNewDate] = useState(() => {
+    const localDate = new Date();
+    const year = localDate.getFullYear();
+    const month = String(localDate.getMonth() + 1).padStart(2, '0');
+    const day = String(localDate.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  });
   const [newEng, setNewEng] = useState('');
   const [newChi, setNewChi] = useState('');
   const [newPos, setNewPos] = useState('(n.)');

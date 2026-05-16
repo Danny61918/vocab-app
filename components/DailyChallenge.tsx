@@ -5,6 +5,7 @@ import { CalendarDays, ChevronDown, BookOpen, TrendingUp, AlertCircle, ArrowRigh
 import confetti from 'canvas-confetti';
 import { MONSTER_DATA } from '../services/monsterData';
 import { EXTRA_SENTENCES } from '../services/exampleSentencesData';
+import { HanziCanvas } from './HanziCanvas';
 
 interface Props {
   onBack: () => void;
@@ -29,7 +30,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [currentMonster, setCurrentMonster] = useState<any>(null);
 
     // Quiz Phase
-    const [quizMode, setQuizMode] = useState<'RECOGNIZE' | 'SPELL' | 'SENTENCE'>('RECOGNIZE');
+    const [quizMode, setQuizMode] = useState<'RECOGNIZE' | 'SPELL' | 'WRITE' | 'SENTENCE'>('RECOGNIZE');
     const [quizQueue, setQuizQueue] = useState<Word[]>([]);
     const [currentQuizWord, setCurrentQuizWord] = useState<Word | null>(null);
     const [options, setOptions] = useState<string[]>([]);
@@ -39,6 +40,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [feedbackState, setFeedbackState] = useState<'idle' | 'correct' | 'wrong'>('idle');
     const [monsterHp, setMonsterHp] = useState(100);
     const [mistakesCount, setMistakesCount] = useState(0);
+    const [writeIndex, setWriteIndex] = useState(0);
 
     // Results
     const [correctCount, setCorrectCount] = useState(0);
@@ -179,6 +181,13 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         prepareNextQuestion(shuffled, 'SPELL');
     };
 
+    const startWritePhase = () => {
+        setQuizMode('WRITE');
+        const shuffled = [...currentChunk].sort(() => 0.5 - Math.random());
+        setQuizQueue(shuffled);
+        prepareNextQuestion(shuffled, 'WRITE');
+    };
+
     const startSentencePhase = () => {
         setQuizMode('SENTENCE');
         const withExamples = currentChunk.filter(w => w.example && w.example.trim().length > 0);
@@ -187,11 +196,13 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         prepareNextQuestion(shuffled, 'SENTENCE');
     };
 
-    const prepareNextQuestion = (queue: Word[], mode: 'RECOGNIZE' | 'SPELL' | 'SENTENCE') => {
+    const prepareNextQuestion = (queue: Word[], mode: 'RECOGNIZE' | 'SPELL' | 'WRITE' | 'SENTENCE') => {
         if (queue.length === 0) {
             if (mode === 'RECOGNIZE') {
                 startSpellPhase();
             } else if (mode === 'SPELL') {
+                startWritePhase();
+            } else if (mode === 'WRITE') {
                 startSentencePhase();
             } else {
                 finishRound();
@@ -210,6 +221,18 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             speak(target.english);
         } else if (mode === 'SPELL') {
             setSpellInput('');
+            speak(target.english);
+        } else if (mode === 'WRITE') {
+            let startIdx = 0;
+            while (startIdx < target.chinese.length && !/[\u4e00-\u9fa5]/.test(target.chinese[startIdx])) {
+                startIdx++;
+            }
+            if (startIdx >= target.chinese.length) {
+                // No Chinese characters, auto-skip
+                setTimeout(() => handleAnswer(''), 100);
+            } else {
+                setWriteIndex(startIdx);
+            }
             speak(target.english);
         } else if (mode === 'SENTENCE') {
             const distractors = getDistractors(target.id, 3).map(w => w.english);
@@ -248,6 +271,8 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             isCorrect = selectedAns.toLowerCase().trim() === coreWord;
         } else if (quizMode === 'SENTENCE') {
             isCorrect = selectedAns === currentQuizWord.english;
+        } else if (quizMode === 'WRITE') {
+            isCorrect = true;
         }
 
         setTotalQuestions(prev => prev + 1);
@@ -280,6 +305,21 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const handleSpellSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         handleAnswer(spellInput);
+    };
+
+    const handleWriteNext = () => {
+        if (!currentQuizWord) return;
+        const fullText = currentQuizWord.chinese;
+        let nextIndex = writeIndex + 1;
+        while (nextIndex < fullText.length && !/[\u4e00-\u9fa5]/.test(fullText[nextIndex])) {
+            nextIndex++;
+        }
+        
+        if (nextIndex < fullText.length) {
+            setWriteIndex(nextIndex);
+        } else {
+            handleAnswer(''); 
+        }
     };
 
     const finishRound = () => {
@@ -440,12 +480,16 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         const word = currentQuizWord;
         if (!word) return null;
 
+        const coreWord = getCoreWordForMasking(word.english);
+        const coreWordChars = coreWord.split('');
+
         return (
-            <div className="flex flex-col items-center justify-center min-h-[80vh] p-4 md:p-8 w-full max-w-3xl mx-auto animate-fade-in">
-                <div className="w-full flex justify-between items-center mb-8">
+            <div className="flex flex-col min-h-[80vh] p-4 md:p-8 w-full max-w-6xl mx-auto animate-fade-in select-none touch-manipulation">
+                {/* Header */}
+                <div className="w-full flex justify-between items-center mb-6">
                     <div className="bg-red-500 text-white font-black text-xl px-5 py-2 rounded-xl shadow-md border-b-4 border-red-700 flex items-center gap-2">
                         <span>
-                            {quizMode === 'RECOGNIZE' ? '👁️ 認字階段' : quizMode === 'SPELL' ? '✍️ 拼字階段' : '📖 例句階段'} 
+                            {quizMode === 'RECOGNIZE' ? '👁️ 認字階段' : quizMode === 'SPELL' ? '✍️ 拼字階段' : quizMode === 'WRITE' ? '✨ 魔法封印' : '📖 例句階段'} 
                             - 剩餘怪獸: 
                         </span>
                         <span className="text-2xl ml-2">{quizQueue.length}</span>
@@ -457,100 +501,172 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                     )}
                 </div>
 
-                <div 
-                    onClick={() => speak(word.english)}
-                    className={`text-white w-full rounded-[3rem] p-10 text-center shadow-2xl relative cursor-pointer active:scale-[0.98] transition-all border-8 ${quizMode === 'SENTENCE' ? 'bg-indigo-800 border-indigo-700' : 'bg-slate-800 border-slate-700'}`}
-                >
-                    <div className="flex justify-center mb-6 relative h-32">
-                        <div className={`w-32 h-32 absolute transition-all duration-300 ${feedbackState === 'correct' ? 'opacity-0 scale-50 rotate-180' : 'opacity-100 scale-100'}`}>
-                            {currentMonster && <img src={currentMonster.image} style={{filter: currentMonster.filter}} className="max-w-full max-h-full object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]" alt="monster" />}
-                        </div>
-                        {feedbackState === 'correct' && (
-                            <div className="text-8xl absolute animate-ping-once text-red-500">💥</div>
-                        )}
-                    </div>
-                    
-                    <div className="w-48 h-4 bg-slate-600 rounded-full mx-auto mb-8 overflow-hidden border-2 border-slate-900">
-                        <div className="h-full bg-red-500 transition-all duration-300" style={{width: `${monsterHp}%`}}></div>
-                    </div>
-
-                    {quizMode === 'RECOGNIZE' ? (
-                        <div className="text-5xl md:text-6xl font-black mb-2 font-['Outfit'] tracking-wider">{word.english}</div>
-                    ) : quizMode === 'SPELL' ? (
-                        <div className="text-4xl font-black mb-2 tracking-wider text-emerald-400">{word.chinese}</div>
-                    ) : (
-                        <div className="bg-white/10 p-6 rounded-2xl mt-4 relative">
-                            <div className="text-2xl md:text-3xl font-black leading-relaxed text-left text-white drop-shadow-md">
-                                {sentenceMask}
+                {/* Split Layout for Tablet */}
+                <div className="flex flex-col md:flex-row gap-8 w-full items-stretch">
+                    {/* Left Panel: Monster & HP */}
+                    <div 
+                        onClick={() => speak(word.english)}
+                        className={`flex-1 text-white rounded-[3rem] p-10 text-center shadow-2xl relative cursor-pointer active:scale-[0.98] transition-all border-8 flex flex-col justify-center items-center ${quizMode === 'SENTENCE' ? 'bg-indigo-800 border-indigo-700' : 'bg-slate-800 border-slate-700'}`}
+                    >
+                        <div className="flex justify-center mb-8 relative h-40 md:h-56">
+                            <div className={`w-40 h-40 md:w-56 md:h-56 absolute transition-all duration-300 ${feedbackState === 'correct' ? 'opacity-0 scale-50 rotate-180' : 'opacity-100 scale-100'}`}>
+                                {currentMonster && <img src={currentMonster.image} style={{filter: currentMonster.filter}} className="max-w-full max-h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" alt="monster" />}
                             </div>
-                            {mistakesCount >= 3 && (
-                                <button 
-                                    onClick={(e) => { e.stopPropagation(); speak(word.english); }}
-                                    className="absolute -top-4 -right-4 bg-yellow-400 text-yellow-900 rounded-full p-3 shadow-lg hover:bg-yellow-300 hover:scale-110 transition-all font-black flex items-center gap-2 animate-bounce"
-                                >
-                                    🔊 提示
-                                </button>
+                            {feedbackState === 'correct' && (
+                                <div className="text-8xl absolute animate-ping-once text-red-500">💥</div>
                             )}
                         </div>
-                    )}
-                    
-                    {quizMode !== 'SENTENCE' && (
-                        <div className="text-2xl text-slate-400 font-bold italic">({word.part_of_speech})</div>
-                    )}
-                </div>
+                        
+                        <div className="w-full max-w-xs h-6 bg-slate-600 rounded-full mx-auto mb-8 overflow-hidden border-4 border-slate-900 shadow-inner">
+                            <div className="h-full bg-red-500 transition-all duration-300" style={{width: `${monsterHp}%`}}></div>
+                        </div>
 
-                {quizMode === 'RECOGNIZE' || quizMode === 'SENTENCE' ? (
-                    <div className="grid grid-cols-2 gap-4 w-full mt-6">
-                        {options.map((opt, i) => {
-                            let btnClass = "bg-white hover:bg-blue-50 text-slate-700 border-4 border-slate-100 active:scale-95";
-                            let showStatus = false;
-                            
-                            const correctAnswer = quizMode === 'RECOGNIZE' ? word.chinese : word.english;
-
-                            if (feedbackState !== 'idle') {
-                                if (opt === correctAnswer) {
-                                    btnClass = "bg-emerald-500 text-white border-4 border-emerald-600 z-10 scale-105 shadow-xl";
-                                    showStatus = true;
-                                } else if (feedbackState === 'wrong') {
-                                    btnClass = "bg-slate-100 text-slate-400 opacity-50 border-slate-200";
-                                }
-                            }
-
-                            return (
-                                <button
-                                    key={i}
-                                    disabled={feedbackState !== 'idle'}
-                                    onClick={() => handleAnswer(opt)}
-                                    className={`text-2xl md:text-3xl font-black p-6 rounded-3xl transition-all relative shadow-md ${btnClass}`}
-                                >
-                                    {opt}
-                                    {showStatus && opt === correctAnswer && feedbackState === 'correct' && (
-                                        <div className="absolute -top-3 -right-3 text-4xl animate-bounce">🟢</div>
-                                    )}
-                                </button>
-                            );
-                        })}
+                        {quizMode === 'RECOGNIZE' ? (
+                            <div className="text-5xl md:text-7xl font-black mb-2 font-['Outfit'] tracking-wider drop-shadow-lg">{word.english}</div>
+                        ) : quizMode === 'SPELL' ? (
+                            <div className="text-4xl md:text-5xl font-black mb-2 tracking-wider text-emerald-400 drop-shadow-md">{word.chinese}</div>
+                        ) : quizMode === 'WRITE' ? (
+                            <div className="text-4xl md:text-5xl font-black mb-2 tracking-wider text-yellow-400 drop-shadow-md">{word.english}</div>
+                        ) : (
+                            <div className="bg-white/10 p-6 rounded-2xl mt-4 relative w-full">
+                                <div className="text-2xl md:text-4xl font-black leading-relaxed text-left text-white drop-shadow-md">
+                                    {sentenceMask}
+                                </div>
+                                {mistakesCount >= 3 && (
+                                    <button 
+                                        onClick={(e) => { e.stopPropagation(); speak(word.english); }}
+                                        className="absolute -top-6 -right-6 bg-yellow-400 text-yellow-900 rounded-full p-4 shadow-xl hover:bg-yellow-300 hover:scale-110 transition-all font-black flex items-center gap-2 animate-bounce border-4 border-yellow-500"
+                                    >
+                                        🔊 提示
+                                    </button>
+                                )}
+                            </div>
+                        )}
+                        
+                        {quizMode !== 'SENTENCE' && (
+                            <div className="text-2xl text-slate-400 font-bold italic mt-4">({word.part_of_speech})</div>
+                        )}
                     </div>
-                ) : (
-                    <form onSubmit={handleSpellSubmit} className="w-full mt-6 flex gap-4">
-                        <input 
-                            type="text" 
-                            value={spellInput}
-                            onChange={(e) => setSpellInput(e.target.value)}
-                            disabled={feedbackState !== 'idle'}
-                            autoFocus
-                            placeholder="Type the English word..."
-                            className={`flex-1 p-6 rounded-3xl border-4 text-3xl font-black shadow-inner outline-none transition-all ${feedbackState === 'correct' ? 'bg-emerald-100 border-emerald-500 text-emerald-800' : feedbackState === 'wrong' ? 'bg-red-100 border-red-500 text-red-800 animate-shake' : 'bg-white border-slate-200 focus:border-blue-500'}`}
-                        />
-                        <button 
-                            type="submit" 
-                            disabled={feedbackState !== 'idle' || !spellInput.trim()}
-                            className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white px-8 rounded-3xl font-black text-2xl shadow-xl active:scale-95 transition-all"
-                        >
-                            攻擊
-                        </button>
-                    </form>
-                )}
+
+                    {/* Right Panel: Options / Input */}
+                    <div className="flex-1 flex flex-col justify-center items-center bg-slate-50 rounded-[3rem] p-8 border-8 border-slate-100 shadow-inner">
+                        {quizMode === 'RECOGNIZE' || quizMode === 'SENTENCE' ? (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full content-center">
+                                {options.map((opt, i) => {
+                                    let btnClass = "bg-white hover:bg-blue-50 text-slate-700 border-4 border-slate-200 active:scale-95";
+                                    let showStatus = false;
+                                    
+                                    const correctAnswer = quizMode === 'RECOGNIZE' ? word.chinese : word.english;
+
+                                    if (feedbackState !== 'idle') {
+                                        if (opt === correctAnswer) {
+                                            btnClass = "bg-emerald-500 text-white border-4 border-emerald-600 z-10 scale-105 shadow-2xl";
+                                            showStatus = true;
+                                        } else if (feedbackState === 'wrong') {
+                                            btnClass = "bg-slate-100 text-slate-400 opacity-50 border-slate-200";
+                                        }
+                                    }
+
+                                    return (
+                                        <button
+                                            key={i}
+                                            disabled={feedbackState !== 'idle'}
+                                            onClick={() => handleAnswer(opt)}
+                                            className={`text-2xl md:text-3xl font-black p-8 rounded-3xl transition-all relative shadow-md min-h-[120px] flex items-center justify-center ${btnClass}`}
+                                        >
+                                            <span className="text-center">{opt}</span>
+                                            {showStatus && opt === correctAnswer && feedbackState === 'correct' && (
+                                                <div className="absolute -top-4 -right-4 text-5xl animate-bounce">🟢</div>
+                                            )}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        ) : quizMode === 'WRITE' ? (
+                            <div className="w-full flex flex-col items-center justify-center relative min-h-[300px]">
+                                <div className="text-2xl md:text-4xl font-black mb-8 flex flex-wrap justify-center gap-2 max-w-full leading-relaxed">
+                                    {word.chinese.split('').map((char, idx) => {
+                                        const isChinese = /[\u4e00-\u9fa5]/.test(char);
+                                        if (!isChinese) {
+                                            return <span key={idx} className="text-slate-400 font-bold">{char}</span>;
+                                        }
+                                        const status = idx < writeIndex ? 'text-emerald-500' : idx === writeIndex ? 'text-blue-600 bg-blue-100 px-3 py-1 rounded-xl scale-110 shadow-sm border-2 border-blue-200' : 'text-slate-300';
+                                        return <span key={idx} className={`transition-all ${status}`}>{char}</span>;
+                                    })}
+                                </div>
+                                
+                                {word.chinese.split('')[writeIndex] && /[\u4e00-\u9fa5]/.test(word.chinese.split('')[writeIndex]) && (
+                                    <HanziCanvas 
+                                        key={writeIndex}
+                                        character={word.chinese.split('')[writeIndex]} 
+                                        onComplete={handleWriteNext}
+                                        size={320}
+                                    />
+                                )}
+                            </div>
+                        ) : (
+                            <form onSubmit={handleSpellSubmit} className="w-full flex flex-col items-center justify-center relative min-h-[300px]">
+                                {/* Hidden input to trigger mobile keyboard but maintain text flow */}
+                                <input 
+                                    type="text" 
+                                    value={spellInput}
+                                    onChange={(e) => setSpellInput(e.target.value)}
+                                    disabled={feedbackState !== 'idle'}
+                                    autoFocus
+                                    maxLength={coreWordChars.length}
+                                    className="absolute inset-0 w-full h-full opacity-0 cursor-text z-10"
+                                />
+                                
+                                {/* Visual Letter Boxes */}
+                                <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 pointer-events-none">
+                                    {coreWordChars.map((char, idx) => {
+                                        const isTyped = idx < spellInput.length;
+                                        const displayChar = isTyped ? spellInput[idx] : '';
+                                        const isSpaceOrHyphen = char === ' ' || char === '-';
+                                        
+                                        if (isSpaceOrHyphen) {
+                                            const visualHint = char === ' ' ? '␣' : '-';
+                                            let spaceBoxClass = isTyped 
+                                                ? (displayChar === char ? 'border-transparent bg-transparent text-slate-400' : 'border-red-500 bg-red-100 text-red-700 shadow-md') 
+                                                : 'border-dashed border-slate-300 bg-transparent text-slate-300';
+                                                
+                                            return (
+                                                <div key={idx} className={`w-12 h-16 md:w-16 md:h-24 flex items-center justify-center text-4xl md:text-5xl font-black rounded-2xl border-4 uppercase transition-all duration-200 ${spaceBoxClass}`}>
+                                                    {isTyped ? displayChar : visualHint}
+                                                </div>
+                                            );
+                                        }
+                                        
+                                        let boxClass = isTyped ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md' : 'border-slate-300 bg-slate-100 text-transparent';
+                                        if (feedbackState === 'correct') {
+                                            boxClass = 'border-emerald-500 bg-emerald-100 text-emerald-700 shadow-lg scale-105';
+                                        } else if (feedbackState === 'wrong') {
+                                            boxClass = 'border-red-500 bg-red-100 text-red-700 animate-shake shadow-lg';
+                                        }
+
+                                        return (
+                                            <div key={idx} className={`w-12 h-16 md:w-20 md:h-24 flex items-center justify-center text-4xl md:text-5xl font-black rounded-2xl border-4 uppercase transition-all duration-200 ${boxClass}`}>
+                                                {displayChar}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                
+                                <button 
+                                    type="submit" 
+                                    disabled={feedbackState !== 'idle' || !spellInput.trim()}
+                                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white px-12 py-5 rounded-[2rem] font-black text-3xl shadow-xl active:scale-95 transition-all z-20 relative w-full max-w-sm"
+                                >
+                                    發動攻擊
+                                </button>
+                                
+                                <div className="mt-6 text-slate-400 font-bold text-center">
+                                    直接使用鍵盤輸入即可
+                                </div>
+                            </form>
+                        )}
+                    </div>
+                </div>
             </div>
         );
     }
