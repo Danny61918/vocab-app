@@ -645,7 +645,31 @@ const serverData: Word[] = [
     { "id": 622, "date": "2026-05-15", "english": "exciting", "chinese": "令人興奮的", "part_of_speech": "(adj.)", "example": "She had an exciting day at the amusement park because she went on all the rides." },
     { "id": 623, "date": "2026-05-15", "english": "think of", "chinese": "想出、發明；覺得、認為", "part_of_speech": "(ph.)", "example": "We have to think of a convincing excuse to explain our lateness." },
     { "id": 624, "date": "2026-05-15", "english": "plan", "chinese": "計劃、安排", "part_of_speech": "(v.)", "example": "We need to plan the budget for next quarter." },
-    { "id": 625, "date": "2026-05-15", "english": "be foolish of", "chinese": "做...是愚蠢的", "part_of_speech": "(ph.)", "example": "It was foolish of me to drink the whole carton of milk." }
+    { "id": 625, "date": "2026-05-15", "english": "be foolish of", "chinese": "做...是愚蠢的", "part_of_speech": "(ph.)", "example": "It was foolish of me to drink the whole carton of milk." },
+    { "id": 626, "date": "2026-05-18", "english": "canoe", "chinese": "划獨木舟", "part_of_speech": "(v.)", "example": "If you feel tired after hiking, you can choose to canoe back down the river and enjoy the scenery on your way to the campsite." },
+    { "id": 627, "date": "2026-05-18", "english": "grill", "chinese": "燒烤", "part_of_speech": "(v.)", "example": "Dad will grill delicious chicken in the backyard this evening, and I am really looking forward to having a great dinner." },
+    { "id": 628, "date": "2026-05-18", "english": "fish", "chinese": "釣魚、捕魚(魚)；翻找、搜尋", "part_of_speech": "(v.)", "example": "The sea here has been fished intensely over the last ten years, so there are fewer fish for the local fishermen now." },
+    { "id": 629, "date": "2026-05-18", "english": "watch birds", "chinese": "賞鳥", "part_of_speech": "(ph.)", "example": "Let's watch birds and hike in the woods. That must be fun." },
+    { "id": 630, "date": "2026-05-18", "english": "ski", "chinese": "(n.) 滑雪板 (v.) 滑雪", "part_of_speech": "(n., v.)", "example": "They often go skiing in December." },
+    { "id": 631, "date": "2026-05-18", "english": "take (good) care of", "chinese": "好好照顧", "part_of_speech": "(ph.)", "example": "Please take good care of my dog when I am on vacation." },
+    { "id": 632, "date": "2026-05-18", "english": "snowboard", "chinese": "單板滑雪", "part_of_speech": "(v.)", "example": "Would you like to learn how to snowboard or ski?" },
+    { "id": 633, "date": "2026-05-18", "english": "ice-skate", "chinese": "溜冰", "part_of_speech": "(v.)", "example": "My parents taught me how to ice-skate on the frozen lake when I was five." },
+    { "id": 634, "date": "2026-05-20", "english": "in-line skate", "chinese": "(n.) 直排輪鞋 (v.) 溜直排輪", "part_of_speech": "(n., v.)", "example": "These in-line skates(n.) are expensive, but they are comfortable and safe for beginners." },
+    { "id": 635, "date": "2026-05-20", "english": "skateboard", "chinese": "(n.) 滑板 (v.) 滑滑板", "part_of_speech": "(n., v.)", "example": "James skateboards(v.) to school every day. He has an excellent sense of balance." },
+    { "id": 636, "date": "2026-05-20", "english": "surf", "chinese": "衝浪；上網", "part_of_speech": "(v.)", "example": "Most days of the week, David heads for the beach to surf early in the morning before he goes to work." },
+    { "id": 637, "date": "2026-05-20", "english": "be happy with", "chinese": "對...感到滿意、高興", "part_of_speech": "(ph.)", "example": "I am happy with your grades because they are excellent, and I hope you can keep up the great work." },
+    { "id": 638, "date": "2026-05-21", "english": "helmet", "chinese": "安全帽", "part_of_speech": "(n.)", "example": "You should always wear a helmet when riding a bike for safety because it can protect your head from serious injuries." },
+    { "id": 639, "date": "2026-05-21", "english": "sunscreen", "chinese": "防曬乳", "part_of_speech": "(n.)", "example": "He applied sunscreen to his face and arms before heading out for a hike to avoid getting a painful sunburn." },
+    { "id": 640, "date": "2026-05-21", "english": "life jacket", "chinese": "救生衣", "part_of_speech": "(n.)", "example": "In case of an emergency, everyone should know how to properly wear a life jacket to stay safe in the water." },
+    { "id": 641, "date": "2026-05-21", "english": "fasten your seatbelt", "chinese": "繫上安全帶", "part_of_speech": "(ph.)", "example": "Make sure to fasten your seatbelt before we start driving." },
+    { "id": 642, "date": "2026-05-21", "english": "stone", "chinese": "石頭、石塊", "part_of_speech": "(n.)", "example": "It is very dangerous to throw stones into the river if people are swimming." },
+    { "id": 643, "date": "2026-05-21", "english": "invite sb. to V.", "chinese": "邀請某人做...", "part_of_speech": "(ph.)", "example": "I want to invite Tom to go camping with my family this weekend." },
+    { "id": 644, "date": "2026-05-22", "english": "weather report", "chinese": "天氣預報", "part_of_speech": "(n.)", "example": "I checked the weather report, and it looks like we'll have sunny weather all week, which makes me feel very happy." },
+    { "id": 645, "date": "2026-05-22", "english": "tomorrow", "chinese": "明天", "part_of_speech": "(n.)", "example": "Tomorrow is my sister's birthday, so I need to buy her a present before all the shops are closed tonight." },
+    { "id": 646, "date": "2026-05-22", "english": "remember", "chinese": "記得、想起", "part_of_speech": "(v.)", "example": "Remember to turn off the lights before leaving the house." },
+    { "id": 647, "date": "2026-05-22", "english": "snowy", "chinese": "下雪的", "part_of_speech": "(adj.)", "example": "We have a lot of fun building a snowman when it's snowy outside." },
+    { "id": 648, "date": "2026-05-22", "english": "around", "chinese": "周圍；圍繞；在...附近", "part_of_speech": "(adv., prep.)", "example": "A crowd had gathered around(prep.) the scene of the accident, but the police dispersed them before an emergency vehicle arrived." },
+    { "id": 649, "date": "2026-05-22", "english": "run into", "chinese": "偶然遇見(1)；遭遇(困難)(2)；碰撞(3)", "part_of_speech": "(ph.)", "example": "I ran into(1) an old neighbor the other day while I was shopping in the mall." }
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));

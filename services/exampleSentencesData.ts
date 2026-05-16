@@ -334,5 +334,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "It was foolish of her to touch the hot pan.",
         "It is foolish of you to walk in the rain without an umbrella.",
         "It was foolish of them to leave the door open."
+    ],
+    626: [
+        "We can canoe down the river this weekend.",
+        "I like to canoe on the calm lake in summer.",
+        "They will canoe across the lake to the other side.",
+        "It is fun to canoe with my friends on a sunny day.",
+        "Can you teach me how to canoe safely?"
+    ],
+    627: [
+        "We will grill some hamburgers for lunch today.",
+        "Dad likes to grill meat in the backyard.",
+        "They are going to grill hot dogs at the park.",
+        "Can we grill some fish for dinner tonight?",
+        "I smell someone grilling sausages outside."
+    ],
+    628: [
+        "My grandpa and I fish at the lake every Sunday.",
+        "They like to fish in the quiet river early in the morning.",
+        "We will fish for our dinner during the camping trip.",
+        "He went to fish, but he didn't catch anything.",
+        "It is relaxing to fish by the sea on a sunny afternoon."
+    ],
+    629: [
+        "We like to go to the forest and watch birds.",
+        "She uses her binoculars to watch birds in the trees.",
+        "It is interesting to watch birds building their nests.",
+        "They went to the park to watch birds early in the morning.",
+        "Many people watch birds by the lake in spring."
+    ],
+    630: [
+        "We want to ski down the high mountain this winter.",
+        "She learned to ski when she was five years old.",
+        "It is fun to ski in the deep snow with my family.",
+        "He bought a new pair of skis for the winter trip.",
+        "They go to Japan to ski every year."
+    ],
+    631: [
+        "You should take good care of your new pet dog.",
+        "Please take good care of yourself when you are sick.",
+        "She will take good care of the baby while we are out.",
+        "We must take good care of the plants in the garden.",
+        "The nurse takes good care of everyone in the hospital."
+    ],
+    632: [
+        "He wants to snowboard down the snowy hill.",
+        "It takes a lot of practice to snowboard well.",
+        "She bought a pink helmet to snowboard safely.",
+        "They are going to the mountains to snowboard this weekend.",
+        "I think it is cooler to snowboard than to ski."
+    ],
+    633: [
+        "We like to ice-skate on the frozen lake in winter.",
+        "She can ice-skate very fast and do beautiful spins.",
+        "I will learn how to ice-skate at the sports center.",
+        "They hold hands and ice-skate together on the ice.",
+        "It is not easy to ice-skate for the first time."
+    ],
+    634: [
+        "My brother likes to in-line skate in the park after school.",
+        "He wore his new in-line skates to play with his friends.",
+        "You should wear a helmet when you in-line skate.",
+        "It is fun to in-line skate along the river bank.",
+        "She got a pair of pink in-line skates for her birthday."
+    ],
+    635: [
+        "He rides his skateboard to the park every afternoon.",
+        "They like to skateboard in the empty parking lot.",
+        "She learned a new trick on her skateboard yesterday.",
+        "You need good balance to skateboard well.",
+        "He wants to buy a faster skateboard for his birthday."
+    ],
+    636: [
+        "We go to the beach to surf the big waves in summer.",
+        "He is learning how to surf on his new surfboard.",
+        "She likes to surf the internet to find interesting pictures.",
+        "They often surf at the beach when the weather is good.",
+        "It is exciting to surf on a hot summer day."
+    ],
+    637: [
+        "I am very happy with my high test score.",
+        "She is happy with her new dress for the party.",
+        "My mom is happy with the beautiful flowers I gave her.",
+        "They are happy with the food at the restaurant.",
+        "The teacher is happy with the students' good behavior."
+    ],
+    638: [
+        "You must wear a helmet when you ride a bike.",
+        "He bought a new red helmet for his motorcycle.",
+        "A good helmet can protect your head from injuries.",
+        "She forgot to bring her helmet, so she couldn't ride her scooter.",
+        "Construction workers wear hard helmets on the site."
+    ],
+    639: [
+        "Put on some sunscreen before you go to the beach.",
+        "She bought a new bottle of sunscreen for the summer.",
+        "Sunscreen helps protect your skin from the hot sun.",
+        "Remember to apply sunscreen every two hours when swimming.",
+        "He got a sunburn because he didn't use any sunscreen."
+    ],
+    640: [
+        "Everyone on the boat must wear a life jacket.",
+        "The life jacket will keep you safe in the water.",
+        "He put on his orange life jacket before getting in the canoe.",
+        "Make sure your life jacket fits you well.",
+        "The swimming teacher told us how to use a life jacket."
+    ],
+    641: [
+        "Please fasten your seatbelt as soon as you get in the car.",
+        "The driver told everyone to fasten their seatbelts.",
+        "You must fasten your seatbelt when the plane takes off.",
+        "It is important to fasten your seatbelt for your own safety.",
+        "He forgot to fasten his seatbelt and got a ticket."
+    ],
+    642: [
+        "He threw a small stone into the lake.",
+        "We found a beautiful white stone on the beach.",
+        "The old bridge is made of large gray stones.",
+        "Do not kick stones on the road because it is dangerous.",
+        "She used a flat stone to skip across the water."
+    ],
+    643: [
+        "I want to invite my friends to play video games at my house.",
+        "She decided to invite Tom to come to her birthday party.",
+        "We should invite the new neighbor to have dinner with us.",
+        "They plan to invite everyone to join the school club.",
+        "He will invite me to watch a movie this weekend."
+    ],
+    644: [
+        "The weather report says it will rain tomorrow.",
+        "I always watch the weather report before I go camping.",
+        "According to the weather report, there will be a storm tonight.",
+        "We listened to the weather report on the radio this morning.",
+        "The weather report is usually correct about the temperature."
+    ],
+    645: [
+        "Tomorrow is Sunday, so we don't have to go to school.",
+        "I will finish my English homework by tomorrow morning.",
+        "The weather will be very nice and sunny tomorrow.",
+        "We are going to the amusement park tomorrow.",
+        "She hopes to see her grandparents tomorrow afternoon."
+    ],
+    646: [
+        "I always remember to brush my teeth before going to bed.",
+        "Do you remember the name of that interesting book?",
+        "He couldn't remember where he put his car keys.",
+        "Please remember to bring your umbrella because it might rain.",
+        "I will always remember the fun trip we had last summer."
+    ],
+    647: [
+        "We love to play outside on a snowy day.",
+        "The mountains look beautiful in the snowy winter.",
+        "It is difficult to drive safely on snowy roads.",
+        "They built a large snowman in the snowy yard.",
+        "I like to drink hot chocolate when it is snowy outside."
+    ],
+    648: [
+        "The children ran around the tree in the park.",
+        "We sat around the campfire and sang songs together.",
+        "There are many nice restaurants around the train station.",
+        "She looked around the room but couldn't find her book.",
+        "They walked around the beautiful lake in the afternoon."
+    ],
+    649: [
+        "I happened to run into my old teacher at the supermarket.",
+        "We ran into some problems while building the model car.",
+        "Be careful not to run into the glass door.",
+        "He didn't expect to run into his friend on the street.",
+        "The car lost control and ran into a tall tree."
     ]
 };
