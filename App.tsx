@@ -159,10 +159,15 @@ function App() {
                 </button>
               </div>
 
-              {/* Row 2: Old Custom Mode */}
-              <div className="bg-white p-6 md:p-8 rounded-[2rem] shadow-lg border border-slate-200">
-                <h2 className="text-2xl font-black text-slate-800 mb-6 flex items-center gap-2">
-                  <Settings className="text-slate-400" /> 原本的測試模式 (Custom Test Mode)
+              {/* Row 2: Custom Training Mode */}
+              <div className="bg-white p-6 md:p-8 rounded-[2rem] shadow-lg border border-slate-200 relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-slate-200 to-slate-300"></div>
+                <h2 className="text-2xl font-black text-slate-800 mb-8 flex items-center gap-3">
+                  <div className="bg-slate-100 p-2 rounded-xl text-slate-500">
+                      <Settings size={28} />
+                  </div>
+                  自訂特訓中心 
+                  <span className="text-sm font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-full uppercase tracking-widest hidden md:inline-block ml-2">Custom Training</span>
                 </h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
