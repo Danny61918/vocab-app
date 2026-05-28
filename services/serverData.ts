@@ -669,7 +669,31 @@ const serverData: Word[] = [
     { "id": 646, "date": "2026-05-22", "english": "remember", "chinese": "記得、想起", "part_of_speech": "(v.)", "example": "Remember to turn off the lights before leaving the house." },
     { "id": 647, "date": "2026-05-22", "english": "snowy", "chinese": "下雪的", "part_of_speech": "(adj.)", "example": "We have a lot of fun building a snowman when it's snowy outside." },
     { "id": 648, "date": "2026-05-22", "english": "around", "chinese": "周圍；圍繞；在...附近", "part_of_speech": "(adv., prep.)", "example": "A crowd had gathered around(prep.) the scene of the accident, but the police dispersed them before an emergency vehicle arrived." },
-    { "id": 649, "date": "2026-05-22", "english": "run into", "chinese": "偶然遇見(1)；遭遇(困難)(2)；碰撞(3)", "part_of_speech": "(ph.)", "example": "I ran into(1) an old neighbor the other day while I was shopping in the mall." }
+    { "id": 649, "date": "2026-05-22", "english": "run into", "chinese": "偶然遇見(1)；遭遇(困難)(2)；碰撞(3)", "part_of_speech": "(ph.)", "example": "I ran into(1) an old neighbor the other day while I was shopping in the mall." },
+    { "id": 650, "date": "2026-05-25", "english": "hippopotamus", "chinese": "河馬", "part_of_speech": "(n.)", "example": "I enjoy watching a hippopotamus eating a whole pineapple because its huge mouth looks very funny." },
+    { "id": 651, "date": "2026-05-25", "english": "gorilla", "chinese": "大猩猩", "part_of_speech": "(n.)", "example": "When I was looking for the gorilla, it suddenly appeared behind the glass in front of me." },
+    { "id": 652, "date": "2026-05-25", "english": "panda", "chinese": "貓熊", "part_of_speech": "(n.)", "example": "A panda has black patches around its eyes, with black fur covering its ears and legs." },
+    { "id": 653, "date": "2026-05-25", "english": "caterpillar", "chinese": "毛毛蟲", "part_of_speech": "(n.)", "example": "The hungry caterpillar loves eating green leaves until it grows big enough to turn into a butterfly." },
+    { "id": 654, "date": "2026-05-25", "english": "eel", "chinese": "鰻魚", "part_of_speech": "(n.)", "example": "The slippery eel swam through the seaweed and disappeared into the ocean." },
+    { "id": 655, "date": "2026-05-25", "english": "be about to V.", "chinese": "快要、即將、將會", "part_of_speech": "(ph.)", "example": "I am about to leave, so can you come again tomorrow to finish our conversation?" },
+    { "id": 656, "date": "2026-05-27", "english": "seal", "chinese": "海豹", "part_of_speech": "(n.)", "example": "We could see seals lying on the rocks and enjoying the sun because the weather was very warm." },
+    { "id": 657, "date": "2026-05-27", "english": "dolphin", "chinese": "海豚", "part_of_speech": "(n.)", "example": "During our family trip today, we watched a friendly dolphin swimming beside the boat in the sunshine." },
+    { "id": 658, "date": "2026-05-27", "english": "squid", "chinese": "魷魚", "part_of_speech": "(n.)", "example": "Although it happens rarely, people have seen giant squid attacking whales for food in the sea." },
+    { "id": 659, "date": "2026-05-27", "english": "beetle", "chinese": "甲蟲", "part_of_speech": "(n.)", "example": "When I was walking in the garden, I found a beautiful beetle whose shell was shining brightly." },
+    { "id": 660, "date": "2026-05-27", "english": "crab", "chinese": "螃蟹", "part_of_speech": "(n.)", "example": "The fisherman caught several crabs in his net this morning and sold them at the fish market." },
+    { "id": 661, "date": "2026-05-27", "english": "be surprised to V.", "chinese": "對(做某事)感到驚訝", "part_of_speech": "(ph.)", "example": "I was surprised to get a special present like this because I didn't expect it at all." },
+    { "id": 662, "date": "2026-05-28", "english": "octopus", "chinese": "章魚", "part_of_speech": "(n.)", "example": "When we were walking on the beach after the storm, we found a dead octopus washed up on the shore." },
+    { "id": 663, "date": "2026-05-28", "english": "length", "chinese": "長度", "part_of_speech": "(n.)", "example": "The teacher measured the length of the table to make sure it could fit into the classroom." },
+    { "id": 664, "date": "2026-05-28", "english": "weight", "chinese": "重量、體重", "part_of_speech": "(n.)", "example": "My doctor said I should exercise more regularly to control my weight and stay healthy." },
+    { "id": 665, "date": "2026-05-28", "english": "blond", "chinese": "(毛髮)金黃色的", "part_of_speech": "(adj.)", "example": "The girl with blond hair and bright blue eyes smiled happily while taking photos with her classmates on graduation day." },
+    { "id": 666, "date": "2026-05-28", "english": "beard", "chinese": "(下巴上的)鬍鬚", "part_of_speech": "(n.)", "example": "My grandfather has a long white beard that makes him look very wise, so everyone thinks he is kind." },
+    { "id": 667, "date": "2026-05-28", "english": "find out", "chinese": "發現、得知、找出、查明", "part_of_speech": "(ph.)", "example": "My parents wanted to find out whether the restaurant served vegetarian meals before calling them to book a table." },
+    { "id": 668, "date": "2026-05-29", "english": "foolish", "chinese": "愚蠢的、傻的", "part_of_speech": "(adj.)", "example": "The boy was foolish to cheat on the test when he knew the teacher was watching. That's why he got punished and had to take the test again." },
+    { "id": 669, "date": "2026-05-29", "english": "fence", "chinese": "柵欄、籬笆", "part_of_speech": "(n.)", "example": "The wooden fence around our garden was damaged during the heavy storm, so we need to fix it." },
+    { "id": 670, "date": "2026-05-29", "english": "taste", "chinese": "品嚐", "part_of_speech": "(v.)", "example": "I hate the flavor of cilantro because it tastes like soap! However, some people consider it one of the most delicious spices in the world." },
+    { "id": 671, "date": "2026-05-29", "english": "seem", "chinese": "似乎、看起來像", "part_of_speech": "(v.)", "example": "It seems like the rain isn't going to stop anytime soon. I guess we won't be able to go outside and play after all." },
+    { "id": 672, "date": "2026-05-29", "english": "stay home", "chinese": "待在家", "part_of_speech": "(ph.)", "example": "Please stay home if you feel sick." },
+    { "id": 673, "date": "2026-05-29", "english": "get rid of", "chinese": "擺脫、除去、處理、丟棄", "part_of_speech": "(ph.)", "example": "He opened the window to get rid of the terrible smell and let some fresh air into the room." }
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));

@@ -502,5 +502,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "Be careful not to run into the glass door.",
         "He didn't expect to run into his friend on the street.",
         "The car lost control and ran into a tall tree."
+    ],
+    650: [
+        "The large hippopotamus is swimming in the river.",
+        "We saw a baby hippopotamus at the zoo today.",
+        "A hippopotamus has a very big mouth and strong teeth.",
+        "The hippopotamus likes to stay in the water to keep cool.",
+        "That heavy hippopotamus is eating green grass right now."
+    ],
+    651: [
+        "The black gorilla is eating a banana in the tree.",
+        "I saw a huge gorilla beating its chest at the zoo.",
+        "The strong gorilla is resting on the ground peacefully.",
+        "The baby gorilla is playing with its mother happily.",
+        "A gorilla is very smart and can learn many things."
+    ],
+    652: [
+        "The cute panda is eating bamboo in the forest.",
+        "A panda looks very lovely with its black and white fur.",
+        "We went to the zoo to see the famous giant panda.",
+        "The lazy panda is sleeping on the tree branch right now.",
+        "Many people love the panda because it is very adorable."
+    ],
+    653: [
+        "The green caterpillar is crawling slowly on the leaf.",
+        "I found a small caterpillar in the garden this morning.",
+        "A caterpillar will eventually turn into a beautiful butterfly.",
+        "Do not touch that caterpillar because it might be dangerous.",
+        "The hungry caterpillar ate three green leaves for lunch."
+    ],
+    654: [
+        "The long eel is hiding under the rock in the sea.",
+        "An eel looks like a snake, but it lives in the water.",
+        "He caught a big eel while he was fishing yesterday.",
+        "The slippery eel swam quickly away from the fisherman.",
+        "Some people like to eat eel with rice for dinner."
+    ],
+    655: [
+        "I am about to go to bed, so please turn off the light.",
+        "The train is about to leave the station in five minutes.",
+        "The movie is about to start, so let's find our seats quickly.",
+        "We are about to eat dinner, so wash your hands now.",
+        "It is about to rain, so you should bring an umbrella."
+    ],
+    656: [
+        "The cute seal is clapping its hands in the water show.",
+        "A seal can swim very fast in the cold ocean.",
+        "We saw a baby seal resting on the ice today.",
+        "The gray seal caught a fish and ate it quickly.",
+        "That seal is barking loudly to call its friends."
+    ],
+    657: [
+        "The smart dolphin jumped out of the water gracefully.",
+        "A dolphin is a very friendly and intelligent sea animal.",
+        "We rode on a boat to watch the dolphin in the ocean.",
+        "The dolphin can make interesting sounds to communicate.",
+        "Many children like to see the dolphin show at the park."
+    ],
+    658: [
+        "The giant squid lives deep down in the dark ocean.",
+        "We had some delicious fried squid for lunch today.",
+        "A squid can squirt black ink when it feels in danger.",
+        "The fisherman caught a squid with his net this morning.",
+        "That strange squid has very long arms and big eyes."
+    ],
+    659: [
+        "I caught a shiny green beetle in the park yesterday.",
+        "The strong beetle is climbing up the tall tree.",
+        "A beetle has a hard shell to protect its soft body.",
+        "We saw a large black beetle flying around the light.",
+        "Do not step on that little beetle on the ground."
+    ],
+    660: [
+        "The small crab is running sideways on the sandy beach.",
+        "We found a red crab hiding under the rock today.",
+        "Be careful, because a crab has sharp claws that can pinch.",
+        "My mother cooked a delicious crab for dinner tonight.",
+        "The funny crab dug a deep hole in the sand."
+    ],
+    661: [
+        "I was surprised to see my old friend at the supermarket.",
+        "She was surprised to receive a big gift on her birthday.",
+        "We are surprised to hear the shocking news today.",
+        "He was surprised to find his lost key under the bed.",
+        "The teacher was surprised to see everyone pass the test."
+    ],
+    662: [
+        "The purple octopus is swimming slowly in the ocean.",
+        "I saw a big octopus at the aquarium today.",
+        "An octopus has eight long arms to catch its food.",
+        "The smart octopus hid inside the dark cave.",
+        "We drew a funny octopus with big eyes in art class."
+    ],
+    663: [
+        "The teacher measured the length of the table carefully.",
+        "I need to know the length of this string for my project.",
+        "The boat has a length of ten meters.",
+        "He used a ruler to check the length of the book.",
+        "The length of the movie is about two hours."
+    ],
+    664: [
+        "The doctor checked my height and weight this morning.",
+        "He exercises every day to control his weight.",
+        "The heavy box has a weight of ten kilograms.",
+        "She is trying to lose some weight by eating vegetables.",
+        "An elephant has a very large body and great weight."
+    ],
+    665: [
+        "The beautiful girl has long blond hair and blue eyes.",
+        "His blond hair looks very bright in the warm sun.",
+        "She brushed her blond hair before going to school.",
+        "The boy with blond hair is my new classmate.",
+        "Her mother also has curly blond hair."
+    ],
+    666: [
+        "My grandfather has a long white beard on his face.",
+        "The old man stroked his gray beard slowly.",
+        "He looks very different after he shaved his beard.",
+        "Santa Claus is famous for his red suit and big white beard.",
+        "His thick beard makes him look much older."
+    ],
+    667: [
+        "I want to find out who ate my chocolate cake.",
+        "She read the book to find out more about dinosaurs.",
+        "We need to find out the answer to this difficult question.",
+        "He called the station to find out the train schedule.",
+        "They were surprised to find out the truth."
+    ],
+    668: [
+        "It was foolish of him to walk in the rain without an umbrella.",
+        "The foolish boy forgot to do his homework again.",
+        "She made a foolish mistake on the math test.",
+        "Don't be foolish and play with fire.",
+        "I felt foolish when I wore my shirt inside out."
+    ],
+    669: [
+        "The dog jumped over the wooden fence into the garden.",
+        "We painted the tall fence white yesterday.",
+        "The farmer built a strong fence to keep the sheep safe.",
+        "There is a beautiful flower garden behind the fence.",
+        "He leaned against the metal fence and watched the game."
+    ],
+    670: [
+        "Can you taste the soup to see if it needs more salt?",
+        "The sweet cake tastes very delicious.",
+        "She wanted to taste the new flavor of ice cream.",
+        "I don't like to taste spicy food because it hurts my mouth.",
+        "Let me taste a piece of that fresh apple."
+    ],
+    671: [
+        "It seems like it is going to rain this afternoon.",
+        "The new student seems very friendly and polite.",
+        "He seems tired after running a long race.",
+        "That book seems interesting, so I want to read it.",
+        "The problem seems too difficult for me to solve alone."
+    ],
+    672: [
+        "I usually stay home and watch television on Sundays.",
+        "Please stay home if you feel sick today.",
+        "We had to stay home because the weather was very bad.",
+        "She likes to stay home and read books in the evening.",
+        "It is safe to stay home during a heavy storm."
+    ],
+    673: [
+        "He opened the window to get rid of the terrible smell.",
+        "I need to get rid of these old clothes in my closet.",
+        "She washed her hands carefully to get rid of the dirt.",
+        "We use a special spray to get rid of the bugs.",
+        "It is hard to get rid of a bad habit."
     ]
 };
