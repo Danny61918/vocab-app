@@ -693,7 +693,31 @@ const serverData: Word[] = [
     { "id": 670, "date": "2026-05-29", "english": "taste", "chinese": "品嚐", "part_of_speech": "(v.)", "example": "I hate the flavor of cilantro because it tastes like soap! However, some people consider it one of the most delicious spices in the world." },
     { "id": 671, "date": "2026-05-29", "english": "seem", "chinese": "似乎、看起來像", "part_of_speech": "(v.)", "example": "It seems like the rain isn't going to stop anytime soon. I guess we won't be able to go outside and play after all." },
     { "id": 672, "date": "2026-05-29", "english": "stay home", "chinese": "待在家", "part_of_speech": "(ph.)", "example": "Please stay home if you feel sick." },
-    { "id": 673, "date": "2026-05-29", "english": "get rid of", "chinese": "擺脫、除去、處理、丟棄", "part_of_speech": "(ph.)", "example": "He opened the window to get rid of the terrible smell and let some fresh air into the room." }
+    { "id": 673, "date": "2026-05-29", "english": "get rid of", "chinese": "擺脫、除去、處理、丟棄", "part_of_speech": "(ph.)", "example": "He opened the window to get rid of the terrible smell and let some fresh air into the room." },
+    { "id": 674, "date": "2026-06-04", "english": "ocean", "chinese": "海洋", "part_of_speech": "(n.)", "example": "In the evening, I love walking along the ocean to relax after a long day of hard work." },
+    { "id": 675, "date": "2026-06-04", "english": "invite", "chinese": "邀請、請；徵求", "part_of_speech": "(v.)", "example": "This Saturday, I want to invite my friends over for a barbecue to chat and have fun together." },
+    { "id": 676, "date": "2026-06-04", "english": "first", "chinese": "第一、首先、最初、首要", "part_of_speech": "(det.)", "example": "I always get very nervous in the first few minutes of an exam, so I take a deep breath and give it my all." },
+    { "id": 677, "date": "2026-06-04", "english": "problem", "chinese": "問題、困難", "part_of_speech": "(n.)", "example": "The teacher gave us a difficult math problem to solve, but nobody could find the correct answer." },
+    { "id": 678, "date": "2026-06-04", "english": "land", "chinese": "著陸、降落", "part_of_speech": "(v.)", "example": "During the heavy storm, the pilot had to land the plane quickly due to a sudden engine emergency." },
+    { "id": 679, "date": "2026-06-04", "english": "look forward to V-ing / N.", "chinese": "期待、盼望", "part_of_speech": "(ph.)", "example": "We look forward to visiting the night market and trying delicious local food this weekend." },
+    { "id": 680, "date": "2026-06-05", "english": "famous", "chinese": "有名氣的、著名的", "part_of_speech": "(adj.)", "example": "Taipei 101 is one of the most famous landmarks in the world, especially during the New Year fireworks show." },
+    { "id": 681, "date": "2026-06-05", "english": "afraid", "chinese": "害怕的；擔憂的", "part_of_speech": "(adj.)", "example": "She is afraid of the dark and always keeps a light on in her bedroom to feel safe at night." },
+    { "id": 682, "date": "2026-06-05", "english": "island", "chinese": "島嶼", "part_of_speech": "(n.)", "example": "Taiwan is a large island in the Pacific Ocean with warm weather and delicious food." },
+    { "id": 683, "date": "2026-06-05", "english": "be able to", "chinese": "能夠、有...能力", "part_of_speech": "(ph.)", "example": "After working on it for hours last night, she was finally able to solve the difficult math problem." },
+    { "id": 684, "date": "2026-06-05", "english": "sports star", "chinese": "運動明星", "part_of_speech": "(n.)", "example": "Max Verstappen is a well-known F1 sports star who has already won the drivers' world championship four times." },
+    { "id": 685, "date": "2026-06-05", "english": "ride the subway to...", "chinese": "搭地鐵去...", "part_of_speech": "(ph.)", "example": "We decided to ride the subway to the airport because the roads were extremely crowded." },
+    { "id": 686, "date": "2026-06-01", "english": "shoulder-length", "chinese": "齊肩的、披肩的", "part_of_speech": "(adj.)", "example": "The beauty of shoulder-length hair is that it suits every face shape and can be tailored to any situation." },
+    { "id": 687, "date": "2026-06-01", "english": "straight", "chinese": "直的", "part_of_speech": "(adj.)", "example": "My little sister likes brushing her straight hair in the mornings before going to school." },
+    { "id": 688, "date": "2026-06-01", "english": "curly", "chinese": "捲曲的", "part_of_speech": "(adj.)", "example": "My hair is just naturally thick and curly, which makes it very hard to manage in the mornings." },
+    { "id": 689, "date": "2026-06-01", "english": "wavy", "chinese": "波浪狀的", "part_of_speech": "(adj.)", "example": "With his wavy hair and gentle voice, Andrew always gives people a wonderful first impression." },
+    { "id": 690, "date": "2026-06-01", "english": "necklace", "chinese": "項鍊", "part_of_speech": "(n.)", "example": "My parents bought me a beautiful gold necklace as my wedding present." },
+    { "id": 691, "date": "2026-06-01", "english": "laugh at", "chinese": "笑、取笑", "part_of_speech": "(ph.)", "example": "We should not laugh at others when someone makes a mistake in class because it's rude." },
+    { "id": 692, "date": "2026-06-03", "english": "earrings", "chinese": "耳環", "part_of_speech": "(n.)", "example": "My mom was wearing a beautiful diamond necklace with matching earrings. They were presents from my dad last year." },
+    { "id": 693, "date": "2026-06-03", "english": "sunglasses", "chinese": "太陽眼鏡、墨鏡", "part_of_speech": "(n.)", "example": "I am wearing sunglasses and sitting under the beach umbrella while drinking a glass of cold beer." },
+    { "id": 694, "date": "2026-06-03", "english": "stick", "chinese": "枝條；木棍", "part_of_speech": "(n.)", "example": "I picked up some sticks from the ground to start the campfire because it was time for us to prepare the meal." },
+    { "id": 695, "date": "2026-06-03", "english": "grass", "chinese": "草", "part_of_speech": "(n.)", "example": "According to the warning signs, visitors are requested not to walk on the grass to protect the flowers." },
+    { "id": 696, "date": "2026-06-03", "english": "sand", "chinese": "沙子", "part_of_speech": "(n.)", "example": "The wind blew the sand into my eyes on the beach, making it hard to see the sunset." },
+    { "id": 697, "date": "2026-06-03", "english": "practice V-ing / N.", "chinese": "練習", "part_of_speech": "(ph.)", "example": "I practice using new English words in sentences to remember them more easily every day." }
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));

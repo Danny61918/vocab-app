@@ -670,5 +670,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "She washed her hands carefully to get rid of the dirt.",
         "We use a special spray to get rid of the bugs.",
         "It is hard to get rid of a bad habit."
+    ],
+    674: [
+        "We like to swim in the blue ocean during summer.",
+        "The ocean is home to many fish and dolphins.",
+        "We saw a big ship sailing on the ocean.",
+        "The water in the ocean tastes very salty.",
+        "He picked up a beautiful shell near the ocean."
+    ],
+    675: [
+        "I want to invite my best friend to my birthday party.",
+        "She will invite us to her new house for dinner.",
+        "Did you invite him to play basketball with us?",
+        "We invite our teachers to the school show every year.",
+        "He invited me to watch a funny movie together."
+    ],
+    676: [
+        "He won first place in the running race yesterday.",
+        "You must wash your hands first before eating dinner.",
+        "Today is my first day at the new school.",
+        "She was the first person to answer the question correctly.",
+        "We will visit the famous museum first."
+    ],
+    677: [
+        "The teacher helped me solve the difficult math problem.",
+        "Do you have any problem with your computer?",
+        "He fixed the problem with the car very quickly.",
+        "We must work together to find an answer to the problem.",
+        "No problem, I can help you carry the heavy box."
+    ],
+    678: [
+        "The airplane will land at the airport in ten minutes.",
+        "The bird flew down to land on the tree branch.",
+        "The pilot tried to land the plane safely in the rain.",
+        "A butterfly can land softly on a colorful flower.",
+        "The spacecraft will land on the moon tomorrow."
+    ],
+    679: [
+        "I look forward to seeing my grandparents this weekend.",
+        "We look forward to the summer vacation every year.",
+        "She looks forward to getting a new bicycle for her birthday.",
+        "They look forward to playing soccer after school today.",
+        "He looks forward to reading the new comic book tonight."
+    ],
+    680: [
+        "Taipei 101 is a very famous building in Taiwan.",
+        "The famous singer will have a concert here tomorrow.",
+        "We visited a famous restaurant to eat delicious food.",
+        "She wants to be a famous artist when she grows up.",
+        "The book was written by a famous writer many years ago."
+    ],
+    681: [
+        "The little boy is afraid of the dark room.",
+        "Don't be afraid, the dog is very friendly.",
+        "She was afraid to walk alone in the forest at night.",
+        "Are you afraid of spiders and bugs?",
+        "He was afraid that he might fail the English test."
+    ],
+    682: [
+        "Taiwan is a beautiful island with friendly people.",
+        "We took a boat to visit the small island.",
+        "The pirates hid their treasure on a secret island.",
+        "An island is a piece of land surrounded by water.",
+        "They spent their holiday relaxing on a warm island."
+    ],
+    683: [
+        "I will be able to ride a bicycle by myself soon.",
+        "He is able to speak English and Chinese very well.",
+        "Are you able to help me with my homework?",
+        "She was not able to come to the party yesterday.",
+        "We hope to be able to visit Japan next year."
+    ],
+    684: [
+        "My brother wants to be a famous sports star in the future.",
+        "The sports star signed his name on my baseball.",
+        "Many people cheered for the popular sports star.",
+        "She works hard every day to become a great sports star.",
+        "We watched the sports star play basketball on television."
+    ],
+    685: [
+        "I usually ride the subway to school with my sister.",
+        "We can ride the subway to the night market tonight.",
+        "It is fast to ride the subway to the city center.",
+        "They decided to ride the subway to work to save time.",
+        "You should ride the subway to the museum on a rainy day."
+    ],
+    686: [
+        "The girl with shoulder-length hair is my new friend.",
+        "She cut her long hair to a shoulder-length style.",
+        "Her shoulder-length hair blew in the strong wind.",
+        "She brushed her shoulder-length hair before going out.",
+        "The doll has beautiful shoulder-length blond hair."
+    ],
+    687: [
+        "He drew a straight line on the paper with a ruler.",
+        "My sister has long, straight black hair.",
+        "Walk straight down this road, and you will see the park.",
+        "The trees in the forest are very tall and straight.",
+        "She used a flat iron to make her hair straight."
+    ],
+    688: [
+        "The little baby has cute curly hair on his head.",
+        "Her curly hair is difficult to brush in the morning.",
+        "I wish I had curly hair like my mother.",
+        "The dog has soft and curly brown fur.",
+        "She tied her curly hair with a red ribbon."
+    ],
+    689: [
+        "The girl with wavy hair is smiling at me.",
+        "She washed her wavy hair with sweet-smelling shampoo.",
+        "His wavy hair looks very nice in the sunshine.",
+        "The sea has a wavy surface when the wind blows.",
+        "She likes to wear her wavy hair down."
+    ],
+    690: [
+        "My father bought a beautiful necklace for my mother.",
+        "She wore a silver necklace to the party last night.",
+        "The diamond necklace is very expensive and shiny.",
+        "I lost my favorite necklace at the beach yesterday.",
+        "The princess has a golden necklace around her neck."
+    ],
+    691: [
+        "It is not polite to laugh at someone when they fall down.",
+        "The bad boys always laugh at his old shoes.",
+        "Do not laugh at her because she is trying her best.",
+        "We should help people, not laugh at them.",
+        "He felt sad when the class laughed at his foolish mistake."
+    ],
+    692: [
+        "My aunt wears a pair of pretty earrings every day.",
+        "She bought new earrings to match her red dress.",
+        "These gold earrings are a gift from her grandmother.",
+        "She lost one of her earrings while swimming in the pool.",
+        "The shiny earrings look very beautiful on her ears."
+    ],
+    693: [
+        "It is very sunny, so I need to wear my sunglasses.",
+        "He put on his sunglasses before driving the car.",
+        "The cool sunglasses protect her eyes from the bright sun.",
+        "I forgot my sunglasses at home today.",
+        "She bought a new pair of black sunglasses for the summer trip."
+    ],
+    694: [
+        "The dog loves to run and catch the wooden stick.",
+        "We used a long stick to push the ball out of the tree.",
+        "He found a strong stick to help him walk up the mountain.",
+        "The boy hit the drum with a small stick.",
+        "We gathered some dry sticks to build a fire."
+    ],
+    695: [
+        "The children are playing happily on the green grass.",
+        "We sat on the soft grass to eat our picnic lunch.",
+        "The cows are eating grass in the field.",
+        "Do not walk on the grass in the park.",
+        "The morning dew made the grass wet and shiny."
+    ],
+    696: [
+        "We built a big castle with wet sand on the beach.",
+        "The hot sand burned my feet when I walked on it.",
+        "The children like to play with sand and water.",
+        "I shook the sand out of my shoes after leaving the beach.",
+        "A crab is hiding in a deep hole in the sand."
+    ],
+    697: [
+        "I practice playing the piano for an hour every day.",
+        "You need to practice speaking English to get better.",
+        "She will practice swimming for the race next week.",
+        "We practice writing new words in our notebooks.",
+        "He goes to the park to practice baseball with his friends."
     ]
 };
