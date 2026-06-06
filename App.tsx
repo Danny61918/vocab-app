@@ -12,7 +12,7 @@ import { VocabAdventureMap } from './components/VocabAdventureMap';
 import PhraseChallenge from './components/PhraseChallenge';
 import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool } from 'lucide-react';
 
-const APP_VERSION = '6.6'; // 目前應用程式版本
+const APP_VERSION = '6.7'; // 目前應用程式版本
 
 type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE';
 
@@ -25,6 +25,9 @@ function App() {
     if (savedVersion !== APP_VERSION) {
       console.log(`版本更新: ${savedVersion} -> ${APP_VERSION}. 正在清除快取並重啟...`);
       localStorage.setItem('app_version', APP_VERSION);
+      // 強制清除舊單字快取，解決 ID 錯亂問題
+      localStorage.removeItem('vocab_app_words');
+      
       // 如果不是第一次運行且版本不同，則強制重新整理
       if (savedVersion) {
         window.location.reload();
