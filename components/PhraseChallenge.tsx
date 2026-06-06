@@ -97,15 +97,15 @@ export const PhraseChallenge: React.FC<Props> = ({ onBack }) => {
             };
 
             if (mode === 'CHOICE') {
-                const others = allPhrases.filter(x => x.id !== w.id);
-                // Shuffle others and pick 3
+                const others = allPhrases.filter(x => x.id !== w.id && x.english !== w.english);
+                // Shuffle others
                 const shuffledOthers = [...others].sort(() => 0.5 - Math.random());
-                const distractors = shuffledOthers.slice(0, 3).map(x => x.english);
-                const options = [w.english, ...distractors].sort(() => 0.5 - Math.random());
+                const uniqueDistractors = Array.from(new Set(shuffledOthers.map(x => x.english))).slice(0, 3);
+                const options = [w.english, ...uniqueDistractors].sort(() => 0.5 - Math.random());
                 q.options = options;
             } else {
                 const words = w.english.split(' ');
-                const allOtherWords = allPhrases.filter(x => x.id !== w.id).flatMap(x => x.english.split(' '));
+                const allOtherWords = allPhrases.filter(x => x.id !== w.id && x.english !== w.english).flatMap(x => x.english.split(' '));
                 const shuffledOtherWords = [...allOtherWords].sort(() => 0.5 - Math.random());
                 // Pick 2-3 distractors
                 const distractors = shuffledOtherWords.slice(0, 3);
