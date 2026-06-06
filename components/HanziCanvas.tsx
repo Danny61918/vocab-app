@@ -9,7 +9,7 @@ interface Props {
     size?: number;
 }
 
-export const HanziCanvas: React.FC<Props> = ({ character, onComplete, size = 250 }) => {
+export const HanziCanvas: React.FC<Props> = ({ character, onComplete: propsOnComplete, size = 250 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const writerRef = useRef<any>(null);
     const [error, setError] = useState(false);
@@ -41,20 +41,24 @@ export const HanziCanvas: React.FC<Props> = ({ character, onComplete, size = 250
                             return res.json();
                         })
                         .then(onComplete)
-                        .catch(onError);
+                        .catch(err => {
+                            console.error("HanziWriter failed to load data for:", char);
+                            setError(true);
+                            // Removed auto-skip; user must manually click next
+                            onError(err);
+                        });
                 }
             });
 
             writerRef.current.quiz({
                 onComplete: () => {
-                    setTimeout(onComplete, 500); // Wait a bit after completing to show the full character
+                    setTimeout(propsOnComplete, 500); // Wait a bit after completing to show the full character
                 }
             });
         } catch (e) {
             console.error("HanziWriter Error:", e);
-            // If the character is not supported by HanziWriter, just auto-complete it
+            // If the character is not supported by HanziWriter, show error state and wait for manual click
             setError(true);
-            setTimeout(onComplete, 1000);
         }
 
         return () => {
@@ -63,13 +67,21 @@ export const HanziCanvas: React.FC<Props> = ({ character, onComplete, size = 250
                 writerRef.current.cancelQuiz();
             }
         };
-    }, [character, size, onComplete]);
+    }, [character, size, propsOnComplete]);
 
     return (
         <div className="relative flex flex-col items-center justify-center bg-white rounded-3xl border-8 border-slate-100 shadow-inner overflow-hidden" style={{ width: size, height: size }}>
             {error ? (
-                <div className="absolute inset-0 flex items-center justify-center text-4xl font-black text-slate-300">
-                    {character}
+                <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-50/90 z-30">
+                    <div className="text-8xl font-black text-slate-400 mb-6 drop-shadow-sm">
+                        {character}
+                    </div>
+                    <button 
+                        onClick={() => propsOnComplete()}
+                        className="bg-emerald-500 hover:bg-emerald-600 text-white font-black px-6 py-3 rounded-2xl shadow-lg border-b-4 border-emerald-700 active:translate-y-1 active:border-b-0 transition-all"
+                    >
+                        我知道了 (下一題)
+                    </button>
                 </div>
             ) : null}
             <div ref={containerRef} className="z-10 cursor-crosshair"></div>

@@ -494,11 +494,16 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                         </span>
                         <span className="text-2xl ml-2">{quizQueue.length}</span>
                     </div>
-                    {combo > 1 && (
-                        <div className="animate-bounce bg-orange-400 text-white font-black text-2xl px-5 py-1 rounded-xl shadow-xl transform rotate-3">
-                            🔥 {combo} Combo!
-                        </div>
-                    )}
+                    <div className="flex items-center gap-4">
+                        {combo > 1 && (
+                            <div className="animate-bounce bg-orange-400 text-white font-black text-2xl px-5 py-1 rounded-xl shadow-xl transform rotate-3 hidden md:block">
+                                🔥 {combo} Combo!
+                            </div>
+                        )}
+                        <button onClick={onBack} className="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-2 rounded-xl border-b-4 border-slate-400 active:translate-y-1 active:border-b-0 transition-all">
+                            中斷離開
+                        </button>
+                    </div>
                 </div>
 
                 {/* Split Layout for Tablet */}
