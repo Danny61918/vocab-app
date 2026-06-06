@@ -12,7 +12,7 @@ import { VocabAdventureMap } from './components/VocabAdventureMap';
 import PhraseChallenge from './components/PhraseChallenge';
 import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool } from 'lucide-react';
 
-const APP_VERSION = '6.5'; // 目前應用程式版本
+const APP_VERSION = '6.6'; // 目前應用程式版本
 
 type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE';
 

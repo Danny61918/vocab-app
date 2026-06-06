@@ -60,9 +60,35 @@ export const PhraseChallenge: React.FC<Props> = ({ onBack }) => {
             }
             if (!sentence) sentence = "This is an example sentence for " + w.english;
 
-            // Blank out the phrase. Use case-insensitive replace.
-            const regex = new RegExp(`\\b${w.english.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
-            const blankedSentence = sentence.replace(regex, '_________');
+            // Blank out the phrase robustly. 
+            // 1. Remove placeholders from the phrase definition
+            let coreStr = w.english.replace(/\b(V\.|V-ing|sb\.|sth\.|be|to|the|a|an|on|in|at)\b/gi, ' ');
+            coreStr = coreStr.replace(/\(.*?\)/g, ' ');
+            coreStr = coreStr.replace(/[\/\-]/g, ' ');
+            
+            // 2. Extract core words (2+ letters)
+            const coreWords = coreStr.match(/\b[a-zA-Z]{2,}\b/g) || [];
+            
+            let blankedSentence = sentence;
+            
+            if (coreWords.length > 0) {
+                // Replace any word in the sentence that starts with the core word (handles -ing, -ed, -s)
+                coreWords.forEach(word => {
+                    const regex = new RegExp(`\\b${word}[a-zA-Z]*\\b`, 'gi');
+                    blankedSentence = blankedSentence.replace(regex, '_____');
+                });
+            }
+
+            // Fallback: If nothing was blanked, try exact match
+            if (blankedSentence === sentence) {
+                const exactMatch = new RegExp(`\\b${w.english.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+                blankedSentence = sentence.replace(exactMatch, '_________');
+                
+                // Absolute fallback so the game never breaks
+                if (blankedSentence === sentence) {
+                    blankedSentence = sentence.replace(/\b[a-zA-Z]{5,}\b/, '_____');
+                }
+            }
 
             const q: Question = {
                 word: w,

@@ -744,6 +744,4 @@ const serverData: Word[] = [
     { "id": 721, "date": "2026-06-12", "english": "take (some) medicine", "chinese": "服藥", "part_of_speech": "(ph.)", "example": "You should take some medicine soon if your headache continues to get worse during the evening." }
 ];
 
-const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
-
-export default processedData; 
+export default serverData; 
