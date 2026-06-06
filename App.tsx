@@ -9,11 +9,12 @@ import Leaderboard from './components/Leaderboard';
 import DailyChallenge from './components/DailyChallenge';
 import GrammarChallenge from './components/GrammarChallenge';
 import { VocabAdventureMap } from './components/VocabAdventureMap';
-import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map } from 'lucide-react';
+import PhraseChallenge from './components/PhraseChallenge';
+import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool } from 'lucide-react';
 
 const APP_VERSION = '6.5'; // 目前應用程式版本
 
-type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP';
+type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -108,6 +109,8 @@ function App() {
         return <VocabAdventureMap onBack={() => setCurrentView('MENU')} />;
       case 'GRAMMAR_CHALLENGE':
         return <GrammarChallenge onExit={() => setCurrentView('MENU')} />;
+      case 'PHRASE_CHALLENGE':
+        return <PhraseChallenge onBack={() => setCurrentView('MENU')} />;
       case 'DAILY_CHALLENGE':
         return <DailyChallenge onBack={() => setCurrentView('MENU')} />;
       case 'MANAGER':
@@ -135,26 +138,34 @@ function App() {
             <div className="max-w-5xl mx-auto space-y-8 mb-12">
               
               {/* Row 1: The two main game modes */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <button onClick={() => setCurrentView('ADVENTURE_MAP')} className="relative overflow-hidden bg-gradient-to-br from-emerald-400 to-teal-600 text-white p-8 rounded-[2rem] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-teal-800">
-                    <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Map size={120} /></div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <button onClick={() => setCurrentView('ADVENTURE_MAP')} className="relative overflow-hidden bg-gradient-to-br from-emerald-400 to-teal-600 text-white p-6 rounded-[2rem] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-teal-800">
+                    <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Map size={100} /></div>
                     <div className="flex-1 text-left relative z-10">
                         <div className="flex items-center gap-2 mb-2">
-                            <span className="bg-white/30 px-3 py-1 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-inner">⭐ 單字練習</span>
+                            <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">⭐ 單字練習</span>
                         </div>
-                        <h3 className="text-4xl font-black mb-2 drop-shadow-md">🏝️ 單字島大冒險</h3>
-                        <p className="text-teal-100 text-lg font-bold">抓怪怪、闖關卡，無痛學習新單字！</p>
+                        <h3 className="text-2xl font-black mb-2 drop-shadow-md">🏝️ 單字島大冒險</h3>
                     </div>
                 </button>
 
-                <button onClick={() => setCurrentView('GRAMMAR_CHALLENGE')} className="relative overflow-hidden bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white p-8 rounded-[2rem] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-orange-700">
-                    <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Sparkles size={120} /></div>
+                <button onClick={() => setCurrentView('GRAMMAR_CHALLENGE')} className="relative overflow-hidden bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white p-6 rounded-[2rem] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-orange-700">
+                    <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Sparkles size={100} /></div>
                     <div className="flex-1 text-left relative z-10">
                         <div className="flex items-center gap-2 mb-2">
-                            <span className="bg-white/30 px-3 py-1 rounded-full text-sm font-black uppercase tracking-widest text-white shadow-inner">⚡ 文法特訓</span>
+                            <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">⚡ 文法特訓</span>
                         </div>
-                        <h3 className="text-4xl font-black mb-2 drop-shadow-md">文法大挑戰</h3>
-                        <p className="text-red-100 text-lg font-bold">無盡模式 ✚ 動畫特效，挑戰高 Combo！</p>
+                        <h3 className="text-2xl font-black mb-2 drop-shadow-md">文法大挑戰</h3>
+                    </div>
+                </button>
+
+                <button onClick={() => setCurrentView('PHRASE_CHALLENGE')} className="relative overflow-hidden bg-gradient-to-br from-blue-500 to-indigo-600 text-white p-6 rounded-[2rem] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-indigo-800">
+                    <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><PenTool size={100} /></div>
+                    <div className="flex-1 text-left relative z-10">
+                        <div className="flex items-center gap-2 mb-2">
+                            <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">📝 填空測驗</span>
+                        </div>
+                        <h3 className="text-2xl font-black mb-2 drop-shadow-md">片語特訓中心</h3>
                     </div>
                 </button>
               </div>
