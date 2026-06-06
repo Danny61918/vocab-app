@@ -838,5 +838,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "She will practice swimming for the race next week.",
         "We practice writing new words in our notebooks.",
         "He goes to the park to practice baseball with his friends."
+    ],
+    698: [
+        "He likes to play golf with his friends on the weekend.",
+        "Golf is a quiet sport played on a large green field.",
+        "She learned how to play golf when she was very young.",
+        "My father bought a new golf club yesterday.",
+        "You need to hit the small white ball into the hole in golf."
+    ],
+    699: [
+        "We play table tennis in the sports center every Tuesday.",
+        "Table tennis is a very fast and exciting game.",
+        "He bought a new table tennis bat for the big match.",
+        "She is the best table tennis player in our school.",
+        "They set up a table tennis net in the living room."
+    ],
+    700: [
+        "My sister always practices the piano after dinner.",
+        "You should practice the piano every day to get better.",
+        "He will practice the piano for an hour before going to bed.",
+        "She likes to practice the piano when the house is quiet.",
+        "We listened to him practice the piano in the music room."
+    ],
+    701: [
+        "My brother uses the computer to do his homework.",
+        "Do you know how to use the computer to find information?",
+        "We are not allowed to use the computer after ten o'clock.",
+        "She uses the computer to draw beautiful pictures.",
+        "He uses the computer to send emails to his friends."
+    ],
+    702: [
+        "My mother likes to talk on the phone with her sister.",
+        "It is not safe to talk on the phone while driving a car.",
+        "He spent an hour talking on the phone yesterday.",
+        "She walked outside to talk on the phone quietly.",
+        "Please do not talk on the phone in the library."
+    ],
+    703: [
+        "I am about to finish my homework, so please wait a moment.",
+        "The train is about to leave the station now.",
+        "It is about to rain, so you should bring an umbrella.",
+        "We are about to eat dinner, so wash your hands.",
+        "The movie is about to start in five minutes."
+    ],
+    704: [
+        "I always help my parents clean the house on weekends.",
+        "She wants to help her parents cook dinner tonight.",
+        "He helps his parents wash the car every Sunday.",
+        "We should help our parents when they are tired.",
+        "I help my parents take care of my little brother."
+    ],
+    705: [
+        "I will visit my friend at the hospital tomorrow.",
+        "She plans to visit her friend in London next year.",
+        "We rode our bicycles to visit my friend in the afternoon.",
+        "He wants to visit his friend to see the new puppy.",
+        "They decided to visit my friend during the summer vacation."
+    ],
+    706: [
+        "We will work on a project about animals in science class.",
+        "He stayed at the library to work on a project.",
+        "They need more time to work on a project together.",
+        "She likes to work on a project with her classmates.",
+        "I have to work on a project this weekend."
+    ],
+    707: [
+        "The children made small animals out of colorful clay.",
+        "He bought some soft clay for his art class.",
+        "We learned how to use clay to make beautiful cups.",
+        "She shaped the wet clay with her hands carefully.",
+        "The clay needs to dry before we can paint it."
+    ],
+    708: [
+        "Be careful not to break the glass window.",
+        "He poured some water into the tall glass.",
+        "She cleaned the glass table until it was shiny.",
+        "The beautiful glass was broken into many pieces.",
+        "Please put your glass in the kitchen after you finish drinking."
+    ],
+    709: [
+        "We decided to go out for dinner to celebrate his birthday.",
+        "It is raining heavily, so we cannot go out to play.",
+        "She likes to go out with her friends on Friday nights.",
+        "He put on his coat before he went out into the cold wind.",
+        "Do you want to go out for a walk in the park?"
+    ],
+    710: [
+        "The heavy box is made of strong metal.",
+        "Gold and silver are both very expensive metals.",
+        "He hit the metal pipe with a hammer loudly.",
+        "We use a magnet to see if the object is metal.",
+        "The car has a shiny metal body."
+    ],
+    711: [
+        "She needs to study hard for the English test tomorrow.",
+        "We study different subjects at school every day.",
+        "He likes to study animals and plants in the forest.",
+        "They went to the library to study quietly.",
+        "I want to study in a foreign country when I grow up."
+    ],
+    712: [
+        "The beautiful bird is singing inside its cage.",
+        "The zookeeper put the strong lion into the metal cage.",
+        "We opened the cage to let the rabbit run in the grass.",
+        "The small hamster sleeps in its cage all day.",
+        "He cleaned the dog's cage this morning."
+    ],
+    713: [
+        "There is a large clock on the white wall.",
+        "He painted his bedroom wall light blue.",
+        "The cat jumped over the high wall easily.",
+        "She put some beautiful pictures on the wall.",
+        "The heavy rain broke the old stone wall."
+    ],
+    714: [
+        "He tried to pull the heavy door open, but it was locked.",
+        "The strong horse can pull a large cart easily.",
+        "She pulled my hand to lead me into the room.",
+        "Do not pull the dog's tail because it will get angry.",
+        "We watched the boy pull his toy car across the floor."
+    ],
+    715: [
+        "My mother asks me to water the plants every morning.",
+        "You must water the plants carefully so they can grow tall.",
+        "He forgot to water the plants, so they turned brown.",
+        "We need to water the plants because it is very hot today.",
+        "She uses a big green can to water the plants in the garden."
+    ],
+    716: [
+        "He was surprised to see his old friend at the party.",
+        "She gave me a surprised look when I told her the news.",
+        "We were surprised that the small dog could run so fast.",
+        "I am surprised to find my lost keys under the sofa.",
+        "The teacher was surprised because everyone passed the difficult test."
+    ],
+    717: [
+        "The smart dog learned how to open the door by itself.",
+        "She is a smart student who always answers questions quickly.",
+        "He used a smart way to solve the math problem.",
+        "A smart phone can help us do many different things.",
+        "You are very smart to bring an umbrella today."
+    ],
+    718: [
+        "A dictionary is a very useful book for learning English.",
+        "The internet is a useful tool to find information.",
+        "She gave me some useful advice about my project.",
+        "This small knife is very useful when we go camping.",
+        "The map was useful for finding the correct road."
+    ],
+    719: [
+        "My mother cooked a delicious dinner for us tonight.",
+        "The sweet chocolate cake tastes very delicious.",
+        "We ate some delicious apples from the farm.",
+        "The restaurant is famous for its delicious seafood.",
+        "Thank you for the delicious cookies you made."
+    ],
+    720: [
+        "The little boy ran toward his mother with a big smile.",
+        "We walked toward the mountain slowly in the morning.",
+        "The dog jumped toward the ball to catch it.",
+        "She looked toward the window when she heard the noise.",
+        "The strong wind blew the boat toward the beach."
+    ],
+    721: [
+        "The doctor told me to take some medicine and rest.",
+        "He must take his medicine three times a day after meals.",
+        "She doesn't like to take medicine because it tastes bad.",
+        "You should take some medicine if your head hurts.",
+        "I forgot to take my medicine this morning."
     ]
 };

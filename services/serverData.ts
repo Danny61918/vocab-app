@@ -717,7 +717,31 @@ const serverData: Word[] = [
     { "id": 694, "date": "2026-06-03", "english": "stick", "chinese": "枝條；木棍", "part_of_speech": "(n.)", "example": "I picked up some sticks from the ground to start the campfire because it was time for us to prepare the meal." },
     { "id": 695, "date": "2026-06-03", "english": "grass", "chinese": "草", "part_of_speech": "(n.)", "example": "According to the warning signs, visitors are requested not to walk on the grass to protect the flowers." },
     { "id": 696, "date": "2026-06-03", "english": "sand", "chinese": "沙子", "part_of_speech": "(n.)", "example": "The wind blew the sand into my eyes on the beach, making it hard to see the sunset." },
-    { "id": 697, "date": "2026-06-03", "english": "practice V-ing / N.", "chinese": "練習", "part_of_speech": "(ph.)", "example": "I practice using new English words in sentences to remember them more easily every day." }
+    { "id": 697, "date": "2026-06-03", "english": "practice V-ing / N.", "chinese": "練習", "part_of_speech": "(ph.)", "example": "I practice using new English words in sentences to remember them more easily every day." },
+    { "id": 698, "date": "2026-06-08", "english": "golf", "chinese": "高爾夫球", "part_of_speech": "(n.)", "example": "Golf is a sport that requires patience, concentration, and plenty of practice to improve one's skills." },
+    { "id": 699, "date": "2026-06-08", "english": "table tennis", "chinese": "桌球", "part_of_speech": "(n.)", "example": "Because it doesn't need much space, table tennis is very popular in many Asian schools." },
+    { "id": 700, "date": "2026-06-08", "english": "practice the piano", "chinese": "練習鋼琴", "part_of_speech": "(ph.)", "example": "My sister always practices the piano in the living room for an hour after school every day." },
+    { "id": 701, "date": "2026-06-08", "english": "use the computer", "chinese": "使用電腦", "part_of_speech": "(ph.)", "example": "Judy usually uses the computer to play games and chat with her classmates on weekends." },
+    { "id": 702, "date": "2026-06-08", "english": "talk on the phone", "chinese": "講電話", "part_of_speech": "(ph.)", "example": "Because I don't like talking on the phone at work, please send me an email instead." },
+    { "id": 703, "date": "2026-06-08", "english": "be about to V.", "chinese": "快要、即將、將會", "part_of_speech": "(ph.)", "example": "I am about to finish my math homework, so we can play video games together." },
+    { "id": 704, "date": "2026-06-10", "english": "help my parents", "chinese": "幫忙我的父母", "part_of_speech": "(ph.)", "example": "Every weekend, I go to the traditional market to help my parents shop for fresh vegetables and fruit." },
+    { "id": 705, "date": "2026-06-10", "english": "visit my friend", "chinese": "拜訪我的朋友", "part_of_speech": "(ph.)", "example": "After I finish all my homework on Friday night, I plan to visit my friend over the weekend." },
+    { "id": 706, "date": "2026-06-10", "english": "work on a project", "chinese": "進行一個專案", "part_of_speech": "(ph.)", "example": "Because the deadline is next Monday, he spent the entire afternoon working on his project." },
+    { "id": 707, "date": "2026-06-10", "english": "clay", "chinese": "黏土", "part_of_speech": "(n.)", "example": "Although it makes their hands dirty, children still like making different shapes with clay." },
+    { "id": 708, "date": "2026-06-10", "english": "glass", "chinese": "玻璃(製品、杯子)", "part_of_speech": "(n.)", "example": "Before having her breakfast this morning, Sherry poured some fresh orange juice into a glass." },
+    { "id": 709, "date": "2026-06-10", "english": "go out", "chinese": "外出、出去玩", "part_of_speech": "(ph.)", "example": "On weekend nights, many young people enjoy going out to eat delicious food and chat with friends." },
+    { "id": 710, "date": "2026-06-11", "english": "metal", "chinese": "金屬；合金", "part_of_speech": "(n.)", "example": "Because gold is a valuable metal, people often use it to make beautiful necklaces and expensive rings." },
+    { "id": 711, "date": "2026-06-11", "english": "study", "chinese": "學習、研讀", "part_of_speech": "(v.)", "example": "I need to study for my math test tomorrow, so I will stay at the library tonight." },
+    { "id": 712, "date": "2026-06-11", "english": "cage", "chinese": "籠子", "part_of_speech": "(n.)", "example": "The zookeeper cleaned the animals' cages yesterday to keep them neat and help the animals stay healthy." },
+    { "id": 713, "date": "2026-06-11", "english": "wall", "chinese": "牆、壁", "part_of_speech": "(n.)", "example": "When the cat feels bored at home, it likes scratching the white wall with its claws." },
+    { "id": 714, "date": "2026-06-11", "english": "pull", "chinese": "拉、拖、抽出", "part_of_speech": "(v.)", "example": "After using my keys to unlock the door, I pulled it open and entered the room on a rainy night." },
+    { "id": 715, "date": "2026-06-11", "english": "water the plants", "chinese": "給植物澆水", "part_of_speech": "(ph.)", "example": "My grandfather watered the plants carefully because the weather was extremely hot and dry." },
+    { "id": 716, "date": "2026-06-12", "english": "surprised", "chinese": "驚訝的、意料之外的", "part_of_speech": "(adj.)", "example": "After the lights turned on, she looked surprised when she saw the birthday cake waiting for her." },
+    { "id": 717, "date": "2026-06-12", "english": "smart", "chinese": "聰明的", "part_of_speech": "(adj.)", "example": "She is a smart student who always gets good grades and is always willing to help her classmates before exams." },
+    { "id": 718, "date": "2026-06-12", "english": "useful", "chinese": "有用的、有效的", "part_of_speech": "(adj.)", "example": "The clock on the wall is useful to help us keep track of time so that we are always on time." },
+    { "id": 719, "date": "2026-06-12", "english": "delicious", "chinese": "美味的", "part_of_speech": "(adj.)", "example": "The rich chocolate cake my mom baked on the weekend was absolutely delicious." },
+    { "id": 720, "date": "2026-06-12", "english": "toward", "chinese": "朝向；接近", "part_of_speech": "(prep.)", "example": "After the bell rings, the excited children run toward the big playground to play games." },
+    { "id": 721, "date": "2026-06-12", "english": "take (some) medicine", "chinese": "服藥", "part_of_speech": "(ph.)", "example": "You should take some medicine soon if your headache continues to get worse during the evening." }
 ];
 
 const processedData = serverData.map((word, index) => ({ ...word, id: index + 1 }));
