@@ -10,11 +10,13 @@ import DailyChallenge from './components/DailyChallenge';
 import GrammarChallenge from './components/GrammarChallenge';
 import { VocabAdventureMap } from './components/VocabAdventureMap';
 import PhraseChallenge from './components/PhraseChallenge';
-import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool } from 'lucide-react';
+import AchievementsView from './components/AchievementsView';
+import { getStreak } from './services/gamification';
+import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame } from 'lucide-react';
 
 const APP_VERSION = '6.7'; // 目前應用程式版本
 
-type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE';
+type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -122,7 +124,10 @@ function App() {
         return <AnalyticsDashboard onBack={() => setCurrentView('MENU')} />;
       case 'LEADERBOARD':
         return <Leaderboard onBack={() => setCurrentView('MENU')} />;
+      case 'ACHIEVEMENTS':
+        return <AchievementsView onBack={() => setCurrentView('MENU')} />;
       default:
+        const streak = getStreak();
         return (
           <div className="max-w-4xl mx-auto p-6 animate-fade-in pb-20">
             <div className="text-center mb-10 pt-10">
@@ -132,9 +137,25 @@ function App() {
               <h1 className="text-4xl md:text-5xl font-extrabold text-slate-800 tracking-tight mb-2">
                 Vocabulary Master
               </h1>
-              <div className="flex items-center justify-center gap-3">
+              <div className="flex items-center justify-center gap-3 mb-6">
                   <p className="text-lg text-slate-500">英文單字快速複習器</p>
                   <span className="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-sm">v{APP_VERSION}</span>
+              </div>
+              
+              <div className="flex flex-wrap justify-center gap-4">
+                  {streak.currentStreak > 0 && (
+                      <div className="bg-orange-100 text-orange-600 px-4 py-2 rounded-xl font-black flex items-center gap-2 shadow-sm">
+                          <Flame size={20} className="animate-pulse" />
+                          連續 {streak.currentStreak} 天
+                      </div>
+                  )}
+                  <button 
+                      onClick={() => setCurrentView('ACHIEVEMENTS')}
+                      className="bg-yellow-100 text-yellow-700 hover:bg-yellow-200 px-4 py-2 rounded-xl font-black flex items-center gap-2 shadow-sm transition-colors"
+                  >
+                      <Trophy size={20} />
+                      榮譽殿堂
+                  </button>
               </div>
             </div>
 

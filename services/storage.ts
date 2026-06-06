@@ -36,6 +36,8 @@ export const getHistory = (): TestResult[] => {
   return stored ? JSON.parse(stored) : [];
 };
 
+import { processGamification } from './gamification';
+
 export const saveResult = (result: TestResult): void => {
   const history = getHistory();
   history.push(result);
@@ -45,6 +47,9 @@ export const saveResult = (result: TestResult): void => {
   if (result.mode !== GameMode.CHALLENGE) {
     saveToLeaderboard(result);
   }
+  
+  // Update Gamification stats (Streak and Achievements)
+  processGamification(result);
 };
 
 export const getWordStats = (): Record<number, WordStats> => {

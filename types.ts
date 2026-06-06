@@ -79,3 +79,24 @@ export interface GrammarQuestion {
   correctAnswer: string;
   ruleReminder: string;
 }
+
+export interface StreakData {
+  currentStreak: number;
+  bestStreak: number;
+  lastActivityDate: string; // YYYY-MM-DD local time
+}
+
+export interface Achievement {
+  id: string;
+  name: string;
+  description: string;
+  icon: string;
+  condition: (stats: GameGlobalStats) => boolean;
+}
+
+export interface GameGlobalStats {
+  totalTestsCompleted: number;
+  totalCorrectAnswers: number;
+  perfectTests: number; 
+  currentStreak: number;
+}
