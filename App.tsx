@@ -11,12 +11,13 @@ import GrammarChallenge from './components/GrammarChallenge';
 import { VocabAdventureMap } from './components/VocabAdventureMap';
 import PhraseChallenge from './components/PhraseChallenge';
 import AchievementsView from './components/AchievementsView';
+import { TutorialGuide } from './components/TutorialGuide';
 import { getStreak, getUserData } from './services/gamification';
-import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins } from 'lucide-react';
+import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins, HelpCircle } from 'lucide-react';
 
-const APP_VERSION = '6.7'; // 目前應用程式版本
+const APP_VERSION = '6.8'; // 目前應用程式版本
 
-type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS';
+type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -126,6 +127,8 @@ function App() {
         return <Leaderboard onBack={() => setCurrentView('MENU')} />;
       case 'ACHIEVEMENTS':
         return <AchievementsView onBack={() => setCurrentView('MENU')} />;
+      case 'TUTORIAL':
+        return <TutorialGuide onBack={() => setCurrentView('MENU')} />;
       default:
         const streak = getStreak();
         const userData = getUserData();
@@ -160,6 +163,13 @@ function App() {
                   >
                       <Trophy size={20} />
                       榮譽殿堂
+                  </button>
+                  <button 
+                      onClick={() => setCurrentView('TUTORIAL')}
+                      className="bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-xl font-black flex items-center gap-2 shadow-sm transition-colors"
+                  >
+                      <HelpCircle size={20} />
+                      怎麼玩？
                   </button>
               </div>
             </div>

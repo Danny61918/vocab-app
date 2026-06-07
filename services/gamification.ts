@@ -1,6 +1,6 @@
 import { TestResult, StreakData, GameGlobalStats, Achievement, UserData, OwnedMonster } from '../types';
 import { getHistory } from './storage';
-import { monsterData } from './monsterData';
+import { MONSTER_DATA } from './monsterData';
 
 const STORAGE_KEY_STREAK = 'vocab_app_streak';
 const STORAGE_KEY_ACHIEVEMENTS = 'vocab_app_achievements_unlocked';
@@ -102,8 +102,8 @@ export const drawGacha = (): { monsterId: number; isNew: boolean; levelUp: boole
     
     userData.coins -= 500;
     
-    // Pick random monster from monsterData
-    const allMonsterIds = Object.keys(monsterData).map(Number);
+    // Pick random monster from MONSTER_DATA
+    const allMonsterIds = Object.keys(MONSTER_DATA).map(Number);
     const randomId = allMonsterIds[Math.floor(Math.random() * allMonsterIds.length)];
     
     let isNew = false;
