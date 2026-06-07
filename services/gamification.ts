@@ -1,8 +1,10 @@
-import { TestResult, StreakData, GameGlobalStats, Achievement } from '../types';
+import { TestResult, StreakData, GameGlobalStats, Achievement, UserData, OwnedMonster } from '../types';
 import { getHistory } from './storage';
+import { monsterData } from './monsterData';
 
 const STORAGE_KEY_STREAK = 'vocab_app_streak';
 const STORAGE_KEY_ACHIEVEMENTS = 'vocab_app_achievements_unlocked';
+const STORAGE_KEY_USER_DATA = 'vocab_app_user_data';
 
 export const ACHIEVEMENTS: Achievement[] = [
     {
@@ -62,6 +64,73 @@ export const getUnlockedAchievements = (): string[] => {
     return stored ? JSON.parse(stored) : [];
 };
 
+export const getUserData = (): UserData => {
+    const stored = localStorage.getItem(STORAGE_KEY_USER_DATA);
+    if (stored) {
+        return JSON.parse(stored);
+    }
+    
+    // Legacy migration: check if there was old VocabAdventureMap progress
+    const legacyProgressStr = localStorage.getItem('vocab_adventure_progress');
+    const ownedMonsters: Record<number, OwnedMonster> = {};
+    
+    if (legacyProgressStr) {
+        try {
+            const legacyProgress = JSON.parse(legacyProgressStr);
+            if (Array.isArray(legacyProgress.unlockedMonsters)) {
+                legacyProgress.unlockedMonsters.forEach((id: number) => {
+                    ownedMonsters[id] = { id, level: 1, exp: 0 };
+                });
+            }
+        } catch (e) {
+            console.error('Failed to parse legacy progress', e);
+        }
+    }
+
+    return { coins: 0, ownedMonsters };
+};
+
+export const saveUserData = (data: UserData) => {
+    localStorage.setItem(STORAGE_KEY_USER_DATA, JSON.stringify(data));
+};
+
+export const drawGacha = (): { monsterId: number; isNew: boolean; levelUp: boolean } | null => {
+    const userData = getUserData();
+    if (userData.coins < 500) {
+        return null;
+    }
+    
+    userData.coins -= 500;
+    
+    // Pick random monster from monsterData
+    const allMonsterIds = Object.keys(monsterData).map(Number);
+    const randomId = allMonsterIds[Math.floor(Math.random() * allMonsterIds.length)];
+    
+    let isNew = false;
+    let levelUp = false;
+
+    if (!userData.ownedMonsters[randomId]) {
+        userData.ownedMonsters[randomId] = { id: randomId, level: 1, exp: 0 };
+        isNew = true;
+    } else {
+        // Duplicate: gain 100 EXP
+        const m = userData.ownedMonsters[randomId];
+        m.exp += 100;
+        
+        // Level up thresholds
+        if (m.exp >= 300 && m.level < 3) {
+            m.level = 3;
+            levelUp = true;
+        } else if (m.exp >= 100 && m.level < 2) {
+            m.level = 2;
+            levelUp = true;
+        }
+    }
+    
+    saveUserData(userData);
+    return { monsterId: randomId, isNew, levelUp };
+};
+
 export const processGamification = (result: TestResult) => {
     // 1. Update Streak
     const streak = getStreak();
@@ -119,4 +188,10 @@ export const processGamification = (result: TestResult) => {
     if (newUnlocks) {
         localStorage.setItem(STORAGE_KEY_ACHIEVEMENTS, JSON.stringify(unlocked));
     }
+
+    // 4. Reward Coins
+    const userData = getUserData();
+    const coinsEarned = result.correctCount * 10;
+    userData.coins += coinsEarned;
+    saveUserData(userData);
 };

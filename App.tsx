@@ -11,8 +11,8 @@ import GrammarChallenge from './components/GrammarChallenge';
 import { VocabAdventureMap } from './components/VocabAdventureMap';
 import PhraseChallenge from './components/PhraseChallenge';
 import AchievementsView from './components/AchievementsView';
-import { getStreak } from './services/gamification';
-import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame } from 'lucide-react';
+import { getStreak, getUserData } from './services/gamification';
+import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins } from 'lucide-react';
 
 const APP_VERSION = '6.7'; // 目前應用程式版本
 
@@ -128,6 +128,7 @@ function App() {
         return <AchievementsView onBack={() => setCurrentView('MENU')} />;
       default:
         const streak = getStreak();
+        const userData = getUserData();
         return (
           <div className="max-w-4xl mx-auto p-6 animate-fade-in pb-20">
             <div className="text-center mb-10 pt-10">
@@ -143,6 +144,10 @@ function App() {
               </div>
               
               <div className="flex flex-wrap justify-center gap-4">
+                  <div className="bg-amber-100 text-amber-700 px-4 py-2 rounded-xl font-black flex items-center gap-2 shadow-sm">
+                      <Coins size={20} />
+                      {userData.coins} 金幣
+                  </div>
                   {streak.currentStreak > 0 && (
                       <div className="bg-orange-100 text-orange-600 px-4 py-2 rounded-xl font-black flex items-center gap-2 shadow-sm">
                           <Flame size={20} className="animate-pulse" />

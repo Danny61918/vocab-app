@@ -100,3 +100,14 @@ export interface GameGlobalStats {
   perfectTests: number; 
   currentStreak: number;
 }
+
+export interface OwnedMonster {
+  id: number;
+  level: number;
+  exp: number;
+}
+
+export interface UserData {
+  coins: number;
+  ownedMonsters: Record<number, OwnedMonster>;
+}
