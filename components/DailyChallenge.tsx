@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Word, TestResult, GameMode, GameType, Difficulty } from '../types';
 import { getWords, saveResult } from '../services/storage';
 import { CalendarDays, ChevronDown, BookOpen, TrendingUp, AlertCircle, ArrowRight, XCircle, CheckCircle } from 'lucide-react';
@@ -41,11 +41,30 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [monsterHp, setMonsterHp] = useState(100);
     const [mistakesCount, setMistakesCount] = useState(0);
     const [writeIndex, setWriteIndex] = useState(0);
+    const [wordMistakes, setWordMistakes] = useState<Record<number, number>>({});
+    const [sentenceHintActive, setSentenceHintActive] = useState(false);
+    const sentenceHintTimerRef = useRef<NodeJS.Timeout | null>(null);
 
     // Results
     const [correctCount, setCorrectCount] = useState(0);
     const [wrongIds, setWrongIds] = useState<number[]>([]);
     const [totalQuestions, setTotalQuestions] = useState(0);
+
+    // ─── Stale-closure fix: always-fresh refs ───────────────────────────────
+    // These are updated synchronously on every render so setTimeout callbacks
+    // can read the latest state without capturing a stale closure.
+    const quizQueueRef      = useRef<Word[]>(quizQueue);
+    const quizModeRef       = useRef(quizMode);
+    const feedbackStateRef  = useRef(feedbackState);
+    const currentQuizWordRef = useRef<Word | null>(currentQuizWord);
+    // prepareNextQuestion is declared later; its ref is assigned after the declaration.
+    const prepareNextRef = useRef<((queue: Word[], mode: 'RECOGNIZE' | 'SPELL' | 'WRITE' | 'SENTENCE') => void) | null>(null);
+
+    // Keep refs in sync with state (runs synchronously during render)
+    quizQueueRef.current       = quizQueue;
+    quizModeRef.current        = quizMode;
+    feedbackStateRef.current   = feedbackState;
+    currentQuizWordRef.current = currentQuizWord;
 
     const getRandomMonster = () => {
         const monsters = Object.values(MONSTER_DATA).filter(m => !m.isLegendary);
@@ -54,8 +73,10 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
 
     const getCoreWordForMasking = (englishStr: string): string => {
         let cleaned = englishStr.replace(/\(.*?\)/g, '').trim();
-        cleaned = cleaned.split(/[\/-]/)[0].trim();
-        return cleaned;
+        cleaned = cleaned.split(/[\/\-]/)[0].trim();
+        // Escape special regex characters so phrases like "ride the subway to..."
+        // don't accidentally match the wrong parts of a sentence.
+        return cleaned.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     };
 
     useEffect(() => {
@@ -100,6 +121,14 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     }, []);
 
     useEffect(() => {
+        return () => {
+            if (sentenceHintTimerRef.current) {
+                clearTimeout(sentenceHintTimerRef.current);
+            }
+        };
+    }, []);
+
+    useEffect(() => {
         if (!selectedDate || availableDates.length === 0) return;
         const all = getWords();
         let target = selectedDate;
@@ -136,6 +165,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         setCorrectCount(0);
         setWrongIds([]);
         setTotalQuestions(0);
+        setWordMistakes({});
         startLearnPhase(0);
     };
 
@@ -169,6 +199,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const startQuizPhase = () => {
         setPhase('QUIZ');
         setQuizMode('RECOGNIZE');
+        setWordMistakes({});
         const shuffled = [...currentChunk].sort(() => 0.5 - Math.random());
         setQuizQueue(shuffled);
         prepareNextQuestion(shuffled, 'RECOGNIZE');
@@ -176,6 +207,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
 
     const startSpellPhase = () => {
         setQuizMode('SPELL');
+        setWordMistakes({});
         const shuffled = [...currentChunk].sort(() => 0.5 - Math.random());
         setQuizQueue(shuffled);
         prepareNextQuestion(shuffled, 'SPELL');
@@ -183,6 +215,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
 
     const startWritePhase = () => {
         setQuizMode('WRITE');
+        setWordMistakes({});
         const shuffled = [...currentChunk].sort(() => 0.5 - Math.random());
         setQuizQueue(shuffled);
         prepareNextQuestion(shuffled, 'WRITE');
@@ -190,6 +223,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
 
     const startSentencePhase = () => {
         setQuizMode('SENTENCE');
+        setWordMistakes({});
         const withExamples = currentChunk.filter(w => w.example && w.example.trim().length > 0);
         const shuffled = [...withExamples].sort(() => 0.5 - Math.random());
         setQuizQueue(shuffled);
@@ -197,6 +231,13 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     };
 
     const prepareNextQuestion = (queue: Word[], mode: 'RECOGNIZE' | 'SPELL' | 'WRITE' | 'SENTENCE') => {
+        // Clear sentence hint timer if active
+        if (sentenceHintTimerRef.current) {
+            clearTimeout(sentenceHintTimerRef.current);
+            sentenceHintTimerRef.current = null;
+        }
+        setSentenceHintActive(false);
+
         if (queue.length === 0) {
             if (mode === 'RECOGNIZE') {
                 startSpellPhase();
@@ -228,8 +269,22 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                 startIdx++;
             }
             if (startIdx >= target.chinese.length) {
-                // No Chinese characters, auto-skip
-                setTimeout(() => handleAnswer(''), 100);
+                // No Chinese characters — auto-skip using refs so we never touch a stale closure
+                setTimeout(() => {
+                    if (feedbackStateRef.current !== 'idle') return;
+                    setTotalQuestions(t => t + 1);
+                    setCorrectCount(c => c + 1);
+                    setCombo(c => c + 1);
+                    setFeedbackState('correct');
+                    setMonsterHp(0);
+                    setTimeout(() => {
+                        const latestQueue = quizQueueRef.current;
+                        const latestMode  = quizModeRef.current;
+                        const newQueue    = latestQueue.slice(1);
+                        setQuizQueue(newQueue);
+                        prepareNextRef.current?.(newQueue, latestMode);
+                    }, 800);
+                }, 100);
             } else {
                 setWriteIndex(startIdx);
             }
@@ -260,18 +315,35 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         setMistakesCount(0);
     };
 
-    const handleAnswer = (selectedAns: string) => {
-        if (feedbackState !== 'idle' || !currentQuizWord) return;
+    // Keep the ref pointing at the latest closure so stale setTimeout callbacks
+    // always call the freshest version (with up-to-date currentChunk, etc.)
+    prepareNextRef.current = prepareNextQuestion;
 
+    const triggerSentenceHint = () => {
+        if (sentenceHintTimerRef.current) {
+            clearTimeout(sentenceHintTimerRef.current);
+        }
+        setSentenceHintActive(true);
+        sentenceHintTimerRef.current = setTimeout(() => {
+            setSentenceHintActive(false);
+            sentenceHintTimerRef.current = null;
+        }, 3000);
+    };
+
+    const handleAnswer = (selectedAns: string) => {
+        // Always read fresh state via refs to avoid stale-closure bugs
+        if (feedbackStateRef.current !== 'idle' || !currentQuizWordRef.current) return;
+
+        const word = currentQuizWordRef.current;
         let isCorrect = false;
-        if (quizMode === 'RECOGNIZE') {
-            isCorrect = selectedAns === currentQuizWord.chinese;
-        } else if (quizMode === 'SPELL') {
-            const coreWord = getCoreWordForMasking(currentQuizWord.english).toLowerCase().trim();
+        if (quizModeRef.current === 'RECOGNIZE') {
+            isCorrect = selectedAns === word.chinese;
+        } else if (quizModeRef.current === 'SPELL') {
+            const coreWord = getCoreWordForMasking(word.english).toLowerCase().trim();
             isCorrect = selectedAns.toLowerCase().trim() === coreWord;
-        } else if (quizMode === 'SENTENCE') {
-            isCorrect = selectedAns === currentQuizWord.english;
-        } else if (quizMode === 'WRITE') {
+        } else if (quizModeRef.current === 'SENTENCE') {
+            isCorrect = selectedAns === word.english;
+        } else if (quizModeRef.current === 'WRITE') {
             isCorrect = true;
         }
 
@@ -284,20 +356,32 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             setMonsterHp(0);
             
             setTimeout(() => {
-                const newQueue = quizQueue.slice(1);
+                // Use refs to get the *latest* queue and mode (not the stale closure)
+                const latestQueue = quizQueueRef.current;
+                const latestMode  = quizModeRef.current;
+                const newQueue    = latestQueue.slice(1);
                 setQuizQueue(newQueue);
-                prepareNextQuestion(newQueue, quizMode);
+                prepareNextRef.current?.(newQueue, latestMode);
             }, 800);
         } else {
             setFeedbackState('wrong');
             setCombo(0);
             setMistakesCount(prev => prev + 1);
-            setWrongIds(prev => [...prev, currentQuizWord.id]);
+            setWordMistakes(prev => ({
+                ...prev,
+                [word.id]: (prev[word.id] || 0) + 1
+            }));
+            setWrongIds(prev => [...prev, word.id]);
             
             setTimeout(() => {
-                const newQueue = [...quizQueue.slice(1), currentQuizWord];
+                const latestQueue = quizQueueRef.current;
+                const latestMode  = quizModeRef.current;
+                const latestWord  = currentQuizWordRef.current;
+                const newQueue    = latestWord
+                    ? [...latestQueue.slice(1), latestWord]
+                    : latestQueue.slice(1);
                 setQuizQueue(newQueue);
-                prepareNextQuestion(newQueue, quizMode);
+                prepareNextRef.current?.(newQueue, latestMode);
             }, 1200);
         }
     };
@@ -537,12 +621,21 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                 <div className="text-2xl md:text-4xl font-black leading-relaxed text-left text-white drop-shadow-md">
                                     {sentenceMask}
                                 </div>
-                                {mistakesCount >= 3 && (
+                                {sentenceHintActive && (
+                                    <div className="mt-4 p-4 bg-yellow-400 text-yellow-950 font-black text-xl rounded-xl animate-pulse text-center border-4 border-yellow-500 shadow-md">
+                                        💡 提示：{word.chinese}（{word.part_of_speech}）
+                                    </div>
+                                )}
+                                {(wordMistakes[word.id] || 0) >= 3 && !sentenceHintActive && (
                                     <button 
-                                        onClick={(e) => { e.stopPropagation(); speak(word.english); }}
+                                        type="button"
+                                        onClick={(e) => { 
+                                            e.stopPropagation(); 
+                                            triggerSentenceHint(); 
+                                        }}
                                         className="absolute -top-6 -right-6 bg-yellow-400 text-yellow-900 rounded-full p-4 shadow-xl hover:bg-yellow-300 hover:scale-110 transition-all font-black flex items-center gap-2 animate-bounce border-4 border-yellow-500"
                                     >
-                                        🔊 提示
+                                        💡 提示
                                     </button>
                                 )}
                             </div>

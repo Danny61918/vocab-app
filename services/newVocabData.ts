@@ -3,1388 +3,214 @@ export interface VocabWord {
   word: string;
   partOfSpeech: string;
   meaning: string;
-  englishMeaning?: string; // Optional field if we add it later
+  englishMeaning?: string;
 }
 
+// Level 6 — Week 19-20 (2026/6/15 ~ 6/23)
+// School: 陽光森林全美語安親學校
 export const vocabData: VocabWord[] = [
-  {
-    "id": "cinemabr_nsi4d",
-    "word": "cinema (Br)",
-    "partOfSpeech": "n.",
-    "meaning": "電影院"
-  },
-  {
-    "id": "shoppingcentrebr_x82rb",
-    "word": "shopping centre (Br)",
-    "partOfSpeech": "n.",
-    "meaning": "購物中心"
-  },
-  {
-    "id": "stretch_glvak",
-    "word": "stretch",
-    "partOfSpeech": "v.",
-    "meaning": "伸展、延伸"
-  },
-  {
-    "id": "score_1y92l",
-    "word": "score",
-    "partOfSpeech": "v.",
-    "meaning": "得分"
-  },
-  {
-    "id": "swimmingpool_az9t8",
-    "word": "swimming pool",
-    "partOfSpeech": "n.",
-    "meaning": "游泳池"
-  },
-  {
-    "id": "carpark_nuofj",
-    "word": "car park",
-    "partOfSpeech": "n.",
-    "meaning": "停車場"
-  },
-  {
-    "id": "pitcher_2kh7r",
-    "word": "pitcher",
-    "partOfSpeech": "n.",
-    "meaning": "投手"
-  },
-  {
-    "id": "tie_1yxj8",
-    "word": "tie",
-    "partOfSpeech": "v.",
-    "meaning": "平手; 繫"
-  },
-  {
-    "id": "restaurant_emcxw",
-    "word": "restaurant",
-    "partOfSpeech": "n.",
-    "meaning": "餐廳"
-  },
-  {
-    "id": "postoffice_wsm3u",
-    "word": "post office",
-    "partOfSpeech": "n.",
-    "meaning": "郵局"
-  },
-  {
-    "id": "bat_biqlt",
-    "word": "bat",
-    "partOfSpeech": "v./n.",
-    "meaning": "打擊; 球棒; 蝙蝠"
-  },
-  {
-    "id": "playbaseball_71k3c",
-    "word": "(play) baseball",
-    "partOfSpeech": "n.",
-    "meaning": "棒球"
-  },
-  {
-    "id": "library_oc59g",
-    "word": "library",
-    "partOfSpeech": "n.",
-    "meaning": "圖書館"
-  },
-  {
-    "id": "station_aj37a",
-    "word": "station",
-    "partOfSpeech": "n.",
-    "meaning": "車站"
-  },
-  {
-    "id": "catch_2aot2",
-    "word": "catch",
-    "partOfSpeech": "v.",
-    "meaning": "接住; 抓住"
-  },
-  {
-    "id": "season_a8k85",
-    "word": "season",
-    "partOfSpeech": "n.",
-    "meaning": "季節"
-  },
-  {
-    "id": "supermarket_rs34s",
-    "word": "supermarket",
-    "partOfSpeech": "n.",
-    "meaning": "超級市場"
-  },
-  {
-    "id": "lose_otcuo",
-    "word": "lose",
-    "partOfSpeech": "v.",
-    "meaning": "輸掉; 丟失"
-  },
-  {
-    "id": "throw_5p50j",
-    "word": "throw",
-    "partOfSpeech": "v.",
-    "meaning": "丟、拋擲"
-  },
-  {
-    "id": "stand_p73rz",
-    "word": "stand",
-    "partOfSpeech": "v.",
-    "meaning": "站立"
-  },
-  {
-    "id": "visitor_7s0q8",
-    "word": "visitor",
-    "partOfSpeech": "n.",
-    "meaning": "訪客、遊客"
-  },
-  {
-    "id": "important_ajiew",
-    "word": "important",
-    "partOfSpeech": "adj.",
-    "meaning": "重要的"
-  },
-  {
-    "id": "breakfast_5tvug",
-    "word": "breakfast",
-    "partOfSpeech": "n.",
-    "meaning": "早餐"
-  },
-  {
-    "id": "path_5stqa",
-    "word": "path",
-    "partOfSpeech": "n.",
-    "meaning": "小道"
-  },
-  {
-    "id": "swing_831n9",
-    "word": "swing",
-    "partOfSpeech": "v./n.",
-    "meaning": "擺動; 鞦韆"
-  },
-  {
-    "id": "actor_cdws2",
-    "word": "actor",
-    "partOfSpeech": "n.",
-    "meaning": "演員"
-  },
-  {
-    "id": "cover_h6aqt",
-    "word": "cover",
-    "partOfSpeech": "v.",
-    "meaning": "蓋住; 遮蓋"
-  },
-  {
-    "id": "bridge_hg55g",
-    "word": "bridge",
-    "partOfSpeech": "n.",
-    "meaning": "橋"
-  },
-  {
-    "id": "enormous_unu2h",
-    "word": "enormous",
-    "partOfSpeech": "adj.",
-    "meaning": "巨大的"
-  },
-  {
-    "id": "afterschool_xw8gi",
-    "word": "after school",
-    "partOfSpeech": "ph.",
-    "meaning": "放學後"
-  },
-  {
-    "id": "receive_rp5mc",
-    "word": "receive",
-    "partOfSpeech": "v.",
-    "meaning": "收到"
-  },
-  {
-    "id": "river_fsrtu",
-    "word": "river",
-    "partOfSpeech": "n.",
-    "meaning": "河"
-  },
-  {
-    "id": "airport_lxbx0",
-    "word": "airport",
-    "partOfSpeech": "n.",
-    "meaning": "機場"
-  },
-  {
-    "id": "early_36a4g",
-    "word": "early",
-    "partOfSpeech": "adv.",
-    "meaning": "提早; 在初期"
-  },
-  {
-    "id": "shout_8xfyl",
-    "word": "shout",
-    "partOfSpeech": "v.",
-    "meaning": "呼喊; 吼叫"
-  },
-  {
-    "id": "area_t8qcz",
-    "word": "area",
-    "partOfSpeech": "n.",
-    "meaning": "區域; 範圍"
-  },
-  {
-    "id": "slide_ln0ks",
-    "word": "slide",
-    "partOfSpeech": "n.",
-    "meaning": "溜滑梯"
-  },
-  {
-    "id": "hungry_ye1bs",
-    "word": "hungry",
-    "partOfSpeech": "adj.",
-    "meaning": "飢餓的"
-  },
-  {
-    "id": "hand_1rvam",
-    "word": "hand",
-    "partOfSpeech": "v.",
-    "meaning": "將...交給"
-  },
-  {
-    "id": "wood_1ibed",
-    "word": "wood",
-    "partOfSpeech": "n.",
-    "meaning": "木頭; 樹林"
-  },
-  {
-    "id": "adventure_wy4od",
-    "word": "adventure",
-    "partOfSpeech": "n.",
-    "meaning": "冒險; 奇遇"
-  },
-  {
-    "id": "countryside_23tct",
-    "word": "countryside",
-    "partOfSpeech": "n.",
-    "meaning": "農村; 鄉下"
-  },
-  {
-    "id": "shake_e9pf0",
-    "word": "shake",
-    "partOfSpeech": "v.",
-    "meaning": "搖動; 發抖"
-  },
-  {
-    "id": "school_tjgpu",
-    "word": "school",
-    "partOfSpeech": "n.",
-    "meaning": "學校"
-  },
-  {
-    "id": "symbol_ayjmw",
-    "word": "symbol",
-    "partOfSpeech": "n.",
-    "meaning": "符號; 標誌; 象徵"
-  },
-  {
-    "id": "hardsoft_0lhyy",
-    "word": "hard / soft",
-    "partOfSpeech": "adj.",
-    "meaning": "困難的; 堅硬的 / 柔軟的"
-  },
-  {
-    "id": "dessert_ppclt",
-    "word": "dessert",
-    "partOfSpeech": "n.",
-    "meaning": "甜點"
-  },
-  {
-    "id": "team_dril2",
-    "word": "team",
-    "partOfSpeech": "n.",
-    "meaning": "隊伍"
-  },
-  {
-    "id": "cross_7x8pb",
-    "word": "cross",
-    "partOfSpeech": "v.",
-    "meaning": "越過; 跨越"
-  },
-  {
-    "id": "salt_dy3sl",
-    "word": "salt",
-    "partOfSpeech": "n.",
-    "meaning": "鹽"
-  },
-  {
-    "id": "sweet_l9874",
-    "word": "sweet",
-    "partOfSpeech": "adj.",
-    "meaning": "甜的; 溫和的"
-  },
-  {
-    "id": "shop_hagbr",
-    "word": "shop",
-    "partOfSpeech": "n.",
-    "meaning": "商店"
-  },
-  {
-    "id": "island_ij6ab",
-    "word": "island",
-    "partOfSpeech": "n.",
-    "meaning": "島嶼"
-  },
-  {
-    "id": "delicious_founr",
-    "word": "delicious",
-    "partOfSpeech": "adj.",
-    "meaning": "美味的"
-  },
-  {
-    "id": "fresh_cmk3d",
-    "word": "fresh",
-    "partOfSpeech": "adj.",
-    "meaning": "新鮮的; 清新的"
-  },
-  {
-    "id": "surprise_pfwmw",
-    "word": "surprise",
-    "partOfSpeech": "n.",
-    "meaning": "驚喜"
-  },
-  {
-    "id": "return_08viy",
-    "word": "return",
-    "partOfSpeech": "v.",
-    "meaning": "返回; 歸還"
-  },
-  {
-    "id": "pour_6rpix",
-    "word": "pour",
-    "partOfSpeech": "v.",
-    "meaning": "倒、注入"
-  },
-  {
-    "id": "thick_gy72l",
-    "word": "thick",
-    "partOfSpeech": "adj.",
-    "meaning": "厚的; 濃的"
-  },
-  {
-    "id": "kitchen_ke7ks",
-    "word": "kitchen",
-    "partOfSpeech": "n.",
-    "meaning": "廚房"
-  },
-  {
-    "id": "park_kgkqy",
-    "word": "park",
-    "partOfSpeech": "n.",
-    "meaning": "公園"
-  },
-  {
-    "id": "computer_oyb8t",
-    "word": "computer",
-    "partOfSpeech": "n.",
-    "meaning": "電腦"
-  },
-  {
-    "id": "soccerus_7omky",
-    "word": "soccer (US)",
-    "partOfSpeech": "n.",
-    "meaning": "足球"
-  },
-  {
-    "id": "playbadminton_e8rfa",
-    "word": "(play) badminton",
-    "partOfSpeech": "n.",
-    "meaning": "羽毛球"
-  },
-  {
-    "id": "picnic_egaif",
-    "word": "picnic",
-    "partOfSpeech": "n.",
-    "meaning": "野餐"
-  },
-  {
-    "id": "beach_g8jzh",
-    "word": "beach",
-    "partOfSpeech": "n.",
-    "meaning": "海灘; 沙灘"
-  },
-  {
-    "id": "straight_ycpl4",
-    "word": "straight",
-    "partOfSpeech": "adv.",
-    "meaning": "筆直地; 坦率地"
-  },
-  {
-    "id": "dogymnastics_z3vxr",
-    "word": "(do) gymnastics",
-    "partOfSpeech": "n.",
-    "meaning": "體操"
-  },
-  {
-    "id": "present_ne8rv",
-    "word": "present",
-    "partOfSpeech": "n.",
-    "meaning": "禮物"
-  },
-  {
-    "id": "balloon_jmmdn",
-    "word": "balloon",
-    "partOfSpeech": "n.",
-    "meaning": "氣球"
-  },
-  {
-    "id": "show_gwy1d",
-    "word": "show",
-    "partOfSpeech": "v.",
-    "meaning": "顯示; 說明"
-  },
-  {
-    "id": "playhockey_s7cyf",
-    "word": "(play) hockey",
-    "partOfSpeech": "n.",
-    "meaning": "曲棍球"
-  },
-  {
-    "id": "restaurant_gtled",
-    "word": "restaurant",
-    "partOfSpeech": "n.",
-    "meaning": "餐廳"
-  },
-  {
-    "id": "bedroom_8aakb",
-    "word": "bedroom",
-    "partOfSpeech": "n.",
-    "meaning": "臥室"
-  },
-  {
-    "id": "shoppercenterus_2hsoj",
-    "word": "shopper center (US)",
-    "partOfSpeech": "n.",
-    "meaning": "購物中心"
-  },
-  {
-    "id": "playbasketball_bzi4u",
-    "word": "(play) basketball",
-    "partOfSpeech": "n.",
-    "meaning": "籃球"
-  },
-  {
-    "id": "sugar_q6x8h",
-    "word": "sugar",
-    "partOfSpeech": "n.",
-    "meaning": "糖"
-  },
-  {
-    "id": "fruit_cdqd2",
-    "word": "fruit",
-    "partOfSpeech": "n.",
-    "meaning": "水果; 成果"
-  },
-  {
-    "id": "parkinglotus_ry61d",
-    "word": "parking lot (US)",
-    "partOfSpeech": "n.",
-    "meaning": "停車場"
-  },
-  {
-    "id": "football_i9nbq",
-    "word": "football",
-    "partOfSpeech": "n.",
-    "meaning": "美式橄欖球(US); 足球(Br)"
-  },
-  {
-    "id": "playtennis_2n0iy",
-    "word": "(play) tennis",
-    "partOfSpeech": "n.",
-    "meaning": "網球"
-  },
-  {
-    "id": "polite_m0xx2",
-    "word": "polite",
-    "partOfSpeech": "adj.",
-    "meaning": "有禮貌的"
-  },
-  {
-    "id": "waiter_iil8z",
-    "word": "waiter",
-    "partOfSpeech": "n.",
-    "meaning": "男服務生"
-  },
-  {
-    "id": "prefer_wal6l",
-    "word": "prefer",
-    "partOfSpeech": "v.",
-    "meaning": "較(喜愛)"
-  },
-  {
-    "id": "dojudo_x20dz",
-    "word": "(do) judo",
-    "partOfSpeech": "n.",
-    "meaning": "柔道"
-  },
-  {
-    "id": "lady_hideb",
-    "word": "lady",
-    "partOfSpeech": "n.",
-    "meaning": "女士"
-  },
-  {
-    "id": "kind_8et4r",
-    "word": "kind",
-    "partOfSpeech": "adj.",
-    "meaning": "親切的; 和善的"
-  },
-  {
-    "id": "ladder_lyj0p",
-    "word": "ladder",
-    "partOfSpeech": "n.",
-    "meaning": "梯子"
-  },
-  {
-    "id": "playchess_p0bln",
-    "word": "(play) chess",
-    "partOfSpeech": "n.",
-    "meaning": "西洋棋"
-  },
-  {
-    "id": "gentleman_j699a",
-    "word": "gentleman",
-    "partOfSpeech": "n.",
-    "meaning": "紳士、先生"
-  },
-  {
-    "id": "excuse_lwupt",
-    "word": "excuse",
-    "partOfSpeech": "v.",
-    "meaning": "原諒、寬恕"
-  },
-  {
-    "id": "hole_ge9ow",
-    "word": "hole",
-    "partOfSpeech": "n.",
-    "meaning": "洞穴、孔"
-  },
-  {
-    "id": "playtabletennis_lee06",
-    "word": "(play) table tennis",
-    "partOfSpeech": "n.",
-    "meaning": "桌球"
-  },
-  {
-    "id": "hedge_xep5t",
-    "word": "hedge",
-    "partOfSpeech": "n.",
-    "meaning": "樹籬"
-  },
-  {
-    "id": "adult_hxlww",
-    "word": "adult",
-    "partOfSpeech": "n.",
-    "meaning": "成人"
-  },
-  {
-    "id": "ticket_4vtz5",
-    "word": "ticket",
-    "partOfSpeech": "n.",
-    "meaning": "票、券"
-  },
-  {
-    "id": "act_705dn",
-    "word": "act",
-    "partOfSpeech": "v.",
-    "meaning": "行為、表現"
-  },
-  {
-    "id": "quietly_tg5ut",
-    "word": "quietly",
-    "partOfSpeech": "adv.",
-    "meaning": "安靜地"
-  },
-  {
-    "id": "smile_e0pk9",
-    "word": "smile",
-    "partOfSpeech": "v.",
-    "meaning": "微笑"
-  },
-  {
-    "id": "boattrips_ck6vd",
-    "word": "boat trip(s)",
-    "partOfSpeech": "n.",
-    "meaning": "乘船旅行"
-  },
-  {
-    "id": "rockclimbing_h1er3",
-    "word": "rock climbing",
-    "partOfSpeech": "n.",
-    "meaning": "攀岩運動"
-  },
-  {
-    "id": "alone_sb00o",
-    "word": "alone",
-    "partOfSpeech": "adv.",
-    "meaning": "單獨地、獨自地"
-  },
-  {
-    "id": "arrive_h3ky6",
-    "word": "arrive",
-    "partOfSpeech": "v.",
-    "meaning": "到達、抵達"
-  },
-  {
-    "id": "takephotosof_lrb7f",
-    "word": "take photos of",
-    "partOfSpeech": "ph.",
-    "meaning": "拍攝...的照片"
-  },
-  {
-    "id": "offer_3c4l6",
-    "word": "offer",
-    "partOfSpeech": "n.",
-    "meaning": "(短期)折扣; 提議"
-  },
-  {
-    "id": "corner_ldqny",
-    "word": "corner",
-    "partOfSpeech": "n.",
-    "meaning": "角落、轉角"
-  },
-  {
-    "id": "subject_v4ul1",
-    "word": "subject",
-    "partOfSpeech": "n.",
-    "meaning": "主題; 科目"
-  },
-  {
-    "id": "feed_0a2ws",
-    "word": "feed",
-    "partOfSpeech": "v.",
-    "meaning": "餵養; 提供食物"
-  },
-  {
-    "id": "figure_mg4d3",
-    "word": "figure",
-    "partOfSpeech": "n.",
-    "meaning": "數字; 外形; 畫像; 塑像"
-  },
-  {
-    "id": "textbook_0rwu4",
-    "word": "textbook",
-    "partOfSpeech": "n.",
-    "meaning": "教科書"
-  },
-  {
-    "id": "already_uw26z",
-    "word": "already",
-    "partOfSpeech": "adv.",
-    "meaning": "已經、早已"
-  },
-  {
-    "id": "lamb_56tr3",
-    "word": "lamb",
-    "partOfSpeech": "n.",
-    "meaning": "小羊、羊羔"
-  },
-  {
-    "id": "climbingwall_mx0tt",
-    "word": "climbing wall",
-    "partOfSpeech": "n.",
-    "meaning": "攀岩牆"
-  },
-  {
-    "id": "empty_3him7",
-    "word": "empty",
-    "partOfSpeech": "adj./v.",
-    "meaning": "空的; 倒空"
-  },
-  {
-    "id": "find_jv8kx",
-    "word": "find",
-    "partOfSpeech": "v.",
-    "meaning": "尋找; 發現"
-  },
-  {
-    "id": "notice_1tsuw",
-    "word": "notice",
-    "partOfSpeech": "n.",
-    "meaning": "通知; 告示"
-  },
-  {
-    "id": "route_v82qr",
-    "word": "route",
-    "partOfSpeech": "n.",
-    "meaning": "路線"
-  },
-  {
-    "id": "fan_pnp62",
-    "word": "fan",
-    "partOfSpeech": "n.",
-    "meaning": "粉絲; 電風扇"
-  },
-  {
-    "id": "interesting_61e2t",
-    "word": "interesting",
-    "partOfSpeech": "adj.",
-    "meaning": "有趣的"
-  },
-  {
-    "id": "getup_coykp",
-    "word": "get up",
-    "partOfSpeech": "ph.",
-    "meaning": "起床、起立"
-  },
-  {
-    "id": "flag_ycnrd",
-    "word": "flag",
-    "partOfSpeech": "n.",
-    "meaning": "旗幟"
-  },
-  {
-    "id": "quarter_5l2be",
-    "word": "quarter",
-    "partOfSpeech": "n.",
-    "meaning": "四分之一"
-  },
-  {
-    "id": "fly_ap5ux",
-    "word": "fly",
-    "partOfSpeech": "n.",
-    "meaning": "蒼蠅"
-  },
-  {
-    "id": "haveashowerbr_m0yjh",
-    "word": "have a shower (Br)",
-    "partOfSpeech": "ph.",
-    "meaning": "淋浴/洗澡"
-  },
-  {
-    "id": "scarf_vp25y",
-    "word": "scarf",
-    "partOfSpeech": "n.",
-    "meaning": "圍巾"
-  },
-  {
-    "id": "tshirthat_8wctb",
-    "word": "T-shirt / hat",
-    "partOfSpeech": "n.",
-    "meaning": "T恤 / 帽子"
-  },
-  {
-    "id": "hide_10b71",
-    "word": "hide",
-    "partOfSpeech": "v.",
-    "meaning": "躲藏; 遮掩"
-  },
-  {
-    "id": "takeashowerus_o8l6s",
-    "word": "take a shower (US)",
-    "partOfSpeech": "ph.",
-    "meaning": "淋浴/洗澡"
-  },
-  {
-    "id": "wig_m1hs6",
-    "word": "wig",
-    "partOfSpeech": "n.",
-    "meaning": "假髮"
-  },
-  {
-    "id": "climb_h75ia",
-    "word": "climb",
-    "partOfSpeech": "v.",
-    "meaning": "爬、攀登"
-  },
-  {
-    "id": "boring_jp6x4",
-    "word": "boring",
-    "partOfSpeech": "adj.",
-    "meaning": "無聊的"
-  },
-  {
-    "id": "gotowork_bl8ce",
-    "word": "go to work",
-    "partOfSpeech": "ph.",
-    "meaning": "上班"
-  },
-  {
-    "id": "drum_zcngp",
-    "word": "drum",
-    "partOfSpeech": "n.",
-    "meaning": "鼓"
-  },
-  {
-    "id": "through_bwml4",
-    "word": "through",
-    "partOfSpeech": "prep.",
-    "meaning": "穿越、通過; 從頭至尾"
-  },
-  {
-    "id": "half_cmtsm",
-    "word": "half",
-    "partOfSpeech": "adj./n.",
-    "meaning": "一半的; 一半"
-  },
-  {
-    "id": "change_jr51s",
-    "word": "change",
-    "partOfSpeech": "v.",
-    "meaning": "交換; 改變"
-  },
-  {
-    "id": "lizard_gg29c",
-    "word": "lizard",
-    "partOfSpeech": "n.",
-    "meaning": "蜥蜴"
-  },
-  {
-    "id": "leavework_hhu1r",
-    "word": "leave work",
-    "partOfSpeech": "ph.",
-    "meaning": "下班"
-  },
-  {
-    "id": "leaveschool_qxuyt",
-    "word": "leave school",
-    "partOfSpeech": "ph.",
-    "meaning": "放學; 畢業"
-  },
-  {
-    "id": "trafficjam_7nx54",
-    "word": "traffic jam",
-    "partOfSpeech": "n.",
-    "meaning": "塞車"
-  },
-  {
-    "id": "internet_lehv9",
-    "word": "Internet",
-    "partOfSpeech": "n.",
-    "meaning": "網際網路"
-  },
-  {
-    "id": "shop_35fd5",
-    "word": "shop",
-    "partOfSpeech": "v.",
-    "meaning": "買、購買"
-  },
-  {
-    "id": "gotoschool_rpqg9",
-    "word": "go to school",
-    "partOfSpeech": "ph.",
-    "meaning": "上學"
-  },
-  {
-    "id": "build_8224y",
-    "word": "build",
-    "partOfSpeech": "v.",
-    "meaning": "建造; 建立"
-  },
-  {
-    "id": "message_iq625",
-    "word": "message",
-    "partOfSpeech": "n.",
-    "meaning": "訊息、消息"
-  },
-  {
-    "id": "few_odfvs",
-    "word": "few",
-    "partOfSpeech": "adj.",
-    "meaning": "很少的、一點點"
-  },
-  {
-    "id": "gotobed_4j3qm",
-    "word": "go to bed",
-    "partOfSpeech": "ph.",
-    "meaning": "睡覺"
-  },
-  {
-    "id": "call_1l5eu",
-    "word": "call",
-    "partOfSpeech": "v.",
-    "meaning": "打電話; 呼喊"
-  },
-  {
-    "id": "closely_e1q5a",
-    "word": "closely",
-    "partOfSpeech": "adv.",
-    "meaning": "密切地; 仔細地"
-  },
-  {
-    "id": "tell_e2jc8",
-    "word": "tell",
-    "partOfSpeech": "v.",
-    "meaning": "講述、告訴"
-  },
-  {
-    "id": "machine_ps9y8",
-    "word": "machine",
-    "partOfSpeech": "n.",
-    "meaning": "機器"
-  },
-  {
-    "id": "phone_0aets",
-    "word": "phone",
-    "partOfSpeech": "n./v.",
-    "meaning": "電話; 致電"
-  },
-  {
-    "id": "camera_hxcsh",
-    "word": "camera",
-    "partOfSpeech": "n.",
-    "meaning": "照相機"
-  },
-  {
-    "id": "sports_7edl8",
-    "word": "sport(s)",
-    "partOfSpeech": "n.",
-    "meaning": "體育運動"
-  },
-  {
-    "id": "atwork_oytxn",
-    "word": "at work",
-    "partOfSpeech": "ph.",
-    "meaning": "工作"
-  },
-  {
-    "id": "past_yuej3",
-    "word": "past",
-    "partOfSpeech": "adj./n.",
-    "meaning": "過去的; 過去"
-  },
-  {
-    "id": "travel_dw3gm",
-    "word": "travel",
-    "partOfSpeech": "v.",
-    "meaning": "旅行、旅遊"
-  },
-  {
-    "id": "hobby_q1c8y",
-    "word": "hobby",
-    "partOfSpeech": "n.",
-    "meaning": "愛好、嗜好"
-  },
-  {
-    "id": "photo_g4qg7",
-    "word": "photo",
-    "partOfSpeech": "n.",
-    "meaning": "照片、相片"
-  },
-  {
-    "id": "setup_lu7ka",
-    "word": "set up",
-    "partOfSpeech": "ph.",
-    "meaning": "建立; 安排; 安裝"
-  },
-  {
-    "id": "movietheater_zrx50",
-    "word": "movie theater",
-    "partOfSpeech": "n.",
-    "meaning": "電影院"
-  },
-  {
-    "id": "concert_besji",
-    "word": "concert",
-    "partOfSpeech": "n.",
-    "meaning": "音樂會"
-  },
-  {
-    "id": "popular_9l33t",
-    "word": "popular",
-    "partOfSpeech": "adj.",
-    "meaning": "受歡迎的; 大眾的"
-  },
-  {
-    "id": "plug_87i4d",
-    "word": "plug",
-    "partOfSpeech": "v./n.",
-    "meaning": "宣傳; 插入; 插頭"
-  },
-  {
-    "id": "wonderful_uhoou",
-    "word": "wonderful",
-    "partOfSpeech": "adj.",
-    "meaning": "令人驚奇的; 極好的"
-  },
-  {
-    "id": "gym_auv59",
-    "word": "gym",
-    "partOfSpeech": "n.",
-    "meaning": "體操館; 健身房"
-  },
-  {
-    "id": "information_hgxvx",
-    "word": "information",
-    "partOfSpeech": "n.",
-    "meaning": "資料、消息"
-  },
-  {
-    "id": "switch_09ncc",
-    "word": "switch",
-    "partOfSpeech": "v./n.",
-    "meaning": "打開/關閉; 開關"
-  },
-  {
-    "id": "draw_w11sr",
-    "word": "draw",
-    "partOfSpeech": "v.",
-    "meaning": "繪畫"
-  },
-  {
-    "id": "picture_6mbsx",
-    "word": "picture",
-    "partOfSpeech": "n.",
-    "meaning": "圖畫、照片"
-  },
-  {
-    "id": "chart_1kul1",
-    "word": "chart",
-    "partOfSpeech": "n.",
-    "meaning": "圖表"
-  },
-  {
-    "id": "happen_7pul5",
-    "word": "happen",
-    "partOfSpeech": "v.",
-    "meaning": "發生"
-  },
-  {
-    "id": "listen_88dq8",
-    "word": "listen",
-    "partOfSpeech": "v.",
-    "meaning": "聽"
-  },
-  {
-    "id": "fantastic_pl1ag",
-    "word": "fantastic",
-    "partOfSpeech": "adj.",
-    "meaning": "極好的; 幻想的"
-  },
-  {
-    "id": "collect_8x9ax",
-    "word": "collect",
-    "partOfSpeech": "v.",
-    "meaning": "收藏; 聚集"
-  },
-  {
-    "id": "everyone_nes3j",
-    "word": "everyone",
-    "partOfSpeech": "pron.",
-    "meaning": "每個人"
-  },
-  {
-    "id": "playground_l7cbt",
-    "word": "playground",
-    "partOfSpeech": "n.",
-    "meaning": "操場; 遊樂場"
-  },
-  {
-    "id": "leafleaves_0bsg9",
-    "word": "leaf / leaves",
-    "partOfSpeech": "n.",
-    "meaning": "葉片、樹葉"
-  },
-  {
-    "id": "music_kucz8",
-    "word": "music",
-    "partOfSpeech": "n.",
-    "meaning": "音樂"
-  },
-  {
-    "id": "different_fbhqj",
-    "word": "different",
-    "partOfSpeech": "adj.",
-    "meaning": "不一樣的; 另類的"
-  },
-  {
-    "id": "difficult_s7ycv",
-    "word": "difficult",
-    "partOfSpeech": "adj.",
-    "meaning": "困難的、艱難地"
-  },
-  {
-    "id": "touch_uwg5s",
-    "word": "touch",
-    "partOfSpeech": "v.",
-    "meaning": "碰、觸摸"
-  },
-  {
-    "id": "wet_pqos3",
-    "word": "wet",
-    "partOfSpeech": "adj.",
-    "meaning": "濕的、潮濕的"
-  },
-  {
-    "id": "dim_lv49q",
-    "word": "dim",
-    "partOfSpeech": "adj.",
-    "meaning": "暗淡的、昏暗的"
-  },
-  {
-    "id": "bright_wfqlo",
-    "word": "bright",
-    "partOfSpeech": "adj.",
-    "meaning": "明亮的、鮮豔的"
-  },
-  {
-    "id": "havebreakfasteatbreakfast_f7445",
-    "word": "have breakfast / eat breakfast",
-    "partOfSpeech": "ph.",
-    "meaning": "吃早餐"
-  },
-  {
-    "id": "hundredsof_s3nof",
-    "word": "hundreds of",
-    "partOfSpeech": "ph.",
-    "meaning": "許多的、成百上千"
-  },
-  {
-    "id": "mint_iwdh5",
-    "word": "mint",
-    "partOfSpeech": "n.",
-    "meaning": "薄荷"
-  },
-  {
-    "id": "motor_b91jv",
-    "word": "motor",
-    "partOfSpeech": "n.",
-    "meaning": "發動機; 馬達"
-  },
-  {
-    "id": "haveluncheatlunch_zzvpn",
-    "word": "have lunch / eat lunch",
-    "partOfSpeech": "ph.",
-    "meaning": "吃午餐"
-  },
-  {
-    "id": "solarpower_2x5mn",
-    "word": "solar power",
-    "partOfSpeech": "n.",
-    "meaning": "太陽能"
-  },
-  {
-    "id": "kit_1bch6",
-    "word": "kit",
-    "partOfSpeech": "n.",
-    "meaning": "工具箱、成套工具"
-  },
-  {
-    "id": "circuit_4awqp",
-    "word": "circuit",
-    "partOfSpeech": "n.",
-    "meaning": "電路、回路"
-  },
-  {
-    "id": "havedinnereatdinner_jqfvp",
-    "word": "have dinner / eat dinner",
-    "partOfSpeech": "ph.",
-    "meaning": "吃晚餐"
-  },
-  {
-    "id": "solarenergy_7cd0j",
-    "word": "solar energy",
-    "partOfSpeech": "n.",
-    "meaning": "太陽能"
-  },
-  {
-    "id": "bulb_ql0zi",
-    "word": "bulb",
-    "partOfSpeech": "n.",
-    "meaning": "燈泡"
-  },
-  {
-    "id": "electricity_fe08d",
-    "word": "electricity",
-    "partOfSpeech": "n.",
-    "meaning": "電、電能"
-  },
-  {
-    "id": "advertsadvertisement_w7yyl",
-    "word": "advert(s) / advertisement",
-    "partOfSpeech": "n.",
-    "meaning": "廣告、宣傳"
-  },
-  {
-    "id": "energy_zh60r",
-    "word": "energy",
-    "partOfSpeech": "n.",
-    "meaning": "精力; 能量"
-  },
-  {
-    "id": "battery_0u9f9",
-    "word": "battery",
-    "partOfSpeech": "n.",
-    "meaning": "電池"
-  },
-  {
-    "id": "dangerous_zvnnn",
-    "word": "dangerous",
-    "partOfSpeech": "adj.",
-    "meaning": "危險的、有威脅的"
-  },
-  {
-    "id": "wire_k809u",
-    "word": "wire",
-    "partOfSpeech": "n.",
-    "meaning": "電線; 金屬絲"
-  },
-  {
-    "id": "busstation_w6fnt",
-    "word": "bus station",
-    "partOfSpeech": "n.",
-    "meaning": "公車總站"
-  },
-  {
-    "id": "trainstation_r1e1y",
-    "word": "train station",
-    "partOfSpeech": "n.",
-    "meaning": "火車站"
-  },
-  {
-    "id": "amazing_1nhue",
-    "word": "amazing",
-    "partOfSpeech": "adj.",
-    "meaning": "驚人的; 令人驚喜的"
-  },
-  {
-    "id": "onoroff_01tuf",
-    "word": "on or off",
-    "partOfSpeech": "adj.",
-    "meaning": "開啟的或關閉的"
-  },
-  {
-    "id": "cheeron_qj989",
-    "word": "cheer on",
-    "partOfSpeech": "ph.",
-    "meaning": "為...加油"
-  },
-  {
-    "id": "shoutat_251ty",
-    "word": "shout at",
-    "partOfSpeech": "ph.",
-    "meaning": "對...大聲喊"
-  },
-  {
-    "id": "gotothedentist_12gyd",
-    "word": "go to the dentist",
-    "partOfSpeech": "ph.",
-    "meaning": "看牙醫"
-  },
-  {
-    "id": "stayuplate_4b252",
-    "word": "stay up (late)",
-    "partOfSpeech": "ph.",
-    "meaning": "熬夜"
-  },
-  {
-    "id": "itstimeto_wry2y",
-    "word": "It's time to...",
-    "partOfSpeech": "ph.",
-    "meaning": "是...的時候"
-  },
-  {
-    "id": "headforaplace_zaoz0",
-    "word": "head for + a place",
-    "partOfSpeech": "ph.",
-    "meaning": "朝...走去"
-  },
-  {
-    "id": "asbusyasabee_qmshf",
-    "word": "as busy as a bee",
-    "partOfSpeech": "ph.",
-    "meaning": "忙個不停"
-  },
-  {
-    "id": "assickasadog_2a636",
-    "word": "as sick as a dog",
-    "partOfSpeech": "ph.",
-    "meaning": "非常虛弱; 病得很重"
-  },
-  {
-    "id": "ashungryasabear_el5cs",
-    "word": "as hungry as a bear",
-    "partOfSpeech": "ph.",
-    "meaning": "非常飢餓"
-  },
-  {
-    "id": "eatout_px2zo",
-    "word": "eat out",
-    "partOfSpeech": "ph.",
-    "meaning": "外出用餐"
-  },
-  {
-    "id": "actlike_0mr41",
-    "word": "act like...",
-    "partOfSpeech": "ph.",
-    "meaning": "表現得像..."
-  },
-  {
-    "id": "turnoff_sfxbl",
-    "word": "turn off",
-    "partOfSpeech": "ph.",
-    "meaning": "關掉、停止"
-  },
-  {
-    "id": "beworriedabout_8rqgb",
-    "word": "be worried about",
-    "partOfSpeech": "ph.",
-    "meaning": "對...感到擔憂"
-  },
-  {
-    "id": "smileatsb_w2udo",
-    "word": "smile at sb.",
-    "partOfSpeech": "ph.",
-    "meaning": "對某人微笑"
-  },
-  {
-    "id": "talkabout_cbywv",
-    "word": "talk about",
-    "partOfSpeech": "ph.",
-    "meaning": "討論、談論"
-  },
-  {
-    "id": "becrazyabout_9npw9",
-    "word": "be crazy about",
-    "partOfSpeech": "ph.",
-    "meaning": "對...著迷、很狂熱"
-  },
-  {
-    "id": "keepawayfrom_gd6hw",
-    "word": "keep away from",
-    "partOfSpeech": "ph.",
-    "meaning": "遠離、避開"
-  },
-  {
-    "id": "aswell_h79z2",
-    "word": "as well",
-    "partOfSpeech": "ph.",
-    "meaning": "也; 還有"
-  },
-  {
-    "id": "bedifferentfrom_pqunr",
-    "word": "be different from",
-    "partOfSpeech": "ph.",
-    "meaning": "不同於; 和...不一樣"
-  },
-  {
-    "id": "watchmovies_q42i7",
-    "word": "watch movies",
-    "partOfSpeech": "ph.",
-    "meaning": "看電影"
-  },
-  {
-    "id": "havealotoffunvingn_s2hn0",
-    "word": "have a lot of fun +V-ing / N.",
-    "partOfSpeech": "ph.",
-    "meaning": "玩得很開心"
-  },
-  {
-    "id": "takepictures_fnoz6",
-    "word": "take pictures",
-    "partOfSpeech": "ph.",
-    "meaning": "拍照"
-  },
-  {
-    "id": "listento_k8s4b",
-    "word": "listen to...",
-    "partOfSpeech": "ph.",
-    "meaning": "聽(音樂等)"
-  },
-  {
-    "id": "anumberof_va5e6",
-    "word": "a number of",
-    "partOfSpeech": "ph.",
-    "meaning": "一些、許多"
-  }
+  { id: "knight_a1b2c", word: "knight", partOfSpeech: "n.", meaning: "騎士" },
+  { id: "clown_d3e4f", word: "clown", partOfSpeech: "n.", meaning: "小丑" },
+  { id: "princess_g5h6i", word: "princess", partOfSpeech: "n.", meaning: "公主、王妃" },
+  { id: "glad_j7k8l", word: "glad", partOfSpeech: "adj.", meaning: "高興的" },
+  { id: "juggler_m9n0o", word: "juggler", partOfSpeech: "n.", meaning: "雜耍演員" },
+  { id: "king_p1q2r", word: "king", partOfSpeech: "n.", meaning: "國王" },
+  { id: "prince_s3t4u", word: "prince", partOfSpeech: "n.", meaning: "王子、親王" },
+  { id: "accident_v5w6x", word: "accident", partOfSpeech: "n.", meaning: "意外、事故" },
+  { id: "pirate_y7z8a", word: "pirate", partOfSpeech: "n.", meaning: "海盜" },
+  { id: "magician_b9c0d", word: "magician", partOfSpeech: "n.", meaning: "魔術師；魔法師" },
+  { id: "carnival_e1f2g", word: "carnival", partOfSpeech: "n.", meaning: "嘉年華" },
+  { id: "pair_h3i4j", word: "pair", partOfSpeech: "n.", meaning: "一雙、一對" },
+  { id: "dancer_k5l6m", word: "dancer", partOfSpeech: "n.", meaning: "舞者" },
+  { id: "queen_n7o8p", word: "queen", partOfSpeech: "n.", meaning: "女王；王后" },
+  { id: "brilliant_q9r0s", word: "brilliant", partOfSpeech: "adj.", meaning: "有才華的；聰穎的；傑出的" },
+  { id: "practice_t1u2v", word: "practice", partOfSpeech: "v.", meaning: "練習" },
+  { id: "acrobat_w3x4y", word: "acrobat", partOfSpeech: "n.", meaning: "雜技演員" },
+  { id: "lady_z5a6b", word: "lady", partOfSpeech: "n.", meaning: "女士" },
+  { id: "laugh_c7d8e", word: "laugh", partOfSpeech: "v.", meaning: "大笑" },
+  { id: "unplanned_f9g0h", word: "unplanned", partOfSpeech: "adj.", meaning: "沒有計劃的；意料之外的" },
+  { id: "action_i1j2k", word: "action", partOfSpeech: "n.", meaning: "行動、行為" },
+  { id: "hospital_l3m4n", word: "hospital", partOfSpeech: "n.", meaning: "醫院" },
+  { id: "score_o5p6q", word: "score", partOfSpeech: "v.", meaning: "得分" },
+  { id: "movietheater_r7s8t", word: "movie theater", partOfSpeech: "n.", meaning: "電影院" },
+  { id: "onpurpose_u9v0w", word: "on purpose", partOfSpeech: "ph.", meaning: "故意地" },
+  { id: "onavacation_x1y2z", word: "on a vacation", partOfSpeech: "ph.", meaning: "休假中、度假中" },
+  { id: "empty_a3b4c", word: "empty", partOfSpeech: "adj./v.", meaning: "空的、無意義的；倒空" },
+  { id: "boring_d5e6f", word: "boring", partOfSpeech: "adj.", meaning: "無聊的" },
+  { id: "email_g7h8i", word: "e-mail", partOfSpeech: "n.", meaning: "電子郵件" },
+  { id: "interesting_j9k0l", word: "interesting", partOfSpeech: "adj.", meaning: "有趣的" },
+  { id: "camera_m1n2o", word: "camera", partOfSpeech: "n.", meaning: "照相機" },
+  { id: "dangerous_p3q4r", word: "dangerous", partOfSpeech: "adj.", meaning: "危險的、有威脅的" },
+  { id: "getstuck_s5t6u", word: "get stuck", partOfSpeech: "ph.", meaning: "卡住、困住" },
+  { id: "nurse_v7w8x", word: "nurse", partOfSpeech: "n.", meaning: "護士、護理人員" },
+  { id: "glasses_y9z0a", word: "glasses", partOfSpeech: "n.", meaning: "眼鏡" },
+  { id: "hamburger_b1c2d", word: "hamburger", partOfSpeech: "n.", meaning: "漢堡；漢堡牛肉餅" },
+  { id: "break_e3f4g", word: "break", partOfSpeech: "v.", meaning: "打破、破裂、毀壞、破壞" },
+  { id: "purpose_h5i6j", word: "purpose", partOfSpeech: "n.", meaning: "意圖、原因、目的" },
+  { id: "puton_k7l8m", word: "put on", partOfSpeech: "ph.", meaning: "把...穿戴上；塗抹、擦上" },
+  { id: "lizard_n9o0p", word: "lizard", partOfSpeech: "n.", meaning: "蜥蜴" },
+  { id: "laptop_q1r2s", word: "laptop", partOfSpeech: "n.", meaning: "筆記型電腦" },
+  { id: "climb_t3u4v", word: "climb", partOfSpeech: "v.", meaning: "爬、攀登、爬升" },
+  { id: "playagainst_w5x6y", word: "play against", partOfSpeech: "ph.", meaning: "與...比賽；對抗" },
+  { id: "seat_z7a8b", word: "seat", partOfSpeech: "n.", meaning: "座位" },
+  { id: "juggle_c9d0e", word: "juggle", partOfSpeech: "v.", meaning: "玩雜耍" },
+  { id: "rope_f1g2h", word: "rope", partOfSpeech: "n.", meaning: "繩索" },
+  { id: "against_i3j4k", word: "against", partOfSpeech: "prep.", meaning: "反對、與...相反、緊靠著" },
+  { id: "hate_l5m6n", word: "hate", partOfSpeech: "v.", meaning: "討厭、厭惡" },
+  { id: "costume_o7p8q", word: "costume", partOfSpeech: "n.", meaning: "服裝、戲服" },
+  { id: "trapeze_r9s0t", word: "trapeze", partOfSpeech: "n.", meaning: "高空秋千" },
+  { id: "circus_u1v2w", word: "circus", partOfSpeech: "n.", meaning: "馬戲團" },
+  { id: "suddenly_x3y4z", word: "suddenly", partOfSpeech: "adv.", meaning: "突然地、驟然" },
+  { id: "dotrick_a5b6c", word: "do trick", partOfSpeech: "ph.", meaning: "變戲法、做惡作劇" },
+  { id: "trampoline_d7e8f", word: "trampoline", partOfSpeech: "n.", meaning: "彈跳床、蹦床" },
+  { id: "station_g9h0i", word: "station", partOfSpeech: "n.", meaning: "車站、電台、站、局" },
+  { id: "plant_j1k2l", word: "plant", partOfSpeech: "n.", meaning: "植物" },
+  { id: "lorry_m3n4o", word: "lorry (Br.)", partOfSpeech: "n.", meaning: "卡車、貨車" },
+  { id: "footballmatch_p5q6r", word: "football match", partOfSpeech: "n.", meaning: "足球比賽" },
+  { id: "subway_s7t8u", word: "subway", partOfSpeech: "n.", meaning: "地鐵" },
+  { id: "medicine_v9w0x", word: "medicine", partOfSpeech: "n.", meaning: "藥物" },
+  { id: "neck_y1z2a", word: "neck", partOfSpeech: "n.", meaning: "脖子、頸部" },
+  { id: "head_b3c4d", word: "head", partOfSpeech: "n.", meaning: "頭" },
+  { id: "wood_e5f6g", word: "wood", partOfSpeech: "n.", meaning: "木頭、木材" },
+  { id: "atcamp_h7i8j", word: "at camp", partOfSpeech: "ph.", meaning: "在露營地" },
+  { id: "hip_k9l0m", word: "hip", partOfSpeech: "n.", meaning: "臀部" },
+  { id: "hand_n1o2p", word: "hand", partOfSpeech: "n.", meaning: "手" },
+  { id: "inthewoods_q3r4s", word: "in the woods", partOfSpeech: "ph.", meaning: "在森林裡" },
+  { id: "cover_t5u6v", word: "cover", partOfSpeech: "v.", meaning: "覆蓋、遮蔽" },
+  { id: "shoulder_w7x8y", word: "shoulder", partOfSpeech: "n.", meaning: "肩膀" },
+  { id: "foot_z9a0b", word: "foot", partOfSpeech: "n.", meaning: "腳、足" },
+  { id: "touch_c1d2e", word: "touch", partOfSpeech: "v.", meaning: "觸摸、碰" },
+  { id: "exciting_f3g4h", word: "exciting", partOfSpeech: "adj.", meaning: "令人興奮的、使人激動的" },
+  { id: "elbow_i5j6k", word: "elbow", partOfSpeech: "n.", meaning: "手肘" },
+  { id: "oval_l7m8n", word: "oval", partOfSpeech: "n./adj.", meaning: "橢圓形；橢圓形的" },
+  { id: "try_o9p0q", word: "try", partOfSpeech: "v.", meaning: "嘗試、努力" },
+  { id: "thinkof_r1s2t", word: "think of", partOfSpeech: "ph.", meaning: "想到、發明、覺得、認為" },
+  { id: "knee_u3v4w", word: "knee", partOfSpeech: "n.", meaning: "膝蓋" },
+  { id: "overlap_x5y6z", word: "overlap", partOfSpeech: "v.", meaning: "重疊" },
+  { id: "hike_a7b8c", word: "hike", partOfSpeech: "v.", meaning: "健行" },
+  { id: "plan_d9e0f", word: "plan", partOfSpeech: "v.", meaning: "計劃、安排" },
+  { id: "canoe_g1h2i", word: "canoe", partOfSpeech: "v.", meaning: "划獨木舟" },
+  { id: "snowboard_j3k4l", word: "snowboard", partOfSpeech: "v.", meaning: "單板滑雪" },
+  { id: "helmet_m5n6o", word: "helmet", partOfSpeech: "n.", meaning: "安全帽" },
+  { id: "weatherreport_p7q8r", word: "weather report", partOfSpeech: "n.", meaning: "天氣預報" },
+  { id: "grill_s9t0u", word: "grill", partOfSpeech: "v.", meaning: "燒烤" },
+  { id: "iceskate_v1w2x", word: "ice-skate", partOfSpeech: "v.", meaning: "溜冰" },
+  { id: "sunscreen_y3z4a", word: "sunscreen", partOfSpeech: "n.", meaning: "防曬乳" },
+  { id: "tomorrow_b5c6d", word: "tomorrow", partOfSpeech: "n.", meaning: "明天" },
+  { id: "fish_e7f8g", word: "fish", partOfSpeech: "v.", meaning: "釣魚、捕魚" },
+  { id: "inlineskate_h9i0j", word: "in-line skate", partOfSpeech: "n./v.", meaning: "直排輪鞋；溜直排輪" },
+  { id: "lifejacket_k1l2m", word: "life jacket", partOfSpeech: "n.", meaning: "救生衣" },
+  { id: "remember_n3o4p", word: "remember", partOfSpeech: "v.", meaning: "記得、記起" },
+  { id: "watchbirds_q5r6s", word: "watch birds", partOfSpeech: "ph.", meaning: "賞鳥" },
+  { id: "skateboard_t7u8v", word: "skateboard", partOfSpeech: "n./v.", meaning: "滑板；溜滑板" },
+  { id: "fastenseatbelt_w9x0y", word: "fasten your seatbelt", partOfSpeech: "ph.", meaning: "繫上安全帶" },
+  { id: "snowy_z1a2b", word: "snowy", partOfSpeech: "adj.", meaning: "下雪的" },
+  { id: "ski_c3d4e", word: "ski", partOfSpeech: "n./v.", meaning: "滑雪板；滑雪" },
+  { id: "surf_f5g6h", word: "surf", partOfSpeech: "v.", meaning: "衝浪、上網" },
+  { id: "stone_i7j8k", word: "stone", partOfSpeech: "n.", meaning: "石頭、石塊" },
+  { id: "around_l9m0n", word: "around", partOfSpeech: "adv./prep.", meaning: "周圍、圍繞" },
+  { id: "hippopotamus_o1p2q", word: "hippopotamus", partOfSpeech: "n.", meaning: "河馬" },
+  { id: "seal_r3s4t", word: "seal", partOfSpeech: "n.", meaning: "海豹" },
+  { id: "octopus_u5v6w", word: "octopus", partOfSpeech: "n.", meaning: "章魚" },
+  { id: "foolish_x7y8z", word: "foolish", partOfSpeech: "adj.", meaning: "愚蠢的、傻的" },
+  { id: "gorilla_a9b0c", word: "gorilla", partOfSpeech: "n.", meaning: "大猩猩" },
+  { id: "dolphin_d1e2f", word: "dolphin", partOfSpeech: "n.", meaning: "海豚" },
+  { id: "length_g3h4i", word: "length", partOfSpeech: "n.", meaning: "長度" },
+  { id: "fence_j5k6l", word: "fence", partOfSpeech: "n.", meaning: "柵欄、籬笆" },
+  { id: "panda_m7n8o", word: "panda", partOfSpeech: "n.", meaning: "貓熊" },
+  { id: "squid_p9q0r", word: "squid", partOfSpeech: "n.", meaning: "魷魚" },
+  { id: "weight_s1t2u", word: "weight", partOfSpeech: "n.", meaning: "重量、體重" },
+  { id: "taste_v3w4x", word: "taste", partOfSpeech: "v.", meaning: "品嚐" },
+  { id: "caterpillar_y5z6a", word: "caterpillar", partOfSpeech: "n.", meaning: "毛毛蟲" },
+  { id: "beetle_b7c8d", word: "beetle", partOfSpeech: "n.", meaning: "甲蟲" },
+  { id: "blond_e9f0g", word: "blond", partOfSpeech: "adj.", meaning: "（毛髮）金黃色的" },
+  { id: "seem_h1i2j", word: "seem", partOfSpeech: "v.", meaning: "似乎、看起來好像" },
+  { id: "eel_k3l4m", word: "eel", partOfSpeech: "n.", meaning: "鰻魚" },
+  { id: "crab_n5o6p", word: "crab", partOfSpeech: "n.", meaning: "螃蟹" },
+  { id: "beard_q7r8s", word: "beard", partOfSpeech: "n.", meaning: "（下巴上的）鬍鬚" },
+  { id: "stayhome_t9u0v", word: "stay home", partOfSpeech: "ph.", meaning: "待在家" },
+  { id: "butterfly_w1x2y", word: "butterfly", partOfSpeech: "n.", meaning: "蝴蝶" },
+  { id: "bee_z3a4b", word: "bee", partOfSpeech: "n.", meaning: "蜜蜂" },
+  { id: "whale_c5d6e", word: "whale", partOfSpeech: "n.", meaning: "鯨魚" },
+  { id: "shark_f7g8h", word: "shark", partOfSpeech: "n.", meaning: "鯊魚" },
+  { id: "shoulderlength_i9j0k", word: "shoulder-length", partOfSpeech: "adj.", meaning: "齊肩的、及肩的" },
+  { id: "earrings_l1m2n", word: "earrings", partOfSpeech: "n.", meaning: "耳環" },
+  { id: "ocean_o3p4q", word: "ocean", partOfSpeech: "n.", meaning: "海洋" },
+  { id: "famous_r5s6t", word: "famous", partOfSpeech: "adj.", meaning: "有名的、著名的" },
+  { id: "straight_u7v8w", word: "straight", partOfSpeech: "adj.", meaning: "直的" },
+  { id: "sunglasses_x9y0z", word: "sunglasses", partOfSpeech: "n.", meaning: "太陽眼鏡" },
+  { id: "invite_a1b2c3", word: "invite", partOfSpeech: "v.", meaning: "邀請" },
+  { id: "afraid_d4e5f6", word: "afraid", partOfSpeech: "adj.", meaning: "害怕的、擔憂的" },
+  { id: "curly_g7h8i9", word: "curly", partOfSpeech: "adj.", meaning: "捲曲的" },
+  { id: "stick_j0k1l2", word: "stick", partOfSpeech: "n.", meaning: "枝條、木棍" },
+  { id: "first_m3n4o5", word: "first", partOfSpeech: "det.", meaning: "第一、首先" },
+  { id: "island_p6q7r8", word: "island", partOfSpeech: "n.", meaning: "島嶼" },
+  { id: "wavy_s9t0u1", word: "wavy", partOfSpeech: "adj.", meaning: "波浪狀的" },
+  { id: "grass_v2w3x4", word: "grass", partOfSpeech: "n.", meaning: "草" },
+  { id: "problem_y5z6a7", word: "problem", partOfSpeech: "n.", meaning: "問題、困難" },
+  { id: "beableto_b8c9d0", word: "be able to", partOfSpeech: "ph.", meaning: "能夠、有...能力" },
+  { id: "necklace_e1f2g3", word: "necklace", partOfSpeech: "n.", meaning: "項鍊" },
+  { id: "sand_h4i5j6", word: "sand", partOfSpeech: "n.", meaning: "沙子" },
+  { id: "land_k7l8m9", word: "land", partOfSpeech: "v.", meaning: "著陸、降落" },
+  { id: "sportsstar_n0o1p2", word: "sports star", partOfSpeech: "n.", meaning: "運動明星" },
+  { id: "shoulderlengthhair_q3r4s5", word: "shoulder-length hair", partOfSpeech: "n.", meaning: "及肩長髮" },
+  { id: "shorthair_t6u7v8", word: "short hair", partOfSpeech: "n.", meaning: "短髮" },
+  { id: "longhair_w9x0y1", word: "long hair", partOfSpeech: "n.", meaning: "長髮" },
+  { id: "straighthair_z2a3b4", word: "straight hair", partOfSpeech: "n.", meaning: "直髮" },
+  { id: "curlyhair_c5d6e7", word: "curly hair", partOfSpeech: "n.", meaning: "捲髮" },
+  { id: "wavyhair_f8g9h0", word: "wavy hair", partOfSpeech: "n.", meaning: "波浪狀捲髮" },
+  { id: "watch_i1j2k3", word: "watch", partOfSpeech: "n.", meaning: "手錶" },
+  { id: "gloves_l4m5n6", word: "gloves", partOfSpeech: "n.", meaning: "手套" },
+  { id: "belt_o7p8q9", word: "belt", partOfSpeech: "n.", meaning: "腰帶" },
+  { id: "baseball_r0s1t2", word: "baseball", partOfSpeech: "n.", meaning: "棒球" },
+  { id: "basketball_u3v4w5", word: "basketball", partOfSpeech: "n.", meaning: "籃球" },
+  { id: "volleyball_x6y7z8", word: "volleyball", partOfSpeech: "n.", meaning: "排球" },
+  { id: "golf_a9b0c1", word: "golf", partOfSpeech: "n.", meaning: "高爾夫球" },
+  { id: "helpmyparents_d2e3f4", word: "help my parents", partOfSpeech: "ph.", meaning: "幫忙我的父母" },
+  { id: "metal_g5h6i7", word: "metal", partOfSpeech: "n.", meaning: "金屬" },
+  { id: "surprised_j8k9l0", word: "surprised", partOfSpeech: "adj.", meaning: "驚訝的、意外的" },
+  { id: "tabletennis_m1n2o3", word: "table tennis / tennis", partOfSpeech: "n.", meaning: "桌球 / 網球" },
+  { id: "visitmyfriend_p4q5r6", word: "visit my friend", partOfSpeech: "ph.", meaning: "拜訪我的朋友" },
+  { id: "study_s7t8u9", word: "study", partOfSpeech: "v.", meaning: "學習、研究" },
+  { id: "smart_v0w1x2", word: "smart", partOfSpeech: "adj.", meaning: "聰明的（US）；時髦的（UK）" },
+  { id: "practicepiano_y3z4a5", word: "practice the piano", partOfSpeech: "ph.", meaning: "練習鋼琴" },
+  { id: "workonproject_b6c7d8", word: "work on a project", partOfSpeech: "ph.", meaning: "進行一個專案" },
+  { id: "cage_e9f0g1", word: "cage", partOfSpeech: "n.", meaning: "籠子" },
+  { id: "useful_h2i3j4", word: "useful", partOfSpeech: "adj.", meaning: "有用的、有效的" },
+  { id: "usecomputer_k5l6m7", word: "use the computer", partOfSpeech: "ph.", meaning: "使用電腦" },
+  { id: "clay_n8o9p0", word: "clay", partOfSpeech: "n.", meaning: "黏土" },
+  { id: "wall_q1r2s3", word: "wall", partOfSpeech: "n.", meaning: "牆壁" },
+  { id: "delicious_t4u5v6", word: "delicious", partOfSpeech: "adj.", meaning: "美味的" },
+  { id: "talkonphone_w7x8y9", word: "talk on the phone", partOfSpeech: "ph.", meaning: "講電話" },
+  { id: "glass_z0a1b2", word: "glass", partOfSpeech: "n.", meaning: "玻璃製品、杯子" },
+  { id: "pull_c3d4e5", word: "pull", partOfSpeech: "v.", meaning: "拉、拖、抽出" },
+  { id: "toward_f6g7h8", word: "toward", partOfSpeech: "prep.", meaning: "朝向、接近" },
+  { id: "careful_i9j0k1", word: "careful", partOfSpeech: "adj.", meaning: "仔細的、小心的、認真的" },
+  { id: "goat_l2m3n4", word: "goat", partOfSpeech: "n.", meaning: "山羊" },
+  { id: "riverbridge_o5p6q7", word: "river / bridge", partOfSpeech: "n.", meaning: "河流 / 橋樑" },
+  { id: "wear_r8s9t0", word: "wear", partOfSpeech: "v.", meaning: "穿、戴" },
+  { id: "angry_u1v2w3", word: "angry", partOfSpeech: "adj.", meaning: "生氣的、憤怒的" },
+  { id: "fly_x4y5z6", word: "fly", partOfSpeech: "v.", meaning: "飛行" },
+  { id: "through_a7b8c9", word: "through", partOfSpeech: "prep.", meaning: "穿過、通過" },
+  { id: "leaf_d0e1f2", word: "leaf", partOfSpeech: "n.", meaning: "葉子" },
+  { id: "laughat_g3h4i5", word: "laugh at", partOfSpeech: "ph.", meaning: "嘲笑" },
+  { id: "practiceving_j6k7l8", word: "practice V-ing / N.", partOfSpeech: "ph.", meaning: "練習..." },
+  { id: "lookforwardto_m9n0o1", word: "look forward to V-ing / N.", partOfSpeech: "ph.", meaning: "期待、盼望..." },
+  { id: "ridesubway_p2q3r4", word: "ride the subway to...", partOfSpeech: "ph.", meaning: "搭地鐵去..." },
+  { id: "beaboutto_s5t6u7", word: "be about to V.", partOfSpeech: "ph.", meaning: "快要、即將..." },
+  { id: "goout_v8w9x0", word: "go out", partOfSpeech: "ph.", meaning: "熄滅、外出" },
+  { id: "waterplants_y1z2a3", word: "water the plants", partOfSpeech: "ph.", meaning: "給植物澆水" },
+  { id: "takemedicine_b4c5d6", word: "take (some) medicine", partOfSpeech: "ph.", meaning: "服藥" },
+  { id: "pickup_e7f8g9", word: "pick up", partOfSpeech: "ph.", meaning: "接送、撿起、順道購買" },
+  { id: "haveanidea_h0i1j2", word: "have an idea to V.", partOfSpeech: "ph.", meaning: "想出一個辦法、主意" },
+  { id: "gocamping_k3l4m5", word: "go camping", partOfSpeech: "ph.", meaning: "去露營" },
+  { id: "putout_n6o7p8", word: "put out", partOfSpeech: "ph.", meaning: "撲滅、熄滅；出版、生產" },
+  { id: "befoolishof_q9r0s1", word: "be foolish of", partOfSpeech: "ph.", meaning: "做...是很傻的" },
+  { id: "takecareeof_t2u3v4", word: "take (good) care of", partOfSpeech: "ph.", meaning: "（好好）照顧" },
+  { id: "behappywith_w5x6y7", word: "be happy with", partOfSpeech: "ph.", meaning: "對...感到滿意、高興" },
+  { id: "invitesb_z8a9b0", word: "invite sb. to V.", partOfSpeech: "ph.", meaning: "邀請某人做..." },
+  { id: "runinto_c1d2e3", word: "run into", partOfSpeech: "ph.", meaning: "偶然遇見、遭遇困難、碰撞" },
+  { id: "besurprisedto_f4g5h6", word: "be surprised to V.", partOfSpeech: "ph.", meaning: "對（做某事）感到驚訝" },
+  { id: "findout_i7j8k9", word: "find out", partOfSpeech: "ph.", meaning: "發現、得知、查明" },
+  { id: "getridof_l0m1n2", word: "get rid of", partOfSpeech: "ph.", meaning: "擺脫、除去、處理" },
 ];

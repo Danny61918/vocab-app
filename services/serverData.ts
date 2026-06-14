@@ -554,7 +554,6 @@ const serverData: Word[] = [
     { "id": 515, "date": "2026-04-10", "english": "dangerous", "chinese": "危險的、有威脅的", "part_of_speech": "(adj.)", "example": "It's dangerous to use your mobile device when you are driving because it distracts you from the road." },
     { "id": 516, "date": "2026-04-10", "english": "on or off", "chinese": "開啟的或是關閉的", "part_of_speech": "(adj.)", "example": "A: Why doesn't the TV work? B: You should check if the switch is on or off." },
     { "id": 517, "date": "2026-04-10", "english": "as hungry as a bear", "chinese": "非常餓", "part_of_speech": "(ph.)", "example": "After hiking for five hours, the whole team was as hungry as a bear." },
-    ,
     { "id": 518, "date": "2026-04-27", "english": "princess", "chinese": "公主、王妃", "part_of_speech": "(n.)", "example": "Princess Leonor of Spain is probably the most famous princess in Europe, and she is expected to succeed(v. 繼任) her father and become queen in the future." },
     { "id": 519, "date": "2026-04-27", "english": "prince", "chinese": "王子、親王", "part_of_speech": "(n.)", "example": "At the end of this fairy tale, the prince and princess got married and lived happily ever after(adv. 從此以後)." },
     { "id": 520, "date": "2026-04-27", "english": "carnival", "chinese": "嘉年華", "part_of_speech": "(n.)", "example": "There will be a popular carnival this weekend where we can play games and have a lot of fun together. Shall we go this Sunday?" },
