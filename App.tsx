@@ -31,6 +31,10 @@ function App() {
       // 強制清除舊單字快取，解決 ID 錯亂問題
       localStorage.removeItem('vocab_app_words');
       
+      // 歸零單字島大冒險關卡進度與熟練度，但保留金幣與已抽到怪獸紀錄
+      localStorage.removeItem('vocab_level_progress');
+      localStorage.removeItem('vocab_srs_mastery');
+      
       // 如果不是第一次運行且版本不同，則強制重新整理
       if (savedVersion) {
         window.location.reload();

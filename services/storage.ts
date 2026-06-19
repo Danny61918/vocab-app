@@ -125,6 +125,9 @@ export const clearAllData = () => {
   localStorage.removeItem(STORAGE_KEY_WORDS);
   localStorage.removeItem(STORAGE_KEY_HISTORY);
   localStorage.removeItem(STORAGE_KEY_STATS);
+  // Also clear adventure level progress and SRS mastery
+  localStorage.removeItem('vocab_level_progress');
+  localStorage.removeItem('vocab_srs_mastery');
   Object.keys(localStorage).forEach(key => {
     if (key.startsWith(STORAGE_KEY_LEADERBOARD_PREFIX)) {
       localStorage.removeItem(key);
