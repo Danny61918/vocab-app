@@ -15,7 +15,7 @@ import { TutorialGuide } from './components/TutorialGuide';
 import { getStreak, getUserData } from './services/gamification';
 import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins, HelpCircle } from 'lucide-react';
 
-const APP_VERSION = '7.0'; // Level 6 Week 19-20 (2026/6/15~6/23) 單字更新
+const APP_VERSION = '7.1'; // Level 6 Week 19-20 (2026/6/15~6/23) 單字更新 & 關卡進度重置修復
 
 type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL';
 
