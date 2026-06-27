@@ -1006,5 +1006,229 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "She doesn't like to take medicine because it tastes bad.",
         "You should take some medicine if your head hurts.",
         "I forgot to take my medicine this morning."
+    ],
+    722: [
+        "The noodles in this chicken soup are soft and taste very good on cold days because the soup keeps me warm.",
+        "I like to eat spicy beef noodles for dinner.",
+        "She cooked some instant noodles when she was hungry at night.",
+        "This restaurant makes the best noodles in the city.",
+        "Please boil the water before adding the noodles."
+    ],
+    723: [
+        "We ordered the green chicken curry at this Thai restaurant. Even though it was a little spicy, we enjoyed it very much.",
+        "My mom makes delicious Japanese curry with rice.",
+        "He added too much curry powder to the soup.",
+        "Indian curry is famous for its rich flavors.",
+        "I prefer eating sweet curry instead of spicy curry."
+    ],
+    724: [
+        "My family ordered various kinds of fresh, tasty sushi because the quality at that Japanese restaurant is excellent.",
+        "We went to a conveyor belt sushi restaurant for lunch.",
+        "He learned how to make sushi from a famous chef.",
+        "Salmon sushi is my favorite food in the world.",
+        "They bought some sushi from the supermarket."
+    ],
+    725: [
+        "A glass of lemonade can help you feel better after a long walk on a hot day.",
+        "The little girl is selling lemonade in her front yard.",
+        "I added some ice cubes to my sweet lemonade.",
+        "We drank cold lemonade while relaxing on the beach.",
+        "This lemonade is too sour because it needs more sugar."
+    ],
+    726: [
+        "Help yourself to the grape juice in the fridge. It was freshly made from 100% organic grapes.",
+        "She poured a glass of grape juice for her brother.",
+        "The purple grape juice stained his white shirt.",
+        "I prefer drinking fresh grape juice over apple juice.",
+        "They sell natural grape juice at the farmers' market."
+    ],
+    727: [
+        "Everyone at the party dressed up, danced to the music, and really enjoyed themselves all night.",
+        "She dressed up as a witch for the Halloween party.",
+        "We need to dress up for the fancy dinner tonight.",
+        "The children love to dress up in their parents' clothes.",
+        "He dressed up as a superhero to surprise his son."
+    ],
+    728: [
+        "To celebrate finishing their final exams, my brother and his classmates are planning to go bowling together.",
+        "We usually go bowling on Friday nights with our friends.",
+        "She wants to go bowling this weekend to practice her skills.",
+        "They decided to go bowling instead of watching a movie.",
+        "It is fun to go bowling with your family on a rainy day."
+    ],
+    729: [
+        "I will take a picture of this stunning sunset so that I can share it with my friends later.",
+        "Can you take a picture of us in front of the castle?",
+        "He used his new phone to take a picture of the bird.",
+        "She asked a stranger to take a picture of her family.",
+        "Don't forget to take a picture before we eat the beautiful cake."
+    ],
+    730: [
+        "If the Knicks win the championship, New York City will celebrate with a huge parade through the streets. Be careful when attending the parade.",
+        "Many people joined the colorful parade to celebrate the festival.",
+        "We watched the Thanksgiving Day parade on television.",
+        "The marching band played loudly during the holiday parade.",
+        "The children waved flags at the passing parade."
+    ],
+    731: [
+        "Since my hair has grown quite long and unmanageable, I should probably get a haircut this afternoon.",
+        "He went to the barber shop to get a short haircut.",
+        "Her new haircut makes her look much younger.",
+        "I need a haircut before the important job interview.",
+        "The little boy cried when he got his first haircut."
+    ],
+    732: [
+        "She loves to buy clothes online because it's much more convenient than going to department stores.",
+        "They went to the mall to buy clothes for the winter season.",
+        "He saved enough money to buy clothes for the new school year.",
+        "My mom and I are planning to buy clothes this weekend.",
+        "It is exciting to buy clothes during the big holiday sale."
+    ],
+    733: [
+        "We need to check out(3) of the hotel before eleven tomorrow morning.",
+        "Let's go check out(1) that new bookstore downtown.",
+        "He went to the counter to check out(2) his groceries.",
+        "Please check out(1) this cool video I found on the internet.",
+        "They had to wait in line for twenty minutes to check out(2)."
+    ],
+    734: [
+        "Many tourists visit Rome every year to see the ancient buildings and learn about their history.",
+        "We learned about ancient Egypt in our history class today.",
+        "They discovered some ancient coins buried in the garden.",
+        "This ancient tree has lived for more than a thousand years.",
+        "She likes reading stories about ancient Greek gods."
+    ],
+    735: [
+        "Swimming is a healthy physical activity that can keep your body strong and reduce your stress.",
+        "My favorite outdoor activity is riding a bicycle in the park.",
+        "The school planned a fun activity for all the students.",
+        "Reading is a quiet activity that I enjoy before bed.",
+        "We need an interesting activity for the afternoon."
+    ],
+    736: [
+        "If you know the answer(n.) to this difficult question, please raise your hand and tell the class.",
+        "He couldn't answer(v.) the phone because he was taking a shower.",
+        "The correct answer(n.) is on the last page of the book.",
+        "Please answer(v.) the door quickly because someone is waiting outside.",
+        "I need more time to think of a good answer(n.)."
+    ],
+    737: [
+        "Could I borrow your umbrella? It's raining heavily outside right now.",
+        "She went to the library to borrow some new books to read.",
+        "He had to borrow money from his friend to buy lunch.",
+        "May I borrow your pen for a minute, please?",
+        "Remember to return the book you borrowed last week."
+    ],
+    738: [
+        "I heard an odd noise coming from the kitchen, so I went downstairs to see what happened.",
+        "It is very odd that he did not say hello to us today.",
+        "She wore an odd hat with colorful feathers to the party.",
+        "That is an odd way to hold a pencil, but it works for him.",
+        "There is something odd about this old, dark house."
+    ],
+    739: [
+        "He works at a busy fruit stand in the market, selling fresh apples and oranges every morning.",
+        "We bought some hot dogs from a food stand near the park.",
+        "The magazine stand at the station sells many newspapers.",
+        "She set up a lemonade stand to earn some extra money.",
+        "They found an empty stand to sell their handmade crafts."
+    ],
+    740: [
+        "The information on this travel website is very helpful for planning our summer vacation in Japan.",
+        "My older brother is always helpful when I do my homework.",
+        "The kind clerk gave me some helpful advice about the computer.",
+        "This dictionary is a helpful tool for learning new words.",
+        "It was very helpful of you to carry those heavy bags for me."
+    ],
+    741: [
+        "My new winter jacket is filled with soft duck feathers to keep me warm in the snow.",
+        "The colorful bird has bright blue and yellow feathers.",
+        "She found a beautiful gray feather on the ground.",
+        "The pillows on the bed are stuffed with light feathers.",
+        "The baby chick's feathers are very soft to touch."
+    ],
+    742: [
+        "The happy dog wagged its short tail quickly when it saw its owner coming back home.",
+        "The monkey used its long tail to hang from the tree branch.",
+        "The cat hid its tail because it was scared of the loud noise.",
+        "Some lizards can grow a new tail if they lose it.",
+        "The peacock showed off its beautiful, colorful tail."
+    ],
+    743: [
+        "Be careful when you hold that crab because its strong claws can hurt your fingers badly.",
+        "The eagle used its sharp claws to catch the fish in the river.",
+        "My cat sharpened its claws on the new sofa.",
+        "The bear has large claws to help it dig in the dirt.",
+        "The lobster has one big claw and one small claw."
+    ],
+    744: [
+        "The big eagle has very strong wings that help it fly high above the green mountains.",
+        "The little bird broke its wing and couldn't fly anymore.",
+        "The airplane's wings are very long and painted white.",
+        "Butterflies have beautiful patterns on their delicate wings.",
+        "The chicken flapped its wings but couldn't fly very high."
+    ],
+    745: [
+        "Eating salty food always makes me very thirsty, so I usually keep a cup of tea nearby.",
+        "The runner was very thirsty after finishing the long race.",
+        "We felt thirsty because we walked in the hot sun all day.",
+        "The thirsty dog drank a whole bowl of water quickly.",
+        "If you are thirsty, there is some fresh juice in the fridge."
+    ],
+    746: [
+        "She likes to collect beautiful postcards from different countries when she travels around the world.",
+        "My brother used to collect old coins when he was a child.",
+        "They will collect the homework at the end of the class.",
+        "We need to collect enough wood for the campfire tonight.",
+        "The library helps to collect books for poor children."
+    ],
+    747: [
+        "My friendly neighbors always prepare a large bowl of colorful candy for children who come to their house on Halloween.",
+        "We are going to a fun Halloween party this weekend.",
+        "She carved a scary face into the pumpkin for Halloween.",
+        "Many people wear interesting costumes on Halloween night.",
+        "Halloween is a popular holiday celebrated in October."
+    ],
+    748: [
+        "I usually like to wake up late and enjoy a big breakfast on a public holiday.",
+        "We are planning to go to the beach for the summer holiday.",
+        "Christmas is an important holiday for many families.",
+        "The bank will be closed tomorrow because it is a holiday.",
+        "They traveled to Europe during their winter holiday."
+    ],
+    749: [
+        "Everyone at the fun party wore a strange costume, which made the event very interesting.",
+        "He dressed up in a pirate costume for the school play.",
+        "She bought a beautiful princess costume for her daughter.",
+        "They spent a long time making their own Halloween costumes.",
+        "The actor changed into his next costume very quickly."
+    ],
+    750: [
+        "If you want to lose weight successfully, you must stick to a healthy diet every day.",
+        "It is important to stick to the rules when playing the game.",
+        "He decided to stick to his original plan despite the problems.",
+        "We should stick to our budget and save more money.",
+        "She promised to stick to her exercise routine this year."
+    ],
+    751: [
+        "We must work together to fight(v.) air pollution and protect the environment for our children.",
+        "The two brothers had a fight(n.) over the remote control.",
+        "The brave soldiers had to fight(v.) to defend their country.",
+        "She had a small fight(n.) with her best friend yesterday.",
+        "You should always fight(v.) for what you believe is right."
+    ],
+    752: [
+        "You should not judge a person by their appearance because a kind heart is more important.",
+        "He cares a lot about his appearance and always wears neat clothes.",
+        "The appearance of the new building changed the city's skyline.",
+        "She suddenly made an appearance at the party late at night.",
+        "The dog's messy appearance showed it had been lost for days."
+    ],
+    753: [
+        "Sunglasses are not only useful on sunny days but also popular accessories for young people.",
+        "She bought a new necklace as an accessory for her dress.",
+        "The camera comes with many useful accessories like a bag and a lens.",
+        "A stylish hat is a great accessory for a summer outfit.",
+        "He sells phones and mobile accessories at his small shop."
     ]
 };
