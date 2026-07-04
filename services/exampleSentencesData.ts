@@ -1230,5 +1230,320 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "The camera comes with many useful accessories like a bag and a lens.",
         "A stylish hat is a great accessory for a summer outfit.",
         "He sells phones and mobile accessories at his small shop."
+    ],
+    754: [
+        "My classmates and I love to sing songs together in the music classroom every Tuesday afternoon.",
+        "We usually sing songs around the campfire when we go camping.",
+        "The little bird likes to sing songs outside my window every morning.",
+        "They sing songs to cheer up the patients in the hospital.",
+        "She has a beautiful voice and can sing songs very well."
+    ],
+    755: [
+        "With modern smartphones, it is now easier than ever for young people to make movies and share them online.",
+        "He wants to go to Hollywood to make movies about science fiction.",
+        "It takes a lot of money and time to make movies.",
+        "They decided to make movies about their exciting travel adventures.",
+        "She uses her camera to make movies of the wild animals in the forest."
+    ],
+    756: [
+        "Since she was a little girl, she has loved to write stories about magical creatures and distant planets.",
+        "He is trying to write stories for a new children's book.",
+        "My grandfather used to write stories about his own childhood.",
+        "It is fun to use your imagination to write stories.",
+        "She wants to write stories that can inspire people to be brave."
+    ],
+    757: [
+        "During our art class, we learned how to use water colors to paint pictures of the beautiful scenery outside.",
+        "He likes to paint pictures of his pet dog.",
+        "The artist uses bright colors to paint pictures of the ocean.",
+        "The children paint pictures on the wall to decorate their classroom.",
+        "I often paint pictures to relax my mind on weekends."
+    ],
+    758: [
+        "The company hired a team of experts to design a new smartphone that is both powerful and easy to use.",
+        "She wants to design her own clothes when she grows up.",
+        "The engineer helped design a faster and safer car.",
+        "They plan to design a beautiful garden in the backyard.",
+        "He uses his computer to design a creative poster for the school festival."
+    ],
+    759: [
+        "Before winter arrives, we need to go to the department store to buy some thick clothes to keep warm.",
+        "My mother washed all the dirty clothes and hung them outside.",
+        "You should wear formal clothes to the important meeting.",
+        "He packed his clothes into the suitcase for the trip.",
+        "The shop sells many stylish clothes for young people."
+    ],
+    760: [
+        "He spent the entire weekend building a detailed model of an airplane and painting it with bright colors.",
+        "The architect showed us a small model of the new library.",
+        "She bought a model train set for her younger brother.",
+        "It takes patience to build a wooden model ship.",
+        "The museum displays a large model of the ancient city."
+    ],
+    761: [
+        "After finishing all his difficult exams, he finally felt free to relax and enjoy his summer vacation.",
+        "The birds in the sky are free to fly anywhere.",
+        "You get a free drink if you buy a large pizza today.",
+        "I have some free time this afternoon to read a book.",
+        "They decided to set the captured animal free in the wild."
+    ],
+    762: [
+        "Whenever it rains outside, my mother and I like to stay in the kitchen and bake cookies for the family.",
+        "We plan to bake cookies and sell them to raise money for charity.",
+        "She learned how to bake cookies from a cooking show on television.",
+        "He bought some chocolate chips to bake cookies this weekend.",
+        "The house always smells amazing when you bake cookies."
+    ],
+    763: [
+        "The heavy backpack was too difficult for the small child to carry all the way to the top of the mountain.",
+        "Please help me carry these heavy boxes into the house.",
+        "The strong man can carry two large bags of rice at the same time.",
+        "She uses a small bag to carry her keys and wallet.",
+        "Ants can carry food that is much heavier than their own bodies."
+    ],
+    764: [
+        "The thief broke into the house and stole all the expensive jewelry that was hidden in the bedroom drawer.",
+        "She keeps her beautiful jewelry in a small wooden box.",
+        "The queen wore shining jewelry on her head during the ceremony.",
+        "He bought a piece of gold jewelry as a gift for his wife.",
+        "Many people like to buy jewelry when they visit this famous store."
+    ],
+    765: [
+        "If we work together, we can make a wonderful birthday present for our teacher using these colorful materials.",
+        "She wants to make a delicious soup for dinner tonight.",
+        "It takes a lot of practice to make a perfect cup of coffee.",
+        "They plan to make a big snowball in the garden.",
+        "He can make a paper airplane that flies very far."
+    ],
+    766: [
+        "My grandmother taught me how to knit a warm woolen scarf, which will be a perfect gift for the cold winter.",
+        "She likes to sit by the fire and knit socks.",
+        "It takes a lot of yarn to knit a thick sweater.",
+        "I am trying to knit a small hat for my baby brother.",
+        "They knit gloves for the poor children in the village."
+    ],
+    767: [
+        "Our new neighbor is a very friendly old man who always greets us with a warm smile when we meet.",
+        "The neighbor next door has a very cute and playful dog.",
+        "She asked her neighbor to help her water the plants.",
+        "We invited our neighbor to join our barbecue party.",
+        "He complained because his neighbor was playing loud music late at night."
+    ],
+    768: [
+        "Please make sure to throw your garbage into the trash can so that we can keep the park clean and beautiful.",
+        "The garbage truck comes to our street every morning.",
+        "There is a lot of garbage floating in the polluted river.",
+        "We should reduce our garbage to protect the environment.",
+        "He forgot to take out the garbage before going to work."
+    ],
+    769: [
+        "It is my daily chore to sweep the living room floor before my parents come home from work in the evening.",
+        "She uses a broom to sweep the dead leaves in the garden.",
+        "The wind can sweep the dust away from the road.",
+        "Please sweep the kitchen after you finish cooking.",
+        "He had to sweep the broken glass carefully to avoid getting hurt."
+    ],
+    770: [
+        "The famous painting in the museum attracts thousands of visitors who want to see its amazing details.",
+        "She hung a beautiful painting of the ocean in her living room.",
+        "He is taking a class to learn the skill of oil painting.",
+        "The old painting is worth a lot of money today.",
+        "The children did finger painting during their art lesson."
+    ],
+    771: [
+        "Looking at this old photograph always brings back happy memories of my wonderful childhood.",
+        "The journalist took a shocking photograph of the accident.",
+        "They put a family photograph on the desk in the office.",
+        "He won a prize for his beautiful photograph of the sunset.",
+        "Please take a photograph of us standing in front of the castle."
+    ],
+    772: [
+        "The artist spent several months creating a huge mosaic on the wall using thousands of colorful glass pieces.",
+        "The ancient Roman bath has a beautiful mosaic on the floor.",
+        "We made a small mosaic using colored paper in art class.",
+        "A mosaic is formed by putting together many small pieces.",
+        "The church is famous for its bright and shiny mosaic windows."
+    ],
+    773: [
+        "In the middle of the city square stands a beautiful bronze sculpture honoring the brave soldiers.",
+        "He used a big piece of wood to make a sculpture of an eagle.",
+        "We saw a famous stone sculpture at the modern art museum.",
+        "She likes to create a clay sculpture with her own hands.",
+        "The ice sculpture slowly melted in the warm sun."
+    ],
+    774: [
+        "For the special dinner party tonight, everyone needs to dress up and look their absolute best.",
+        "Children love to dress up in funny costumes for Halloween.",
+        "She decided to dress up as a fairy for the school play.",
+        "You don't have to dress up for this casual picnic.",
+        "He likes to dress up as his favorite superhero."
+    ],
+    775: [
+        "Before you leave the hotel tomorrow, remember to check out at the front desk and return your room keys.",
+        "I need to check out the new restaurant that opened downtown.",
+        "You can check out many interesting books from the local library.",
+        "Let's check out the menu before we decide what to order.",
+        "He wants to check out the strange noise coming from the basement."
+    ],
+    776: [
+        "Since it is getting very late, it's time to turn off the television and go to bed so you can wake up early.",
+        "It's time to start working on our science project.",
+        "Grab your bags because it's time to leave for the airport.",
+        "It's time to say goodbye to our friends and head home.",
+        "I think it's time to take a break and drink some water."
+    ],
+    777: [
+        "The famous actor gave an amazing performance in the new action movie that just came out in theaters.",
+        "He wants to be a successful actor and star in many films.",
+        "The actor forgot his lines during the play.",
+        "We waited outside to get an autograph from the lead actor.",
+        "An actor must practice hard to express different emotions."
+    ],
+    778: [
+        "The talented artist painted a stunning picture of the sunset over the ocean using vibrant colors.",
+        "She is a creative artist who designs beautiful jewelry.",
+        "The street artist drew a funny portrait of my brother in five minutes.",
+        "An artist often uses their work to share their feelings.",
+        "Many people visit Paris to see the works of famous artists."
+    ],
+    779: [
+        "A professional musician practiced playing the violin for many hours every day to prepare for the big concert.",
+        "The blind musician plays the piano beautifully.",
+        "He dreamed of becoming a famous rock musician.",
+        "The jazz musician travels around the world to perform.",
+        "Every musician in the band played perfectly during the show."
+    ],
+    780: [
+        "As a game designer, he needs to think of creative ideas to make his video games fun and challenging to play.",
+        "She works as a game designer for a large software company.",
+        "The game designer is adding a new level to the adventure game.",
+        "It is not easy to become a top game designer in the industry.",
+        "The young game designer created a popular app that millions downloaded."
+    ],
+    781: [
+        "The brave journalist traveled to the dangerous war zone to report the latest news to the rest of the world.",
+        "She is a famous journalist who works for a national newspaper.",
+        "The journalist interviewed the president about the new law.",
+        "He wants to be a sports journalist and write about basketball games.",
+        "The journalist uncovered the truth behind the huge scandal."
+    ],
+    782: [
+        "The brilliant scientist spent years conducting experiments in her laboratory to find a cure for the rare disease.",
+        "A famous scientist discovered a new star in the galaxy.",
+        "The scientist published his research findings in a popular magazine.",
+        "She hopes to become a environmental scientist to protect nature.",
+        "The mad scientist in the movie built a giant robot."
+    ],
+    783: [
+        "If you water the plants regularly and give them enough sunlight, they will grow tall and healthy very quickly.",
+        "Children grow very fast, so they often need new clothes.",
+        "He wants to grow some tomatoes in his backyard this summer.",
+        "The city's population continues to grow every single year.",
+        "Reading books can help your knowledge grow."
+    ],
+    784: [
+        "She decided to pursue a career in medicine because she has always wanted to help sick people get better.",
+        "He is thinking about changing his career and becoming a teacher.",
+        "A successful career requires a lot of hard work and dedication.",
+        "She started her singing career when she was just a teenager.",
+        "The helpful advice changed the path of his entire career."
+    ],
+    785: [
+        "Many young children dream of becoming astronauts so they can go to space and explore different planets.",
+        "Only a few lucky people have the chance to go to space.",
+        "The rocket is ready to launch and go to space.",
+        "It costs a lot of money to send satellites to go to space.",
+        "She wants to go to space to see Earth from above."
+    ],
+    786: [
+        "It requires special training and a lot of practice to learn how to fly a helicopter safely in bad weather.",
+        "The pilot can fly a helicopter over the tall mountains.",
+        "He learned how to fly a helicopter while serving in the army.",
+        "It is exciting to fly a helicopter above the beautiful city.",
+        "The rescue team had to fly a helicopter to save the lost hikers."
+    ],
+    787: [
+        "Because he loves nature, he chose to work with animals at the city zoo after graduating from college.",
+        "She decided to become a vet so she could work with animals every day.",
+        "It takes patience to work with animals that are afraid of people.",
+        "He travels to Africa to work with animals in the wild.",
+        "Volunteers often work with animals at the local animal shelter."
+    ],
+    788: [
+        "You need excellent reflexes and concentration if you want to drive a race car on a professional track.",
+        "His ultimate dream is to drive a race car in the famous championship.",
+        "It is very dangerous to drive a race car without proper safety gear.",
+        "She learned how to drive a race car from her father.",
+        "To drive a race car, you must understand how the engine works."
+    ],
+    789: [
+        "During our summer holiday, we plan to explore the deep forests and discover new kinds of plants and insects.",
+        "The divers want to explore the sunken ship at the bottom of the sea.",
+        "Children love to explore the neighborhood on their bicycles.",
+        "We can use the internet to explore information about ancient history.",
+        "They hired a guide to help them explore the dark cave."
+    ],
+    790: [
+        "The dense jungle is full of dangerous wild animals and exotic plants that are rarely seen anywhere else.",
+        "They cut a path through the thick jungle to find the lost temple.",
+        "A tiger is hiding quietly in the dark jungle.",
+        "The explorers got lost while walking in the Amazon jungle.",
+        "Monkeys swing from tree to tree in the tropical jungle."
+    ],
+    791: [
+        "After he retired from his busy job, he bought a ticket to travel the world and learn about different cultures.",
+        "She wants to save enough money so she can travel the world.",
+        "It is a great experience to travel the world and meet new people.",
+        "They plan to travel the world by boat.",
+        "To travel the world, you need to bring a map and a camera."
+    ],
+    792: [
+        "The huge space shuttle successfully launched into the sky, carrying supplies and equipment to the astronauts.",
+        "The space shuttle landed safely back on Earth yesterday morning.",
+        "We watched the launch of the space shuttle on television.",
+        "The museum displays a real space shuttle that once flew to space.",
+        "Astronauts trained for months to fly the complex space shuttle."
+    ],
+    793: [
+        "Scientists from different countries work together on the international space station to conduct important research.",
+        "The space station orbits around the Earth very quickly.",
+        "Supplies are sent to the space station every few months.",
+        "Astronauts can live on the space station for half a year.",
+        "They are doing experiments with plants on the space station."
+    ],
+    794: [
+        "Before leaving the spaceship to repair the broken equipment, the astronaut must put on a heavy space suit.",
+        "The thick space suit protects him from the extreme cold in space.",
+        "It takes a long time to put on the complex space suit.",
+        "A damaged space suit can be very dangerous during a spacewalk.",
+        "The new space suit is lighter and more comfortable than the old one."
+    ],
+    795: [
+        "We must do our best to protect the environment and reduce pollution so that Earth remains a beautiful planet.",
+        "The moon orbits around the Earth once a month.",
+        "From space, Earth looks like a beautiful blue marble.",
+        "Earth is the only planet we know that has life on it.",
+        "Gravity keeps our feet firmly on the ground of Earth."
+    ],
+    796: [
+        "The brave astronaut spent six months living in space before finally returning safely to his family on Earth.",
+        "The astronaut floated inside the cabin because there was no gravity.",
+        "An astronaut needs to be healthy and strong.",
+        "She was the first female astronaut to walk on the moon.",
+        "He trained hard every day to achieve his dream of becoming an astronaut."
+    ],
+    797: [
+        "On Mother's Day, my father and I usually cook dinner for my mom so she can relax and enjoy the evening.",
+        "He likes to cook dinner for his friends on the weekend.",
+        "I will cook dinner for you if you wash the dishes later.",
+        "She decided to cook dinner for the entire family tonight.",
+        "They cook dinner for the homeless people in their town."
+    ],
+    798: [
+        "Don't forget to take out the trash before you leave for school, or the kitchen will start to smell bad.",
+        "It is my younger brother's turn to take out the trash today.",
+        "Please take out the garbage when you go out for a walk.",
+        "He had to take out the trash in the middle of a rainstorm.",
+        "If you take out the trash, I will sweep the floor for you."
     ]
 };
