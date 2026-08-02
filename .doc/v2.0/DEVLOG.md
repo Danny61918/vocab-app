@@ -4,7 +4,13 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 
 ---
 
-## [2026-08-03] P4/TASK-03a — 怪獸逃跑/抓回邏輯
+## [2026-08-03] P4 — 取消（產品決定）
+- 動作：使用者決定「這個機制不要」——不向孩子呈現任何逃跑/失去概念（Prime Directive）。移除 `processForgottenEscapes`/`markReviewCompleted`/`FORGET_THRESHOLD_DAYS` 與 LevelProgress 相關欄位、刪除 `monsterEscape.test.ts`。P4 文件標記取消、保留設計紀錄。
+- 結果：vitest **14/14**、tsc ✅、build ✅。淨結果＝無任何逃跑邏輯（新舊皆不留）。
+- 覆盤：本階段先實作再依產品決定移除——SDD 的文案/tone GATE 應在寫 code 前先問，可省一次往返。已內化：**child-facing 情緒性功能，先問 tone 再實作。**
+- commit：（見下方）
+
+## [2026-08-03] P4/TASK-03a — 怪獸逃跑/抓回邏輯（後被取消）
 - 動作：確認舊 `processSpontaneousEscapes` 為 dead code（全庫 grep 無呼叫端）→ 刪除。`LevelProgress` 加 `escapedMonsters`/`lastReviewCompletedDate`（`loadLevelProgress` 給預設，相容）。實作 `processForgottenEscapes`（逾期≥3天觸發、當日已複習豁免、單日≤1、確定性取最低關卡）、`markReviewCompleted`（複習到逃跑關卡的字→抓回）。新增 `services/__tests__/monsterEscape.test.ts`（E2E-5 + esc-1~5）。展開 P4 五件式。
 - 結果：**vitest 21/21 綠**（8 P1 + 6 P2 + 7 P4）、tsc ✅、build ✅、無回歸；running app HMR 後 console 無錯。
 - 問題：發現隨機逃跑其實從未接進 UI（RC-3 目前非 active）→ P4 改為「建正確版 + 刪 dead code」。
