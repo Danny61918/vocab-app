@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SmartDailyReview } from './SmartDailyReview';
 import { MonsterGallery } from './MonsterGallery';
-import { TOTAL_LEVELS, loadLevelProgress, loadMasteryData } from '../services/srsStorage';
+import { TOTAL_LEVELS, loadLevelProgress, loadMasteryData, isMastered } from '../services/srsStorage';
 import { getUserData } from '../services/gamification';
 
 interface Props {
@@ -17,7 +17,7 @@ export const VocabAdventureMap: React.FC<Props> = ({ onBack }) => {
   const userData = getUserData();
 
   // Basic stats for display
-  const masteredCount = Object.values(mastery).filter(m => m.masteryLevel >= 2).length;
+  const masteredCount = Object.values(mastery).filter(m => isMastered(m)).length;
 
   const handleStartDaily = () => {
     setActiveMode('daily');

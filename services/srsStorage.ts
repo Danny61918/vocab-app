@@ -3,11 +3,19 @@ import { vocabData, VocabWord } from './newVocabData';
 const SRS_STORAGE_KEY = 'vocab_srs_mastery';
 const LEVEL_PROGRESS_KEY = 'vocab_level_progress';
 
+export const DAY_MS = 24 * 60 * 60 * 1000;
+
+// Leitner box intervals in days; index === boxLevel (0..5)
+export const BOX_INTERVALS = [0, 1, 3, 7, 14, 30];
+
 export interface VocabMastery {
   wordId: string;
-  masteryLevel: number; // 0 = New/Learning, 1 = Familiar, 2 = Mastered
-  consecutiveCorrect: number;
-  lastReviewDate?: number; // timestamp
+  boxLevel: number;               // 0..5, Leitner box
+  intervalDays: number;           // derived: BOX_INTERVALS[boxLevel]
+  dueDate: number;                // timestamp of next review
+  consecutiveCorrectDays: number; // cross-day correct streak (same-day repeats count once)
+  lastCorrectDate?: string;       // 'YYYY-MM-DD', for cross-day judgement
+  lastReviewDate?: number;        // timestamp
 }
 
 export interface LevelProgress {
@@ -16,11 +24,84 @@ export interface LevelProgress {
   lastEscapeDate?: string;
 }
 
-// Ensure the mastery dictionary is loaded
-export function loadMasteryData(): Record<string, VocabMastery> {
+// ---- Injectable seams (default = real behaviour) so time/randomness are testable ----
+export interface SrsDeps {
+  now?: number;
+  today?: string;
+  rng?: () => number;
+}
+
+export function localYmd(ts: number): string {
+  const d = new Date(ts);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
+function resolveDeps(deps?: SrsDeps): { now: number; today: string; rng: () => number } {
+  const now = deps?.now ?? Date.now();
+  const today = deps?.today ?? localYmd(now);
+  const rng = deps?.rng ?? Math.random;
+  return { now, today, rng };
+}
+
+export function shuffle<T>(arr: T[], rng: () => number = Math.random): T[] {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+// ---- Migration: old {masteryLevel,consecutiveCorrect} -> new box model (lossless) ----
+export function migrateMasteryData(
+  raw: Record<string, any>,
+  deps?: SrsDeps
+): Record<string, VocabMastery> {
+  const { now } = resolveDeps(deps);
+  const out: Record<string, VocabMastery> = {};
+  for (const key of Object.keys(raw || {})) {
+    const e = raw[key] || {};
+    if (typeof e.boxLevel === 'number') {
+      out[key] = e as VocabMastery; // already new format
+      continue;
+    }
+    const oldLevel = typeof e.masteryLevel === 'number' ? e.masteryLevel : 0;
+    const boxLevel = oldLevel >= 2 ? 4 : oldLevel === 1 ? 2 : 0; // 0->0, 1->2, 2->4
+    const intervalDays = BOX_INTERVALS[boxLevel];
+    const lastReviewDate =
+      typeof e.lastReviewDate === 'number' && e.lastReviewDate > 0 ? e.lastReviewDate : undefined;
+    const base = lastReviewDate ?? now;
+    out[key] = {
+      wordId: e.wordId ?? key,
+      boxLevel,
+      intervalDays,
+      dueDate: base + intervalDays * DAY_MS,
+      consecutiveCorrectDays: Math.min(
+        typeof e.consecutiveCorrect === 'number' ? e.consecutiveCorrect : 0,
+        3
+      ),
+      lastCorrectDate: lastReviewDate ? localYmd(lastReviewDate) : undefined,
+      lastReviewDate,
+    };
+  }
+  return out;
+}
+
+export function loadMasteryData(deps?: SrsDeps): Record<string, VocabMastery> {
   try {
     const data = localStorage.getItem(SRS_STORAGE_KEY);
-    return data ? JSON.parse(data) : {};
+    const raw = data ? JSON.parse(data) : {};
+    const migrated = migrateMasteryData(raw, deps);
+    const needsWrite = Object.values(raw).some(
+      (e: any) => !(e && typeof e.boxLevel === 'number')
+    );
+    if (needsWrite && Object.keys(raw).length > 0) {
+      saveMasteryData(migrated);
+    }
+    return migrated;
   } catch {
     return {};
   }
@@ -30,7 +111,12 @@ export function saveMasteryData(data: Record<string, VocabMastery>) {
   localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(data));
 }
 
-// Level Progress
+// A word is shown as "mastered" but is NEVER removed from scheduling (box 5 recirculates).
+export function isMastered(m: VocabMastery | undefined): boolean {
+  return !!m && m.boxLevel >= 4 && m.consecutiveCorrectDays >= 3;
+}
+
+// Level Progress (untouched by the SRS migration — protects the child's monster gallery)
 export function loadLevelProgress(): LevelProgress {
   try {
     const data = localStorage.getItem(LEVEL_PROGRESS_KEY);
@@ -39,7 +125,7 @@ export function loadLevelProgress(): LevelProgress {
     return {
       highestUnlockedLevel: parsed.highestUnlockedLevel || 1,
       unlockedMonsters: parsed.unlockedMonsters || [],
-      lastEscapeDate: parsed.lastEscapeDate
+      lastEscapeDate: parsed.lastEscapeDate,
     };
   } catch {
     return { highestUnlockedLevel: 1, unlockedMonsters: [] };
@@ -54,18 +140,16 @@ export function unlockNextLevel(currentLevel: number) {
   const progress = loadLevelProgress();
   let updated = false;
 
-  // Unlock the monster for clearing this level (Monster IDs are 1-20)
   if (currentLevel <= 20 && !progress.unlockedMonsters.includes(currentLevel)) {
     progress.unlockedMonsters.push(currentLevel);
     updated = true;
   }
 
-  // Unlock next level
   if (currentLevel >= progress.highestUnlockedLevel) {
     progress.highestUnlockedLevel = currentLevel + 1;
     updated = true;
   }
-  
+
   if (updated) {
     saveLevelProgress(progress);
   }
@@ -92,44 +176,38 @@ export function checkAndUnlockLegendaryMonsters(masteredCount: number): number[]
 
   if (masteredCount >= 50) unlock(21);
   if (masteredCount >= 100) unlock(22);
-  if (masteredCount >= vocabData.length) unlock(23); // 192
+  if (masteredCount >= vocabData.length) unlock(23);
 
   if (newlyUnlocked.length > 0) {
     saveLevelProgress(progress);
   }
-  
+
   return newlyUnlocked;
 }
 
+// NOTE: spontaneous random escapes are redesigned in P4 (processForgottenEscapes).
+// Kept here unchanged for now so the adventure map keeps working.
 export function processSpontaneousEscapes(): number[] {
   const progress = loadLevelProgress();
   const today = new Date().toLocaleDateString();
 
   if (progress.lastEscapeDate === today) {
-    return []; // Already processed today
+    return [];
   }
 
-  // Get standard monsters that are currently unlocked
-  const standardUnlocked = progress.unlockedMonsters.filter(id => id <= 20);
-  
+  const standardUnlocked = progress.unlockedMonsters.filter((id) => id <= 20);
+
   if (standardUnlocked.length === 0) {
     progress.lastEscapeDate = today;
     saveLevelProgress(progress);
     return [];
   }
 
-  // Determine how many evade: 2 to 5, but bounded by how many are available
-  const escapeCount = Math.min(
-    Math.floor(Math.random() * 4) + 2, // 2 to 5
-    standardUnlocked.length
-  );
-
-  // Shuffle and pick
+  const escapeCount = Math.min(Math.floor(Math.random() * 4) + 2, standardUnlocked.length);
   const shuffled = standardUnlocked.sort(() => 0.5 - Math.random());
   const escapedIds = shuffled.slice(0, escapeCount);
 
-  // Update progress
-  progress.unlockedMonsters = progress.unlockedMonsters.filter(id => !escapedIds.includes(id));
+  progress.unlockedMonsters = progress.unlockedMonsters.filter((id) => !escapedIds.includes(id));
   progress.lastEscapeDate = today;
   saveLevelProgress(progress);
 
@@ -139,84 +217,87 @@ export function processSpontaneousEscapes(): number[] {
 export const WORDS_PER_LEVEL = 10;
 export const TOTAL_LEVELS = Math.ceil(vocabData.length / WORDS_PER_LEVEL);
 
-// Get words for a specific level (1-indexed)
 export function getWordsForLevel(level: number): VocabWord[] {
   const startIndex = (level - 1) * WORDS_PER_LEVEL;
   return vocabData.slice(startIndex, startIndex + WORDS_PER_LEVEL);
 }
 
-// Update mastery after a quiz
-export function updateWordMastery(wordId: string, isCorrect: boolean) {
-  const data = loadMasteryData();
-  const wordData = data[wordId] || {
-    wordId,
-    masteryLevel: 0,
-    consecutiveCorrect: 0
-  };
+// ---- Scheduling engine (expanding-interval Leitner SRS) ----
+
+const MAX_DUE = 10;
+const MAX_NEW = 5;
+const DAILY_CAP = 15;
+
+// Update mastery after answering. Cross-day gating prevents same-session "fake mastery".
+export function updateWordMastery(wordId: string, isCorrect: boolean, deps?: SrsDeps) {
+  const { now, today } = resolveDeps(deps);
+  const data = loadMasteryData(deps);
+  const m: VocabMastery =
+    data[wordId] || {
+      wordId,
+      boxLevel: 0,
+      intervalDays: BOX_INTERVALS[0],
+      dueDate: now,
+      consecutiveCorrectDays: 0,
+    };
 
   if (isCorrect) {
-    wordData.consecutiveCorrect += 1;
-    if (wordData.consecutiveCorrect >= 3 && wordData.masteryLevel < 2) {
-      wordData.masteryLevel += 1;
-      // Depending on the level up mechanics, we can reset consecutiveCorrect if we want
-      // For now, let's keep it ticking up.
+    if (m.lastCorrectDate !== today) {
+      // cross-day correct: promote one box
+      m.consecutiveCorrectDays += 1;
+      m.boxLevel = Math.min(m.boxLevel + 1, 5);
+      m.intervalDays = BOX_INTERVALS[m.boxLevel];
+      m.dueDate = now + m.intervalDays * DAY_MS;
+      m.lastCorrectDate = today;
     }
+    // same-day correct: no promotion (only lastReviewDate updates below)
   } else {
-    // If wrong, reset consecutive correct but maybe don't drop mastery too harshly
-    wordData.consecutiveCorrect = 0;
-    if (wordData.masteryLevel > 0) {
-      wordData.masteryLevel -= 1;
-    }
+    // wrong: drop back to box 1, due tomorrow
+    m.boxLevel = 1;
+    m.consecutiveCorrectDays = 0;
+    m.intervalDays = BOX_INTERVALS[1];
+    m.dueDate = now + BOX_INTERVALS[1] * DAY_MS;
   }
 
-  wordData.lastReviewDate = Date.now();
-  data[wordId] = wordData;
+  m.lastReviewDate = now;
+  data[wordId] = m;
   saveMasteryData(data);
 }
 
-// Daily mixing logic: Pick 15 words (Priority: unmastered, hasn't been reviewed today, random new)
-export function getDailyHuntWords(): VocabWord[] {
-  const mastery = loadMasteryData();
-  
-  // Create an array mapping each word to its mastery
-  const allWordStats = vocabData.map(word => {
-    return {
-      word,
-      mastery: mastery[word.id] || { wordId: word.id, masteryLevel: 0, consecutiveCorrect: 0, lastReviewDate: 0 }
-    };
-  });
+// Pick up to 15 words: due words first (incl. box-5 maintenance), then new words.
+export function getDailyHuntWords(deps?: SrsDeps): VocabWord[] {
+  const { now, rng } = resolveDeps(deps);
+  const mastery = loadMasteryData(deps);
 
-  const now = Date.now();
-  const ONE_DAY_MS = 24 * 60 * 60 * 1000;
+  const stats = vocabData.map((word) => ({ word, m: mastery[word.id] as VocabMastery | undefined }));
 
-  // Words that aren't mastered yet, prioritizing those not reviewed in the last 12 hours
-  const dueForReview = allWordStats
-    .filter(ws => ws.mastery.masteryLevel < 2)
-    .filter(ws => {
-      if (!ws.mastery.lastReviewDate) return true; // Never reviewed
-      return (now - ws.mastery.lastReviewDate) > (ONE_DAY_MS / 2); // 12 hours buffer
-    })
-    // Sort by mostly lowest mastery
-    .sort((a, b) => a.mastery.masteryLevel - b.mastery.masteryLevel);
+  // Due words (have mastery and dueDate reached), most overdue first
+  const due = stats
+    .filter((s) => s.m && s.m.dueDate <= now)
+    .sort((a, b) => (a.m!.dueDate - b.m!.dueDate))
+    .slice(0, MAX_DUE)
+    .map((s) => s.word);
 
-  let selected = dueForReview.slice(0, 15).map(ws => ws.word);
+  // New words (never reviewed), in vocab order
+  const fresh = stats
+    .filter((s) => !s.m)
+    .slice(0, MAX_NEW)
+    .map((s) => s.word);
 
-  // If we don't have enough (very rare unless fully mastered), fill with random words
-  if (selected.length < 15) {
-    const extraNeeded = 15 - selected.length;
-    const remainingPool = vocabData.filter(v => !selected.includes(v));
-    const shuffled = remainingPool.sort(() => 0.5 - Math.random());
-    selected = [...selected, ...shuffled.slice(0, extraNeeded)];
+  let selected = [...due, ...fresh];
+
+  if (selected.length < DAILY_CAP) {
+    const chosen = new Set(selected);
+    const rest = stats.map((s) => s.word).filter((w) => !chosen.has(w));
+    selected = [...selected, ...shuffle(rest, rng).slice(0, DAILY_CAP - selected.length)];
   }
 
-  // Shuffle the final selection
-  return selected.sort(() => 0.5 - Math.random());
+  selected = selected.slice(0, DAILY_CAP); // hard cap
+  return shuffle(selected, rng);
 }
 
-// Utility to get 3 random wrong options
 export function getDistractors(correctWordId: string, limit: number = 3): string[] {
-  const others = vocabData.filter(v => v.id !== correctWordId);
-  others.sort(() => 0.5 - Math.random());
-  
-  return others.slice(0, limit).map(v => v.meaning); // we use chinese meaning as options
+  const others = vocabData.filter((v) => v.id !== correctWordId);
+  const shuffled = shuffle(others);
+  return shuffled.slice(0, limit).map((v) => v.meaning);
 }

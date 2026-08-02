@@ -7,6 +7,7 @@ import {
   updateWordMastery,
   unlockNextLevel,
   loadMasteryData,
+  isMastered,
   checkAndUnlockLegendaryMonsters
 } from '../services/srsStorage';
 import { getAllSentences, tryCreateCloze } from '../services/exampleLookup';
@@ -48,7 +49,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   const [clozeCorrect, setClozeCorrect] = useState(0);
   const [clozeMistakes, setClozeMistakes] = useState<Record<string, number>>({});
   const [sentenceHintActive, setSentenceHintActive] = useState(false);
-  const sentenceHintTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const sentenceHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     return () => {
@@ -272,7 +273,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
     if (mode === 'level' && levelId) unlockNextLevel(levelId);
     const masteryData = loadMasteryData();
-    const masteredCount = Object.values(masteryData).filter(m => m.masteryLevel >= 2).length;
+    const masteredCount = Object.values(masteryData).filter(m => isMastered(m)).length;
     checkAndUnlockLegendaryMonsters(masteredCount);
   };
 
