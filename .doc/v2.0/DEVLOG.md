@@ -4,6 +4,13 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 
 ---
 
+## [2026-08-02] P1/收尾 — Phase DoD 檢查
+- 動作：TASK-03 呼叫端相容確認（grep `masteryLevel` 僅剩遷移讀取與測試 fixture）；自我 code-review（跨日判定、答錯降級、到期選字、洗牌去偏差、遷移不動 LevelProgress）；更新 OVERVIEW 進度；tag `v2.0-p1-done`。
+- 結果：Phase DoD 自動部分達成（vitest 8/8、tsc、build 綠）。
+- 待使用者手動驗收：P1 無 device-only E2E；唯一手動項＝BOX_INTERVALS 是否依段考微調（預設 [0,1,3,7,14,30]）。
+- 下一步決策（P2 開始前）：answerLog wordId 型別橋接（newVocabData string vs serverData number）。
+- commit：（OVERVIEW/DEVLOG 收尾 commit + tag）
+
 ## [2026-08-02] P1/TASK-01+02 — SRS box 模型 + 遷移 + 排程引擎
 - 動作：重寫 `services/srsStorage.ts`：新 `VocabMastery`（boxLevel/intervalDays/dueDate/consecutiveCorrectDays/lastCorrectDate）、`BOX_INTERVALS`、注入式 `SrsDeps`/`localYmd`/`shuffle`、`migrateMasteryData`、`isMastered`、重寫 `updateWordMastery`（跨日）與 `getDailyHuntWords`（到期優先/≤15）。呼叫端 `SmartDailyReview.tsx`、`VocabAdventureMap.tsx` 的 `masteryLevel>=2` 改 `isMastered()`。新增 `services/__tests__/srsStorage.test.ts`（E2E-1/2/3/4/7/8）。
 - 結果：**vitest 8/8 綠**、tsc ✅、build ✅。E2E-1~4/7/8 全數確定性通過。
