@@ -1,4 +1,5 @@
 import { localYmd } from './srsStorage';
+import { GameType } from '../types';
 
 // Which dataset the word came from (app has two: SRS newVocabData vs serverData). See ADR-002.
 export type AnswerSource = 'srs' | 'server';
@@ -20,6 +21,24 @@ export interface AnswerRecord {
 
 const ANSWER_LOG_KEY = 'vocab_answer_log';
 export const MAX_RECORDS = 2000;
+
+// Map the QuizArea GameType enum to the answer-log game type.
+export function gameTypeToAnswerGameType(gt: GameType): AnswerGameType {
+  switch (gt) {
+    case GameType.MULTIPLE_CHOICE:
+      return 'multiple_choice';
+    case GameType.MATCHING:
+      return 'matching';
+    case GameType.CLOZE:
+      return 'cloze';
+    case GameType.SENTENCE_CLOZE:
+      return 'sentence_cloze';
+    case GameType.CHINESE_TO_ENGLISH:
+      return 'chinese_to_english';
+    default:
+      return 'multiple_choice';
+  }
+}
 
 // ---- composite word key (bridges the two datasets) ----
 export function makeWordKey(source: AnswerSource, id: string | number): string {

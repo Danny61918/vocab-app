@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Word, GameType, GameMode, Difficulty, Question, TestResult } from '../types';
 import { getWords, saveResult, getLeaderboard, getLastPlayerName, setLastPlayerName } from '../services/storage';
 import { generateQuestion, shuffleArray, checkAnswerMatch } from '../services/gameLogic';
+import { logAnswer, makeWordKey, gameTypeToAnswerGameType } from '../services/answerLog';
 import { CheckCircle, XCircle, Timer, ArrowRight, LogOut } from 'lucide-react';
 
 interface Props {
@@ -28,6 +29,12 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
   
   const [timeLeft, setTimeLeft] = useState(timeLimit);
   const [gameState, setGameState] = useState<'LOADING' | 'PLAYING' | 'FINISHED'>('LOADING');
+
+  // Timestamp when the current question was shown, for answer-log responseMs.
+  const questionShownAtRef = useRef<number>(Date.now());
+  useEffect(() => {
+    if (currentQuestion) questionShownAtRef.current = Date.now();
+  }, [currentQuestion]);
   const [lastAnswerCorrect, setLastAnswerCorrect] = useState<boolean | null>(null);
   const [clozeInputs, setClozeInputs] = useState<string[]>([]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -159,6 +166,13 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
 
     setLastAnswerCorrect(isCorrect);
     
+    logAnswer({
+      wordId: makeWordKey('server', currentQuestion.targetWord.id),
+      gameType: gameTypeToAnswerGameType(gameType),
+      correct: isCorrect,
+      responseMs: Date.now() - questionShownAtRef.current,
+    });
+
     if (isCorrect) {
       setScore(s => s + 10);
       setCorrectIds(prev => [...prev, currentQuestion.targetWord.id]);

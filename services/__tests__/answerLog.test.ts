@@ -3,12 +3,14 @@ import {
   AnswerRecord,
   clearAnswerLog,
   errorRateByGameType,
+  gameTypeToAnswerGameType,
   loadAnswerLog,
   logAnswer,
   makeWordKey,
   MAX_RECORDS,
   parseWordKey,
 } from '../answerLog';
+import { GameType } from '../../types';
 import { fixedDeps, T0 } from './helpers';
 
 beforeEach(() => {
@@ -31,6 +33,16 @@ describe('E2E-log-1 append + date', () => {
       responseMs: 1500,
       date: '2026-03-02',
     });
+  });
+});
+
+describe('gameType mapping', () => {
+  it('maps every GameType enum value to an answer-log game type', () => {
+    expect(gameTypeToAnswerGameType(GameType.MULTIPLE_CHOICE)).toBe('multiple_choice');
+    expect(gameTypeToAnswerGameType(GameType.MATCHING)).toBe('matching');
+    expect(gameTypeToAnswerGameType(GameType.CLOZE)).toBe('cloze');
+    expect(gameTypeToAnswerGameType(GameType.SENTENCE_CLOZE)).toBe('sentence_cloze');
+    expect(gameTypeToAnswerGameType(GameType.CHINESE_TO_ENGLISH)).toBe('chinese_to_english');
   });
 });
 

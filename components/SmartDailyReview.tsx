@@ -11,6 +11,7 @@ import {
   checkAndUnlockLegendaryMonsters
 } from '../services/srsStorage';
 import { getAllSentences, tryCreateCloze } from '../services/exampleLookup';
+import { logAnswer, makeWordKey } from '../services/answerLog';
 import confetti from 'canvas-confetti';
 
 interface Props {
@@ -50,6 +51,16 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   const [clozeMistakes, setClozeMistakes] = useState<Record<string, number>>({});
   const [sentenceHintActive, setSentenceHintActive] = useState(false);
   const sentenceHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Timestamps when a question is shown, for answer-log responseMs.
+  const quizShownAtRef = useRef<number>(Date.now());
+  useEffect(() => {
+    quizShownAtRef.current = Date.now();
+  }, [currentQuizWord]);
+  const clozeShownAtRef = useRef<number>(Date.now());
+  useEffect(() => {
+    clozeShownAtRef.current = Date.now();
+  }, [currentClozeIdx]);
 
   useEffect(() => {
     return () => {
@@ -119,6 +130,13 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   const handleQuizAnswer = (selectedAns: string) => {
     if (feedbackState !== 'idle' || !currentQuizWord) return;
     const isCorrect = selectedAns === currentQuizWord.meaning;
+
+    logAnswer({
+      wordId: makeWordKey('srs', currentQuizWord.id),
+      gameType: 'multiple_choice',
+      correct: isCorrect,
+      responseMs: Date.now() - quizShownAtRef.current,
+    });
 
     if (isCorrect) {
       setFeedbackState('correct');
@@ -226,6 +244,13 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     if (clozeFeedback !== 'idle') return;
     const current = clozeQueue[currentClozeIdx];
     const isCorrect = selectedIdx === current.correctIdx;
+
+    logAnswer({
+      wordId: makeWordKey('srs', current.word.id),
+      gameType: 'sentence_cloze',
+      correct: isCorrect,
+      responseMs: Date.now() - clozeShownAtRef.current,
+    });
 
     setClozeFeedback(isCorrect ? 'correct' : 'wrong');
     if (isCorrect) {

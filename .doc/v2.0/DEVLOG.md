@@ -4,6 +4,13 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 
 ---
 
+## [2026-08-02] P2/TASK-04b — 四題型 UI 埋点
+- 動作：`answerLog.ts` 加 `gameTypeToAnswerGameType`（GameType enum→log 型別）。`QuizArea.tsx` 在單一漏斗 `handleAnswer` 埋 `logAnswer`（四題型皆經此），用 `questionShownAtRef`(useEffect on currentQuestion) 算 responseMs、`makeWordKey('server', id)`。`SmartDailyReview.tsx` 兩個作答點埋点：`handleQuizAnswer`→'multiple_choice'、`handleClozeAnswer`→'sentence_cloze'，各自 shown-at ref、`makeWordKey('srs', id)`。
+- 結果：**vitest 14/14 綠**、tsc ✅、build ✅、無回歸。
+- 問題：無。
+- 待使用者手動驗收：實際玩一輪確認 responseMs 計時合理、作答有寫入 log（端到端行為機器難自動測）。
+- commit：（見下方）
+
 ## [2026-08-02] P2/TASK-04a — Answer Log 資料層
 - 動作：展開 P2 五件式 + ADR-002（wordId 複合 key `<source>:<id>` 橋接雙資料集）；新增 `services/answerLog.ts`（`makeWordKey/parseWordKey`、`logAnswer` 環形緩衝 2000、`errorRateByGameType` 聚合、注入式時間複用 `srsStorage.localYmd`）；新增 `services/__tests__/answerLog.test.ts`（E2E-log-1~4）。
 - 結果：**vitest 13/13 綠**（8 P1 + 5 P2）、tsc ✅、build ✅、P1 無回歸。
