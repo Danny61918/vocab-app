@@ -125,3 +125,44 @@ export function errorRateByGameType(log: AnswerRecord[] = loadAnswerLog()): Game
     errorRate: b.attempts === 0 ? 0 : b.errors / b.attempts,
   }));
 }
+
+// ---- Parent diagnosis (P5): plain-language read of where the child struggles ----
+// Never shown to the child; parent-only view.
+export const GAME_TYPE_DIAGNOSIS: Record<AnswerGameType, string> = {
+  cloze: '拼寫較弱（字母／發音）',
+  sentence_cloze: '語境／閱讀理解較弱',
+  matching: '中英對應較弱',
+  multiple_choice: '詞義辨識較弱',
+  chinese_to_english: '由中文想英文較弱',
+};
+
+export interface Diagnosis extends GameTypeErrorStat {
+  label: string;
+  weak: boolean;
+}
+
+export function diagnoseByGameType(
+  log: AnswerRecord[] = loadAnswerLog(),
+  opts?: { minAttempts?: number; weakRate?: number }
+): Diagnosis[] {
+  const minAttempts = opts?.minAttempts ?? 5;
+  const weakRate = opts?.weakRate ?? 0.34;
+  return errorRateByGameType(log).map((s) => ({
+    ...s,
+    label: GAME_TYPE_DIAGNOSIS[s.gameType],
+    weak: s.attempts >= minAttempts && s.errorRate >= weakRate,
+  }));
+}
+
+// Minutes of study per day, summed from answer response times.
+export function dailyStudyMinutes(
+  log: AnswerRecord[] = loadAnswerLog()
+): { date: string; minutes: number }[] {
+  const byDate = new Map<string, number>();
+  for (const r of log) {
+    byDate.set(r.date, (byDate.get(r.date) ?? 0) + r.responseMs);
+  }
+  return Array.from(byDate.entries())
+    .map(([date, ms]) => ({ date, minutes: Math.round((ms / 60000) * 10) / 10 }))
+    .sort((a, b) => (a.date < b.date ? -1 : 1));
+}

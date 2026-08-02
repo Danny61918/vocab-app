@@ -4,6 +4,13 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 
 ---
 
+## [2026-08-03] P5 — 家長診斷（TASK-07a+b）
+- 動作：`answerLog.ts` 加 `GAME_TYPE_DIAGNOSIS`/`diagnoseByGameType`/`dailyStudyMinutes`；`srsStorage.ts` 加 `getOverdueWords`；`AnalyticsDashboard.tsx` 加標題長按 1.5s 解鎖的家長面板（錯誤類型診斷 / 逾期字清單 / 每日投入時間）。新增 `parentAnalytics.test.ts`（E2E-p5-1~3）。展開 P5 五件式。
+- 結果：**vitest 17/17 綠**、tsc ✅、build ✅、無回歸。**Browser 冒煙通過**：長按解鎖面板，真資料顯示——詞義辨識 1/16(6%)、語境/閱讀 5/9(**56%，正確標為弱項**)、逾期 0 字、08-02 投入 2.7 分；非責備文案就位。
+- 問題：Browser 自動化長按（按住 1.5s）無法用一般 click 觸發（click 太快會取消計時）→ 改以 dispatch pointerdown 事件驗證（真 handler）。
+- 待使用者手動驗收：長按秒數、面板位置/tone 實機確認（低風險）。
+- commit：（見下方）
+
 ## [2026-08-03] P4 — 取消（產品決定）
 - 動作：使用者決定「這個機制不要」——不向孩子呈現任何逃跑/失去概念（Prime Directive）。移除 `processForgottenEscapes`/`markReviewCompleted`/`FORGET_THRESHOLD_DAYS` 與 LevelProgress 相關欄位、刪除 `monsterEscape.test.ts`。P4 文件標記取消、保留設計紀錄。
 - 結果：vitest **14/14**、tsc ✅、build ✅。淨結果＝無任何逃跑邏輯（新舊皆不留）。

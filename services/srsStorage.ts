@@ -271,6 +271,27 @@ export function getDailyHuntWords(deps?: SrsDeps): VocabWord[] {
   return shuffle(selected, rng);
 }
 
+// ---- Overdue words (P5 parent view): words whose review date has passed ----
+export interface OverdueWord {
+  word: VocabWord;
+  daysOverdue: number;
+  boxLevel: number;
+}
+
+export function getOverdueWords(deps?: SrsDeps): OverdueWord[] {
+  const { now } = resolveDeps(deps);
+  const mastery = loadMasteryData(deps);
+  return vocabData
+    .map((word) => ({ word, m: mastery[word.id] as VocabMastery | undefined }))
+    .filter((x) => x.m && x.m.dueDate <= now)
+    .map((x) => ({
+      word: x.word,
+      daysOverdue: Math.floor((now - x.m!.dueDate) / DAY_MS),
+      boxLevel: x.m!.boxLevel,
+    }))
+    .sort((a, b) => b.daysOverdue - a.daysOverdue);
+}
+
 export function getDistractors(correctWordId: string, limit: number = 3): string[] {
   const others = vocabData.filter((v) => v.id !== correctWordId);
   const shuffled = shuffle(others);

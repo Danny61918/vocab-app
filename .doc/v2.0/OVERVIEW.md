@@ -48,6 +48,7 @@
 | P1 | ✅ 完整 | ✅ 自動 E2E 綠（tag `v2.0-p1-done`） | ⬜ 待使用者 |
 | P2 | ✅ 完整 | ✅ 資料層 + UI 埋点綠（tag `v2.0-p2-done`） | ⬜ 待使用者（responseMs 端到端） |
 | P4 | ❌ 取消 | ❌ 產品決定不呈現逃跑/失去概念；邏輯已移除 | — |
-| P3/P5/P6/P7 | 🟡 骨架 | ⬜ | ⬜ |
+| P5 | ✅ 完整 | ✅ 診斷純函式 + 家長面板（tag `v2.0-p5-done`）；Browser 冒煙過 | ⬜ 待使用者（tone/位置實機） |
+| P3/P6/P7 | 🟡 骨架 | ⬜ | ⬜ |
 
 P1 實作摘要：`services/srsStorage.ts` 換成 Leitner box SRS；Vitest 8/8 綠、tsc/build 通過。commit `ce74c59`（TASK-00）、`93b0ab6`（TASK-01+02）。
