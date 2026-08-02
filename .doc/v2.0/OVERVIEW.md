@@ -46,6 +46,7 @@
 | 階段 | 文件 | 實作 | 手動驗收 |
 |------|------|------|----------|
 | P1 | ✅ 完整 | ✅ 自動 E2E 綠（tag `v2.0-p1-done`） | ⬜ 待使用者 |
-| P2–P7 | 🟡 骨架 | ⬜ | ⬜ |
+| P2 | ✅ 完整 | 🟡 資料層綠（TASK-04a）；UI 埋点 TASK-04b 待做 | ⬜ 待使用者 |
+| P3–P7 | 🟡 骨架 | ⬜ | ⬜ |
 
 P1 實作摘要：`services/srsStorage.ts` 換成 Leitner box SRS；Vitest 8/8 綠、tsc/build 通過。commit `ce74c59`（TASK-00）、`93b0ab6`（TASK-01+02）。

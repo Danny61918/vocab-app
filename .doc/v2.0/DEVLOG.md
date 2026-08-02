@@ -4,6 +4,14 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 
 ---
 
+## [2026-08-02] P2/TASK-04a — Answer Log 資料層
+- 動作：展開 P2 五件式 + ADR-002（wordId 複合 key `<source>:<id>` 橋接雙資料集）；新增 `services/answerLog.ts`（`makeWordKey/parseWordKey`、`logAnswer` 環形緩衝 2000、`errorRateByGameType` 聚合、注入式時間複用 `srsStorage.localYmd`）；新增 `services/__tests__/answerLog.test.ts`（E2E-log-1~4）。
+- 結果：**vitest 13/13 綠**（8 P1 + 5 P2）、tsc ✅、build ✅、P1 無回歸。
+- 問題：無。
+- 決策：wordId 型別橋接由我定案為複合字串 key（ADR-002），未打擾使用者。
+- 待下一 chunk：TASK-04b 四題型 UI 埋点（responseMs 計時，部分靠手動驗收）。
+- commit：（見下方）
+
 ## [2026-08-02] P1/收尾 — Phase DoD 檢查
 - 動作：TASK-03 呼叫端相容確認（grep `masteryLevel` 僅剩遷移讀取與測試 fixture）；自我 code-review（跨日判定、答錯降級、到期選字、洗牌去偏差、遷移不動 LevelProgress）；更新 OVERVIEW 進度；tag `v2.0-p1-done`。
 - 結果：Phase DoD 自動部分達成（vitest 8/8、tsc、build 綠）。
