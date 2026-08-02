@@ -43,7 +43,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [writeIndex, setWriteIndex] = useState(0);
     const [wordMistakes, setWordMistakes] = useState<Record<number, number>>({});
     const [sentenceHintActive, setSentenceHintActive] = useState(false);
-    const sentenceHintTimerRef = useRef<NodeJS.Timeout | null>(null);
+    const sentenceHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     // Results
     const [correctCount, setCorrectCount] = useState(0);
