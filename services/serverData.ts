@@ -817,7 +817,27 @@ const serverData: Word[] = [
     { "id": 795, "date": "2026-07-16", "english": "Earth", "chinese": "地球", "part_of_speech": "(n.)", "example": "We must do our best to protect the environment and reduce pollution so that Earth remains a beautiful planet." },
     { "id": 796, "date": "2026-07-16", "english": "astronaut", "chinese": "太空人", "part_of_speech": "(n.)", "example": "The brave astronaut spent six months living in space before finally returning safely to his family on Earth." },
     { "id": 797, "date": "2026-07-13", "english": "cook dinner for", "chinese": "為...準備晚餐", "part_of_speech": "(ph.)", "example": "On Mother's Day, my father and I usually cook dinner for my mom so she can relax and enjoy the evening." },
-    { "id": 798, "date": "2026-07-13", "english": "take out the trash (garbage)", "chinese": "倒垃圾", "part_of_speech": "(ph.)", "example": "Don't forget to take out the trash before you leave for school, or the kitchen will start to smell bad." }
+    { "id": 798, "date": "2026-07-13", "english": "take out the trash (garbage)", "chinese": "倒垃圾", "part_of_speech": "(ph.)", "example": "Don't forget to take out the trash before you leave for school, or the kitchen will start to smell bad." },
+    { "id": 799, "date": "2026-08-03", "english": "sweaty", "chinese": "滿身是汗的", "part_of_speech": "(adj.)", "example": "After running for an hour under the hot sun, my whole shirt was sweaty and I needed a shower." },
+    { "id": 800, "date": "2026-08-03", "english": "dry", "chinese": "弄乾/乾燥的", "part_of_speech": "(v.)/(adj.)", "example": "Please dry your hair with a towel before you go outside in the cold wind." },
+    { "id": 801, "date": "2026-08-03", "english": "wet", "chinese": "潮濕的", "part_of_speech": "(adj.)", "example": "Be careful, the floor is still wet, so you might slip and fall." },
+    { "id": 802, "date": "2026-08-03", "english": "work", "chinese": "有效/成功", "part_of_speech": "(v.)", "example": "The new medicine will work quickly and make you feel better in a few hours." },
+    { "id": 803, "date": "2026-08-03", "english": "mad", "chinese": "生氣的", "part_of_speech": "(adj.)", "example": "My mother was really mad when she saw the messy room full of toys." },
+    { "id": 804, "date": "2026-08-04", "english": "get ready", "chinese": "準備好", "part_of_speech": "(ph.)", "example": "You need to get ready quickly, or we will be late for the school bus." },
+    { "id": 805, "date": "2026-08-04", "english": "yell", "chinese": "吼叫", "part_of_speech": "(v.)", "example": "Please do not yell in the library because other people are trying to read." },
+    { "id": 806, "date": "2026-08-04", "english": "summary", "chinese": "摘要", "part_of_speech": "(n.)", "example": "The teacher asked us to write a short summary of the story we read." },
+    { "id": 807, "date": "2026-08-04", "english": "knock", "chinese": "敲/打", "part_of_speech": "(v.)", "example": "Please knock on the door gently before you enter the teacher's office." },
+    { "id": 808, "date": "2026-08-04", "english": "wake up", "chinese": "醒來", "part_of_speech": "(ph.)", "example": "I have to wake up early every morning to catch the school bus on time." },
+    { "id": 809, "date": "2026-08-05", "english": "sequencing", "chinese": "照順序排；排序", "part_of_speech": "(n.)", "example": "The teacher taught us the correct sequencing of the events in the story." },
+    { "id": 810, "date": "2026-08-05", "english": "poor", "chinese": "貧窮的", "part_of_speech": "(adj.)", "example": "The kind man gave warm food and clothes to the poor family in the village." },
+    { "id": 811, "date": "2026-08-05", "english": "wealthy", "chinese": "富裕的", "part_of_speech": "(adj.)", "example": "The wealthy man lives in a huge house with a big swimming pool." },
+    { "id": 812, "date": "2026-08-05", "english": "fancy", "chinese": "愛好/想像", "part_of_speech": "(n.)", "example": "She took a great fancy to the little kitten and wanted to keep it." },
+    { "id": 813, "date": "2026-08-05", "english": "these", "chinese": "這些", "part_of_speech": "(pron.)", "example": "These are my favorite books, and I read them again and again." },
+    { "id": 814, "date": "2026-08-06", "english": "credit card", "chinese": "信用卡", "part_of_speech": "(n.)", "example": "My father used his credit card to pay for the new television." },
+    { "id": 815, "date": "2026-08-06", "english": "pay for", "chinese": "支付…費用", "part_of_speech": "(ph.)", "example": "I will pay for the movie tickets if you buy the popcorn and drinks." },
+    { "id": 816, "date": "2026-08-06", "english": "cause", "chinese": "原因", "part_of_speech": "(n.)", "example": "The doctor tried to find the cause of the boy's terrible stomachache." },
+    { "id": 817, "date": "2026-08-06", "english": "effect", "chinese": "結果", "part_of_speech": "(n.)", "example": "Drinking too much coffee can have a bad effect on your sleep at night." },
+    { "id": 818, "date": "2026-08-06", "english": "feel great", "chinese": "覺得很好", "part_of_speech": "(ph.)", "example": "After a good night's sleep, I always feel great and ready to play." }
 ];
 
 export default serverData; 

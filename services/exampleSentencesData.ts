@@ -1545,5 +1545,145 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "Please take out the garbage when you go out for a walk.",
         "He had to take out the trash in the middle of a rainstorm.",
         "If you take out the trash, I will sweep the floor for you."
+    ],
+    799: [
+        "The basketball players were sweaty and tired after the long game.",
+        "My hands get sweaty when I feel nervous before a big test.",
+        "He wiped his sweaty face with a towel after the race.",
+        "It was so hot in the kitchen that the cook became very sweaty.",
+        "Don't sit on the sofa when you are all sweaty from playing outside."
+    ],
+    800: [
+        "The desert is a very dry place where almost no rain falls.",
+        "Hang the wet clothes in the sun so they can dry quickly.",
+        "My lips feel dry, so I need to drink some water.",
+        "She used a cloth to dry the dishes after washing them.",
+        "The soil was too dry, so the little plant could not grow."
+    ],
+    801: [
+        "My socks got wet when I stepped into the deep puddle.",
+        "The dog shook its body to get the wet water off its fur.",
+        "After the heavy rain, all the streets were cold and wet.",
+        "Don't touch the plug with wet hands because it is dangerous.",
+        "She dried her wet hair with a warm towel."
+    ],
+    802: [
+        "My plan did not work, so we had to try a different way.",
+        "This old remote does not work because the battery is dead.",
+        "If you practice every day, your hard training will work and you will win.",
+        "The glue did not work, and the two pieces fell apart again.",
+        "Let's see if this key will work to open the locked door."
+    ],
+    803: [
+        "Please don't be mad at me; I promise I will fix my mistake.",
+        "The teacher got mad because the students were too loud in class.",
+        "He was so mad that his face turned red like a tomato.",
+        "Are you still mad about the game we lost yesterday?",
+        "It makes me mad when someone cuts in line in front of me."
+    ],
+    804: [
+        "I always get ready for bed by brushing my teeth first.",
+        "The team must get ready before the big match starts.",
+        "Please get ready to leave; the movie begins in ten minutes.",
+        "She likes to get ready early so she never has to rush.",
+        "Let's get ready for the trip by packing our bags tonight."
+    ],
+    805: [
+        "The coach had to yell so the players could hear him across the field.",
+        "Don't yell at your little brother; talk to him kindly instead.",
+        "I heard someone yell for help near the river.",
+        "The baby began to yell loudly when she was hungry.",
+        "He was so excited that he wanted to yell with joy."
+    ],
+    806: [
+        "Please give me a quick summary of what happened in the meeting.",
+        "At the end of the book, there is a helpful summary of each chapter.",
+        "Her summary was clear, so everyone understood the main idea.",
+        "I wrote a summary to help me remember the important points.",
+        "The news gave a short summary of today's big events."
+    ],
+    807: [
+        "I heard someone knock, so I ran to open the front door.",
+        "Be careful not to knock the cup off the table.",
+        "The strong wind can knock the apples down from the tree.",
+        "He forgot to knock and walked straight into the room.",
+        "The boxer tried to knock his opponent down in the ring."
+    ],
+    808: [
+        "Please wake up now, or you will be late for class.",
+        "The loud alarm helps me wake up at six o'clock.",
+        "On weekends I like to wake up slowly and stay in bed.",
+        "Try to wake up before the sun rises to see the beautiful sky.",
+        "The noisy birds always wake up the whole family in summer."
+    ],
+    809: [
+        "Good sequencing means putting each step in the right order.",
+        "The puzzle tests your sequencing skills by asking you to order the pictures.",
+        "In cooking, the sequencing of the steps is very important.",
+        "She showed the sequencing of numbers from smallest to largest.",
+        "Correct sequencing helps us understand what happened first and last."
+    ],
+    810: [
+        "Many poor children cannot afford to buy new books for school.",
+        "We should help poor people who do not have enough to eat.",
+        "The story is about a poor farmer who works hard every day.",
+        "They were too poor to buy a big house, so they lived in a small room.",
+        "The charity collects money to support poor families around the world."
+    ],
+    811: [
+        "Her family is very wealthy, so they travel to many countries every year.",
+        "Being wealthy is not the same as being happy.",
+        "The wealthy woman gave a lot of money to help the hospital.",
+        "He worked hard for many years and finally became wealthy.",
+        "In the story, a wealthy king shared his gold with the poor."
+    ],
+    812: [
+        "The colorful toy caught the child's fancy right away.",
+        "He has a fancy for old maps and collects them from many countries.",
+        "That shiny red bike really tickled my fancy at the store.",
+        "In her fancy, she imagined flying high above the clouds.",
+        "The little girl took a fancy to the fluffy white puppy."
+    ],
+    813: [
+        "Are these your shoes, or do they belong to your brother?",
+        "These cookies taste much better than the ones we bought yesterday.",
+        "I picked these flowers in the garden this morning.",
+        "These are the toys that we should give to the children.",
+        "Please put these on the shelf where they belong."
+    ],
+    814: [
+        "You should keep your credit card in a safe place so no one steals it.",
+        "She swiped her credit card at the store to buy some groceries.",
+        "A credit card lets you buy things now and pay for them later.",
+        "Never share the numbers on your credit card with a stranger.",
+        "He forgot his credit card at home, so he paid with cash instead."
+    ],
+    815: [
+        "My parents pay for my swimming lessons every month.",
+        "You should pay for the book before you leave the store.",
+        "Who is going to pay for the pizza we ordered tonight?",
+        "She saved her money to pay for a new bicycle.",
+        "The company will pay for the workers' lunch during the trip."
+    ],
+    816: [
+        "Nobody knows the real cause of the loud noise last night.",
+        "Eating too much candy can be the cause of a toothache.",
+        "The police searched for the cause of the car accident.",
+        "A small spark was the cause of the big fire in the forest.",
+        "Scientists study the cause of storms to keep people safe."
+    ],
+    817: [
+        "The new rule had a good effect, and the class became much quieter.",
+        "We studied the effect of sunlight on growing plants.",
+        "The medicine had a quick effect and stopped his cough.",
+        "Loud music can have a strong effect on your mood.",
+        "The heavy rain had one clear effect: the picnic was canceled."
+    ],
+    818: [
+        "You will feel great when you finish all your homework early.",
+        "Eating healthy food and exercising make me feel great every day.",
+        "I feel great whenever I win a game with my friends.",
+        "Fresh air and sunshine can make anyone feel great.",
+        "A warm hug from my mom makes me feel great instantly."
     ]
 };
