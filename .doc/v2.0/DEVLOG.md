@@ -4,6 +4,13 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 
 ---
 
+## [2026-08-03] P4/TASK-03a — 怪獸逃跑/抓回邏輯
+- 動作：確認舊 `processSpontaneousEscapes` 為 dead code（全庫 grep 無呼叫端）→ 刪除。`LevelProgress` 加 `escapedMonsters`/`lastReviewCompletedDate`（`loadLevelProgress` 給預設，相容）。實作 `processForgottenEscapes`（逾期≥3天觸發、當日已複習豁免、單日≤1、確定性取最低關卡）、`markReviewCompleted`（複習到逃跑關卡的字→抓回）。新增 `services/__tests__/monsterEscape.test.ts`（E2E-5 + esc-1~5）。展開 P4 五件式。
+- 結果：**vitest 21/21 綠**（8 P1 + 6 P2 + 7 P4）、tsc ✅、build ✅、無回歸；running app HMR 後 console 無錯。
+- 問題：發現隨機逃跑其實從未接進 UI（RC-3 目前非 active）→ P4 改為「建正確版 + 刪 dead code」。
+- 待使用者 GATE：UI 接線（TASK-03b）前需確認**逃跑/抓回文案 tone**、以及是否要向孩子顯示「逃跑」概念（Prime Directive）。
+- commit：（見下方）
+
 ## [2026-08-02] P2/TASK-04b — 四題型 UI 埋点
 - 動作：`answerLog.ts` 加 `gameTypeToAnswerGameType`（GameType enum→log 型別）。`QuizArea.tsx` 在單一漏斗 `handleAnswer` 埋 `logAnswer`（四題型皆經此），用 `questionShownAtRef`(useEffect on currentQuestion) 算 responseMs、`makeWordKey('server', id)`。`SmartDailyReview.tsx` 兩個作答點埋点：`handleQuizAnswer`→'multiple_choice'、`handleClozeAnswer`→'sentence_cloze'，各自 shown-at ref、`makeWordKey('srs', id)`。
 - 結果：**vitest 14/14 綠**、tsc ✅、build ✅、無回歸。

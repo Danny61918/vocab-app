@@ -21,8 +21,13 @@ export interface VocabMastery {
 export interface LevelProgress {
   highestUnlockedLevel: number;
   unlockedMonsters: number[];
-  lastEscapeDate?: string;
+  lastEscapeDate?: string; // 'YYYY-MM-DD', enforces one escape per day
+  escapedMonsters?: number[]; // levels whose monster ran off, awaiting recovery
+  lastReviewCompletedDate?: string; // 'YYYY-MM-DD', a completed review today grants immunity
 }
+
+// A level's monster runs off if any of its words has been overdue for this many days.
+export const FORGET_THRESHOLD_DAYS = 3;
 
 // ---- Injectable seams (default = real behaviour) so time/randomness are testable ----
 export interface SrsDeps {
@@ -126,6 +131,8 @@ export function loadLevelProgress(): LevelProgress {
       highestUnlockedLevel: parsed.highestUnlockedLevel || 1,
       unlockedMonsters: parsed.unlockedMonsters || [],
       lastEscapeDate: parsed.lastEscapeDate,
+      escapedMonsters: parsed.escapedMonsters || [],
+      lastReviewCompletedDate: parsed.lastReviewCompletedDate,
     };
   } catch {
     return { highestUnlockedLevel: 1, unlockedMonsters: [] };
@@ -185,33 +192,66 @@ export function checkAndUnlockLegendaryMonsters(masteredCount: number): number[]
   return newlyUnlocked;
 }
 
-// NOTE: spontaneous random escapes are redesigned in P4 (processForgottenEscapes).
-// Kept here unchanged for now so the adventure map keeps working.
-export function processSpontaneousEscapes(): number[] {
+// ---- Forgotten-escape (P4): monsters run off only when their level's words are forgotten ----
+// Replaces the old random processSpontaneousEscapes (which was unused/dead code). This ties
+// escapes to actual forgetting so it never punishes a child who has been practising.
+
+function isLevelForgotten(
+  level: number,
+  mastery: Record<string, VocabMastery>,
+  now: number
+): boolean {
+  return getWordsForLevel(level).some((w) => {
+    const m = mastery[w.id];
+    return !!m && now - m.dueDate >= FORGET_THRESHOLD_DAYS * DAY_MS;
+  });
+}
+
+// At most ONE monster runs off per day, and never on a day the child already completed a review.
+export function processForgottenEscapes(deps?: SrsDeps): number[] {
+  const { now, today } = resolveDeps(deps);
   const progress = loadLevelProgress();
-  const today = new Date().toLocaleDateString();
 
-  if (progress.lastEscapeDate === today) {
-    return [];
-  }
+  // Immunity: already reviewed today → never punish.
+  if (progress.lastReviewCompletedDate === today) return [];
+  // One escape per day.
+  if (progress.lastEscapeDate === today) return [];
 
-  const standardUnlocked = progress.unlockedMonsters.filter((id) => id <= 20);
+  const mastery = loadMasteryData(deps);
+  const forgotten = progress.unlockedMonsters
+    .filter((id) => id <= 20 && isLevelForgotten(id, mastery, now))
+    .sort((a, b) => a - b);
 
-  if (standardUnlocked.length === 0) {
-    progress.lastEscapeDate = today;
-    saveLevelProgress(progress);
-    return [];
-  }
+  if (forgotten.length === 0) return [];
 
-  const escapeCount = Math.min(Math.floor(Math.random() * 4) + 2, standardUnlocked.length);
-  const shuffled = standardUnlocked.sort(() => 0.5 - Math.random());
-  const escapedIds = shuffled.slice(0, escapeCount);
-
-  progress.unlockedMonsters = progress.unlockedMonsters.filter((id) => !escapedIds.includes(id));
+  const escaped = forgotten[0];
+  progress.unlockedMonsters = progress.unlockedMonsters.filter((id) => id !== escaped);
+  progress.escapedMonsters = [...(progress.escapedMonsters ?? []), escaped];
   progress.lastEscapeDate = today;
   saveLevelProgress(progress);
 
-  return escapedIds;
+  return [escaped];
+}
+
+// Completing a review that touched an escaped level's words brings that monster back home.
+export function markReviewCompleted(reviewedWordIds: string[], deps?: SrsDeps): number[] {
+  const { today } = resolveDeps(deps);
+  const progress = loadLevelProgress();
+  progress.lastReviewCompletedDate = today;
+
+  const escaped = progress.escapedMonsters ?? [];
+  const reviewed = new Set(reviewedWordIds);
+  const recovered = escaped.filter((level) =>
+    getWordsForLevel(level).some((w) => reviewed.has(w.id))
+  );
+
+  if (recovered.length > 0) {
+    progress.escapedMonsters = escaped.filter((l) => !recovered.includes(l));
+    progress.unlockedMonsters = [...progress.unlockedMonsters, ...recovered];
+  }
+
+  saveLevelProgress(progress);
+  return recovered;
 }
 
 export const WORDS_PER_LEVEL = 10;
