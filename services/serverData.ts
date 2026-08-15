@@ -837,7 +837,27 @@ const serverData: Word[] = [
     { "id": 815, "date": "2026-08-06", "english": "pay for", "chinese": "支付…費用", "part_of_speech": "(ph.)", "example": "I will pay for the movie tickets if you buy the popcorn and drinks." },
     { "id": 816, "date": "2026-08-06", "english": "cause", "chinese": "原因", "part_of_speech": "(n.)", "example": "The doctor tried to find the cause of the boy's terrible stomachache." },
     { "id": 817, "date": "2026-08-06", "english": "effect", "chinese": "結果", "part_of_speech": "(n.)", "example": "Drinking too much coffee can have a bad effect on your sleep at night." },
-    { "id": 818, "date": "2026-08-06", "english": "feel great", "chinese": "覺得很好", "part_of_speech": "(ph.)", "example": "After a good night's sleep, I always feel great and ready to play." }
+    { "id": 818, "date": "2026-08-06", "english": "feel great", "chinese": "覺得很好", "part_of_speech": "(ph.)", "example": "After a good night's sleep, I always feel great and ready to play." },
+    { "id": 819, "date": "2026-08-10", "english": "bring", "chinese": "帶來", "part_of_speech": "(v.)", "example": "Please bring your raincoat to school today because the sky looks very cloudy." },
+    { "id": 820, "date": "2026-08-10", "english": "carry", "chinese": "攜帶", "part_of_speech": "(v.)", "example": "The strong man can carry the heavy box all the way up the stairs." },
+    { "id": 821, "date": "2026-08-10", "english": "careful", "chinese": "小心的", "part_of_speech": "(adj.)", "example": "Please be careful when you cross the busy street on your way to school." },
+    { "id": 822, "date": "2026-08-10", "english": "different", "chinese": "不同的", "part_of_speech": "(adj.)", "example": "My best friend and I like completely different kinds of ice cream flavors." },
+    { "id": 823, "date": "2026-08-10", "english": "circus", "chinese": "馬戲團", "part_of_speech": "(n.)", "example": "We watched funny clowns and brave acrobats perform tricks at the circus last night." },
+    { "id": 824, "date": "2026-08-11", "english": "balcony", "chinese": "陽臺", "part_of_speech": "(n.)", "example": "We stood on the balcony to watch the bright fireworks light up the night sky." },
+    { "id": 825, "date": "2026-08-11", "english": "bottle", "chinese": "瓶子", "part_of_speech": "(n.)", "example": "Please fill this bottle with cold water before we go out for our long hike." },
+    { "id": 826, "date": "2026-08-11", "english": "climb", "chinese": "爬", "part_of_speech": "(v.)", "example": "The little monkey can climb all the way to the top of the tall tree." },
+    { "id": 827, "date": "2026-08-11", "english": "exciting", "chinese": "令人興奮的", "part_of_speech": "(adj.)", "example": "The soccer game was so exciting that all the fans cheered very loudly." },
+    { "id": 828, "date": "2026-08-11", "english": "difficult", "chinese": "困難的", "part_of_speech": "(adj.)", "example": "This math problem is very difficult, so the teacher helped me solve it." },
+    { "id": 829, "date": "2026-08-12", "english": "be good at", "chinese": "擅長", "part_of_speech": "(ph.)", "example": "You have to practice every day to be good at playing the piano well." },
+    { "id": 830, "date": "2026-08-12", "english": "build", "chinese": "建造", "part_of_speech": "(v.)", "example": "The workers will build a brand new library right next to our school." },
+    { "id": 831, "date": "2026-08-12", "english": "forest", "chinese": "森林", "part_of_speech": "(n.)", "example": "Many deer and rabbits live in the green forest near our little town." },
+    { "id": 832, "date": "2026-08-12", "english": "cloud", "chinese": "雲", "part_of_speech": "(n.)", "example": "A big white cloud floated slowly across the clear blue afternoon sky." },
+    { "id": 833, "date": "2026-08-12", "english": "always", "chinese": "總是", "part_of_speech": "(adv.)", "example": "My mother always reads me a bedtime story before I go to sleep at night." },
+    { "id": 834, "date": "2026-08-13", "english": "cinema", "chinese": "電影院", "part_of_speech": "(n.)", "example": "We went to the cinema to watch a funny new cartoon about a clever robot." },
+    { "id": 835, "date": "2026-08-13", "english": "dentist", "chinese": "牙醫", "part_of_speech": "(n.)", "example": "I visit the dentist twice a year to keep my teeth clean and healthy." },
+    { "id": 836, "date": "2026-08-13", "english": "because", "chinese": "因為", "part_of_speech": "(conj.)", "example": "I stayed home today because I had a bad cold and a very sore throat." },
+    { "id": 837, "date": "2026-08-13", "english": "market", "chinese": "市場", "part_of_speech": "(n.)", "example": "We bought fresh apples and sweet oranges at the market this morning." },
+    { "id": 838, "date": "2026-08-13", "english": "island", "chinese": "島", "part_of_speech": "(n.)", "example": "We took a small boat to the quiet island in the middle of the lake." }
 ];
 
 export default serverData; 

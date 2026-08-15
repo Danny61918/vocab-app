@@ -1685,5 +1685,145 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "I feel great whenever I win a game with my friends.",
         "Fresh air and sunshine can make anyone feel great.",
         "A warm hug from my mom makes me feel great instantly."
+    ],
+    819: [
+        "Please bring your umbrella to school because it might rain this afternoon.",
+        "Can you bring some snacks for us to share during the picnic?",
+        "I will bring my new puzzle to show all of my friends tomorrow.",
+        "Remember to bring a water bottle when you go on the long hike.",
+        "My grandma likes to bring fresh fruit whenever she visits our house."
+    ],
+    820: [
+        "The strong man can carry the heavy box up the stairs by himself.",
+        "I always carry a small notebook so I can write down new ideas.",
+        "Please carry the glass plates carefully so they do not fall and break.",
+        "Ants can carry food that is much bigger than their tiny bodies.",
+        "Will you help me carry these bags of groceries into the kitchen?"
+    ],
+    821: [
+        "Be careful when you cross the busy street near our school.",
+        "You must be careful with the sharp scissors during the art class.",
+        "The careful driver always checks his mirrors before he turns the car.",
+        "Please be careful not to spill the hot soup on your hands.",
+        "She is very careful when she paints so the colors do not mix."
+    ],
+    822: [
+        "My twin sister and I like completely different kinds of music.",
+        "Every snowflake has a different and beautiful shape of its own.",
+        "We tried a different route home and found a lovely little park.",
+        "The two brothers have very different hobbies and favorite games.",
+        "This year our teacher gave us a different book to read."
+    ],
+    823: [
+        "We saw funny clowns and brave acrobats at the circus last night.",
+        "The circus came to our town with elephants, lions, and dancing dogs.",
+        "My little brother laughed loudly at the silly monkeys in the circus.",
+        "Tickets for the circus were sold out because everyone wanted to go.",
+        "The circus performers practice their amazing tricks for many hours every day."
+    ],
+    824: [
+        "We stood on the balcony to watch the colorful fireworks in the sky.",
+        "My mother grows pretty flowers in pots on our small balcony.",
+        "From the balcony you can see the whole city and the tall mountains.",
+        "The cat likes to sleep on the warm balcony in the afternoon sun.",
+        "We had breakfast on the balcony while the birds sang in the trees."
+    ],
+    825: [
+        "Please fill this bottle with cold water before we start our hike.",
+        "The baby drank all the milk from the big bottle very quickly.",
+        "I dropped the glass bottle, and it broke into many tiny pieces.",
+        "Remember to recycle the empty plastic bottle in the green bin.",
+        "She keeps a bottle of fresh juice in the fridge for breakfast."
+    ],
+    826: [
+        "The little monkey can climb to the very top of the tall tree.",
+        "We will climb the steep hill to see the sunrise tomorrow morning.",
+        "Be careful when you climb the ladder to reach the high shelf.",
+        "My cat loves to climb up the curtains and sit on the window.",
+        "The brave hikers will climb the rocky mountain early in the morning."
+    ],
+    827: [
+        "The soccer game was so exciting that everyone cheered very loudly.",
+        "We watched an exciting movie about a brave girl and her dragon.",
+        "Going to the amusement park was the most exciting part of my trip.",
+        "The teacher told us an exciting story about pirates and hidden treasure.",
+        "It is exciting to open presents on my birthday every single year."
+    ],
+    828: [
+        "This math problem is too difficult for me to solve by myself.",
+        "Learning to ride a bike was difficult, but I never gave up.",
+        "The puzzle was so difficult that it took us the whole afternoon.",
+        "It is difficult to sleep when the room is bright and noisy.",
+        "The teacher helped me with the difficult words in the long story."
+    ],
+    829: [
+        "You have to practice every day to be good at playing the piano.",
+        "My sister wants to be good at drawing, so she sketches every night.",
+        "If you want to be good at soccer, you should train with your team.",
+        "I hope to be good at swimming before our summer holiday begins.",
+        "He studies hard because he wants to be good at science and math."
+    ],
+    830: [
+        "The workers will build a new library next to our school.",
+        "We used wooden blocks to build a tall castle on the floor.",
+        "Birds build their nests with small twigs, leaves, and soft grass.",
+        "My father and I will build a treehouse in the backyard this summer.",
+        "The children worked together to build a big sandcastle at the beach."
+    ],
+    831: [
+        "Many deer, rabbits, and foxes live in the green forest near our town.",
+        "We walked through the shady forest and listened to the singing birds.",
+        "The tall trees in the forest give shade to the small animals below.",
+        "Please do not leave any trash when you visit the beautiful forest.",
+        "A little stream runs quietly through the middle of the old forest."
+    ],
+    832: [
+        "A big white cloud slowly floated across the clear blue sky.",
+        "That dark cloud means a heavy rain will fall very soon.",
+        "The airplane flew high above every fluffy cloud in the sky.",
+        "I like to lie on the grass and watch each cloud change shape.",
+        "The mountain top was hidden behind a thick grey cloud this morning."
+    ],
+    833: [
+        "My mother always reads me a bedtime story before I fall asleep.",
+        "You should always wash your hands before you eat your lunch.",
+        "The sun always rises in the east and sets in the west.",
+        "My dog always waits by the door when I come home from school.",
+        "I always brush my teeth twice a day to keep them healthy."
+    ],
+    834: [
+        "We went to the cinema to watch a funny cartoon about a robot.",
+        "The new cinema in town has huge screens and comfortable seats.",
+        "My family buys popcorn every time we visit the cinema together.",
+        "The cinema was dark and quiet when the exciting movie began.",
+        "We will meet at the cinema at six o'clock on Saturday evening."
+    ],
+    835: [
+        "I visit the dentist twice a year to keep my teeth clean and strong.",
+        "The dentist told me to brush my teeth after every meal.",
+        "Do not be afraid of the dentist because she is very gentle and kind.",
+        "My little brother was brave and did not cry at the dentist.",
+        "The dentist gave me a new toothbrush and a shiny sticker today."
+    ],
+    836: [
+        "I stayed home today because I had a bad cold and a sore throat.",
+        "We could not play outside because the rain was very heavy.",
+        "She was happy because her best friend came to her birthday party.",
+        "The plants grew tall because we watered them every single day.",
+        "I like winter because I can build a snowman with my friends."
+    ],
+    837: [
+        "We bought fresh apples and carrots at the market this morning.",
+        "The market near my house sells fish, fruit, and pretty flowers.",
+        "My grandmother goes to the market every Sunday to buy vegetables.",
+        "The busy market was full of people shopping for their dinner.",
+        "At the farmers' market we tasted sweet grapes and warm bread."
+    ],
+    838: [
+        "We took a boat to the small island in the middle of the lake.",
+        "Many colorful birds live on the quiet tropical island.",
+        "The island has soft white sand and clear blue water everywhere.",
+        "Pirates once hid their treasure on that lonely little island.",
+        "We can only reach the island by boat because there is no bridge."
     ]
 };
