@@ -63,6 +63,8 @@ export function loadAnswerLog(): AnswerRecord[] {
 
 function saveAnswerLog(records: AnswerRecord[]) {
   localStorage.setItem(ANSWER_LOG_KEY, JSON.stringify(records));
+  // P6: schedule cloud backup
+  import('./cloudSync').then((m) => m.schedulePush()).catch(() => {});
 }
 
 export function clearAnswerLog() {

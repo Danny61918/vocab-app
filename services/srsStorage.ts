@@ -109,6 +109,8 @@ export function loadMasteryData(deps?: SrsDeps): Record<string, VocabMastery> {
 
 export function saveMasteryData(data: Record<string, VocabMastery>) {
   localStorage.setItem(SRS_STORAGE_KEY, JSON.stringify(data));
+  // P6: schedule cloud backup (debounced, fire-and-forget)
+  import('./cloudSync').then((m) => m.schedulePush()).catch(() => {});
 }
 
 // A word is shown as "mastered" but is NEVER removed from scheduling (box 5 recirculates).
@@ -134,6 +136,8 @@ export function loadLevelProgress(): LevelProgress {
 
 export function saveLevelProgress(progress: LevelProgress) {
   localStorage.setItem(LEVEL_PROGRESS_KEY, JSON.stringify(progress));
+  // P6: schedule cloud backup
+  import('./cloudSync').then((m) => m.schedulePush()).catch(() => {});
 }
 
 export function unlockNextLevel(currentLevel: number) {

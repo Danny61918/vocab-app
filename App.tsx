@@ -13,6 +13,7 @@ import PhraseChallenge from './components/PhraseChallenge';
 import AchievementsView from './components/AchievementsView';
 import { TutorialGuide } from './components/TutorialGuide';
 import { getStreak, getUserData } from './services/gamification';
+import { bootCloudSync } from './services/cloudSync';
 import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins, HelpCircle } from 'lucide-react';
 
 const APP_VERSION = '7.1'; // Level 6 Week 19-20 (2026/6/15~6/23) 單字更新 & 關卡進度重置修復
@@ -22,6 +23,17 @@ type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DA
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
   
+  // P6: boot cloud sync (anonymous auth + restore empty keys from cloud)
+  useEffect(() => {
+    bootCloudSync().then(({ merged }) => {
+      if (merged) {
+        console.log('[App] Cloud data merged — refreshing state');
+        // Force re-render so views pick up restored data
+        setCurrentView((v) => v);
+      }
+    });
+  }, []);
+
   // 快取更新邏輯：檢查版本是否變更
   useEffect(() => {
     const savedVersion = localStorage.getItem('app_version');
