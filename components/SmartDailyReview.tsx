@@ -127,15 +127,20 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     speak(target.word);
   };
 
+  // P3/TASK-11d: guessing detection — responseMs < 1200 && wrong → no demotion
+  const GUESSING_THRESHOLD_MS = 1200;
+
   const handleQuizAnswer = (selectedAns: string) => {
     if (feedbackState !== 'idle' || !currentQuizWord) return;
     const isCorrect = selectedAns === currentQuizWord.meaning;
+    const responseMs = Date.now() - quizShownAtRef.current;
+    const isGuessing = !isCorrect && responseMs < GUESSING_THRESHOLD_MS;
 
     logAnswer({
       wordId: makeWordKey('srs', currentQuizWord.id),
       gameType: 'multiple_choice',
       correct: isCorrect,
-      responseMs: Date.now() - quizShownAtRef.current,
+      responseMs,
     });
 
     if (isCorrect) {
@@ -150,8 +155,12 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     } else {
       setFeedbackState('wrong');
       setCombo(0);
-      updateWordMastery(currentQuizWord.id, false);
+      // P3/TASK-11d: guessing → skip demotion (still re-queue)
+      if (!isGuessing) {
+        updateWordMastery(currentQuizWord.id, false);
+      }
       setTimeout(() => {
+        // P3/TASK-11a+c: re-queue with fresh distractors (prepareNextQuestion regenerates them)
         const newQueue = [...quizQueue.slice(1), currentQuizWord];
         setQuizQueue(newQueue);
         prepareNextQuestion(newQueue);
@@ -240,16 +249,41 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     }, 3000);
   };
 
+  // P3/TASK-11a: rebuild a cloze item with fresh distractors (for re-queue)
+  const rebuildClozeItem = (item: ClozeItem): ClozeItem => {
+    const newDistractors = wordsList
+      .filter(w => w.word !== item.word.word)
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 3)
+      .map(w => w.word);
+    if (newDistractors.length < 3) {
+      const extras = vocabData
+        .filter(w => w.word !== item.word.word && !newDistractors.includes(w.word))
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 3 - newDistractors.length)
+        .map(w => w.word);
+      newDistractors.push(...extras);
+    }
+    const allOptions = [item.word.word, ...newDistractors.slice(0, 3)].sort(() => 0.5 - Math.random());
+    return {
+      ...item,
+      options: allOptions,
+      correctIdx: allOptions.indexOf(item.word.word),
+    };
+  };
+
   const handleClozeAnswer = (selectedIdx: number) => {
     if (clozeFeedback !== 'idle') return;
     const current = clozeQueue[currentClozeIdx];
     const isCorrect = selectedIdx === current.correctIdx;
+    const responseMs = Date.now() - clozeShownAtRef.current;
+    const isGuessing = !isCorrect && responseMs < GUESSING_THRESHOLD_MS;
 
     logAnswer({
       wordId: makeWordKey('srs', current.word.id),
       gameType: 'sentence_cloze',
       correct: isCorrect,
-      responseMs: Date.now() - clozeShownAtRef.current,
+      responseMs,
     });
 
     setClozeFeedback(isCorrect ? 'correct' : 'wrong');
@@ -257,7 +291,10 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
       setClozeCorrect(prev => prev + 1);
       updateWordMastery(current.word.id, true);
     } else {
-      updateWordMastery(current.word.id, false);
+      // P3/TASK-11d: guessing → skip demotion
+      if (!isGuessing) {
+        updateWordMastery(current.word.id, false);
+      }
       setClozeMistakes(prev => ({
         ...prev,
         [current.word.id]: (prev[current.word.id] || 0) + 1
@@ -280,10 +317,10 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
           finishSession();
         }
       } else {
-        // Recycle the wrong item to the end of the queue
+        // P3/TASK-11a+c: recycle with FRESH distractors
         setClozeQueue(prevQueue => {
           const item = prevQueue[currentClozeIdx];
-          return [...prevQueue, item];
+          return [...prevQueue, rebuildClozeItem(item)];
         });
         setCurrentClozeIdx(prev => prev + 1);
       }

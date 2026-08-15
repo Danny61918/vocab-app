@@ -4,6 +4,7 @@ import { Word, GameType, GameMode, Difficulty, Question, TestResult } from '../t
 import { getWords, saveResult, getLeaderboard, getLastPlayerName, setLastPlayerName } from '../services/storage';
 import { generateQuestion, shuffleArray, checkAnswerMatch } from '../services/gameLogic';
 import { logAnswer, makeWordKey, gameTypeToAnswerGameType } from '../services/answerLog';
+import LetterTiles from './LetterTiles';
 import { CheckCircle, XCircle, Timer, ArrowRight, LogOut } from 'lucide-react';
 
 interface Props {
@@ -438,34 +439,16 @@ const QuizArea: React.FC<Props> = ({ gameType, gameMode, difficulty, onExit, tar
         <div className="p-8 flex-1 flex flex-col justify-center bg-slate-50/50">
             {gameType === GameType.CLOZE && currentQuestion && (
                 <div className="w-full max-w-2xl mx-auto space-y-8 mt-4">
-                    <div className="text-center mb-6">
-                        <p className="text-4xl md:text-5xl font-mono tracking-[0.3em] font-black text-slate-800 bg-white py-6 px-4 rounded-3xl shadow-inner border-2 border-slate-100 uppercase">
-                            {currentQuestion.clozeMask}
-                        </p>
-                    </div>
-                    <div className="flex justify-center gap-2 md:gap-3 flex-wrap">
-                        {clozeInputs.map((val, idx) => (
-                             <input
-                                key={idx}
-                                ref={el => { inputRefs.current[idx] = el; }}
-                                type="text"
-                                maxLength={1}
-                                autoComplete="off"
-                                autoCorrect="off"
-                                autoCapitalize="none"
-                                spellCheck={false}
-                                className="w-10 h-14 md:w-16 md:h-20 border-4 border-slate-200 bg-white shadow-md rounded-2xl text-2xl md:text-4xl text-center focus:border-blue-500 focus:scale-110 outline-none font-black text-slate-700 transition-all uppercase placeholder-transparent"
-                                value={val}
-                                onChange={e => handleClozeChange(idx, e.target.value)}
-                                onKeyDown={e => handleClozeKeyDown(idx, e)}
-                             />
-                        ))}
-                    </div>
-                    <div className="flex justify-center mt-8">
-                        <button onClick={() => submitCloze()} className="bg-blue-600 text-white rounded-2xl px-12 py-4 font-black text-xl hover:bg-blue-700 shadow-xl active:scale-95 transition-all flex items-center gap-3">
-                            送出答案 <ArrowRight size={28} />
-                        </button>
-                    </div>
+                    <LetterTiles
+                      targetWord={currentQuestion.correctAnswer as string}
+                      hint={currentQuestion.targetWord.chinese}
+                      partOfSpeech={currentQuestion.targetWord.part_of_speech}
+                      clozeMask={currentQuestion.clozeMask}
+                      disabled={lastAnswerCorrect !== null}
+                      onComplete={(isCorrect, spelled) => {
+                        handleAnswer(isCorrect ? currentQuestion.correctAnswer : 'WRONG_INPUT');
+                      }}
+                    />
                 </div>
             )}
             {gameType !== GameType.CLOZE && currentQuestion && (
