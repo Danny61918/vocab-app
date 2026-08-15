@@ -30,10 +30,13 @@ interface CloudDocument {
   userData: any;        // coins, gacha, etc.
   streak: any;          // daily streak
   achievements: any;    // unlocked achievements
+  customMonsters: any[]; // P7 custom monster uploads
+  customSentences: any[]; // P7 child-authored sentences
+  wishList: any[];       // P7 feature wish list
   lastSyncedAt: any;    // serverTimestamp
 }
 
-// localStorage keys that we sync (mirrors the keys used in srsStorage / answerLog / gamification)
+// localStorage keys that we sync (mirrors the keys used in srsStorage / answerLog / gamification / customContent)
 const LS_KEYS = {
   srsMastery: 'vocab_srs_mastery',
   answerLog: 'vocab_answer_log',
@@ -41,6 +44,9 @@ const LS_KEYS = {
   userData: 'vocab_app_user_data',
   streak: 'vocab_app_streak',
   achievements: 'vocab_app_achievements_unlocked',
+  customMonsters: 'vocab_custom_monsters',
+  customSentences: 'vocab_custom_sentences',
+  wishList: 'vocab_wish_list',
 } as const;
 
 // ---- Helpers ----
@@ -79,6 +85,9 @@ export async function pushToCloud(): Promise<void> {
       userData: readLocal(LS_KEYS.userData) ?? {},
       streak: readLocal(LS_KEYS.streak) ?? {},
       achievements: readLocal(LS_KEYS.achievements) ?? [],
+      customMonsters: readLocal(LS_KEYS.customMonsters) ?? [],
+      customSentences: readLocal(LS_KEYS.customSentences) ?? [],
+      wishList: readLocal(LS_KEYS.wishList) ?? [],
       lastSyncedAt: serverTimestamp(),
     };
 
@@ -115,6 +124,9 @@ export async function pullFromCloud(): Promise<{ merged: boolean }> {
       [LS_KEYS.userData, cloud.userData],
       [LS_KEYS.streak, cloud.streak],
       [LS_KEYS.achievements, cloud.achievements],
+      [LS_KEYS.customMonsters, cloud.customMonsters],
+      [LS_KEYS.customSentences, cloud.customSentences],
+      [LS_KEYS.wishList, cloud.wishList],
     ];
 
     for (const [key, cloudValue] of pairs) {

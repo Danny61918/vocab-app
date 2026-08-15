@@ -11,6 +11,7 @@ import GrammarChallenge from './components/GrammarChallenge';
 import { VocabAdventureMap } from './components/VocabAdventureMap';
 import PhraseChallenge from './components/PhraseChallenge';
 import AchievementsView from './components/AchievementsView';
+import CreativeWorkshop from './components/CreativeWorkshop';
 import { TutorialGuide } from './components/TutorialGuide';
 import { getStreak, getUserData } from './services/gamification';
 import { bootCloudSync } from './services/cloudSync';
@@ -18,7 +19,7 @@ import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar,
 
 const APP_VERSION = '7.1'; // Level 6 Week 19-20 (2026/6/15~6/23) 單字更新 & 關卡進度重置修復
 
-type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL';
+type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -145,6 +146,8 @@ function App() {
         return <AchievementsView onBack={() => setCurrentView('MENU')} />;
       case 'TUTORIAL':
         return <TutorialGuide onBack={() => setCurrentView('MENU')} />;
+      case 'CREATIVE_WORKSHOP':
+        return <CreativeWorkshop onBack={() => setCurrentView('MENU')} />;
       default:
         const streak = getStreak();
         const userData = getUserData();
@@ -221,6 +224,17 @@ function App() {
                             <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">📝 填空測驗</span>
                         </div>
                         <h3 className="text-2xl font-black mb-2 drop-shadow-md">片語特訓中心</h3>
+                    </div>
+                </button>
+
+                {/* P7: Creative Workshop */}
+                <button onClick={() => setCurrentView('CREATIVE_WORKSHOP')} className="relative overflow-hidden bg-gradient-to-br from-purple-500 to-pink-600 text-white p-6 rounded-[2rem] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-purple-800 md:col-span-3">
+                    <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><PenTool size={100} /></div>
+                    <div className="flex-1 text-left relative z-10">
+                        <div className="flex items-center gap-2 mb-2">
+                            <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">🎨 創作</span>
+                        </div>
+                        <h3 className="text-2xl font-black mb-2 drop-shadow-md">🎨 創作工坊 — 設計你的怪獸 & 寫例句！</h3>
                     </div>
                 </button>
               </div>

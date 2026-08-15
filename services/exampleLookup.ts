@@ -1,5 +1,6 @@
 import serverData from './serverData';
 import { EXTRA_SENTENCES } from './exampleSentencesData';
+import { loadCustomSentences } from './customContent';
 import { Word } from '../types';
 
 /**
@@ -67,6 +68,16 @@ export function getAllSentences(wordString: string): string[] {
   // Also add serverData.example as an additional option (if it exists and not duplicate)
   if (entry.example && !sentences.includes(entry.example)) {
     sentences.push(entry.example);
+  }
+
+  // P7: Include custom (child-authored) sentences for this word
+  const custom = loadCustomSentences().filter(
+    (s) => s.word.toLowerCase() === wordString.toLowerCase()
+  );
+  for (const cs of custom) {
+    if (!sentences.includes(cs.sentence)) {
+      sentences.push(cs.sentence);
+    }
   }
 
   return sentences;
