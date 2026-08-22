@@ -1825,5 +1825,145 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "The island has soft white sand and clear blue water everywhere.",
         "Pirates once hid their treasure on that lonely little island.",
         "We can only reach the island by boat because there is no bridge."
+    ],
+    839: [
+        "The road makes a wide curve as it goes around the mountain.",
+        "The artist drew a smooth curve to show the path of the ball.",
+        "Be careful because the bike path has a sharp curve near the pond.",
+        "The graph showed a curve that went up quickly and then leveled off.",
+        "Cars must slow down before they reach the curve in the road."
+    ],
+    840: [
+        "The old painting turned out to be extremely valuable at the museum.",
+        "Clean water is a valuable resource that we should never waste.",
+        "My teacher gave us some valuable advice about studying for tests.",
+        "The necklace was so valuable that we kept it locked in a safe.",
+        "Friendship is one of the most valuable things a person can have."
+    ],
+    841: [
+        "That tall building has more than fifty floors and a rooftop garden.",
+        "The old building in our town was turned into a public library.",
+        "Workers are building a new building right across from our school.",
+        "We could see the whole city from the top of the tall building.",
+        "The fire alarm rang, so everyone left the building quickly and calmly."
+    ],
+    842: [
+        "The children love to splash water at each other in the pool.",
+        "A fish jumped out of the pond with a loud splash.",
+        "Please do not splash water on the floor after you wash your hands.",
+        "The puppy likes to splash through puddles after it rains.",
+        "We watched the waves splash against the rocks by the shore."
+    ],
+    843: [
+        "I was surprised to see all my friends waiting at my birthday party.",
+        "She looked surprised when she opened the box and found a puppy inside.",
+        "We were surprised by how quickly the little seed grew into a plant.",
+        "He felt surprised and happy when he won first place in the race.",
+        "The class was surprised when the teacher announced a surprise field trip."
+    ],
+    844: [
+        "I had a bad headache after staring at the screen all afternoon.",
+        "Drinking enough water can help you avoid getting a headache.",
+        "My mother took some medicine because she had a terrible headache.",
+        "Loud noises always give my grandfather a headache.",
+        "I rested in a dark room to help my headache go away."
+    ],
+    845: [
+        "The tired boy fell asleep on his father's shoulder during the ride.",
+        "She carried her backpack over one shoulder on her way to school.",
+        "The coach patted the player on the shoulder to say well done.",
+        "I hurt my shoulder while carrying the heavy boxes upstairs.",
+        "The parrot likes to sit on the pirate's shoulder in the story."
+    ],
+    846: [
+        "We watched a playful dolphin jump high above the waves.",
+        "The friendly dolphin swam alongside our boat during the whole trip.",
+        "A dolphin uses clicking sounds to find fish in the dark water.",
+        "At the aquarium, the dolphin did tricks for the cheering crowd.",
+        "Scientists say a dolphin is one of the smartest animals in the ocean."
+    ],
+    847: [
+        "The girls like to skip rope together during recess every day.",
+        "He can skip really fast without ever tripping over the rope.",
+        "We watched the children skip happily around the playground.",
+        "My sister taught me a fun new way to skip rope.",
+        "Please do not skip breakfast, because it is the most important meal."
+    ],
+    848: [
+        "My little sister has curly hair that bounces when she runs.",
+        "The curly puppy looked like a soft little cloud of fur.",
+        "I tried to make my straight hair curly with a special brush.",
+        "The curly vine wrapped itself around the tall wooden fence.",
+        "Her curly hair got even curlier on rainy, humid days."
+    ],
+    849: [
+        "The funny clown made balloon animals for all the children.",
+        "A clown with a big red nose danced across the circus stage.",
+        "The clown told silly jokes that made everyone in the room laugh.",
+        "My little brother was scared of the clown at the birthday party.",
+        "The clown juggled five balls while riding a tiny unicycle."
+    ],
+    850: [
+        "Please do not lose your ticket, or you cannot enter the show.",
+        "I bought a ticket for the afternoon train to visit my cousin.",
+        "The man at the door checked every ticket before letting people in.",
+        "We won a free ticket to the amusement park in a school raffle.",
+        "She kept her movie ticket as a souvenir of that special night."
+    ],
+    851: [
+        "A tiny snail slowly crawled across the wet leaf after the rain.",
+        "The snail carries its curled shell everywhere it goes.",
+        "We found a snail hiding under a rock in the garden.",
+        "It took the snail a very long time to cross the sidewalk.",
+        "The snail left a shiny, silvery trail along the stone path."
+    ],
+    852: [
+        "We collected a beautiful pink shell while walking along the beach.",
+        "The turtle pulled its head into its hard shell to hide.",
+        "I held the shell up to my ear to hear the ocean.",
+        "The little crab found a new shell to live in.",
+        "Grandma keeps a bowl of pretty shells on the living room table."
+    ],
+    853: [
+        "Remember to pack your toothbrush before we leave for the trip.",
+        "I use a new toothbrush every three months to keep my teeth healthy.",
+        "The dentist gave me a colorful toothbrush after my checkup.",
+        "Please put your toothbrush back in the cup after you brush your teeth.",
+        "My little brother forgot his toothbrush at his grandmother's house."
+    ],
+    854: [
+        "I wore a warm sweater because the wind was very cold today.",
+        "My grandmother knitted a soft blue sweater for my birthday.",
+        "He pulled on a thick sweater before going outside in the snow.",
+        "The wool sweater kept me warm during our winter camping trip.",
+        "She spilled juice on her favorite sweater at the party."
+    ],
+    855: [
+        "Every student must wear the school uniform neatly each day.",
+        "The soccer team wore a matching uniform with bright red stripes.",
+        "He was proud to put on his new uniform for his first day.",
+        "The police officer's uniform has a shiny silver badge on it.",
+        "Our school uniform includes a white shirt and navy blue pants."
+    ],
+    856: [
+        "We rode a small boat down the quiet river past green hills.",
+        "Fish and turtles swim together in the clear river near our town.",
+        "The river flooded after three days of heavy, non-stop rain.",
+        "We had a picnic on the grassy bank beside the river.",
+        "The old wooden bridge crosses the river just outside the village."
+    ],
+    857: [
+        "I wrapped myself in a soft blanket while watching movies at home.",
+        "My grandmother made a warm blanket with squares of colorful cloth.",
+        "We spread a big blanket on the grass for our picnic lunch.",
+        "The baby slept peacefully under a fluffy white blanket.",
+        "I brought an extra blanket in case the tent got cold at night."
+    ],
+    858: [
+        "The bright red balloon floated high into the sky when he let go.",
+        "We filled every balloon with air for the birthday party decorations.",
+        "The clown twisted a long balloon into the shape of a dog.",
+        "My balloon popped loudly when it touched the sharp thorn bush.",
+        "Colorful balloons hung above the table at my sister's party."
     ]
 };

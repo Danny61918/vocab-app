@@ -857,7 +857,27 @@ const serverData: Word[] = [
     { "id": 835, "date": "2026-08-13", "english": "dentist", "chinese": "牙醫", "part_of_speech": "(n.)", "example": "I visit the dentist twice a year to keep my teeth clean and healthy." },
     { "id": 836, "date": "2026-08-13", "english": "because", "chinese": "因為", "part_of_speech": "(conj.)", "example": "I stayed home today because I had a bad cold and a very sore throat." },
     { "id": 837, "date": "2026-08-13", "english": "market", "chinese": "市場", "part_of_speech": "(n.)", "example": "We bought fresh apples and sweet oranges at the market this morning." },
-    { "id": 838, "date": "2026-08-13", "english": "island", "chinese": "島", "part_of_speech": "(n.)", "example": "We took a small boat to the quiet island in the middle of the lake." }
+    { "id": 838, "date": "2026-08-13", "english": "island", "chinese": "島", "part_of_speech": "(n.)", "example": "We took a small boat to the quiet island in the middle of the lake." },
+    { "id": 839, "date": "2026-08-17", "english": "curve", "chinese": "曲線", "part_of_speech": "(n.)", "example": "The road makes a sharp curve just before it reaches the small bridge." },
+    { "id": 840, "date": "2026-08-17", "english": "valuable", "chinese": "有價值的", "part_of_speech": "(adj.)", "example": "My grandmother's old ring is very valuable, so we keep it in a safe place." },
+    { "id": 841, "date": "2026-08-17", "english": "building", "chinese": "建築物", "part_of_speech": "(n.)", "example": "That tall building downtown has more than fifty floors and a rooftop garden." },
+    { "id": 842, "date": "2026-08-17", "english": "splash", "chinese": "濺起", "part_of_speech": "(v.)", "example": "The children love to splash water at each other in the swimming pool." },
+    { "id": 843, "date": "2026-08-17", "english": "surprised", "chinese": "驚訝的", "part_of_speech": "(adj.)", "example": "I was surprised to see all my friends waiting to celebrate my birthday." },
+    { "id": 844, "date": "2026-08-18", "english": "headache", "chinese": "頭痛", "part_of_speech": "(n.)", "example": "I had a bad headache after staring at the computer screen all afternoon." },
+    { "id": 845, "date": "2026-08-18", "english": "shoulder", "chinese": "肩膀", "part_of_speech": "(n.)", "example": "The tired little boy fell asleep on his father's shoulder during the car ride." },
+    { "id": 846, "date": "2026-08-18", "english": "dolphin", "chinese": "海豚", "part_of_speech": "(n.)", "example": "We watched a playful dolphin jump high above the waves near our boat." },
+    { "id": 847, "date": "2026-08-18", "english": "skip", "chinese": "跳繩", "part_of_speech": "(v.)", "example": "The girls like to skip rope together during recess every single day." },
+    { "id": 848, "date": "2026-08-18", "english": "curly", "chinese": "捲曲的", "part_of_speech": "(adj.)", "example": "My little sister has curly hair that bounces when she runs around." },
+    { "id": 849, "date": "2026-08-19", "english": "clown", "chinese": "小丑", "part_of_speech": "(n.)", "example": "The funny clown made balloon animals for all the children at the party." },
+    { "id": 850, "date": "2026-08-19", "english": "ticket", "chinese": "票券", "part_of_speech": "(n.)", "example": "Please do not lose your ticket, or you cannot enter the concert hall." },
+    { "id": 851, "date": "2026-08-19", "english": "snail", "chinese": "蝸牛", "part_of_speech": "(n.)", "example": "A tiny snail slowly crawled across the wet leaf after the morning rain." },
+    { "id": 852, "date": "2026-08-19", "english": "shell", "chinese": "殼；外殼", "part_of_speech": "(n.)", "example": "We collected a beautiful pink shell while walking along the sandy beach." },
+    { "id": 853, "date": "2026-08-19", "english": "toothbrush", "chinese": "牙刷", "part_of_speech": "(n.)", "example": "Remember to pack your toothbrush and toothpaste before we go on our trip." },
+    { "id": 854, "date": "2026-08-20", "english": "sweater", "chinese": "毛衣", "part_of_speech": "(n.)", "example": "I wore a warm sweater because the wind was very cold this morning." },
+    { "id": 855, "date": "2026-08-20", "english": "uniform", "chinese": "制服", "part_of_speech": "(n.)", "example": "Every student must wear the school uniform neatly every single day." },
+    { "id": 856, "date": "2026-08-20", "english": "river", "chinese": "河流", "part_of_speech": "(n.)", "example": "We rode a small boat down the quiet river past the green hills." },
+    { "id": 857, "date": "2026-08-20", "english": "blanket", "chinese": "毯子", "part_of_speech": "(n.)", "example": "I wrapped myself in a soft blanket while watching movies on the sofa." },
+    { "id": 858, "date": "2026-08-20", "english": "balloon", "chinese": "氣球", "part_of_speech": "(n.)", "example": "The bright red balloon floated high into the sky when the boy let it go." }
 ];
 
 export default serverData; 
