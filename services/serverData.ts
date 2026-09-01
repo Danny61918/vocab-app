@@ -877,7 +877,31 @@ const serverData: Word[] = [
     { "id": 855, "date": "2026-08-20", "english": "uniform", "chinese": "制服", "part_of_speech": "(n.)", "example": "Every student must wear the school uniform neatly every single day." },
     { "id": 856, "date": "2026-08-20", "english": "river", "chinese": "河流", "part_of_speech": "(n.)", "example": "We rode a small boat down the quiet river past the green hills." },
     { "id": 857, "date": "2026-08-20", "english": "blanket", "chinese": "毯子", "part_of_speech": "(n.)", "example": "I wrapped myself in a soft blanket while watching movies on the sofa." },
-    { "id": 858, "date": "2026-08-20", "english": "balloon", "chinese": "氣球", "part_of_speech": "(n.)", "example": "The bright red balloon floated high into the sky when the boy let it go." }
+    { "id": 858, "date": "2026-08-20", "english": "balloon", "chinese": "氣球", "part_of_speech": "(n.)", "example": "The bright red balloon floated high into the sky when the boy let it go." },
+    { "id": 859, "date": "2026-08-31", "english": "fish/ go fishing", "chinese": "釣魚", "part_of_speech": "(v.)", "example": "My dad and I often go fishing at the lake on weekends." },
+    { "id": 860, "date": "2026-08-31", "english": "waterski / go waterskiing", "chinese": "滑水", "part_of_speech": "(v.)", "example": "They like to go waterskiing on the blue lake behind a fast motorboat in the warm summer." },
+    { "id": 861, "date": "2026-08-31", "english": "sail/ go sailing", "chinese": "航行", "part_of_speech": "(v.)", "example": "We want to go sailing on the blue ocean with our good friends on a windy day." },
+    { "id": 862, "date": "2026-08-31", "english": "row", "chinese": "划船", "part_of_speech": "(v.)", "example": "Can you help me row a boat across the water?" },
+    { "id": 863, "date": "2026-08-31", "english": "rollerblade/ go rollerblading", "chinese": "直排輪", "part_of_speech": "(v.)", "example": "After school, I often go rollerblading in the park and wear my helmet and knee pads." },
+    { "id": 864, "date": "2026-08-31", "english": "a couple of", "chinese": "成對的…；兩三個…", "part_of_speech": "(ph.)", "example": "On a sunny afternoon, mom gives me a couple of sweet strawberries and a couple of cold juices." },
+    { "id": 865, "date": "2026-09-02", "english": "minute", "chinese": "分鐘", "part_of_speech": "(n.)", "example": "I can finish my math homework in just a few minutes and then play video games." },
+    { "id": 866, "date": "2026-09-02", "english": "celebrate", "chinese": "慶祝", "part_of_speech": "(v.)", "example": "We eat a big chocolate cake and sing happy songs to celebrate my sister's birthday." },
+    { "id": 867, "date": "2026-09-02", "english": "knock", "chinese": "敲", "part_of_speech": "(v.)", "example": "A friendly postman gently knocks on our wooden front door to deliver a heavy box." },
+    { "id": 868, "date": "2026-09-02", "english": "invite", "chinese": "邀請", "part_of_speech": "(v.)", "example": "My best friend wants to invite all our classmates to a fun pool party." },
+    { "id": 869, "date": "2026-09-02", "english": "surprise", "chinese": "驚喜；驚嚇", "part_of_speech": "(n.)", "example": "Opening the colorful gift box gives me a huge birthday surprise!" },
+    { "id": 870, "date": "2026-09-02", "english": "a long time ago", "chinese": "很久以前", "part_of_speech": "(ph.)", "example": "A long time ago, a brave knight lived in a big stone castle with a magic dragon." },
+    { "id": 871, "date": "2026-09-03", "english": "hide and seek", "chinese": "捉迷藏", "part_of_speech": "(n.)", "example": "During the long recess, all the happy children love to play hide and seek behind the green bushes in the school yard." },
+    { "id": 872, "date": "2026-09-03", "english": "write an email", "chinese": "寫信", "part_of_speech": "(v.)", "example": "After finishing my homework, I like to write an email on my computer to my foreign pen pal." },
+    { "id": 873, "date": "2026-09-03", "english": "have a rest", "chinese": "休息一下", "part_of_speech": "(v.)", "example": "After running for a long time, the tired dog needs to have a rest under a big shady tree." },
+    { "id": 874, "date": "2026-09-03", "english": "play tennis", "chinese": "打網球", "part_of_speech": "(v.)", "example": "On sunny weekends, my athletic brother and I love to play tennis with a heavy racket on the hard court." },
+    { "id": 875, "date": "2026-09-03", "english": "swim/ go swimming", "chinese": "游泳", "part_of_speech": "(v.)", "example": "In the hot summer afternoon, my family and I like to go swimming in the cool blue pool." },
+    { "id": 876, "date": "2026-09-03", "english": "a lot of", "chinese": "很多…", "part_of_speech": "(ph.)", "example": "At the party, we can see a lot of colorful balloons and a lot of delicious cakes." },
+    { "id": 877, "date": "2026-09-04", "english": "climb/ go climbing", "chinese": "攀爬", "part_of_speech": "(v.)", "example": "On a sunny morning, the brave monkey likes to climb up a tall brown tree in the forest." },
+    { "id": 878, "date": "2026-09-04", "english": "football", "chinese": "足球", "part_of_speech": "(n.)", "example": "The energetic boys run fast across the green grass to kick a black-and-white football during PE class." },
+    { "id": 879, "date": "2026-09-04", "english": "basketball", "chinese": "籃球", "part_of_speech": "(n.)", "example": "My tall uncle can easily bounce a round orange basketball and shoot it into the high net." },
+    { "id": 880, "date": "2026-09-04", "english": "skateboard/ go skateboarding", "chinese": "滑板", "part_of_speech": "(v.)", "example": "My cool sister wears a helmet to skateboard safely on the smooth park path." },
+    { "id": 881, "date": "2026-09-04", "english": "several", "chinese": "幾個；數個；一些", "part_of_speech": "(adj.)", "example": "In the school library, I am reading several interesting picture books about cute animals." },
+    { "id": 882, "date": "2026-09-04", "english": "a pair of", "chinese": "一雙…；一副…", "part_of_speech": "(ph.)", "example": "Before going out to play, my little brother wears a pair of red sneakers and a pair of cool sunglasses." }
 ];
 
 export default serverData; 

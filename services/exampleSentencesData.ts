@@ -1965,5 +1965,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "The clown twisted a long balloon into the shape of a dog.",
         "My balloon popped loudly when it touched the sharp thorn bush.",
         "Colorful balloons hung above the table at my sister's party."
+    ],
+    859: [
+        "My dad and I often go fishing at the lake on weekends.",
+        "We woke up early to go fishing before the sun got too hot.",
+        "Grandpa taught me how to fish with a long bamboo pole.",
+        "They caught three big fish while fishing from the small wooden boat.",
+        "I love to go fishing in the quiet river behind our house."
+    ],
+    860: [
+        "They like to go waterskiing on the blue lake behind a fast motorboat in the warm summer.",
+        "My brother learned to waterski when he was only ten years old.",
+        "We go waterskiing every summer at the big lake near Grandma's house.",
+        "You must wear a life jacket before you waterski on the water.",
+        "She fell into the water twice before she could finally waterski well."
+    ],
+    861: [
+        "We want to go sailing on the blue ocean with our good friends on a windy day.",
+        "The little boat will sail across the bay when the wind is strong.",
+        "My uncle likes to sail his white boat around the quiet island.",
+        "We go sailing every Saturday if the weather is clear and breezy.",
+        "The sailors raised the big sail and the ship began to move."
+    ],
+    862: [
+        "Can you help me row a boat across the water?",
+        "We took turns to row the small boat to the other side of the lake.",
+        "The old fisherman can row for hours without getting tired.",
+        "Please row slowly so the boat does not tip over.",
+        "My sister and I row together to make the boat go faster."
+    ],
+    863: [
+        "After school, I often go rollerblading in the park and wear my helmet and knee pads.",
+        "My friend can rollerblade backwards without falling down.",
+        "We like to rollerblade along the smooth path beside the river.",
+        "You should wear a helmet every time you rollerblade outside.",
+        "She got new rollerblades and practiced rollerblading all afternoon."
+    ],
+    864: [
+        "On a sunny afternoon, mom gives me a couple of sweet strawberries and a couple of cold juices.",
+        "I need a couple of minutes to finish my drawing before we leave.",
+        "We bought a couple of apples and a couple of bananas at the market.",
+        "There are a couple of birds singing in the tree outside my window.",
+        "He read a couple of books during the long summer holiday."
+    ],
+    865: [
+        "I can finish my math homework in just a few minutes and then play video games.",
+        "Please wait one minute while I put on my shoes and grab my bag.",
+        "The cake needs to bake for about thirty minutes in the hot oven.",
+        "We were five minutes late because the school bus came slowly.",
+        "In one minute, the teacher will start reading us a new story."
+    ],
+    866: [
+        "We eat a big chocolate cake and sing happy songs to celebrate my sister's birthday.",
+        "Our family will celebrate the New Year with a big dinner and bright fireworks.",
+        "The whole class wanted to celebrate when we won the reading contest.",
+        "They celebrate their grandparents' special day with flowers and a party every year.",
+        "We celebrated my dad's new job by going out for ice cream."
+    ],
+    867: [
+        "A friendly postman gently knocks on our wooden front door to deliver a heavy box.",
+        "Please knock on the door softly before you go into the teacher's office.",
+        "I heard someone knock three times, but nobody was there when I looked.",
+        "The strong wind can knock the flower pots off the balcony.",
+        "He forgot to knock and walked right into the meeting room."
+    ],
+    868: [
+        "My best friend wants to invite all our classmates to a fun pool party.",
+        "We will invite our new neighbors to have dinner with us on Sunday.",
+        "Did your teacher invite the parents to watch the school play?",
+        "I want to invite ten friends to my birthday at the park.",
+        "They forgot to invite him, so he felt a little sad."
+    ],
+    869: [
+        "Opening the colorful gift box gives me a huge birthday surprise!",
+        "We planned a secret surprise party for our kind old teacher.",
+        "What a nice surprise to see my cousins waiting at the airport!",
+        "The magician's last trick was a big surprise for everyone in the room.",
+        "Mom hid the puppy in a basket as a surprise for my brother."
+    ],
+    870: [
+        "A long time ago, a brave knight lived in a big stone castle with a magic dragon.",
+        "A long time ago, there were no cars, and people rode horses everywhere.",
+        "Grandpa said that a long time ago this busy city was just a small village.",
+        "A long time ago, a kind fairy helped a poor farmer find gold.",
+        "People believed a long time ago that the earth was flat like a plate."
+    ],
+    871: [
+        "During the long recess, all the happy children love to play hide and seek behind the green bushes in the school yard.",
+        "We played hide and seek in the garden until it got too dark to see.",
+        "My little brother always hides in the same spot when we play hide and seek.",
+        "Hide and seek is more fun when there are many places to hide.",
+        "The kids begged their dad for one more game of hide and seek."
+    ],
+    872: [
+        "After finishing my homework, I like to write an email on my computer to my foreign pen pal.",
+        "My mom asked me to write an email to Grandma about our trip.",
+        "The teacher taught us how to write an email in a polite way.",
+        "I will write an email to my friend to thank her for the gift.",
+        "He sat down to write an email before he forgot the good news."
+    ],
+    873: [
+        "After running for a long time, the tired dog needs to have a rest under a big shady tree.",
+        "Let's have a rest on this bench before we walk up the hill.",
+        "The workers stopped to have a rest and drink some cold water.",
+        "You should have a rest if your eyes feel tired from reading.",
+        "Grandma likes to have a rest after lunch every single day."
+    ],
+    874: [
+        "On sunny weekends, my athletic brother and I love to play tennis with a heavy racket on the hard court.",
+        "We play tennis at the park every Saturday morning before it gets hot.",
+        "My sister wants to play tennis on the school team next year.",
+        "Do you want to play tennis with me after class today?",
+        "They play tennis together whenever the weather is nice and dry."
+    ],
+    875: [
+        "In the hot summer afternoon, my family and I like to go swimming in the cool blue pool.",
+        "The little ducks can swim across the pond behind their mother.",
+        "I learned to swim when I was six years old at the town pool.",
+        "We go swimming every day during our long summer holiday.",
+        "She can swim faster than anyone else in our whole class."
+    ],
+    876: [
+        "At the party, we can see a lot of colorful balloons and a lot of delicious cakes.",
+        "There are a lot of books on the shelf in our classroom.",
+        "It takes a lot of practice to play the piano well.",
+        "We saw a lot of animals at the zoo on our school trip.",
+        "He drank a lot of water after the long, tiring race."
+    ],
+    877: [
+        "On a sunny morning, the brave monkey likes to climb up a tall brown tree in the forest.",
+        "We will climb the steep hill to watch the sunrise tomorrow.",
+        "The cat tried to climb the fence to catch the little bird.",
+        "My legs were tired after we climbed all the way to the top.",
+        "It is fun to climb the rock wall at the new sports center."
+    ],
+    878: [
+        "The energetic boys run fast across the green grass to kick a black-and-white football during PE class.",
+        "We watched an exciting football game on television last night.",
+        "He kicked the football so hard that it flew over the fence.",
+        "My cousin plays football for his school team every weekend.",
+        "The new football is round, shiny, and perfect for our match."
+    ],
+    879: [
+        "My tall uncle can easily bounce a round orange basketball and shoot it into the high net.",
+        "We play basketball on the court near our house after school.",
+        "She threw the basketball from far away and scored three points.",
+        "My brother practices basketball every evening in the driveway.",
+        "The basketball rolled off the court and into the tall grass."
+    ],
+    880: [
+        "My cool sister wears a helmet to skateboard safely on the smooth park path.",
+        "He got a new skateboard with bright red wheels for his birthday.",
+        "We like to skateboard at the park after we finish our homework.",
+        "You should never skateboard on the busy road near the school.",
+        "She practiced on her skateboard until she could do a small jump."
+    ],
+    881: [
+        "In the school library, I am reading several interesting picture books about cute animals.",
+        "Several of my friends came to my house to play board games.",
+        "The teacher gave us several minutes to finish the short quiz.",
+        "We saw several deer standing quietly at the edge of the forest.",
+        "I have visited that museum several times with my family."
+    ],
+    882: [
+        "Before going out to play, my little brother wears a pair of red sneakers and a pair of cool sunglasses.",
+        "I bought a pair of warm gloves because winter is coming soon.",
+        "She keeps a pair of scissors and some glue in her desk.",
+        "My dad gave me a pair of blue socks with white stars on them.",
+        "The clown wore a pair of huge shoes and a tiny hat."
     ]
 };
