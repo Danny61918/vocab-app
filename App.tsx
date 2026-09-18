@@ -13,13 +13,14 @@ import PhraseChallenge from './components/PhraseChallenge';
 import AchievementsView from './components/AchievementsView';
 import CreativeWorkshop from './components/CreativeWorkshop';
 import { TutorialGuide } from './components/TutorialGuide';
+import PracticeView from './components/PracticeView';
 import { getStreak, getUserData } from './services/gamification';
 import { bootCloudSync } from './services/cloudSync';
-import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins, HelpCircle } from 'lucide-react';
+import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins, HelpCircle, Headphones } from 'lucide-react';
 
 const APP_VERSION = '7.1'; // Level 6 Week 19-20 (2026/6/15~6/23) 單字更新 & 關卡進度重置修復
 
-type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP';
+type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP' | 'PRACTICE';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -148,6 +149,8 @@ function App() {
         return <TutorialGuide onBack={() => setCurrentView('MENU')} />;
       case 'CREATIVE_WORKSHOP':
         return <CreativeWorkshop onBack={() => setCurrentView('MENU')} />;
+      case 'PRACTICE':
+        return <PracticeView onBack={() => setCurrentView('MENU')} />;
       default:
         const streak = getStreak();
         const userData = getUserData();
@@ -356,7 +359,10 @@ function App() {
               </div>
               
               {/* Row 3: Utility Tools */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <button onClick={() => setCurrentView('PRACTICE')} className="bg-white h-24 rounded-[1.5rem] shadow-md border border-slate-100 flex flex-col items-center justify-center text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 transition">
+                  <Headphones size={24} className="mb-2" /><span className="font-bold">練習</span>
+                </button>
                 <button onClick={() => setCurrentView('ANALYTICS')} className="bg-white h-24 rounded-[1.5rem] shadow-md border border-slate-100 flex flex-col items-center justify-center text-slate-600 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition">
                   <PieChart size={24} className="mb-2" /><span className="font-bold">學習分析</span>
                 </button>
