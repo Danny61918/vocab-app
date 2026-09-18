@@ -2133,5 +2133,509 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "She keeps a pair of scissors and some glue in her desk.",
         "My dad gave me a pair of blue socks with white stars on them.",
         "The clown wore a pair of huge shoes and a tiny hat."
+    ],
+    883: [
+        "The naughty monkey tried to carry the whole pizza box back up its tree.",
+        "Can you carry my sleeping bag and torch to the campsite for me?",
+        "The strong elephant can carry a giant log across the river without stopping.",
+        "I always carry my sunglasses and a bottle of water to the beach.",
+        "The clown had to carry three balloons and a teddy bear at the same time."
+    ],
+    884: [
+        "The excited children hoped it would snow so they could go snowboarding.",
+        "A tiny snail left a slow, silvery trail across the fresh snow.",
+        "My grandfather told me a funny story about the year it snowed at the beach.",
+        "The mountain looked enormous and white after the snow fell all night.",
+        "We built a snowman wearing sunglasses and an old sweater in the snow."
+    ],
+    885: [
+        "Steam vapor rose from the pot while the scientist watched carefully.",
+        "The dragonfly flew through the warm vapor rising off the pond.",
+        "My grandfather's hot tea made a little cloud of vapor in the cold morning air.",
+        "The enormous kettle let out a loud burst of vapor with a whistle.",
+        "You can see your breath turn into vapor on a snowy winter day."
+    ],
+    886: [
+        "The lizard loves to nap on a warm rock on a sunny day.",
+        "It was so sunny that everyone at the campsite wore sunglasses.",
+        "The farmer smiled because sunny weather is perfect for his tomatoes.",
+        "We rode our bicycles to the beach on a bright, sunny morning.",
+        "A butterfly landed on a flower in the sunny garden."
+    ],
+    887: [
+        "The scientist checked her chart to predict when the cloudy sky would clear.",
+        "The tortoise hid inside its shell because the cloudy sky looked like rain.",
+        "We stayed inside the library and read comics on a cloudy afternoon.",
+        "The elephant didn't mind the cloudy weather and kept playing in the mud.",
+        "A cloudy day is still perfect for flying a kite at the park."
+    ],
+    888: [
+        "The winner said she didn't agree with the referee's final score.",
+        "My cousin and I always agree with each other about which movie to watch.",
+        "Do you agree with the scientist's idea about saving the rainforest animals?",
+        "The farmer didn't agree with the weather report, so he checked the sky himself.",
+        "Everyone at the club seemed to agree with the fun new game rules."
+    ],
+    889: [
+        "The shop owner said today would be perfect and windy for flying kites.",
+        "It was too windy for the surfboard, so we built a sandcastle instead.",
+        "The parrot fluffed up its feathers to stay warm on the windy morning.",
+        "We zipped up our sleeping bags because the campsite was very windy at night.",
+        "The windy weather knocked the old ladder against the dark barn."
+    ],
+    890: [
+        "The snail always comes out to play on a rainy afternoon.",
+        "On rainy days, my grandfather tells the funniest stories by the fireplace.",
+        "The farmer was happy because the rainy season was good for his rice fields.",
+        "We watched funny movies and ate cookies together on a rainy weekend.",
+        "The tortoise and the snail both love a good rainy day."
+    ],
+    891: [
+        "The bear stayed warm and slept through the whole snowy winter.",
+        "We wore thick sweaters and gloves for the snowy hike up the mountain.",
+        "The horse pulled the sled carefully across the snowy field.",
+        "It's fun to skate on the frozen pond during a snowy weekend.",
+        "My teddy bear wore a tiny scarf to stay cozy on a snowy night."
+    ],
+    892: [
+        "The pilot had to wait an hour because the airport was too foggy.",
+        "A mysterious owl hooted somewhere in the foggy forest.",
+        "The boat moved slowly through the foggy harbor at dawn.",
+        "It was so foggy that the lighthouse looked like a floating shadow.",
+        "We almost missed the train because the station was completely foggy."
+    ],
+    893: [
+        "The sailors rushed back to the harbor before the stormy sea got worse.",
+        "During the stormy night, we heard loud thunder and saw bright lightning.",
+        "The scared kitten hid under a warm blanket during the stormy storm.",
+        "The farmer worried about his crops during the long, stormy week.",
+        "The dolphin didn't seem to mind swimming through the stormy waves."
+    ],
+    894: [
+        "Scientists all over the world are trying to protect endangered animals like the panda.",
+        "My postcard collection has cards from museums all over the world.",
+        "Kids all over the world enjoy playing games and telling funny jokes.",
+        "The famous singer performed concerts all over the world last year.",
+        "Countries all over the world have their own traditional food and clothes."
+    ],
+    895: [
+        "The scientist measured the temperature at ten degrees below zero.",
+        "It turned ten degrees colder, so I put on my warm sweater.",
+        "The dentist's office was kept at a comfortable seventy degrees.",
+        "The strange rock stood at a ninety-degree angle above the river.",
+        "Every extra degree of heat made the campsite feel more humid."
+    ],
+    896: [
+        "The vet gently checked the sick rabbit's temperature at the clinic.",
+        "We use a chart to record the classroom's temperature every morning.",
+        "The chameleon's body temperature changes depending on the sunny rock it sits on.",
+        "My grandfather always checks the temperature before deciding what to wear outside.",
+        "The temperature dropped suddenly, so the campers zipped up their sleeping bags."
+    ],
+    897: [
+        "The rooster crowed louder than my alarm clock every single morning.",
+        "I set my alarm clock early so I wouldn't miss the school bus.",
+        "The naughty monkey pressed every button on the alarm clock, and it wouldn't stop beeping.",
+        "My grandfather still uses an old-fashioned alarm clock instead of his phone.",
+        "The alarm clock rang just as I was dreaming about a giant dinosaur."
+    ],
+    898: [
+        "Feeding the guinea pig is my favorite chore because he is so cute.",
+        "My chore this week is to organize the family's old postcards and photos.",
+        "The farmer's morning chore is to feed the hens before breakfast.",
+        "I always finish my chores quickly so I have time to relax and read comics.",
+        "Washing the family car became a fun chore once my cousin helped me."
+    ],
+    899: [
+        "The pilot checked his schedule to see what time the flight would leave.",
+        "Our teacher posted the class schedule on a colorful chart on the wall.",
+        "My schedule this weekend includes a trip to the museum and the library.",
+        "The vet's schedule was full because so many pets needed checkups today.",
+        "According to the schedule, the singer will perform right after the clown's show."
+    ],
+    900: [
+        "All of a sudden, the enormous elephant started to dance to the music.",
+        "We were having a picnic when, all of a sudden, it started to rain.",
+        "All of a sudden, the scared rabbit jumped out of the tall grass.",
+        "The lights went out all of a sudden during the stormy night.",
+        "All of a sudden, the clown pulled a real rabbit out of his hat!"
+    ],
+    901: [
+        "My grandfather rarely gets angry, even when things go wrong.",
+        "It rarely snows in our town, so everyone got excited when it did.",
+        "The shy chameleon rarely leaves its favorite branch in the tree.",
+        "We rarely visit the museum on weekends because it's so crowded.",
+        "The famous singer rarely gives interviews to newspapers."
+    ],
+    902: [
+        "The winner said her secret was hours of practice every single week.",
+        "The football team went to the park to practice before the big contest.",
+        "My cousin loves to practice riding her bicycle around the block.",
+        "The clown had to practice juggling for months before the show.",
+        "Scientists practice their experiments carefully before sharing the results."
+    ],
+    903: [
+        "The astronaut packed a tiny teddy bear for good luck before the flight.",
+        "My little brother dreams of becoming an astronaut and exploring giant planets.",
+        "The astronaut used a special torch to look inside the dark spacecraft.",
+        "Scientists helped train the astronaut for months before the mission.",
+        "The astronaut waved at a tiny blue dot that was actually our enormous planet."
+    ],
+    904: [
+        "The artist used bright colors to paint a picture of a spotted giraffe.",
+        "My cousin is a talented artist who loves drawing funny cartoon animals.",
+        "The famous artist decorated the museum wall with a huge, colorful mural.",
+        "The artist carried her paints and brushes all the way to the beach.",
+        "Every artist at the contest got a shiny medal for their amazing work."
+    ],
+    905: [
+        "The scientist studied the chameleon's stripy skin under a bright light.",
+        "A young scientist explained how vapor turns into rain clouds.",
+        "The scientist wore special glasses to protect her eyes in the lab.",
+        "Every scientist at the museum was excited to show off their new invention.",
+        "The scientist carefully recorded the temperature of the erupting volcano."
+    ],
+    906: [
+        "My grandfather tells the same funny joke all the time, but we still laugh.",
+        "The naughty monkey steals bananas from the food court all the time.",
+        "It rains all the time during the stormy season near the river.",
+        "The clown makes the whole class laugh all the time with his tricks.",
+        "My little sister asks to visit the library all the time."
+    ],
+    907: [
+        "The brave policeman helped the lost tourist find the train station.",
+        "A friendly policeman showed our class around the police car at school.",
+        "The policeman blew his whistle loudly to stop the traffic.",
+        "My uncle became a policeman because he wanted to help his community.",
+        "The policeman gently returned the naughty puppy to its worried owner."
+    ],
+    908: [
+        "The pilot checked the stormy weather chart before takeoff.",
+        "My cousin wants to be a pilot and travel all over the world.",
+        "The pilot smiled and waved at the excited children boarding the plane.",
+        "Even in foggy weather, the skilled pilot landed the plane safely.",
+        "The pilot's uniform had shiny buttons and a golden badge."
+    ],
+    909: [
+        "The actress practiced her lines every day before the big show.",
+        "A famous actor visited the museum to research his next movie role.",
+        "The actress wore a giant dinosaur costume for the funny commercial.",
+        "Everyone at the contest cheered for the young actor's performance.",
+        "The actress signed autographs and postcards for her excited fans."
+    ],
+    910: [
+        "The pirate used an old torch to explore the dark, spooky cave.",
+        "A parrot sat on the pirate's shoulder and repeated funny words.",
+        "The pirate's treasure chest was full of shiny shells and old coins.",
+        "We dressed up as pirates and sailed a toy boat across the pool.",
+        "The clumsy pirate tripped over a giant crab on the sandy beach."
+    ],
+    911: [
+        "The famous footballer signed autographs for the excited fans after the game.",
+        "Every footballer on the team practiced hard before the big contest.",
+        "The footballer scored the winning goal in the last minute of the match.",
+        "My cousin wants to become a footballer just like his favorite player.",
+        "The tired footballer went home to relax after a long, stormy match."
+    ],
+    912: [
+        "We sang funny songs all the way to the campsite.",
+        "The astronaut traveled all the way to the space station without stopping.",
+        "My grandfather walked all the way to the library just to return one book.",
+        "The tired hikers climbed all the way to the top of the enormous mountain.",
+        "The little turtle crawled all the way across the yard to reach the pond."
+    ],
+    913: [
+        "The firefighter rescued a scared kitten stuck high in a tree.",
+        "Every firefighter at the station keeps their gear ready all the time.",
+        "The firefighter taught our class how to stay safe during a fire drill.",
+        "A brave firefighter carried an old man safely down the ladder.",
+        "The firefighter's red truck raced down the road with its loud siren on."
+    ],
+    914: [
+        "The scientist studied the storm clouds. Meanwhile, the farmer covered his crops.",
+        "I practiced the piano. Meanwhile, my sister decorated cookies in the kitchen.",
+        "The pilot prepared the plane. Meanwhile, the passengers boarded excitedly.",
+        "The firefighter rescued the cat. Meanwhile, the crowd cheered loudly.",
+        "The astronaut floated in space. Meanwhile, scientists watched from Earth."
+    ],
+    915: [
+        "My grandfather likes to go for a walk by the river every evening.",
+        "We put on our sweaters and went for a walk in the cool, windy weather.",
+        "The tortoise seemed happy just to go for a slow walk in the garden.",
+        "Let's go for a walk to the food court and get some pizza.",
+        "The firefighter likes to go for a walk to relax after a long shift."
+    ],
+    916: [
+        "The cartoonist drew a brand-new comics series about a brave firefighter.",
+        "My cousin has a whole shelf of comics about dinosaurs and pirates.",
+        "We traded comics at the library's weekend book fair.",
+        "The funny comics made everyone at the campsite laugh out loud.",
+        "I keep my favorite comics safe inside a giant toy box."
+    ],
+    917: [
+        "The famous artist's new paintings are on display at the art gallery this month.",
+        "Our class took a bus to the art gallery next to the museum.",
+        "The art gallery displayed a giant sculpture shaped like a dinosaur.",
+        "My grandfather bought a postcard of his favorite painting at the art gallery.",
+        "The cartoonist's funny drawings were shown at a small art gallery downtown."
+    ],
+    918: [
+        "The zoo has lions, elephants, monkeys, and so on for visitors to see.",
+        "My chores include washing dishes, feeding the guinea pig, and so on.",
+        "The scientist studies weather patterns like storms, fog, wind, and so on.",
+        "At camp we learned to build a fire, pitch a tent, and so on.",
+        "The art gallery displayed paintings, sculptures, postcards, and so on."
+    ],
+    919: [
+        "The pilot gave a short interview about her exciting flight all over the world.",
+        "During the interview, the scientist explained her discovery about chameleons.",
+        "The footballer's interview after the match made all the fans cheer.",
+        "My cousin was so nervous before her job interview at the museum.",
+        "The clown gave a funny interview about how he learned to juggle."
+    ],
+    920: [
+        "The cartoonist sketched a giant, friendly dinosaur for the comics.",
+        "My cousin dreams of becoming a cartoonist and drawing her own comics.",
+        "The cartoonist used bright colors to decorate every page of the storybook.",
+        "At the art gallery, the cartoonist showed sketches of pirates and astronauts.",
+        "The famous cartoonist signed postcards for the excited kids at the fair."
+    ],
+    921: [
+        "It was difficult for the astronaut to sleep in the tiny spacecraft.",
+        "The scientist faced a difficult question about the mysterious chameleon.",
+        "Climbing the enormous mountain was difficult, but the view was worth it.",
+        "The footballer found it difficult to score with so many players blocking him.",
+        "Learning to juggle three balls was difficult for the young clown."
+    ],
+    922: [
+        "The scientist wrote a computer programme to track the chameleon's movements.",
+        "My favorite TV programme is about a brave firefighter and her dog.",
+        "The school programme included a trip to the art gallery and the museum.",
+        "The cartoonist used a drawing programme to create colorful comics.",
+        "The astronaut trained for the space programme for almost two years."
+    ],
+    923: [
+        "The tired firefighter finally got to relax at the campsite after the fire.",
+        "The tortoise likes to relax under the shade of a big tree.",
+        "My grandfather relaxes by reading comics on rainy afternoons.",
+        "After the interview, the actress went home to relax and eat pizza.",
+        "We relax by the river, watching dragonflies fly over the water."
+    ],
+    924: [
+        "The pilot announced that we would arrive in Tokyo in two hours.",
+        "The astronaut will arrive at the space station after a long journey.",
+        "We finally arrived at the campsite just as it started to get dark.",
+        "The footballer's team arrived at the stadium an hour before the match.",
+        "Grandfather always likes to arrive at the museum right when it opens."
+    ],
+    925: [
+        "My cousin and I go cycling past the campsite every summer morning.",
+        "We go cycling to the art gallery because it's faster than the bus.",
+        "The firefighter goes cycling to stay fit between emergency calls.",
+        "It's too windy today, so we can't go cycling by the river.",
+        "Grandfather still goes cycling every weekend, even though he is quite old."
+    ],
+    926: [
+        "My cousin loves to draw cartoons of dinosaurs riding skateboards.",
+        "The cartoonist can draw cartoons of any animal you can imagine.",
+        "We spent the rainy afternoon drawing cartoons and reading comics.",
+        "The actress learned to draw cartoons for a fun new movie project.",
+        "At art gallery workshops, kids can learn to draw cartoons with real artists."
+    ],
+    927: [
+        "The class decided to raise money to help build a new firefighter station.",
+        "We are going to raise money for the museum's new dinosaur exhibit.",
+        "The scientist asked the school to help raise money for ocean research.",
+        "The cartoonist sold funny drawings to raise money for the art gallery.",
+        "Everyone worked together to raise money for the sick guinea pig's surgery."
+    ],
+    928: [
+        "The naughty puppy accidentally destroyed my favorite comics.",
+        "A sudden storm can destroy a farmer's whole field of tomatoes.",
+        "The giant dinosaur in the movie destroyed an entire toy city.",
+        "Please don't destroy the sandcastle we built at the beach!",
+        "The scientist warned that pollution could destroy the coral reef and its fish."
+    ],
+    929: [
+        "My cousin likes to collect comics and old postcards.",
+        "We went to the beach to collect colorful shells.",
+        "The scientist collects data about chameleons that change color.",
+        "The cartoonist collects funny drawings from kids all over the world.",
+        "Grandfather collects old postcards from every country he has visited."
+    ],
+    930: [
+        "The pilot flew through a storm. As a result, the flight arrived late.",
+        "The firefighter worked all night. As a result, he was too tired to relax.",
+        "The scientist forgot her notes. As a result, the interview was very short.",
+        "It rained heavily at the campsite. As a result, everyone's sleeping bags got wet.",
+        "The cartoonist drew too fast. As a result, some comics had funny mistakes."
+    ],
+    931: [
+        "At adventure camp, we learned to pitch a tent and build a campfire together.",
+        "The firefighter visited our adventure camp to teach us about fire safety.",
+        "My cousin came back from adventure camp with a huge treasure map he drew himself.",
+        "We rode bicycles and went cycling all around the adventure camp.",
+        "The bravest kids at adventure camp climbed the tall climbing wall without any help."
+    ],
+    932: [
+        "The naughty monkey would have loved to climb the school's new climbing wall.",
+        "My cousin practiced every weekend until she could reach the top of the climbing wall.",
+        "The firefighter said climbing the wall was easier than climbing a burning building.",
+        "We wore special shoes and gloves to grip the colorful climbing wall.",
+        "The climbing wall at adventure camp was shaped like a giant dinosaur."
+    ],
+    933: [
+        "The scientist made a fantastic discovery about how chameleons change color.",
+        "My grandfather told a fantastic story about pirates and hidden treasure.",
+        "The clown's fantastic tricks made everyone at the party laugh.",
+        "It was fantastic to watch the astronaut float around the space station.",
+        "The art gallery had a fantastic exhibit of paintings by young artists."
+    ],
+    934: [
+        "The pirate told a scary story about a ghost ship lost at sea.",
+        "It was a little scary to explore the dark cave with only a torch for light.",
+        "The scary dinosaur in the movie made my little sister cover her eyes.",
+        "The stormy night with loud thunder and lightning felt very scary.",
+        "The firefighter said fires can be scary, but staying calm always helps."
+    ],
+    935: [
+        "The scientist had a brilliant plan to help the sick guinea pig get better.",
+        "My cousin is a brilliant artist who can draw cartoons of any animal.",
+        "The cartoonist thought of a brilliant new comics character overnight.",
+        "It was brilliant how the pilot landed the plane safely in such foggy weather.",
+        "The firefighter's brilliant idea saved the whole family from the fire."
+    ],
+    936: [
+        "The weather was sunny after all, so we didn't need our umbrellas.",
+        "The difficult exam wasn't so hard after all, thanks to all our practice.",
+        "The pirate wasn't scary after all; he just wanted a new comics book to read.",
+        "My grandfather decided to come to the campsite after all.",
+        "The stormy sky cleared up after all, so the football match continued."
+    ],
+    937: [
+        "The astronaut said the space station seats were surprisingly comfortable.",
+        "We packed a comfortable pillow and blanket for the trip to the countryside.",
+        "The firefighter finally relaxed in a comfortable chair after the long shift.",
+        "The tortoise looked very comfortable resting under its warm shell.",
+        "Grandfather says his old sweater is the most comfortable thing he owns."
+    ],
+    938: [
+        "The farmer grows tomatoes and carrots on his farm in the countryside.",
+        "We went cycling through the peaceful countryside and saw a family of rabbits.",
+        "My grandfather built his adventure camp deep in the quiet countryside.",
+        "The countryside was so quiet that we could hear a dragonfly buzzing nearby.",
+        "We stayed at a small campsite in the countryside and watched the stormy sky clear up."
+    ],
+    939: [
+        "The footballer also loves to play volleyball on the court after practice.",
+        "We built a small court at the campsite using ropes and sticks.",
+        "The scientist calculated the exact size of the new tennis court.",
+        "My cousin practices on the basketball court every single weekend.",
+        "It started to rain, so the players ran off the court to stay dry."
+    ],
+    940: [
+        "The famous footballer trained on this football pitch when he was young.",
+        "We raised money to fix the old football pitch at our school.",
+        "The stormy weather turned the football pitch into a muddy mess.",
+        "My cousin scored her first goal ever on the new football pitch.",
+        "The firefighter's team plays a friendly match on the football pitch every summer."
+    ],
+    941: [
+        "The scientist explained why doing sports helps keep our hearts strong and healthy.",
+        "My grandfather still does sports like cycling and swimming every week.",
+        "The footballer told us that doing sports every day made him faster.",
+        "At adventure camp, we did sports like climbing and volleyball all day long.",
+        "Doing sports in the countryside is fun because the air is so fresh."
+    ],
+    942: [
+        "Above all, the firefighter said, always stay calm during an emergency.",
+        "Above all, the scientist wants to protect endangered animals like the dolphin.",
+        "Above all, my grandfather taught me to always tell the truth.",
+        "Above all, the coach said, the team should have fun playing the sport.",
+        "Above all, the pirate cared more about his loyal parrot than any treasure."
+    ],
+    943: [
+        "Drawing cartoons is my favorite activity at the art gallery workshop.",
+        "Feeding the guinea pig became my little sister's favorite activity.",
+        "The best activity at adventure camp was climbing the tall climbing wall.",
+        "Collecting shells at the beach is a relaxing activity for the whole family.",
+        "The scientist planned a fun activity to teach us about vapor and clouds."
+    ],
+    944: [
+        "The footballer tried volleyball for the first time and loved it.",
+        "We played volleyball on the beach until the sun began to set.",
+        "My cousin joined the volleyball club at her new school.",
+        "The volleyball bounced off the court and landed near the clown's tent.",
+        "It was too windy to play volleyball outside, so we practiced indoors."
+    ],
+    945: [
+        "The farmer said there wasn't enough rain for the tomatoes this year.",
+        "We didn't have enough sleeping bags for everyone at the campsite.",
+        "The scientist needed enough data before she could finish her report.",
+        "Is there enough pizza for everyone at the party?",
+        "The pilot made sure there was enough fuel before the long flight."
+    ],
+    946: [
+        "My cousin keeps her comics neatly arranged on a tall shelf.",
+        "The library has a whole shelf just for dinosaur books.",
+        "Grandfather's old postcards are stored on a dusty shelf in the attic.",
+        "The naughty monkey knocked every book off the shelf.",
+        "I keep my teddy bear and toy pirate ship on the top shelf."
+    ],
+    947: [
+        "The dentist gave me a shiny new toothbrush after my checkup.",
+        "My cousin wants to be a dentist just like our uncle.",
+        "The dentist's office had a fish tank to help nervous kids relax.",
+        "Even the scared clown had to visit the dentist for a toothache.",
+        "The dentist said eating too much candy isn't good for your teeth."
+    ],
+    948: [
+        "The footballer practiced the same kick again and again until it was perfect.",
+        "The naughty parrot repeated the same funny word again and again.",
+        "We rode the roller coaster again and again until it got dark.",
+        "The scientist ran the experiment again and again to be sure of the results.",
+        "My little brother asked to hear the pirate story again and again."
+    ],
+    949: [
+        "We packed sleeping bags and a torch for our camping trip to the countryside.",
+        "The pilot said the trip to Tokyo would take about four hours.",
+        "My grandfather still talks about his amazing trip to see the pyramids.",
+        "The whole family went on a trip to the art gallery and the zoo.",
+        "Our trip to adventure camp was the most exciting week of the summer."
+    ],
+    950: [
+        "The astronaut must never forget any step of the safety checklist.",
+        "Don't forget to feed the guinea pig before we leave for the trip!",
+        "The forgetful pirate always seemed to forget where he buried his treasure.",
+        "I almost forgot to pack my sleeping bag for the campsite.",
+        "The cartoonist never forgets to sign his funny comics."
+    ],
+    951: [
+        "We stopped at the food court to buy pizza after visiting the museum.",
+        "My cousin saved her allowance to buy a new set of comics.",
+        "The pirate wanted to buy a map that showed where the treasure was hidden.",
+        "Grandfather likes to buy postcards whenever he visits a new country.",
+        "We plan to buy sunglasses and a beach ball before our trip to the beach."
+    ],
+    952: [
+        "The tortoise didn't mind a few raindrops falling on its shell.",
+        "Every raindrop made a tiny splash on the surface of the calm river.",
+        "The scientist studies how each raindrop forms inside a cloud.",
+        "We watched raindrops race down the window during the stormy afternoon.",
+        "A single raindrop landed on the snail as it slowly crossed the path."
+    ],
+    953: [
+        "The firefighter's torch began to shine through the smoky, dark room.",
+        "After the storm passed, the sun started to shine over the countryside.",
+        "The astronaut watched the stars shine brightly outside the spacecraft window.",
+        "The dentist's tools were polished until they began to shine.",
+        "The medal the winner received began to shine under the bright lights."
+    ],
+    954: [
+        "According to the scientist, the temperature will drop ten degrees tonight.",
+        "According to the pilot, the flight will arrive in Tokyo on schedule.",
+        "According to my grandfather, the fish in this river are enormous.",
+        "According to the schedule, the footballer's next match is on Friday.",
+        "According to the cartoonist, the new comics will be released next week."
     ]
 };
