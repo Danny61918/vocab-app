@@ -103,6 +103,23 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
     return sentences;
   };
 
+  // Pre-generated natural sentence audio (Kokoro TTS), falls back to
+  // browser speechSynthesis if the file is missing (e.g. a brand-new
+  // week whose audio batch hasn't been generated yet) or fails to play.
+  const playSentence = (w: Word, slow: boolean) => {
+    const suffix = slow ? '_slow' : '';
+    const audio = new window.Audio(`audio/${w.id}${suffix}.mp3`);
+    let handled = false;
+    const fallback = () => {
+      if (handled) return;
+      handled = true;
+      const s = sentencesFor(w)[0];
+      if (s) speak(s, slow ? 0.7 : undefined);
+    };
+    audio.addEventListener('error', fallback, { once: true });
+    audio.play().catch(fallback);
+  };
+
   // ─── Learn tab: play-all ────────────────────────────────────────────────
   const [isPlayingAll, setIsPlayingAll] = useState(false);
   const isPlayingAllRef = useRef(false);
@@ -276,7 +293,7 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
       ) : tab === 'LEARN' ? (
         <div>
           <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4 mb-4 flex flex-wrap items-center justify-between gap-3">
-            <div className="text-sm text-blue-700 font-bold">💡 點「🔊 唸單字」聽發音，點「💬 唸例句」聽完整句子</div>
+            <div className="text-sm text-blue-700 font-bold">💡 點「🔊 唸單字」聽發音，點「💬 唸例句」聽自然發音的完整句子</div>
             <div className="flex items-center gap-2">
               <button onClick={() => setVoiceTone('lively')} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${voiceTone === 'lively' ? 'bg-blue-600 text-white' : 'bg-white text-slate-500 border border-slate-200'}`}>✨ 活潑</button>
               <button onClick={() => setVoiceTone('standard')} className={`px-3 py-1.5 rounded-lg text-xs font-bold transition ${voiceTone === 'standard' ? 'bg-blue-600 text-white' : 'bg-white text-slate-500 border border-slate-200'}`}>🎙️ 標準</button>
@@ -306,11 +323,14 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
                       {sentences[0]}
                     </div>
                   )}
-                  <div className="flex gap-2">
-                    <button onClick={() => speak(speechWord(w))} className="flex-1 bg-blue-50 text-blue-700 font-bold text-xs py-2 rounded-lg hover:bg-blue-100 transition">🔊 唸單字</button>
-                    <button onClick={() => speak(speechWord(w), 0.7)} className="w-16 bg-amber-50 text-amber-700 font-bold text-xs py-2 rounded-lg hover:bg-amber-100 transition">🐢 慢速</button>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button onClick={() => speak(speechWord(w))} className="bg-blue-50 text-blue-700 font-bold text-xs py-2 rounded-lg hover:bg-blue-100 transition">🔊 唸單字</button>
+                    <button onClick={() => speak(speechWord(w), 0.7)} className="bg-amber-50 text-amber-700 font-bold text-xs py-2 rounded-lg hover:bg-amber-100 transition">🐢 慢速單字</button>
                     {sentences[0] && (
-                      <button onClick={() => speak(sentences[0])} className="flex-1 bg-slate-100 text-slate-600 font-bold text-xs py-2 rounded-lg hover:bg-slate-200 transition">💬 唸例句</button>
+                      <>
+                        <button onClick={() => playSentence(w, false)} className="bg-slate-100 text-slate-600 font-bold text-xs py-2 rounded-lg hover:bg-slate-200 transition">💬 唸例句</button>
+                        <button onClick={() => playSentence(w, true)} className="bg-slate-100 text-slate-600 font-bold text-xs py-2 rounded-lg hover:bg-slate-200 transition">🐢 慢速例句</button>
+                      </>
                     )}
                   </div>
                 </div>
@@ -378,7 +398,7 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
               <div className="flex justify-center gap-4 text-xs font-bold mb-6">
                 <button onClick={() => speak(speechWord(currentQuizWord), 0.7)} className="text-blue-600">🐢 慢速重聽</button>
                 <span className="text-slate-300">|</span>
-                <button onClick={() => { const s = sentencesFor(currentQuizWord)[0]; if (s) speak(s); }} className="text-slate-500">💬 聽例句提示</button>
+                <button onClick={() => playSentence(currentQuizWord, false)} className="text-slate-500">💬 聽例句提示</button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {quizOptions.map(opt => {
