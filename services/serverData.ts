@@ -973,7 +973,31 @@ const serverData: Word[] = [
     { "id": 951, "date": "2026-09-11", "english": "buy", "chinese": "買", "part_of_speech": "(v.)", "example": "Mom wants to buy some fresh apples and sweet bananas at the supermarket this afternoon." },
     { "id": 952, "date": "2026-09-11", "english": "raindrop", "chinese": "雨滴", "part_of_speech": "(n.)", "example": "A big raindrop fell from the grey sky and landed softly on my green umbrella." },
     { "id": 953, "date": "2026-09-11", "english": "shine", "chinese": "發光；照耀", "part_of_speech": "(v.)", "example": "The warm morning sun began to shine brightly through the bedroom window." },
-    { "id": 954, "date": "2026-09-11", "english": "according to", "chinese": "根據；按照", "part_of_speech": "(ph.)", "example": "According to the school calendar, our big sports day will be held next month." }
+    { "id": 954, "date": "2026-09-11", "english": "according to", "chinese": "根據；按照", "part_of_speech": "(ph.)", "example": "According to the school calendar, our big sports day will be held next month." },
+    { "id": 955, "date": "2026-09-28", "english": "grid", "chinese": "網格", "part_of_speech": "(n.)", "example": "Please draw a grid of four rows and five columns on the paper." },
+    { "id": 956, "date": "2026-09-28", "english": "tower", "chinese": "塔；高樓", "part_of_speech": "(n.)", "example": "The Tokyo Tower is one of the most famous landmarks in Japan." },
+    { "id": 957, "date": "2026-09-28", "english": "building", "chinese": "建築物", "part_of_speech": "(n.)", "example": "This historical building is a popular attraction for tourists." },
+    { "id": 958, "date": "2026-09-28", "english": "palace", "chinese": "宮殿；皇宮", "part_of_speech": "(n.)", "example": "The king and queen live in a big palace. They have more than 100 servants who take care of everything for them." },
+    { "id": 959, "date": "2026-09-28", "english": "whole", "chinese": "完整的；全部的", "part_of_speech": "(adj.)", "example": "I spent the whole afternoon reading in the library." },
+    { "id": 960, "date": "2026-09-28", "english": "as well as", "chinese": "以及；還有", "part_of_speech": "(ph.)", "example": "The teacher, as well as the students, was excited about the field trip." },
+    { "id": 961, "date": "2026-09-30", "english": "top", "chinese": "頂點；頂端", "part_of_speech": "(n.)", "example": "She placed her favorite photos at the top of the page." },
+    { "id": 962, "date": "2026-09-30", "english": "step", "chinese": "階梯", "part_of_speech": "(n.)", "example": "Be careful when you go down the steps. They are slippery." },
+    { "id": 963, "date": "2026-09-30", "english": "blank", "chinese": "空格；空白處", "part_of_speech": "(n.)", "example": "I tried to remember where I left my keys, but my mind was a total blank." },
+    { "id": 964, "date": "2026-09-30", "english": "photo", "chinese": "照片；相片", "part_of_speech": "(n.)", "example": "She took a photo of the sunset on the beach." },
+    { "id": 965, "date": "2026-09-30", "english": "help out", "chinese": "幫忙；協助", "part_of_speech": "(ph.)", "example": "She often helps out at the local animal shelter on weekends." },
+    { "id": 966, "date": "2026-09-30", "english": "ask for", "chinese": "請求；要求", "part_of_speech": "(ph.)", "example": "Don't be afraid to ask for help when you are in trouble." },
+    { "id": 967, "date": "2026-10-01", "english": "country", "chinese": "國家", "part_of_speech": "(n.)", "example": "Athletes from over 100 countries joined the international event." },
+    { "id": 968, "date": "2026-10-01", "english": "build", "chinese": "建造；修建", "part_of_speech": "(v.)", "example": "The company plans to build a new factory next year." },
+    { "id": 969, "date": "2026-10-01", "english": "medicine", "chinese": "藥物；藥品", "part_of_speech": "(n.)", "example": "You should take the medicine after meals three times a day." },
+    { "id": 970, "date": "2026-10-01", "english": "perform", "chinese": "表演；演出", "part_of_speech": "(v.)", "example": "The band will perform live at the concert hall tonight." },
+    { "id": 971, "date": "2026-10-01", "english": "guess", "chinese": "猜測；猜想", "part_of_speech": "(v.)", "example": "Can you guess how many jelly beans are in this jar?" },
+    { "id": 972, "date": "2026-10-01", "english": "at a time", "chinese": "一次；每次", "part_of_speech": "(ph.)", "example": "Please enter the room one person at a time." },
+    { "id": 973, "date": "2026-10-02", "english": "trick", "chinese": "特技；惡作劇", "part_of_speech": "(n.)", "example": "My dog learned a new trick today and can now roll over on command." },
+    { "id": 974, "date": "2026-10-02", "english": "audience", "chinese": "觀眾", "part_of_speech": "(n.)", "example": "The movie attracted a lot of audience during its opening weekend." },
+    { "id": 975, "date": "2026-10-02", "english": "on stage", "chinese": "在舞台上", "part_of_speech": "(adv.)", "example": "She felt a bit nervous right before she went on stage." },
+    { "id": 976, "date": "2026-10-02", "english": "evaporation", "chinese": "蒸發", "part_of_speech": "(n.)", "example": "In a science class, students learn about the water cycle. For example, when water turns into water vapour, it is called evaporation." },
+    { "id": 977, "date": "2026-10-02", "english": "continue", "chinese": "繼續；持續", "part_of_speech": "(v.)", "example": "According to the weather report, the heavy snow will continue through the night." },
+    { "id": 978, "date": "2026-10-02", "english": "at any time", "chinese": "隨時", "part_of_speech": "(ph.)", "example": "Weather conditions in the mountains can change at any time." }
 ];
 
 export default serverData; 

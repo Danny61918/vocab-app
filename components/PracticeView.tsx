@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Word } from '../types';
 import { getWords } from '../services/storage';
-import { getAllSentences } from '../services/exampleLookup';
+import { EXTRA_SENTENCES } from '../services/exampleSentencesData';
+import { loadCustomSentences } from '../services/customContent';
 import { ArrowLeft, BookOpen, Users, Headphones, Volume2, Turtle } from 'lucide-react';
 
 interface Props {
@@ -91,8 +92,15 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
   };
 
   const sentencesFor = (w: Word): string[] => {
-    const all = getAllSentences(w.english);
-    return all.length > 0 ? all : (w.example ? [w.example] : []);
+    const sentences: string[] = [];
+    const extras = EXTRA_SENTENCES[w.id];
+    if (extras && extras.length > 0) sentences.push(...extras);
+    if (w.example && !sentences.includes(w.example)) sentences.push(w.example);
+    const custom = loadCustomSentences().filter(s => s.word.toLowerCase() === w.english.toLowerCase());
+    for (const cs of custom) {
+      if (!sentences.includes(cs.sentence)) sentences.push(cs.sentence);
+    }
+    return sentences;
   };
 
   // ─── Learn tab: play-all ────────────────────────────────────────────────

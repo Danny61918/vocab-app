@@ -2637,5 +2637,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "According to my grandfather, the fish in this river are enormous.",
         "According to the schedule, the footballer's next match is on Friday.",
         "According to the cartoonist, the new comics will be released next week."
+    ],
+    955: [
+        "The scientist drew a grid to map where the chameleon liked to sit.",
+        "The cartoonist used a grid to keep her comics panels neat and even.",
+        "My cousin plays a game where you find a hidden monster on a grid.",
+        "The pilot studied a grid on the map before planning the flight route.",
+        "We drew a grid on the football pitch to practice passing drills."
+    ],
+    956: [
+        "The astronaut could see a tall tower from the window of the plane.",
+        "The pirate hid his treasure map inside an old stone tower.",
+        "We climbed to the top of the tower to take photos of the whole city.",
+        "The firefighter had to rescue a cat stuck near the top of the tower.",
+        "My grandfather told me a story about a tower with a hundred steps."
+    ],
+    957: [
+        "The firefighter climbed the tall building to check for smoke.",
+        "The art gallery is in an old building near the museum.",
+        "The scientist works in a building full of computers and glass tubes.",
+        "We took a photo in front of the biggest building in the countryside.",
+        "The cartoonist drew a funny building with crooked windows."
+    ],
+    958: [
+        "The pirate dreamed of finding a palace full of gold and jewels.",
+        "We visited a palace with a hundred rooms and a giant garden.",
+        "The artist painted a picture of an ancient palace by the river.",
+        "My grandfather said the old palace took workers many years to build.",
+        "The cartoonist imagined a palace made entirely of candy and cookies."
+    ],
+    959: [
+        "The footballer practiced the whole morning before the big match.",
+        "My cousin ate the whole pizza before I even got a slice.",
+        "The scientist studied the whole ocean floor looking for new fish.",
+        "We explored the whole campsite before setting up our tent.",
+        "The astronaut trained for the whole year before the mission."
+    ],
+    960: [
+        "The firefighter, as well as the policeman, helped everyone stay safe.",
+        "My grandfather can cook, as well as bake delicious cookies.",
+        "The cartoonist draws comics, as well as funny cards for birthdays.",
+        "The scientist studies chameleons, as well as other colorful lizards.",
+        "She collects postcards, as well as comics, from every country she visits."
+    ],
+    961: [
+        "The astronaut looked down from the top of the enormous rocket.",
+        "We climbed all the way to the top of the climbing wall.",
+        "The winner stood proudly at the top of the podium.",
+        "My cousin keeps her trophies on the top shelf.",
+        "The pirate placed a flag at the top of the tower."
+    ],
+    962: [
+        "The firefighter carried the child down the steps to safety.",
+        "My grandfather walks up the steps slowly but never skips his exercise.",
+        "The tortoise took one slow step at a time across the garden.",
+        "Follow the recipe step by step so the cookies turn out right.",
+        "The dancer practiced every step again and again before the show."
+    ],
+    963: [
+        "The scientist left one blank on the form for the temperature reading.",
+        "The cartoonist stared at the blank page before drawing her first comics panel.",
+        "Fill in the blank with the correct word to finish the sentence.",
+        "My mind went blank when the teacher asked me to spell the pirate's name.",
+        "The astronaut left a blank space in her notebook for new discoveries."
+    ],
+    964: [
+        "The pilot took a photo of the clouds from the cockpit window.",
+        "My grandfather keeps an old photo of the whole family on his shelf.",
+        "The firefighter posed for a photo next to the fire truck.",
+        "We took a photo at adventure camp standing on the climbing wall.",
+        "The scientist took a photo of the chameleon changing color."
+    ],
+    965: [
+        "My cousin likes to help out at the campsite by collecting firewood.",
+        "The firefighter always helps out neighbors during a stormy night.",
+        "The scientist asked the students to help out with her research.",
+        "Grandfather helps out at the farmer's market every Saturday morning.",
+        "The whole class helped out to raise money for the school library."
+    ],
+    966: [
+        "The pirate had to ask for directions because his old map was torn.",
+        "My cousin always asks for extra cheese on her pizza.",
+        "The astronaut had to ask for permission before leaving the space station.",
+        "We asked for a table near the window at the restaurant.",
+        "The cartoonist asked for feedback on her newest comics."
+    ],
+    967: [
+        "Grandfather collects postcards from every country he has visited.",
+        "The scientist traveled to a faraway country to study rare chameleons.",
+        "My cousin wants to visit a different country every summer.",
+        "The pilot has flown to more than twenty countries.",
+        "The countryside in this country is famous for its green hills."
+    ],
+    968: [
+        "The firefighter's station was built after the big storm last year.",
+        "We worked together to build a tall tower out of blocks.",
+        "The scientist is building a machine to study raindrops.",
+        "At adventure camp, we built a bridge using only ropes and logs.",
+        "My grandfather helped build the old library many years ago."
+    ],
+    969: [
+        "The dentist gave me medicine to help with the toothache.",
+        "The vet gave the sick guinea pig some medicine and a soft blanket.",
+        "The scientist is researching new medicine to help sick animals.",
+        "Grandfather keeps his medicine on the top shelf so no one forgets it.",
+        "The astronaut packed medicine in case anyone felt sick in space."
+    ],
+    970: [
+        "The clown will perform funny tricks at my cousin's birthday party.",
+        "The actress will perform on stage in front of a huge audience.",
+        "The footballer's team will perform in the championship match this weekend.",
+        "The cartoonist's puppet show will perform at the art gallery.",
+        "My cousin practices every day so she can perform well at the recital."
+    ],
+    971: [
+        "The scientist asked us to guess how fast the chameleon could change color.",
+        "Can you guess which country this postcard came from?",
+        "The pirate let us guess where the treasure was buried.",
+        "My cousin always guesses the ending of every movie correctly.",
+        "Try to guess the mystery word using the blank clues."
+    ],
+    972: [
+        "The firefighter rescued the animals one at a time from the burning barn.",
+        "The dentist only allows one patient at a time in the office.",
+        "We climbed the tower one step at a time.",
+        "The cartoonist draws her comics one panel at a time.",
+        "Grandfather reads one chapter at a time before bed."
+    ],
+    973: [
+        "The clown's best trick made the whole audience laugh.",
+        "My cousin played a funny trick on me during April Fool's Day.",
+        "The pirate used a clever trick to escape the guards.",
+        "The footballer showed off a new trick with the ball at practice.",
+        "The cartoonist drew a comic about a magician's best trick."
+    ],
+    974: [
+        "The actress bowed to the audience after her performance on stage.",
+        "The whole audience cheered when the footballer scored the winning goal.",
+        "The clown made the audience laugh with his silly tricks.",
+        "My cousin was part of the audience at the science fair.",
+        "The cartoonist's audience loved her new comics characters."
+    ],
+    975: [
+        "The clown told jokes on stage while juggling three balls.",
+        "The actor forgot his lines on stage but recovered quickly.",
+        "My cousin sang her favorite song on stage at the talent show.",
+        "The footballer's team celebrated on stage after winning the trophy.",
+        "The cartoonist showed her drawings on stage during the art gallery event."
+    ],
+    976: [
+        "The scientist explained evaporation using a pot of boiling water and vapor.",
+        "On a sunny day, evaporation dries the raindrops on the leaves quickly.",
+        "We watched evaporation happen as the puddle disappeared after the storm.",
+        "The astronaut studies evaporation on other planets for her research.",
+        "The countryside pond shrinks a little every summer because of evaporation."
+    ],
+    977: [
+        "The footballer said the team would continue practicing even in the rain.",
+        "According to the pilot, the flight will continue despite the foggy weather.",
+        "The cartoonist plans to continue drawing her comics every week.",
+        "The scientist will continue her research until she finds the answer.",
+        "Grandfather says a good story should always continue until the very end."
+    ],
+    978: [
+        "The firefighter must be ready to help at any time, day or night.",
+        "My grandfather says friends should be able to visit at any time.",
+        "The astronaut could be called back to the space station at any time.",
+        "The scientist keeps her notebook nearby because ideas can come at any time.",
+        "The dentist's office can be reached at any time for emergencies."
     ]
 };
