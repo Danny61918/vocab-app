@@ -24,3 +24,15 @@ When the user asks to add new vocabulary words or provides a list of new words t
 - Ensure no duplicate IDs exist in either `serverData` or `EXTRA_SENTENCES`.
 - Ensure the syntax remains valid TypeScript/JSON.
 - Explain clearly to the user what IDs were assigned and that both files were updated.
+
+## 4. Generate sentence audio (Practice page)
+The Practice page (`components/PracticeView.tsx`) plays a natural-sounding TTS audio
+clip (Kokoro-82M, generated locally) for each word's example sentence, instead of the
+browser's robotic `speechSynthesis`. New words won't have this audio until the batch
+script runs — see `.doc/v2.0/phase-8-sentence-audio/README.md` for the full picture.
+- Re-run `python scripts/tts/generate_sentence_audio.py` (with the `tts-env` venv active)
+  after adding vocabulary. It only generates audio for ids that don't have it yet, so it's
+  safe to run repeatedly — pass `--dry-run` first to preview what would be generated.
+- If this step is skipped, the app still works: `PracticeView` falls back to browser TTS
+  for any word without pre-generated audio. So don't block the vocabulary commit on this —
+  just flag to the user that the audio batch still needs to run before/along with deploy.

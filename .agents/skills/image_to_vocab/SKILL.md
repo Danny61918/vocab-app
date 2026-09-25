@@ -105,6 +105,16 @@ appended before the closing `};`.
 - Report to the user: which ids were assigned to which words, how many words were skipped as
   duplicates, and that both files were updated.
 
+### 7. Generate sentence audio (Practice page)
+The Practice page (`components/PracticeView.tsx`) plays a natural-sounding TTS audio clip
+(Kokoro-82M, generated locally) for each word's example sentence, instead of the browser's
+robotic `speechSynthesis`. See `.doc/v2.0/phase-8-sentence-audio/README.md` for the full
+picture. Re-run `python scripts/tts/generate_sentence_audio.py` (with the `tts-env` venv
+active) after this import — it skips ids that already have audio, so it's safe to re-run,
+and `--dry-run` previews what it would generate. Not required for the app to keep working
+(it falls back to browser TTS for words missing audio), but flag to the user that this step
+still needs to run before/along with deploy.
+
 ## Notes
 - This skill is the image-based front end to the same data model as the `add_vocabulary`
   skill; when the user pastes a plain word list instead of images, prefer `add_vocabulary`.
