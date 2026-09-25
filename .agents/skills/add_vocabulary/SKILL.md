@@ -30,7 +30,8 @@ The Practice page (`components/PracticeView.tsx`) plays a natural-sounding TTS a
 clip (Kokoro-82M, generated locally) for each word's example sentence, instead of the
 browser's robotic `speechSynthesis`. New words won't have this audio until the batch
 script runs — see `.doc/v2.0/phase-8-sentence-audio/README.md` for the full picture.
-- Re-run `python scripts/tts/generate_sentence_audio.py` (with the `tts-env` venv active)
+- Re-run `python scripts/tts/generate_sentence_audio.py` (with the `tts-env` venv at
+  `E:\Code\tools\tts-env` — e.g. `E:\Code\tools\tts-env\Scripts\python.exe scripts\tts\generate_sentence_audio.py`)
   after adding vocabulary. It only generates audio for ids that don't have it yet, so it's
   safe to run repeatedly — pass `--dry-run` first to preview what would be generated.
 - If this step is skipped, the app still works: `PracticeView` falls back to browser TTS

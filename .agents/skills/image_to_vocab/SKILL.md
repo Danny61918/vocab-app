@@ -109,8 +109,8 @@ appended before the closing `};`.
 The Practice page (`components/PracticeView.tsx`) plays a natural-sounding TTS audio clip
 (Kokoro-82M, generated locally) for each word's example sentence, instead of the browser's
 robotic `speechSynthesis`. See `.doc/v2.0/phase-8-sentence-audio/README.md` for the full
-picture. Re-run `python scripts/tts/generate_sentence_audio.py` (with the `tts-env` venv
-active) after this import — it skips ids that already have audio, so it's safe to re-run,
+picture. Re-run `python scripts/tts/generate_sentence_audio.py` (with the `tts-env` venv at
+`E:\Code\tools\tts-env` active) after this import — it skips ids that already have audio, so it's safe to re-run,
 and `--dry-run` previews what it would generate. Not required for the app to keep working
 (it falls back to browser TTS for words missing audio), but flag to the user that this step
 still needs to run before/along with deploy.
