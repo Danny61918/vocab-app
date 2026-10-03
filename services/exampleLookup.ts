@@ -46,6 +46,15 @@ function findServerEntry(wordString: string): Word | null {
 }
 
 /**
+ * Find the serverData id for a given word string, if one exists — used to look
+ * up pre-generated Kokoro audio (public/audio/word_{id}.mp3) for word banks
+ * (like newVocabData's legacy VocabWord list) that don't share serverData's ids.
+ */
+export function findServerAudioId(wordString: string): number | null {
+  return findServerEntry(wordString)?.id ?? null;
+}
+
+/**
  * Get ALL available example sentences for a given vocab word string.
  * Combines:
  *   - EXTRA_SENTENCES[id]  → up to 5 sentences (preferred, uses exact word form)

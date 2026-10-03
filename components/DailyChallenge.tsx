@@ -154,6 +154,20 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         }
     };
 
+    // Pre-generated natural word audio (Kokoro TTS), falls back to browser
+    // speechSynthesis if the file is missing or fails to play.
+    const playWord = (w: Word) => {
+        const audio = new window.Audio(`audio/word_${w.id}.mp3`);
+        let handled = false;
+        const fallback = () => {
+            if (handled) return;
+            handled = true;
+            speak(w.english);
+        };
+        audio.addEventListener('error', fallback, { once: true });
+        audio.play().catch(fallback);
+    };
+
     const chunks = [];
     for (let i = 0; i < targetWords.length; i += chunkSize) {
         chunks.push(targetWords.slice(i, i + chunkSize));
@@ -175,7 +189,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         setCurrentChunkIndex(chunkIdx);
         setCurrentMonster(getRandomMonster());
         if (chunks[chunkIdx] && chunks[chunkIdx].length > 0) {
-            speak(chunks[chunkIdx][0].english);
+            playWord(chunks[chunkIdx][0]);
         }
     };
 
@@ -183,7 +197,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         if (learnIndex + 1 < currentChunk.length) {
             setLearnIndex(prev => prev + 1);
             setCurrentMonster(getRandomMonster());
-            speak(currentChunk[learnIndex + 1].english);
+            playWord(currentChunk[learnIndex + 1]);
         } else {
             startQuizPhase();
         }
@@ -259,10 +273,10 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             const distractors = getDistractors(target.id, 3).map(w => w.chinese);
             const allOptions = [target.chinese, ...distractors].sort(() => 0.5 - Math.random());
             setOptions(allOptions);
-            speak(target.english);
+            playWord(target);
         } else if (mode === 'SPELL') {
             setSpellInput('');
-            speak(target.english);
+            playWord(target);
         } else if (mode === 'WRITE') {
             let startIdx = 0;
             while (startIdx < target.chinese.length && !/[\u4e00-\u9fa5]/.test(target.chinese[startIdx])) {
@@ -288,7 +302,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             } else {
                 setWriteIndex(startIdx);
             }
-            speak(target.english);
+            playWord(target);
         } else if (mode === 'SENTENCE') {
             const distractors = getDistractors(target.id, 3).map(w => w.english);
             const allOptions = [target.english, ...distractors].sort(() => 0.5 - Math.random());
@@ -521,7 +535,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                 </div>
                 
                 <div 
-                    onClick={() => speak(word.english)}
+                    onClick={() => playWord(word)}
                     className="bg-white rounded-[3rem] shadow-2xl p-10 w-full flex flex-col items-center justify-center cursor-pointer transform transition hover:scale-[1.02] border-8 border-purple-50 group"
                 >
                     <div className="w-48 h-48 mb-6 group-hover:animate-bounce flex items-center justify-center">
@@ -594,7 +608,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                 <div className="flex flex-col md:flex-row gap-8 w-full items-stretch">
                     {/* Left Panel: Monster & HP */}
                     <div 
-                        onClick={() => speak(word.english)}
+                        onClick={() => playWord(word)}
                         className={`flex-1 text-white rounded-[3rem] p-10 text-center shadow-2xl relative cursor-pointer active:scale-[0.98] transition-all border-8 flex flex-col justify-center items-center ${quizMode === 'SENTENCE' ? 'bg-indigo-800 border-indigo-700' : 'bg-slate-800 border-slate-700'}`}
                     >
                         <div className="flex justify-center mb-8 relative h-40 md:h-56">

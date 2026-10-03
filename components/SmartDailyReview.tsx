@@ -10,7 +10,7 @@ import {
   isMastered,
   checkAndUnlockLegendaryMonsters
 } from '../services/srsStorage';
-import { getAllSentences, tryCreateCloze } from '../services/exampleLookup';
+import { getAllSentences, tryCreateCloze, findServerAudioId } from '../services/exampleLookup';
 import { logAnswer, makeWordKey } from '../services/answerLog';
 import confetti from 'canvas-confetti';
 
@@ -85,19 +85,40 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     }
   };
 
+  // This word bank (newVocabData) predates serverData's weekly imports and uses
+  // its own string ids, so pre-generated audio is looked up by matching word
+  // text against serverData instead of by id. Falls back to browser TTS when
+  // there's no match or the pre-generated file fails to play.
+  const playWord = (text: string) => {
+    const audioId = findServerAudioId(text);
+    if (audioId == null) {
+      speak(text);
+      return;
+    }
+    const audio = new window.Audio(`audio/word_${audioId}.mp3`);
+    let handled = false;
+    const fallback = () => {
+      if (handled) return;
+      handled = true;
+      speak(text);
+    };
+    audio.addEventListener('error', fallback, { once: true });
+    audio.play().catch(fallback);
+  };
+
   // ════════════════════════════════
   // LEARN PHASE
   // ════════════════════════════════
   const startLearning = () => {
     setPhase('learn');
-    if (wordsList.length > 0) speak(wordsList[0].word);
+    if (wordsList.length > 0) playWord(wordsList[0].word);
   };
 
   const nextLearnCard = () => {
     if (learnIndex + 1 < wordsList.length) {
       const nextWord = wordsList[learnIndex + 1];
       setLearnIndex(learnIndex + 1);
-      speak(nextWord.word);
+      playWord(nextWord.word);
     } else {
       startQuiz();
     }
@@ -124,7 +145,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     const allOptions = [target.meaning, ...distractors].sort(() => 0.5 - Math.random());
     setOptions(allOptions);
     setFeedbackState('idle');
-    speak(target.word);
+    playWord(target.word);
   };
 
   // P3/TASK-11d: guessing detection — responseMs < 1200 && wrong → no demotion
@@ -383,7 +404,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
         </div>
 
         <div
-          onClick={() => speak(word.word)}
+          onClick={() => playWord(word.word)}
           className="bg-white rounded-[3rem] shadow-2xl p-16 w-full max-w-3xl flex flex-col items-center justify-center cursor-pointer transform transition hover:scale-105 border-4 border-indigo-100"
         >
           <div className="text-7xl font-black text-indigo-800 mb-4 font-['Outfit'] tracking-wide">
@@ -433,7 +454,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
 
         {/* Question Card */}
         <div
-          onClick={() => speak(word.word)}
+          onClick={() => playWord(word.word)}
           className="bg-indigo-600 text-white w-full rounded-t-3xl p-12 text-center shadow-2xl relative cursor-pointer active:scale-[0.98] transition-transform"
         >
           <div className="text-6xl font-black mb-4 font-['Outfit'] tracking-wider">{word.word}</div>
