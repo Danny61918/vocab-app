@@ -257,10 +257,14 @@ export function getDailyHuntWords(deps?: SrsDeps): VocabWord[] {
     .slice(0, MAX_DUE)
     .map((s) => s.word);
 
-  // New words (never reviewed), in vocab order
+  // New words (never reviewed), most recently added first — vocabData is
+  // appended in chronological order as new weeks import, so this surfaces
+  // the child's current school vocabulary before working backward into
+  // older backlog.
   const fresh = stats
     .filter((s) => !s.m)
-    .slice(0, MAX_NEW)
+    .slice(-MAX_NEW)
+    .reverse()
     .map((s) => s.word);
 
   let selected = [...due, ...fresh];

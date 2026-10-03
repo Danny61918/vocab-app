@@ -49,10 +49,27 @@ Same idea as step 4, but for the word itself (not its example sentence) — used
 - Then run: `E:\Code\tools\tts-env\Scripts\python.exe scripts\tts\generate_word_audio.py`
   (same `--dry-run` / `--ids <range>` options as the sentence-audio script; only
   generates audio for ids that don't have it yet).
-- `SmartDailyReview.tsx` runs on the older `newVocabData` word bank (its own string
-  ids, disconnected from `serverData`'s weekly imports), so it looks up audio by
-  matching word text against `serverData` via `exampleLookup.findServerAudioId()`
-  instead of a direct id — a new word added only to `newVocabData` (not `serverData`)
-  won't get natural audio there until it's also added to `serverData`.
+- `SmartDailyReview.tsx` looks up audio by matching word text against `serverData`
+  via `exampleLookup.findServerAudioId()` rather than a direct id (see step 6 for why).
+  Run step 6 first so a brand-new word already has a matching `serverData` entry by
+  the time this runs.
 - Same fallback story as step 4: skipping this is non-blocking, browser TTS covers
   the gap until the batch runs.
+
+## 6. Sync the SRS game word bank (單字島大冒險 — "every day 5 new words")
+`services/newVocabData.ts` (`vocabData`) is a **separate** word bank from
+`serverData` — it's what `services/srsStorage.ts` draws from for the Leitner-box
+spaced-repetition game (`SmartDailyReview.tsx` / `VocabAdventureMap.tsx`). It has
+its own string ids (`"knight_a1b2c"`, ...) going back to a mid-2026 snapshot, plus
+every `serverData` word synced in afterward as `"s{serverData.id}"`. If it's not
+kept in sync, the daily "5 new words" drip (`MAX_NEW` in `srsStorage.ts`) runs dry
+or starts handing out stale/unrelated content instead of this week's school words.
+- Run: `node scripts/sync_vocab_data.cjs` (pass `--dry-run` first to preview).
+  It's idempotent — appends only `serverData` ids not already present as `"s{id}"`,
+  so it's safe (and expected) to run after every vocabulary import.
+- `getDailyHuntWords()`'s "new word" pick is **most-recently-added-first** (not
+  array order), specifically so this week's import surfaces before older backlog —
+  don't reorder `vocabData` or that logic will serve stale words first.
+- This step doesn't block the commit either, but skipping it means the SRS game
+  silently keeps serving whatever was already in `vocabData` — not a crash, just
+  stale content, so don't forget it two weeks in a row.
