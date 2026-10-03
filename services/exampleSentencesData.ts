@@ -2805,5 +2805,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "The astronaut could be called back to the space station at any time.",
         "The scientist keeps her notebook nearby because ideas can come at any time.",
         "The dentist's office can be reached at any time for emergencies."
+    ],
+    979: [
+        "Our geography teacher showed us a map of Turkey last week.",
+        "The bridge in Istanbul connects two continents in Turkey.",
+        "My uncle brought back a beautiful rug from his trip to Turkey.",
+        "Turkey is home to many ancient ruins that tourists love to visit.",
+        "We learned that Turkey sits between Europe and Asia."
+    ],
+    980: [
+        "My pen pal lives in a small city in Poland.",
+        "Poland has many castles that date back hundreds of years.",
+        "We tried a traditional dish from Poland at the food festival.",
+        "The map showed Poland right next to Germany.",
+        "Her grandmother was born in Poland before moving to Taiwan."
+    ],
+    981: [
+        "The students dreamed of riding a red double-decker bus in England.",
+        "England is famous for its rainy weather and green hills.",
+        "We watched a documentary about castles in England.",
+        "My cousin is studying at a university in England.",
+        "The soccer match between two England teams was very exciting."
+    ],
+    982: [
+        "The art class studied paintings from famous museums in France.",
+        "My sister wants to visit the Eiffel Tower in France someday.",
+        "France is known around the world for its delicious bread.",
+        "We learned a few French words before our trip to France.",
+        "The chef trained in France before opening his own restaurant."
+    ],
+    983: [
+        "The chef learned how to make real pizza in Italy.",
+        "Italy is shaped like a boot on the map.",
+        "My family took a boat ride through the canals in Italy.",
+        "We studied ancient Roman history from Italy in class today.",
+        "Grandma's pasta recipe came all the way from Italy."
+    ],
+    984: [
+        "Above all, remember to be kind to your classmates.",
+        "The coach said that above all, the team should have fun together.",
+        "She studies hard, but above all, she loves to learn new things.",
+        "Above all, a good friend listens when you need help.",
+        "The doctor said that above all, I should get enough sleep."
+    ],
+    985: [
+        "Please continue your homework after we finish dinner.",
+        "The teacher asked the students to continue reading chapter three.",
+        "Even after the rain stopped, the river continued to rise.",
+        "We will continue the game tomorrow since it's getting dark.",
+        "The singer decided to continue her tour for another month."
+    ],
+    986: [
+        "Mars is the planet that scientists want to explore next.",
+        "Our solar system has eight planets circling the sun.",
+        "The children built a model of every planet for science class.",
+        "Jupiter is the biggest planet in our solar system.",
+        "We should take care of our planet by recycling more."
+    ],
+    987: [
+        "The kite flew very high above the playground.",
+        "She jumped as high as she could to catch the ball.",
+        "The mountain peak was so high it was covered in snow.",
+        "His test score was the highest in the whole class.",
+        "The shelf is too high for my little brother to reach."
+    ],
+    988: [
+        "The students did research about dinosaurs for their science project.",
+        "Our teacher is doing research on how plants grow in space.",
+        "The doctor's research helped find a new way to treat colds.",
+        "We used the library to do research for our history report.",
+        "The scientists shared their research with students around the world."
+    ],
+    989: [
+        "All living things need water, air, and food to survive.",
+        "The teacher explained how living things depend on each other in nature.",
+        "Our class made a list of living things we found in the garden.",
+        "Living things grow and change as time passes.",
+        "The forest is full of many kinds of living things."
+    ],
+    990: [
+        "After all, it was the teamwork that helped them win the game.",
+        "He forgave his friend because, after all, everyone makes mistakes.",
+        "After all that practice, she finally learned to ride her bike.",
+        "The trip was tiring, but after all, it was worth it.",
+        "After all his hard work, he finally passed the exam."
+    ],
+    991: [
+        "We packed warm clothes before hiking up the tall mountain.",
+        "Snow covered the top of the mountain all winter long.",
+        "The village sits quietly at the bottom of the mountain.",
+        "Climbers need special gear to reach the top of the mountain.",
+        "From the mountain, we could see the whole valley below."
+    ],
+    992: [
+        "The factory uses a big machine to make toys quickly.",
+        "My mom put the clothes into the washing machine.",
+        "The robot is a machine that can clean the floor by itself.",
+        "Scientists invented a machine to measure the weather.",
+        "The coffee machine makes a loud noise every morning."
+    ],
+    993: [
+        "Our teacher always encourages us to ask questions in class.",
+        "The new teacher is very patient with young students.",
+        "I want to become a teacher and help children learn to read.",
+        "The teacher wrote the homework on the whiteboard.",
+        "My favorite teacher taught me how to love science."
+    ],
+    994: [
+        "The young dancer practiced every day after school.",
+        "A famous dancer performed at the city theater last night.",
+        "She dreams of becoming a dancer when she grows up.",
+        "The dancer spun gracefully across the stage.",
+        "Our school invited a dancer to teach us a new routine."
+    ],
+    995: [
+        "The doctor checked my throat because I had a cough.",
+        "My mom is a doctor who works at the children's hospital.",
+        "The doctor gave me some medicine to help me feel better.",
+        "I want to be a doctor so I can help sick people.",
+        "The doctor told me to rest and drink plenty of water."
+    ],
+    996: [
+        "According to the map, the park is just two blocks away.",
+        "According to my teacher, the test will be next Friday.",
+        "According to the weather report, it might snow tonight.",
+        "According to the rules, everyone must wear a helmet.",
+        "According to the schedule, the bus arrives at eight o'clock."
+    ],
+    997: [
+        "The thermometer showed twenty degrees Celsius this morning.",
+        "Water turns to ice at zero degrees Celsius.",
+        "Most countries measure temperature in degrees Celsius.",
+        "The weather app said it would reach thirty degrees Celsius today.",
+        "Our science teacher taught us how to read a Celsius thermometer."
+    ],
+    998: [
+        "In some countries, people still use Fahrenheit to measure temperature.",
+        "The old thermometer in the kitchen shows Fahrenheit instead of Celsius.",
+        "Water boils at two hundred twelve degrees Fahrenheit.",
+        "My uncle in America always talks about the weather in Fahrenheit.",
+        "We learned how to change Celsius into Fahrenheit in math class."
+    ],
+    999: [
+        "The water cycle explains how rain forms and falls back to Earth.",
+        "Our science book has a colorful diagram of the water cycle.",
+        "Evaporation is the first step of the water cycle.",
+        "The teacher used a jar to show how the water cycle works.",
+        "Clouds play an important part in the water cycle."
+    ],
+    1000: [
+        "This old library was built in the early nineteen hundreds.",
+        "The bridge was built in just two years by hundreds of workers.",
+        "Our school was built in the countryside many years ago.",
+        "The castle was built in a time when kings ruled the land.",
+        "That tall tower was built in the city center last year."
+    ],
+    1001: [
+        "Condensation formed on the cold glass of lemonade.",
+        "We saw condensation on the window after the rainy night.",
+        "The mirror was covered in condensation after my hot shower.",
+        "Condensation is the step in the water cycle when vapor turns to droplets.",
+        "Drops of condensation slid down the side of the cold bottle."
+    ],
+    1002: [
+        "I agree with my friend that the movie was really exciting.",
+        "Do you agree with the new classroom rules?",
+        "My parents don't always agree with my choice of clothes.",
+        "The teacher asked if we agree with the character's decision in the story.",
+        "They finally agreed with each other after a long discussion."
     ]
 };

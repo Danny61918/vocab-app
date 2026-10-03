@@ -997,7 +997,31 @@ const serverData: Word[] = [
     { "id": 975, "date": "2026-10-02", "english": "on stage", "chinese": "在舞台上", "part_of_speech": "(adv.)", "example": "She felt a bit nervous right before she went on stage." },
     { "id": 976, "date": "2026-10-02", "english": "evaporation", "chinese": "蒸發", "part_of_speech": "(n.)", "example": "In a science class, students learn about the water cycle. For example, when water turns into water vapour, it is called evaporation." },
     { "id": 977, "date": "2026-10-02", "english": "continue", "chinese": "繼續；持續", "part_of_speech": "(v.)", "example": "According to the weather report, the heavy snow will continue through the night." },
-    { "id": 978, "date": "2026-10-02", "english": "at any time", "chinese": "隨時", "part_of_speech": "(ph.)", "example": "Weather conditions in the mountains can change at any time." }
+    { "id": 978, "date": "2026-10-02", "english": "at any time", "chinese": "隨時", "part_of_speech": "(ph.)", "example": "Weather conditions in the mountains can change at any time." },
+    { "id": 979, "date": "2026-10-05", "english": "Turkey", "chinese": "土耳其", "part_of_speech": "(n.)", "example": "We are planning a trip to Turkey to visit its historical sites." },
+    { "id": 980, "date": "2026-10-05", "english": "Poland", "chinese": "波蘭", "part_of_speech": "(n.)", "example": "Poland is famous for its rich culture and beautiful old towns." },
+    { "id": 981, "date": "2026-10-05", "english": "England", "chinese": "英格蘭", "part_of_speech": "(n.)", "example": "Many tourists visit England every year to see Big Ben and London Bridge." },
+    { "id": 982, "date": "2026-10-05", "english": "France", "chinese": "法國", "part_of_speech": "(n.)", "example": "France is world-famous for its delicious pastries and fine art." },
+    { "id": 983, "date": "2026-10-05", "english": "Italy", "chinese": "義大利", "part_of_speech": "(n.)", "example": "We had pizza, pasta and gelato while traveling in Italy." },
+    { "id": 984, "date": "2026-10-05", "english": "above all", "chinese": "最重要的是", "part_of_speech": "(ph.)", "example": "When taking care of a pet, you need patience and time, but above all, you must give it love." },
+    { "id": 985, "date": "2026-10-07", "english": "continue", "chinese": "持續；繼續", "part_of_speech": "(v.)", "example": "Please continue reading the story after taking a short break." },
+    { "id": 986, "date": "2026-10-07", "english": "planet", "chinese": "行星", "part_of_speech": "(n.)", "example": "We must take good care of our planet for future generations." },
+    { "id": 987, "date": "2026-10-07", "english": "high", "chinese": "高的", "part_of_speech": "(adj.)", "example": "Mount Everest is the highest mountain on Earth." },
+    { "id": 988, "date": "2026-10-07", "english": "research", "chinese": "研究；調查", "part_of_speech": "(n.)", "example": "The scientists are doing research on climate change." },
+    { "id": 989, "date": "2026-10-07", "english": "living things", "chinese": "生物", "part_of_speech": "(n.)", "example": "Water is important for all living things on Earth to live." },
+    { "id": 990, "date": "2026-10-07", "english": "after all", "chinese": "畢竟；到底", "part_of_speech": "(ph.)", "example": "Don't be surprised that she passed the exam with top scores. After all, she studied every single night." },
+    { "id": 991, "date": "2026-10-08", "english": "mountain", "chinese": "(高)山", "part_of_speech": "(n.)", "example": "They decided to hike up the mountain early in the morning to watch the sunrise." },
+    { "id": 992, "date": "2026-10-08", "english": "machine", "chinese": "機器；機械", "part_of_speech": "(n.)", "example": "This amazing machine can wash and dry your clothes in just one hour." },
+    { "id": 993, "date": "2026-10-08", "english": "teacher", "chinese": "老師", "part_of_speech": "(n.)", "example": "Our English teacher teaches us how to read, write, and speak English correctly." },
+    { "id": 994, "date": "2026-10-08", "english": "dancer", "chinese": "舞者；舞蹈家", "part_of_speech": "(n.)", "example": "She practiced for hours every day to become a professional ballet dancer." },
+    { "id": 995, "date": "2026-10-08", "english": "doctor", "chinese": "醫生；博士", "part_of_speech": "(n.)", "example": "You should see a doctor if your fever does not go down." },
+    { "id": 996, "date": "2026-10-08", "english": "according to", "chinese": "根據；按照", "part_of_speech": "(ph.)", "example": "According to the schedule, the next train will arrive in ten minutes." },
+    { "id": 997, "date": "2026-10-09", "english": "Celsius", "chinese": "攝氏", "part_of_speech": "(n.)", "example": "Water freezes at zero degrees Celsius." },
+    { "id": 998, "date": "2026-10-09", "english": "Fahrenheit", "chinese": "華氏", "part_of_speech": "(n.)", "example": "On a hot summer day, the temperature can reach ninety-five degrees Fahrenheit." },
+    { "id": 999, "date": "2026-10-09", "english": "water cycle", "chinese": "水循環", "part_of_speech": "(n.)", "example": "The water cycle is how water evaporates, condenses, and falls back to Earth as rain." },
+    { "id": 1000, "date": "2026-10-09", "english": "was built in", "chinese": "建於", "part_of_speech": "(ph.)", "example": "The school was built in 1986, so it is now more than forty years old." },
+    { "id": 1001, "date": "2026-10-09", "english": "condensation", "chinese": "凝結", "part_of_speech": "(n.)", "example": "You can see condensation forming on the glass when you pour an iced drink." },
+    { "id": 1002, "date": "2026-10-09", "english": "agree with", "chinese": "同意；贊同", "part_of_speech": "(ph.)", "example": "My parents don't agree with my decision to get a cat." }
 ];
 
 export default serverData; 
