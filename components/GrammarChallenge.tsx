@@ -1,8 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { GrammarCategory, GrammarQuestion } from '../types';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { GrammarCategory, GrammarQuestion, GameMode, GameType, TestResult } from '../types';
 import { GRAMMAR_QUESTIONS, GRAMMAR_BOSS_MAP } from '../services/grammarData';
 import { MONSTER_DATA } from '../services/monsterData';
 import { unlockMonster } from '../services/srsStorage';
+import { saveResult } from '../services/storage';
+import { logAnswer, makeWordKey } from '../services/answerLog';
 import { XCircle, ArrowRight, Home, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -26,40 +28,97 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
   const [showRule, setShowRule] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
 
+  // Session-wide counters for saveResult()/analytics, plus HP mirrors used to
+  // decide victory/defeat in nextQuestion(). All plain refs (not state): the
+  // old code tried to guess the "next" HP from the bossHp/playerHp *state*
+  // closure captured inside nextQuestion, but that closure's staleness is
+  // inconsistent between the two paths that call it — the correct-answer path
+  // schedules nextQuestion via setTimeout *before* the HP state update commits
+  // (so its closure is pre-decrement, and "- 1" lands correctly), while the
+  // wrong-answer path calls nextQuestion directly from a button rendered
+  // *after* the HP update already committed (so its closure is already
+  // post-decrement, and subtracting 1 again double-counts the hit). In
+  // practice that made the battle end in defeat after only 2 wrong answers
+  // instead of the advertised 3. Refs updated at the same instant as the
+  // setState call sidestep the whole closure-timing question.
+  const correctCountRef = useRef(0);
+  const wrongCountRef = useRef(0);
+  const questionShownAtRef = useRef<number>(Date.now());
+  const bossHpRef = useRef(15);
+  const playerHpRef = useRef(3);
+
   const startBattle = (category: GrammarCategory) => {
     setSelectedCategory(category);
     setBossId(GRAMMAR_BOSS_MAP[category]);
-    
+
     // Get all questions matching category
     const categoryQuestions = GRAMMAR_QUESTIONS.filter(q => q.category === category);
-    
+
     // Random queue of questions
     const battleQueue = Array.from({length: 20}).map(() => {
         return categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
     });
-    
+
     setQuestions(battleQueue);
     setCurrentQIndex(0);
     setBossHp(15);
     setPlayerHp(3);
+    bossHpRef.current = 15;
+    playerHpRef.current = 3;
+    correctCountRef.current = 0;
+    wrongCountRef.current = 0;
+    questionShownAtRef.current = Date.now();
     setPhase('battle');
+  };
+
+  // Record this battle into the same history/streak/achievement/coin pipeline
+  // every other game mode uses — this mode never called it before, so playing
+  // it earned no coins, didn't count toward the daily streak, and never showed
+  // up in 學習分析. No per-word ids exist for grammar questions, so correctIds/
+  // wrongIds are left empty (same convention DailyChallenge's non-vocab phases use).
+  const finishGrammarSession = () => {
+    const correctCount = correctCountRef.current;
+    const wrongCount = wrongCountRef.current;
+    const result: TestResult = {
+      timestamp: Date.now(),
+      totalQuestions: correctCount + wrongCount,
+      correctCount,
+      score: correctCount * 10,
+      mode: GameMode.CHALLENGE,
+      type: GameType.GRAMMAR,
+      correctIds: [],
+      wrongIds: [],
+      playerName: 'Anonymous',
+    };
+    saveResult(result);
   };
 
   const handleAnswer = (option: string) => {
     const currentQuestion = questions[currentQIndex];
     if (!currentQuestion || lastAnswerCorrect !== null) return;
-    
+
     setSelectedAnswer(option);
     const isCorrect = option === currentQuestion.correctAnswer;
     setLastAnswerCorrect(isCorrect);
-    
+
+    logAnswer({
+      wordId: makeWordKey('grammar', currentQuestion.id),
+      gameType: 'grammar',
+      correct: isCorrect,
+      responseMs: Date.now() - questionShownAtRef.current,
+    });
+
     if (isCorrect) {
-      setBossHp(prev => prev - 1);
+      correctCountRef.current += 1;
+      bossHpRef.current -= 1;
+      setBossHp(bossHpRef.current);
       setTimeout(() => {
         nextQuestion(true);
       }, 700);
     } else {
-      setPlayerHp(prev => prev - 1);
+      wrongCountRef.current += 1;
+      playerHpRef.current -= 1;
+      setPlayerHp(playerHpRef.current);
       setShowRule(true);
     }
   };
@@ -69,19 +128,19 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
     setShowRule(false);
     setSelectedAnswer(null);
     setCurrentQIndex(prev => prev + 1);
-    
-    // State values captured in nextQuestion might be stale if used directly from state variables instead of functional updates unless we use ref, 
-    // but React guarantees next render is scheduled correctly. 
-    // BUT since bossHp and playerHp states are processed earlier, we use the values from the outer closure correctly here by estimating minus 1
-    const finalBossHp = wasCorrect ? bossHp - 1 : bossHp;
-    const finalPlayerHp = wasCorrect ? playerHp : playerHp - 1;
+    questionShownAtRef.current = Date.now();
+
+    const finalBossHp = bossHpRef.current;
+    const finalPlayerHp = playerHpRef.current;
 
     if (wasCorrect && finalBossHp <= 0) {
        if (bossId) unlockMonster(bossId);
        setPhase('victory');
        confetti({ particleCount: 200, zIndex: 9999 });
+       finishGrammarSession();
     } else if (!wasCorrect && finalPlayerHp <= 0) {
        setPhase('defeat');
+       finishGrammarSession();
     }
   };
 

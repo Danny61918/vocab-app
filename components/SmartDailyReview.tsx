@@ -12,6 +12,7 @@ import {
 } from '../services/srsStorage';
 import { getAllSentences, tryCreateCloze, findServerAudioId } from '../services/exampleLookup';
 import { logAnswer, makeWordKey } from '../services/answerLog';
+import { awardCoins } from '../services/gamification';
 import confetti from 'canvas-confetti';
 
 interface Props {
@@ -41,6 +42,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   const [currentQuizWord, setCurrentQuizWord] = useState<VocabWord | null>(null);
   const [options, setOptions] = useState<string[]>([]);
   const [combo, setCombo] = useState(0);
+  const [quizCorrectCount, setQuizCorrectCount] = useState(0);
   const [feedbackState, setFeedbackState] = useState<'idle' | 'correct' | 'wrong'>('idle');
 
   // ── Cloze Phase ──
@@ -167,6 +169,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     if (isCorrect) {
       setFeedbackState('correct');
       setCombo(prev => prev + 1);
+      setQuizCorrectCount(prev => prev + 1);
       updateWordMastery(currentQuizWord.id, true);
       setTimeout(() => {
         const newQueue = quizQueue.slice(1);
@@ -358,6 +361,10 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     const masteryData = loadMasteryData();
     const masteredCount = Object.values(masteryData).filter(m => isMastered(m)).length;
     checkAndUnlockLegendaryMonsters(masteredCount);
+    // This mode never went through saveResult()/processGamification(), so it
+    // never paid out coins despite the gacha machine costing 500 of them —
+    // award the same 10-coins-per-correct-answer rate here.
+    awardCoins((quizCorrectCount + clozeCorrect) * 10);
   };
 
   // ════════════════════════════════
@@ -611,10 +618,13 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
         所有的怪獸都被你收服了！太厲害了！
       </p>
       {clozeQueue.length > 0 && (
-        <p className="text-2xl text-emerald-700 mb-8 font-bold bg-emerald-50 px-6 py-3 rounded-2xl border-2 border-emerald-200">
+        <p className="text-2xl text-emerald-700 mb-4 font-bold bg-emerald-50 px-6 py-3 rounded-2xl border-2 border-emerald-200">
           ✏️ 例句填空得分：{clozeCorrect} / {clozeQueue.length}
         </p>
       )}
+      <p className="text-2xl text-amber-700 mb-8 font-bold bg-amber-50 px-6 py-3 rounded-2xl border-2 border-amber-200">
+        🪙 獲得金幣：+{(quizCorrectCount + clozeCorrect) * 10}
+      </p>
       <button
         onClick={onClose}
         className="bg-yellow-500 hover:bg-yellow-600 text-white text-4xl font-black py-6 px-20 border-b-8 border-yellow-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"

@@ -67,9 +67,18 @@ export const getUnlockedAchievements = (): string[] => {
 export const getUserData = (): UserData => {
     const stored = localStorage.getItem(STORAGE_KEY_USER_DATA);
     if (stored) {
-        return JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        // Defensive: a prior cloud-sync edge case (or any other future one) can
+        // leave coins as null/NaN (JSON.stringify(NaN) serializes to "null", so
+        // this is silent — no exception, just a blank/broken display) or drop
+        // ownedMonsters entirely. Coerce back to a valid shape instead of
+        // propagating the corruption forever.
+        return {
+            coins: typeof parsed.coins === 'number' && Number.isFinite(parsed.coins) ? parsed.coins : 0,
+            ownedMonsters: parsed.ownedMonsters && typeof parsed.ownedMonsters === 'object' ? parsed.ownedMonsters : {},
+        };
     }
-    
+
     // Legacy migration: check if there was old VocabAdventureMap progress
     const legacyProgressStr = localStorage.getItem('vocab_adventure_progress');
     const ownedMonsters: Record<number, OwnedMonster> = {};
@@ -92,6 +101,13 @@ export const getUserData = (): UserData => {
 
 export const saveUserData = (data: UserData) => {
     localStorage.setItem(STORAGE_KEY_USER_DATA, JSON.stringify(data));
+};
+
+export const awardCoins = (amount: number): void => {
+    if (amount <= 0) return;
+    const userData = getUserData();
+    userData.coins += amount;
+    saveUserData(userData);
 };
 
 export const drawGacha = (): { monsterId: number; isNew: boolean; levelUp: boolean } | null => {
@@ -190,8 +206,5 @@ export const processGamification = (result: TestResult) => {
     }
 
     // 4. Reward Coins
-    const userData = getUserData();
-    const coinsEarned = result.correctCount * 10;
-    userData.coins += coinsEarned;
-    saveUserData(userData);
+    awardCoins(result.correctCount * 10);
 };

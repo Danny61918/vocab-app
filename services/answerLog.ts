@@ -1,15 +1,17 @@
 import { localYmd } from './srsStorage';
 import { GameType } from '../types';
 
-// Which dataset the word came from (app has two: SRS newVocabData vs serverData). See ADR-002.
-export type AnswerSource = 'srs' | 'server';
+// Which dataset the word/question came from. 'grammar' ids are GrammarQuestion.id
+// (string), not a vocab Word — same composite-key bridge as 'srs' vs 'server', see ADR-002.
+export type AnswerSource = 'srs' | 'server' | 'grammar';
 
 export type AnswerGameType =
   | 'multiple_choice'
   | 'matching'
   | 'cloze'
   | 'sentence_cloze'
-  | 'chinese_to_english';
+  | 'chinese_to_english'
+  | 'grammar';
 
 export interface AnswerRecord {
   wordId: string; // composite key "<source>:<id>"
@@ -35,6 +37,8 @@ export function gameTypeToAnswerGameType(gt: GameType): AnswerGameType {
       return 'sentence_cloze';
     case GameType.CHINESE_TO_ENGLISH:
       return 'chinese_to_english';
+    case GameType.GRAMMAR:
+      return 'grammar';
     default:
       return 'multiple_choice';
   }
@@ -136,6 +140,7 @@ export const GAME_TYPE_DIAGNOSIS: Record<AnswerGameType, string> = {
   matching: '中英對應較弱',
   multiple_choice: '詞義辨識較弱',
   chinese_to_english: '由中文想英文較弱',
+  grammar: '文法句型較弱',
 };
 
 export interface Diagnosis extends GameTypeErrorStat {
