@@ -6,6 +6,7 @@ import confetti from 'canvas-confetti';
 import { MONSTER_DATA } from '../services/monsterData';
 import { EXTRA_SENTENCES } from '../services/exampleSentencesData';
 import { HanziCanvas } from './HanziCanvas';
+import LetterTiles from './LetterTiles';
 
 interface Props {
   onBack: () => void;
@@ -34,7 +35,6 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [quizQueue, setQuizQueue] = useState<Word[]>([]);
     const [currentQuizWord, setCurrentQuizWord] = useState<Word | null>(null);
     const [options, setOptions] = useState<string[]>([]);
-    const [spellInput, setSpellInput] = useState('');
     const [sentenceMask, setSentenceMask] = useState('');
     const [combo, setCombo] = useState(0);
     const [feedbackState, setFeedbackState] = useState<'idle' | 'correct' | 'wrong'>('idle');
@@ -275,7 +275,6 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             setOptions(allOptions);
             playWord(target);
         } else if (mode === 'SPELL') {
-            setSpellInput('');
             playWord(target);
         } else if (mode === 'WRITE') {
             let startIdx = 0;
@@ -400,10 +399,6 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         }
     };
 
-    const handleSpellSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        handleAnswer(spellInput);
-    };
 
     const handleWriteNext = () => {
         if (!currentQuizWord) return;
@@ -579,7 +574,6 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         if (!word) return null;
 
         const coreWord = getCoreWordForMasking(word.english);
-        const coreWordChars = coreWord.split('');
 
         return (
             <div className="flex flex-col min-h-[80vh] p-4 md:p-8 w-full max-w-6xl mx-auto animate-fade-in select-none touch-manipulation">
@@ -717,65 +711,16 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                 )}
                             </div>
                         ) : (
-                            <form onSubmit={handleSpellSubmit} className="w-full flex flex-col items-center justify-center relative min-h-[300px]">
-                                {/* Hidden input to trigger mobile keyboard but maintain text flow */}
-                                <input 
-                                    type="text" 
-                                    value={spellInput}
-                                    onChange={(e) => setSpellInput(e.target.value)}
+                            <div className="w-full flex flex-col items-center justify-center relative min-h-[300px]">
+                                <LetterTiles
+                                    key={word.id}
+                                    targetWord={coreWord}
                                     disabled={feedbackState !== 'idle'}
-                                    autoFocus
-                                    maxLength={coreWordChars.length}
-                                    className="absolute inset-0 w-full h-full opacity-0 cursor-text z-10"
+                                    onComplete={(isCorrect) => {
+                                        handleAnswer(isCorrect ? coreWord : 'WRONG_INPUT');
+                                    }}
                                 />
-                                
-                                {/* Visual Letter Boxes */}
-                                <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-10 pointer-events-none">
-                                    {coreWordChars.map((char, idx) => {
-                                        const isTyped = idx < spellInput.length;
-                                        const displayChar = isTyped ? spellInput[idx] : '';
-                                        const isSpaceOrHyphen = char === ' ' || char === '-';
-                                        
-                                        if (isSpaceOrHyphen) {
-                                            const visualHint = char === ' ' ? '␣' : '-';
-                                            let spaceBoxClass = isTyped 
-                                                ? (displayChar === char ? 'border-transparent bg-transparent text-slate-400' : 'border-red-500 bg-red-100 text-red-700 shadow-md') 
-                                                : 'border-dashed border-slate-300 bg-transparent text-slate-300';
-                                                
-                                            return (
-                                                <div key={idx} className={`w-12 h-16 md:w-16 md:h-24 flex items-center justify-center text-4xl md:text-5xl font-black rounded-2xl border-4 uppercase transition-all duration-200 ${spaceBoxClass}`}>
-                                                    {isTyped ? displayChar : visualHint}
-                                                </div>
-                                            );
-                                        }
-                                        
-                                        let boxClass = isTyped ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md' : 'border-slate-300 bg-slate-100 text-transparent';
-                                        if (feedbackState === 'correct') {
-                                            boxClass = 'border-emerald-500 bg-emerald-100 text-emerald-700 shadow-lg scale-105';
-                                        } else if (feedbackState === 'wrong') {
-                                            boxClass = 'border-red-500 bg-red-100 text-red-700 animate-shake shadow-lg';
-                                        }
-
-                                        return (
-                                            <div key={idx} className={`w-12 h-16 md:w-20 md:h-24 flex items-center justify-center text-4xl md:text-5xl font-black rounded-2xl border-4 uppercase transition-all duration-200 ${boxClass}`}>
-                                                {displayChar}
-                                            </div>
-                                        );
-                                    })}
-                                </div>
-                                
-                                <button 
-                                    type="submit" 
-                                    disabled={feedbackState !== 'idle' || !spellInput.trim()}
-                                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 text-white px-12 py-5 rounded-[2rem] font-black text-3xl shadow-xl active:scale-95 transition-all z-20 relative w-full max-w-sm"
-                                >
-                                    發動攻擊
-                                </button>
-                                
-                                <div className="mt-6 text-slate-400 font-bold text-center">
-                                    直接使用鍵盤輸入即可
-                                </div>
-                            </form>
+                            </div>
                         )}
                     </div>
                 </div>
