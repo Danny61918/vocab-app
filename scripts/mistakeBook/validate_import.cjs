@@ -13,7 +13,8 @@ const DATA_DIR = path.join(ROOT, 'services', 'mistakeBook', 'data');
 
 const VALID_CATEGORIES = new Set([
   'capitalization', 'plural_possessive', 'preposition', 'verb_tense',
-  'pronoun_reference', 'context_carelessness', 'spelling', 'sentence_structure', 'other',
+  'pronoun_reference', 'content_comprehension', 'context_carelessness',
+  'spelling', 'sentence_structure', 'other',
 ]);
 const VALID_QUESTION_TYPES = new Set([
   'multiple_choice', 'rewrite', 'fill_blank', 'reading_comprehension',
