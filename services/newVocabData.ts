@@ -1195,4 +1195,10 @@ export const vocabData: VocabWord[] = [
   { id: "s1000", word: "was built in", partOfSpeech: "ph.", meaning: "建於" },
   { id: "s1001", word: "condensation", partOfSpeech: "n.", meaning: "凝結" },
   { id: "s1002", word: "agree with", partOfSpeech: "ph.", meaning: "同意；贊同" },
+  { id: "s1003", word: "at the camp", partOfSpeech: "adv.", meaning: "在營地；在露營地" },
+  { id: "s1004", word: "do research", partOfSpeech: "v.", meaning: "做研究（調查）" },
+  { id: "s1005", word: "play volleyball", partOfSpeech: "v.", meaning: "打排球" },
+  { id: "s1006", word: "play football", partOfSpeech: "v.", meaning: "踢足球" },
+  { id: "s1007", word: "play basketball", partOfSpeech: "v.", meaning: "打籃球" },
+  { id: "s1008", word: "play hide and seek", partOfSpeech: "v.", meaning: "玩捉迷藏" },
 ];

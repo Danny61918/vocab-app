@@ -15,6 +15,7 @@ import CreativeWorkshop from './components/CreativeWorkshop';
 import { TutorialGuide } from './components/TutorialGuide';
 import PracticeView from './components/PracticeView';
 import { getStreak, getUserData } from './services/gamification';
+import { getActiveExamReviewSets, getWordsForExamSet, ExamReviewSet } from './services/examReviewSets';
 import { bootCloudSync } from './services/cloudSync';
 import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins, HelpCircle, Headphones } from 'lucide-react';
 
@@ -62,11 +63,13 @@ function App() {
   const [selectedDifficulty, setSelectedDifficulty] = useState<Difficulty>(Difficulty.MEDIUM);
   const [selectedTimeLimit, setSelectedTimeLimit] = useState<number>(60);
   
-  const [scopeMode, setScopeMode] = useState<'ALL' | 'CUSTOM'>('ALL');
-  const [uiScope, setUiScope] = useState<'ALL' | 'LAST7' | 'CUSTOM'>('ALL');
+  const [scopeMode, setScopeMode] = useState<'ALL' | 'CUSTOM' | 'EXAM'>('ALL');
+  const [uiScope, setUiScope] = useState<'ALL' | 'LAST7' | 'CUSTOM' | 'EXAM'>('ALL');
   const [dateStart, setDateStart] = useState<string>('');
   const [dateEnd, setDateEnd] = useState<string>('');
   const [dailyWordsCount, setDailyWordsCount] = useState(0);
+  const [selectedExamSet, setSelectedExamSet] = useState<ExamReviewSet | null>(null);
+  const activeExamSets = getActiveExamReviewSets();
 
   const getLocalDateString = (d: Date): string => {
       const year = d.getFullYear();
@@ -104,7 +107,16 @@ function App() {
       setUiScope('ALL');
   };
 
+  const handleExamClick = (set: ExamReviewSet) => {
+      setSelectedExamSet(set);
+      setScopeMode('EXAM');
+      setUiScope('EXAM');
+  };
+
   const getFilteredWords = (): Word[] | undefined => {
+      if (scopeMode === 'EXAM') {
+          return selectedExamSet ? getWordsForExamSet(selectedExamSet) : undefined;
+      }
       if (scopeMode === 'ALL') return undefined;
       if (!dateStart && !dateEnd) return undefined;
       const all = getWords();
@@ -322,6 +334,23 @@ function App() {
                             <button onClick={handleLast7Days} className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition ${uiScope === 'LAST7' ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>近 7 天</button>
                             <button onClick={handleCustomClick} className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition ${uiScope === 'CUSTOM' ? 'bg-blue-600 text-white shadow-md' : 'bg-slate-100 text-slate-500 hover:bg-slate-200'}`}>自訂</button>
                         </div>
+                        {activeExamSets.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mb-3">
+                                {activeExamSets.map((set) => (
+                                    <button
+                                        key={set.id}
+                                        onClick={() => handleExamClick(set)}
+                                        className={`flex-1 py-2 px-3 rounded-lg text-xs font-bold transition flex items-center justify-center gap-1.5 ${
+                                            uiScope === 'EXAM' && selectedExamSet?.id === set.id
+                                                ? 'bg-rose-600 text-white shadow-md'
+                                                : 'bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200'
+                                        }`}
+                                    >
+                                        🎯 {set.label}（{set.wordIds.length} 字）
+                                    </button>
+                                ))}
+                            </div>
+                        )}
                         {scopeMode === 'CUSTOM' && (
                             <div className="bg-slate-50 p-3 rounded-lg flex gap-2 animate-fade-in border border-slate-200">
                                 <div className="flex-1">

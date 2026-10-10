@@ -2973,5 +2973,47 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "My parents don't always agree with my choice of clothes.",
         "The teacher asked if we agree with the character's decision in the story.",
         "They finally agreed with each other after a long discussion."
+    ],
+    1003: [
+        "We sang songs around the campfire at the camp every night.",
+        "There was a big lake at the camp where we could swim.",
+        "At the camp, all the kids shared a cabin with their new friends.",
+        "We played fun games at the camp until it got dark.",
+        "At the camp, everyone had to help clean up after breakfast."
+    ],
+    1004: [
+        "Our class had to do research on a famous scientist for homework.",
+        "She likes to do research about animals at the library.",
+        "The students did research online before writing their reports.",
+        "My brother is doing research on dinosaurs for his school project.",
+        "We did research together to find out why the sky is blue."
+    ],
+    1005: [
+        "We play volleyball on the beach every summer vacation.",
+        "My sister and her friends play volleyball after school on Fridays.",
+        "Do you want to play volleyball with us at the park?",
+        "The students play volleyball in gym class once a week.",
+        "They play volleyball every evening at the community center."
+    ],
+    1006: [
+        "The boys like to play football in the park after school.",
+        "We play football with our classmates during recess.",
+        "My cousin plays football for his school team.",
+        "Let's play football together this Saturday morning.",
+        "The children play football in the yard until dinner time."
+    ],
+    1007: [
+        "My brother and I play basketball at the school court every weekend.",
+        "She practices hard because she wants to play basketball well.",
+        "The students play basketball during lunch break.",
+        "We play basketball with our neighbors on sunny afternoons.",
+        "Do you know how to play basketball?"
+    ],
+    1008: [
+        "The children love to play hide and seek in the garden.",
+        "We play hide and seek at my grandmother's house every visit.",
+        "My little sister always wants to play hide and seek with me.",
+        "They play hide and seek behind the big trees in the park.",
+        "Let's play hide and seek before dinner is ready."
     ]
 };

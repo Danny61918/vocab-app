@@ -1021,7 +1021,13 @@ const serverData: Word[] = [
     { "id": 999, "date": "2026-10-09", "english": "water cycle", "chinese": "水循環", "part_of_speech": "(n.)", "example": "The water cycle is how water evaporates, condenses, and falls back to Earth as rain." },
     { "id": 1000, "date": "2026-10-09", "english": "was built in", "chinese": "建於", "part_of_speech": "(ph.)", "example": "The school was built in 1986, so it is now more than forty years old." },
     { "id": 1001, "date": "2026-10-09", "english": "condensation", "chinese": "凝結", "part_of_speech": "(n.)", "example": "You can see condensation forming on the glass when you pour an iced drink." },
-    { "id": 1002, "date": "2026-10-09", "english": "agree with", "chinese": "同意；贊同", "part_of_speech": "(ph.)", "example": "My parents don't agree with my decision to get a cat." }
+    { "id": 1002, "date": "2026-10-09", "english": "agree with", "chinese": "同意；贊同", "part_of_speech": "(ph.)", "example": "My parents don't agree with my decision to get a cat." },
+    { "id": 1003, "date": "2026-10-12", "english": "at the camp", "chinese": "在營地；在露營地", "part_of_speech": "(adv.)", "example": "We sang songs around the campfire at the camp every night." },
+    { "id": 1004, "date": "2026-10-14", "english": "do research", "chinese": "做研究（調查）", "part_of_speech": "(v.)", "example": "Our class had to do research on a famous scientist for homework." },
+    { "id": 1005, "date": "2026-10-15", "english": "play volleyball", "chinese": "打排球", "part_of_speech": "(v.)", "example": "We play volleyball on the beach every summer vacation." },
+    { "id": 1006, "date": "2026-10-15", "english": "play football", "chinese": "踢足球", "part_of_speech": "(v.)", "example": "The boys like to play football in the park after school." },
+    { "id": 1007, "date": "2026-10-15", "english": "play basketball", "chinese": "打籃球", "part_of_speech": "(v.)", "example": "My brother and I play basketball at the school court every weekend." },
+    { "id": 1008, "date": "2026-10-15", "english": "play hide and seek", "chinese": "玩捉迷藏", "part_of_speech": "(v.)", "example": "The children love to play hide and seek in the garden." }
 ];
 
 export default serverData; 
