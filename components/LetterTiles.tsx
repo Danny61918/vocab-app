@@ -55,9 +55,20 @@ const LetterTiles: React.FC<Props> = ({
   onComplete,
   disabled = false,
 }) => {
-  // Only use alphabetic characters for the tiles
+  // Only use alphabetic characters for the tiles (phrases like "at the camp"
+  // still need their letters spelled in order — spaces aren't tiles, see
+  // targetChars below for how the slot row shows word-gap spacing instead).
   const targetLetters = useMemo(
     () => targetWord.toLowerCase().replace(/[^a-z]/g, '').split(''),
+    [targetWord]
+  );
+
+  // Full lowercase sequence INCLUDING spaces, collapsed/trimmed, used only to
+  // lay out visual gaps between words in the answer-slot row below — a
+  // multi-word phrase with no gap (e.g. "atthecamp") is unreadable and gives
+  // the child no way to tell it's three separate words.
+  const targetChars = useMemo(
+    () => targetWord.toLowerCase().replace(/[^a-z ]/g, '').trim().replace(/\s+/g, ' ').split(''),
     [targetWord]
   );
 
@@ -129,32 +140,43 @@ const LetterTiles: React.FC<Props> = ({
         </div>
       )}
 
-      {/* Answer slots */}
+      {/* Answer slots — targetChars includes spaces so multi-word phrases
+          ("at the camp") show a visible gap between words; the gap itself
+          isn't a tappable slot, letterIndex just skips over it so the
+          letter-only placed/targetLetters arrays still line up correctly. */}
       <div className="flex gap-2 flex-wrap justify-center min-h-[4rem]">
-        {targetLetters.map((_, i) => {
-          const placedTile = placed[i] ? allTiles.find((t) => t.id === placed[i]) : null;
-          const isShaking = shakeSlot === i;
+        {(() => {
+          let letterIndex = -1;
+          return targetChars.map((ch, charI) => {
+            if (ch === ' ') {
+              return <div key={`gap-${charI}`} className="w-4 md:w-6" aria-hidden="true" />;
+            }
+            letterIndex += 1;
+            const i = letterIndex;
+            const placedTile = placed[i] ? allTiles.find((t) => t.id === placed[i]) : null;
+            const isShaking = shakeSlot === i;
 
-          return (
-            <button
-              key={i}
-              onClick={() => handleSlotTap(i)}
-              disabled={disabled || !placedTile}
-              className={`
-                w-12 h-14 md:w-14 md:h-16 rounded-xl border-4 text-2xl md:text-3xl font-black
-                uppercase transition-all duration-150
-                ${
-                  placedTile
-                    ? 'bg-blue-500 text-white border-blue-600 shadow-lg hover:bg-blue-400 cursor-pointer'
-                    : 'bg-white border-dashed border-gray-300'
-                }
-                ${isShaking ? 'animate-[shake_0.3s_ease-in-out]' : ''}
-              `}
-            >
-              {placedTile?.letter ?? ''}
-            </button>
-          );
-        })}
+            return (
+              <button
+                key={i}
+                onClick={() => handleSlotTap(i)}
+                disabled={disabled || !placedTile}
+                className={`
+                  w-12 h-14 md:w-14 md:h-16 rounded-xl border-4 text-2xl md:text-3xl font-black
+                  uppercase transition-all duration-150
+                  ${
+                    placedTile
+                      ? 'bg-blue-500 text-white border-blue-600 shadow-lg hover:bg-blue-400 cursor-pointer'
+                      : 'bg-white border-dashed border-gray-300'
+                  }
+                  ${isShaking ? 'animate-[shake_0.3s_ease-in-out]' : ''}
+                `}
+              >
+                {placedTile?.letter ?? ''}
+              </button>
+            );
+          });
+        })()}
       </div>
 
       {/* Letter tile pool */}
