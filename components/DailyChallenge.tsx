@@ -302,7 +302,15 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             if (mode === 'RECOGNIZE') {
                 startSpellPhase();
             } else if (mode === 'SPELL') {
-                startWritePhase();
+                // 大考複習 skips Chinese handwriting (HanziCanvas) — 20 words x
+                // writing out every character was too tiring for exam cram,
+                // which only needs to test word <-> meaning recall, not
+                // handwriting. Regular weekly practice keeps all 4 phases.
+                if (wordSource === 'EXAM') {
+                    startSentencePhase();
+                } else {
+                    startWritePhase();
+                }
             } else if (mode === 'WRITE') {
                 startSentencePhase();
             } else {
