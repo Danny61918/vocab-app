@@ -800,8 +800,20 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                             </div>
                         ) : (
                             <div className="w-full flex flex-col items-center justify-center relative min-h-[300px]">
+                                {/* key includes totalQuestions (bumps on every attempt, right or
+                                    wrong), not just word.id — a wrong SPELL answer gets requeued
+                                    onto the end of quizQueue, and when it's the only word left
+                                    that means the SAME word reloads next. With key={word.id} alone
+                                    LetterTiles wasn't remounted, so its stale "placed" tiles from
+                                    the failed attempt never cleared; the moment feedback flipped
+                                    back to idle the completion effect re-fired on those same stale
+                                    tiles and auto-failed again with no input, looping forever
+                                    (repeating the word's audio, tiles unresponsive). Forcing a
+                                    remount per attempt is more robust than patching the reset
+                                    effect's dependency, since it doesn't matter whether coreWord
+                                    happens to be identical to the previous attempt. */}
                                 <LetterTiles
-                                    key={word.id}
+                                    key={`${word.id}-${totalQuestions}`}
                                     targetWord={coreWord}
                                     disabled={feedbackState !== 'idle'}
                                     onComplete={(isCorrect) => {
