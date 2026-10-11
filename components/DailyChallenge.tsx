@@ -40,6 +40,11 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [phase, setPhase] = useState<Phase>('INTRO');
     const [chunkSize] = useState(5);
     const [currentChunkIndex, setCurrentChunkIndex] = useState(0);
+    // Which round (chunk of 5) to start from — lets her jump straight to
+    // round 2/3/4 on a replay instead of always redoing round 1. Reset to 0
+    // whenever the word pool changes (new date / exam day-group / source)
+    // below, since the old index could be out of range for the new pool.
+    const [selectedStartChunk, setSelectedStartChunk] = useState(0);
     
     // Learn Phase
     const [learnIndex, setLearnIndex] = useState(0);
@@ -190,6 +195,13 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         setTargetWords(all.filter(w => w.date === target));
     }, [wordSource, selectedDate, challengeMode, availableDates]);
 
+    // Whenever the word pool changes shape, the previous round selection may
+    // no longer be valid (different word count -> different number of
+    // rounds) — reset to round 1 rather than risk starting mid-air.
+    useEffect(() => {
+        setSelectedStartChunk(0);
+    }, [targetWords]);
+
     const speak = (text: string) => {
         if ('speechSynthesis' in window) {
             window.speechSynthesis.cancel();
@@ -221,12 +233,13 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const currentChunk = chunks[currentChunkIndex] || [];
 
     const startChallenge = () => {
-        setCurrentChunkIndex(0);
+        const startAt = Math.min(selectedStartChunk, Math.max(chunks.length - 1, 0));
+        setCurrentChunkIndex(startAt);
         setCorrectCount(0);
         setWrongIds([]);
         setTotalQuestions(0);
         setWordMistakes({});
-        startLearnPhase(0);
+        startLearnPhase(startAt);
     };
 
     const startLearnPhase = (chunkIdx: number) => {
@@ -598,6 +611,33 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                              <div className="text-3xl font-black">{targetWords.length}</div>
                         </div>
                     </div>
+
+                    {chunks.length > 1 && (
+                        <div className="mt-6">
+                            <label className="block text-xs font-black text-slate-400 mb-3 uppercase tracking-widest ml-1">從第幾輪開始（不用每次都從頭玩）</label>
+                            <div className="flex gap-3 flex-wrap">
+                                {chunks.map((chunk, idx) => {
+                                    const from = idx * chunkSize + 1;
+                                    const to = from + chunk.length - 1;
+                                    const isSelected = selectedStartChunk === idx;
+                                    return (
+                                        <button
+                                            key={idx}
+                                            onClick={() => setSelectedStartChunk(idx)}
+                                            className={`flex-1 min-w-[5.5rem] py-3 rounded-2xl border-4 font-black transition-all ${
+                                                isSelected
+                                                    ? 'bg-slate-900 text-white border-slate-900 shadow-xl scale-105'
+                                                    : 'bg-white text-slate-500 border-slate-100 hover:border-slate-300'
+                                            }`}
+                                        >
+                                            <div className="text-base">第{idx + 1}輪</div>
+                                            <div className="text-[10px] opacity-70">{from}-{to}</div>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    )}
                 </div>
 
                 <button 
