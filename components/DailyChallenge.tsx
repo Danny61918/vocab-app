@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Word, TestResult, GameMode, GameType, Difficulty } from '../types';
 import { getWords, saveResult } from '../services/storage';
-import { CalendarDays, ChevronDown, BookOpen, TrendingUp, AlertCircle, ArrowRight, XCircle, CheckCircle } from 'lucide-react';
+import { CalendarDays, ChevronDown, BookOpen, TrendingUp, AlertCircle, ArrowRight, XCircle, CheckCircle, Target } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { MONSTER_DATA } from '../services/monsterData';
 import { EXTRA_SENTENCES } from '../services/exampleSentencesData';
 import { HanziCanvas } from './HanziCanvas';
 import LetterTiles from './LetterTiles';
+import { getActiveExamReviewSets, getWordsForExamSet, ExamReviewSet } from '../services/examReviewSets';
 
 interface Props {
   onBack: () => void;
@@ -14,6 +15,8 @@ interface Props {
 
 type ChallengeMode = 'REVIEW' | 'PREVIEW';
 type Phase = 'INTRO' | 'LEARN' | 'QUIZ' | 'ROUND_END' | 'SUMMARY';
+type WordSource = 'REGULAR' | 'EXAM';
+const EXAM_ALL_DATES = '__ALL__'; // sentinel: whole exam set, not sliced by original teaching date
 
 export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [availableDates, setAvailableDates] = useState<string[]>([]);
@@ -21,6 +24,16 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [challengeMode, setChallengeMode] = useState<ChallengeMode>('REVIEW');
     const [actualTargetDate, setActualTargetDate] = useState<string>('');
     const [targetWords, setTargetWords] = useState<Word[]>([]);
+
+    // Exam-cram source: the teacher may test a date-bounded slice of the big
+    // 80-word review list rather than all of it, so daily practice needs to
+    // be scopeable the same way QuizArea's exam scope already is.
+    const [wordSource, setWordSource] = useState<WordSource>('REGULAR');
+    const [examSets, setExamSets] = useState<ExamReviewSet[]>([]);
+    const [selectedExamSetId, setSelectedExamSetId] = useState<string>('');
+    const [examWords, setExamWords] = useState<Word[]>([]);
+    const [examDateOptions, setExamDateOptions] = useState<{ date: string; count: number }[]>([]);
+    const [selectedExamDate, setSelectedExamDate] = useState<string>(EXAM_ALL_DATES);
     
     const [phase, setPhase] = useState<Phase>('INTRO');
     const [chunkSize] = useState(5);
@@ -118,6 +131,10 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             setSelectedDate(nearestDate);
         }
         setCurrentMonster(getRandomMonster());
+
+        const sets = getActiveExamReviewSets();
+        setExamSets(sets);
+        if (sets.length > 0) setSelectedExamSetId(sets[0].id);
     }, []);
 
     useEffect(() => {
@@ -128,7 +145,46 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         };
     }, []);
 
+    // When an exam set is chosen, resolve its words once and derive the
+    // distinct original-teaching-dates within it (so "老師可能按照日期考" —
+    // she can drill just the slice the teacher is actually covering, not
+    // necessarily the whole compiled list).
     useEffect(() => {
+        const set = examSets.find(s => s.id === selectedExamSetId);
+        if (!set) {
+            setExamWords([]);
+            setExamDateOptions([]);
+            return;
+        }
+        const words = getWordsForExamSet(set);
+        setExamWords(words);
+        const counts = new Map<string, number>();
+        words.forEach(w => {
+            if (!w.date) return;
+            counts.set(w.date, (counts.get(w.date) || 0) + 1);
+        });
+        const options = Array.from(counts.entries())
+            .map(([date, count]) => ({ date, count }))
+            .sort((a, b) => a.date.localeCompare(b.date));
+        setExamDateOptions(options);
+        setSelectedExamDate(EXAM_ALL_DATES);
+    }, [selectedExamSetId, examSets]);
+
+    useEffect(() => {
+        if (wordSource !== 'EXAM') return;
+        const target = selectedExamDate === EXAM_ALL_DATES
+            ? examWords
+            : examWords.filter(w => w.date === selectedExamDate);
+        const set = examSets.find(s => s.id === selectedExamSetId);
+        const label = selectedExamDate === EXAM_ALL_DATES
+            ? (set ? `🎯 ${set.label}` : '🎯 大考複習')
+            : selectedExamDate;
+        setActualTargetDate(label);
+        setTargetWords(target);
+    }, [wordSource, selectedExamDate, examWords, examSets, selectedExamSetId]);
+
+    useEffect(() => {
+        if (wordSource !== 'REGULAR') return;
         if (!selectedDate || availableDates.length === 0) return;
         const all = getWords();
         let target = selectedDate;
@@ -142,7 +198,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         }
         setActualTargetDate(target);
         setTargetWords(all.filter(w => w.date === target));
-    }, [selectedDate, challengeMode, availableDates]);
+    }, [wordSource, selectedDate, challengeMode, availableDates]);
 
     const speak = (text: string) => {
         if ('speechSynthesis' in window) {
@@ -454,40 +510,82 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                 </div>
 
                 <div className="bg-slate-50 p-8 rounded-[2.5rem] border-4 border-white shadow-inner mb-8">
-                    <div className="mb-8">
-                        <label className="block text-xs font-black text-slate-400 mb-3 uppercase tracking-widest ml-1">選擇挑戰日期</label>
-                        <div className="relative">
-                            <select 
-                                value={selectedDate}
-                                onChange={(e) => setSelectedDate(e.target.value)}
-                                className="w-full appearance-none bg-white border-4 border-white text-slate-700 py-4 px-6 pr-12 rounded-2xl font-black text-xl shadow-xl focus:border-purple-400 outline-none transition-all"
+                    {examSets.length > 0 && (
+                        <div className="grid grid-cols-2 gap-4 mb-8">
+                            <button
+                                onClick={() => setWordSource('REGULAR')}
+                                className={`flex flex-col items-center justify-center p-4 rounded-2xl border-4 transition-all ${wordSource === 'REGULAR' ? 'bg-white border-purple-500 text-purple-600 shadow-xl scale-105 z-10' : 'bg-slate-100 border-transparent text-slate-400'}`}
                             >
-                                {availableDates.map(date => (
-                                    <option key={date} value={date}>{date}</option>
-                                ))}
-                            </select>
-                            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-purple-400">
-                                <ChevronDown size={28} />
+                                <CalendarDays size={24} className="mb-1" />
+                                <span className="font-black text-sm">本週進度</span>
+                            </button>
+                            <button
+                                onClick={() => setWordSource('EXAM')}
+                                className={`flex flex-col items-center justify-center p-4 rounded-2xl border-4 transition-all ${wordSource === 'EXAM' ? 'bg-white border-rose-500 text-rose-600 shadow-xl scale-105 z-10' : 'bg-slate-100 border-transparent text-slate-400'}`}
+                            >
+                                <Target size={24} className="mb-1" />
+                                <span className="font-black text-sm">🎯 大考複習</span>
+                            </button>
+                        </div>
+                    )}
+
+                    {wordSource === 'EXAM' ? (
+                        <div className="mb-8">
+                            <label className="block text-xs font-black text-slate-400 mb-3 uppercase tracking-widest ml-1">老師可能按日期分段考，挑選範圍</label>
+                            <div className="relative">
+                                <select
+                                    value={selectedExamDate}
+                                    onChange={(e) => setSelectedExamDate(e.target.value)}
+                                    className="w-full appearance-none bg-white border-4 border-white text-slate-700 py-4 px-6 pr-12 rounded-2xl font-black text-xl shadow-xl focus:border-rose-400 outline-none transition-all"
+                                >
+                                    <option value={EXAM_ALL_DATES}>全部 {examWords.length} 字</option>
+                                    {examDateOptions.map(({ date, count }) => (
+                                        <option key={date} value={date}>{date}（{count} 字）</option>
+                                    ))}
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-rose-400">
+                                    <ChevronDown size={28} />
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ) : (
+                        <>
+                            <div className="mb-8">
+                                <label className="block text-xs font-black text-slate-400 mb-3 uppercase tracking-widest ml-1">選擇挑戰日期</label>
+                                <div className="relative">
+                                    <select
+                                        value={selectedDate}
+                                        onChange={(e) => setSelectedDate(e.target.value)}
+                                        className="w-full appearance-none bg-white border-4 border-white text-slate-700 py-4 px-6 pr-12 rounded-2xl font-black text-xl shadow-xl focus:border-purple-400 outline-none transition-all"
+                                    >
+                                        {availableDates.map(date => (
+                                            <option key={date} value={date}>{date}</option>
+                                        ))}
+                                    </select>
+                                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-purple-400">
+                                        <ChevronDown size={28} />
+                                    </div>
+                                </div>
+                            </div>
 
-                    <div className="grid grid-cols-2 gap-4 mb-8">
-                        <button
-                            onClick={() => setChallengeMode('REVIEW')}
-                            className={`flex flex-col items-center justify-center p-6 rounded-3xl border-4 transition-all ${challengeMode === 'REVIEW' ? 'bg-white border-purple-500 text-purple-600 shadow-2xl scale-105 z-10' : 'bg-slate-100 border-transparent text-slate-400'}`}
-                        >
-                            <BookOpen size={32} className="mb-2" />
-                            <span className="font-black text-lg">複習舊怪獸</span>
-                        </button>
-                        <button
-                            onClick={() => setChallengeMode('PREVIEW')}
-                            className={`flex flex-col items-center justify-center p-6 rounded-3xl border-4 transition-all ${challengeMode === 'PREVIEW' ? 'bg-white border-blue-500 text-blue-600 shadow-2xl scale-105 z-10' : 'bg-slate-100 border-transparent text-slate-400'}`}
-                        >
-                            <TrendingUp size={32} className="mb-2" />
-                            <span className="font-black text-lg">探索新怪獸</span>
-                        </button>
-                    </div>
+                            <div className="grid grid-cols-2 gap-4 mb-8">
+                                <button
+                                    onClick={() => setChallengeMode('REVIEW')}
+                                    className={`flex flex-col items-center justify-center p-6 rounded-3xl border-4 transition-all ${challengeMode === 'REVIEW' ? 'bg-white border-purple-500 text-purple-600 shadow-2xl scale-105 z-10' : 'bg-slate-100 border-transparent text-slate-400'}`}
+                                >
+                                    <BookOpen size={32} className="mb-2" />
+                                    <span className="font-black text-lg">複習舊怪獸</span>
+                                </button>
+                                <button
+                                    onClick={() => setChallengeMode('PREVIEW')}
+                                    className={`flex flex-col items-center justify-center p-6 rounded-3xl border-4 transition-all ${challengeMode === 'PREVIEW' ? 'bg-white border-blue-500 text-blue-600 shadow-2xl scale-105 z-10' : 'bg-slate-100 border-transparent text-slate-400'}`}
+                                >
+                                    <TrendingUp size={32} className="mb-2" />
+                                    <span className="font-black text-lg">探索新怪獸</span>
+                                </button>
+                            </div>
+                        </>
+                    )}
 
                     <div className={`p-6 rounded-[2rem] border-4 flex items-center gap-4 shadow-xl ${challengeMode === 'PREVIEW' ? 'bg-blue-600 text-white border-blue-400' : 'bg-purple-600 text-white border-purple-400'}`}>
                         <div className="bg-white/20 p-3 rounded-2xl">
