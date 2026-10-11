@@ -191,6 +191,150 @@ export const GRAMMAR_QUESTIONS: GrammarQuestion[] = [
     options: ["dance", "dances", "dancing", "danceing"],
     correctAnswer: "dancing",
     ruleReminder: "today 常搭配進行式。dance 字尾有 e，去掉 e 加 ing (dancing)。"
+  },
+  {
+    id: "tense_cont_6",
+    category: GrammarCategory.TENSE_PRESENT_CONTINUOUS,
+    sentenceContext: "Look! The cat ___ (lie) on the sofa.",
+    options: ["lying", "liing", "lieing", "lyeing"],
+    correctAnswer: "lying",
+    ruleReminder: "特殊變化：lie 字尾 ie 要改成 y 再加 ing (lying)，不是 liing。"
+  },
+
+  // ----------------------------------------------------
+  // Possessives (所有格形容詞/代名詞、's 與 s'、Whose)
+  // ----------------------------------------------------
+  {
+    id: "possessive_1",
+    category: GrammarCategory.POSSESSIVE,
+    sentenceContext: "This is Tom. ___ bag is red.",
+    options: ["He", "His", "Him"],
+    correctAnswer: "His",
+    ruleReminder: "Possessive Adjective 後面要接名詞 (bag)，He 的所有格形容詞是 His。"
+  },
+  {
+    id: "possessive_2",
+    category: GrammarCategory.POSSESSIVE,
+    sentenceContext: "That pencil case isn't mine, it's ___.",
+    options: ["you", "your", "yours"],
+    correctAnswer: "yours",
+    ruleReminder: "後面沒有接名詞時要用 Possessive Pronoun (不加名詞)，your 的代名詞是 yours。"
+  },
+  {
+    id: "possessive_3",
+    category: GrammarCategory.POSSESSIVE,
+    sentenceContext: "We have a new puppy. ___ name is Max.",
+    options: ["It's", "Its", "It"],
+    correctAnswer: "Its",
+    ruleReminder: "Its (無撇號) 是所有格形容詞，表示「牠的」；It's (有撇號) 則是 It is 的縮寫，兩者意思完全不同。"
+  },
+  {
+    id: "possessive_4",
+    category: GrammarCategory.POSSESSIVE,
+    sentenceContext: "The boys are in the garden. Look at ___ kite!",
+    options: ["boy's", "boys'", "boys's"],
+    correctAnswer: "boys'",
+    ruleReminder: "兩個以上的人要用 s' (在複數字尾後只加一撇)，例如 the boys' kite、the girls' skirts。"
+  },
+  {
+    id: "possessive_5",
+    category: GrammarCategory.POSSESSIVE,
+    sentenceContext: "___ is this umbrella? It's Mary's.",
+    options: ["Who", "Whose", "Who's"],
+    correctAnswer: "Whose",
+    ruleReminder: "Whose 用來詢問某樣東西是誰的 (詢問所有權)；Who's 是 Who is 的縮寫，意思不同，小心不要混淆。"
+  },
+  {
+    id: "possessive_6",
+    category: GrammarCategory.POSSESSIVE,
+    sentenceContext: "These seats aren't ours, they are ___.",
+    options: ["they", "their", "theirs"],
+    correctAnswer: "theirs",
+    ruleReminder: "句尾沒有接名詞時要用 Possessive Pronoun，their 的代名詞是 theirs。"
+  },
+  {
+    id: "possessive_7",
+    category: GrammarCategory.POSSESSIVE,
+    sentenceContext: "Look at the ___ toys. They are all over the floor.",
+    options: ["child's", "childs'", "children's"],
+    correctAnswer: "children's",
+    ruleReminder: "child 的複數是不規則變化 children，所有格仍然用 's (children's)，不是 childs'。"
+  },
+  {
+    id: "possessive_8",
+    category: GrammarCategory.POSSESSIVE,
+    sentenceContext: "Is this backpack ___? No, it isn't. It's Ben's.",
+    options: ["you", "your", "yours"],
+    correctAnswer: "yours",
+    ruleReminder: "問句句尾沒有名詞時要用 Possessive Pronoun，your 的代名詞是 yours。"
+  },
+
+  // ----------------------------------------------------
+  // There is / There are - Some / Any
+  // ----------------------------------------------------
+  {
+    id: "there_be_1",
+    category: GrammarCategory.THERE_BE_SOME_ANY,
+    sentenceContext: "___ a cat under the table.",
+    options: ["There's", "There are", "There"],
+    correctAnswer: "There's",
+    ruleReminder: "後面接單數名詞 (a cat) 要用 There's (There is 的縮寫)。"
+  },
+  {
+    id: "there_be_2",
+    category: GrammarCategory.THERE_BE_SOME_ANY,
+    sentenceContext: "___ three students in the classroom.",
+    options: ["There's", "There are", "There is"],
+    correctAnswer: "There are",
+    ruleReminder: "後面接複數名詞 (three students) 要用 There are。"
+  },
+  {
+    id: "there_be_3",
+    category: GrammarCategory.THERE_BE_SOME_ANY,
+    sentenceContext: "___ any milk in the bottle?",
+    options: ["Is there", "Are there"],
+    correctAnswer: "Is there",
+    ruleReminder: "milk 是不可數名詞 (單數概念)，疑問句用 Is there...any。"
+  },
+  {
+    id: "there_be_4",
+    category: GrammarCategory.THERE_BE_SOME_ANY,
+    sentenceContext: "___ any books on the desk?",
+    options: ["Is there", "Are there"],
+    correctAnswer: "Are there",
+    ruleReminder: "books 是複數可數名詞，疑問句用 Are there...any。"
+  },
+  {
+    id: "there_be_5",
+    category: GrammarCategory.THERE_BE_SOME_ANY,
+    sentenceContext: "There ___ any sugar in the jar.",
+    options: ["isn't", "aren't"],
+    correctAnswer: "isn't",
+    ruleReminder: "sugar 是不可數名詞，否定句用 There isn't any。"
+  },
+  {
+    id: "there_be_6",
+    category: GrammarCategory.THERE_BE_SOME_ANY,
+    sentenceContext: "There ___ any eggs in the basket.",
+    options: ["isn't", "aren't"],
+    correctAnswer: "aren't",
+    ruleReminder: "eggs 是複數可數名詞，否定句用 There aren't any。"
+  },
+  {
+    id: "there_be_7",
+    category: GrammarCategory.THERE_BE_SOME_ANY,
+    sentenceContext: "There are ___ oranges on the table.",
+    options: ["some", "any"],
+    correctAnswer: "some",
+    ruleReminder: "肯定句 (affirmative) 用 some，不管後面是可數還是不可數名詞。"
+  },
+  {
+    id: "there_be_8",
+    category: GrammarCategory.THERE_BE_SOME_ANY,
+    sentenceContext: "There isn't ___ juice left.",
+    options: ["some", "any"],
+    correctAnswer: "any",
+    ruleReminder: "否定句和疑問句 (negative/question) 要用 any，不用 some。"
   }
 ];
 
@@ -205,4 +349,6 @@ export const GRAMMAR_BOSS_MAP: Record<GrammarCategory, number> = {
   [GrammarCategory.PREPOSITION_PLACE]: 25, // 大地護衛
   [GrammarCategory.TENSE_PRESENT_SIMPLE]: 26, // 永恆機甲
   [GrammarCategory.TENSE_PRESENT_CONTINUOUS]: 27, // 烈焰之舞
+  [GrammarCategory.POSSESSIVE]: 30, // 格鬥鋼拳
+  [GrammarCategory.THERE_BE_SOME_ANY]: 39, // 聖光獨角獸
 };

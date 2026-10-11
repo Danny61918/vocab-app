@@ -12,6 +12,15 @@ interface Props {
   onExit: () => void;
 }
 
+const CATEGORY_LABELS: Record<GrammarCategory, string> = {
+  [GrammarCategory.PREPOSITION_TIME]: '時間介系詞',
+  [GrammarCategory.PREPOSITION_PLACE]: '地方介系詞',
+  [GrammarCategory.TENSE_PRESENT_SIMPLE]: '現在簡單式',
+  [GrammarCategory.TENSE_PRESENT_CONTINUOUS]: '現在進行式',
+  [GrammarCategory.POSSESSIVE]: '所有格',
+  [GrammarCategory.THERE_BE_SOME_ANY]: 'There is/are, Some/Any',
+};
+
 const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
   const [phase, setPhase] = useState<'select' | 'battle' | 'victory' | 'defeat'>('select');
   const [selectedCategory, setSelectedCategory] = useState<GrammarCategory | null>(null);
@@ -164,7 +173,7 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
                  </div>
                  <h2 className="text-2xl font-black text-rose-800 mb-3">{monster.name}</h2>
                  <span className="bg-rose-100 text-rose-600 px-3 py-1 rounded-xl font-bold text-sm">
-                    {category.includes('TIME') ? '時間介系詞' : category.includes('PLACE') ? '地方介系詞' : category.includes('SIMPLE') ? '現在簡單式' : '現在進行式'}
+                    {CATEGORY_LABELS[category as GrammarCategory]}
                  </span>
               </div>
             )
