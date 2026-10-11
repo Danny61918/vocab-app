@@ -7,7 +7,7 @@ import { MONSTER_DATA } from '../services/monsterData';
 import { EXTRA_SENTENCES } from '../services/exampleSentencesData';
 import { HanziCanvas } from './HanziCanvas';
 import LetterTiles from './LetterTiles';
-import { getActiveExamReviewSets, getWordsForExamSet, ExamReviewSet } from '../services/examReviewSets';
+import { getActiveExamReviewSets, getWordsForExamSet, getWordsForDayGroup, ExamReviewSet } from '../services/examReviewSets';
 
 interface Props {
   onBack: () => void;
@@ -16,6 +16,7 @@ interface Props {
 type ChallengeMode = 'REVIEW' | 'PREVIEW';
 type Phase = 'INTRO' | 'LEARN' | 'QUIZ' | 'ROUND_END' | 'SUMMARY';
 type WordSource = 'REGULAR' | 'EXAM';
+const EXAM_ALL = '__ALL__'; // sentinel: whole exam set, not one day's sub-group
 
 export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [availableDates, setAvailableDates] = useState<string[]>([]);
@@ -25,16 +26,15 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [targetWords, setTargetWords] = useState<Word[]>([]);
 
     // Exam-cram source: practice against the compiled 80-word big-test list
-    // instead of the regular weekly date. NOTE: this does NOT sub-divide by
-    // date — an earlier attempt grouped words by each word's original
-    // serverData teaching date (e.g. "2026-09-03"), but that date is just
-    // when the word first appeared in a weekly batch months ago, not the
-    // day-grouping the teacher's actual 4-day/20-word review sheet uses.
-    // Real day-grouping needs to come from the parent re-supplying that
-    // sheet's groups explicitly before this can be sliced by day again.
+    // instead of the regular weekly date. An earlier attempt sliced this by
+    // each word's unrelated historical serverData date (e.g. "2026-09-03")
+    // — that was wrong and got reverted. The real sub-grouping (if any) now
+    // comes only from a set's own `dayGroups`, exactly as printed on the
+    // school's sheet (e.g. "Monday (10/12)"), never invented from app data.
     const [wordSource, setWordSource] = useState<WordSource>('REGULAR');
     const [examSets, setExamSets] = useState<ExamReviewSet[]>([]);
     const [selectedExamSetId, setSelectedExamSetId] = useState<string>('');
+    const [selectedExamDayLabel, setSelectedExamDayLabel] = useState<string>(EXAM_ALL);
     const [examWords, setExamWords] = useState<Word[]>([]);
     
     const [phase, setPhase] = useState<Phase>('INTRO');
@@ -147,18 +147,31 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         };
     }, []);
 
-    // When an exam set is chosen, resolve its full word list once.
+    // When an exam set is chosen, resolve its full word list once (used for
+    // the "全部 N 字" option and the summary count).
     useEffect(() => {
         const set = examSets.find(s => s.id === selectedExamSetId);
         setExamWords(set ? getWordsForExamSet(set) : []);
+        setSelectedExamDayLabel(EXAM_ALL);
     }, [selectedExamSetId, examSets]);
 
     useEffect(() => {
         if (wordSource !== 'EXAM') return;
         const set = examSets.find(s => s.id === selectedExamSetId);
-        setActualTargetDate(set ? `🎯 ${set.label}` : '🎯 大考複習');
-        setTargetWords(examWords);
-    }, [wordSource, examWords, examSets, selectedExamSetId]);
+        if (!set) {
+            setActualTargetDate('🎯 大考複習');
+            setTargetWords([]);
+            return;
+        }
+        if (selectedExamDayLabel === EXAM_ALL) {
+            setActualTargetDate(`🎯 ${set.label}`);
+            setTargetWords(examWords);
+            return;
+        }
+        const group = set.dayGroups?.find(g => g.label === selectedExamDayLabel);
+        setActualTargetDate(group ? `🎯 ${group.label}` : `🎯 ${set.label}`);
+        setTargetWords(group ? getWordsForDayGroup(group) : examWords);
+    }, [wordSource, selectedExamDayLabel, examWords, examSets, selectedExamSetId]);
 
     useEffect(() => {
         if (wordSource !== 'REGULAR') return;
@@ -507,8 +520,23 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                     )}
 
                     {wordSource === 'EXAM' ? (
-                        <div className="mb-8 p-6 rounded-2xl bg-rose-50 border-4 border-rose-100 text-rose-700 font-bold text-sm">
-                            這次練習會涵蓋大考複習表的全部 {examWords.length} 個字。
+                        <div className="mb-8">
+                            <label className="block text-xs font-black text-slate-400 mb-3 uppercase tracking-widest ml-1">挑選複習範圍（照學校表格的天數分組）</label>
+                            <div className="relative">
+                                <select
+                                    value={selectedExamDayLabel}
+                                    onChange={(e) => setSelectedExamDayLabel(e.target.value)}
+                                    className="w-full appearance-none bg-white border-4 border-white text-slate-700 py-4 px-6 pr-12 rounded-2xl font-black text-xl shadow-xl focus:border-rose-400 outline-none transition-all"
+                                >
+                                    <option value={EXAM_ALL}>全部 {examWords.length} 字</option>
+                                    {(examSets.find(s => s.id === selectedExamSetId)?.dayGroups ?? []).map(g => (
+                                        <option key={g.label} value={g.label}>{g.label}（{g.wordIds.length} 字）</option>
+                                    ))}
+                                </select>
+                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-rose-400">
+                                    <ChevronDown size={28} />
+                                </div>
+                            </div>
                         </div>
                     ) : (
                         <>
