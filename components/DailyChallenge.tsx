@@ -16,7 +16,6 @@ interface Props {
 type ChallengeMode = 'REVIEW' | 'PREVIEW';
 type Phase = 'INTRO' | 'LEARN' | 'QUIZ' | 'ROUND_END' | 'SUMMARY';
 type WordSource = 'REGULAR' | 'EXAM';
-const EXAM_ALL_DATES = '__ALL__'; // sentinel: whole exam set, not sliced by original teaching date
 
 export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [availableDates, setAvailableDates] = useState<string[]>([]);
@@ -25,15 +24,18 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [actualTargetDate, setActualTargetDate] = useState<string>('');
     const [targetWords, setTargetWords] = useState<Word[]>([]);
 
-    // Exam-cram source: the teacher may test a date-bounded slice of the big
-    // 80-word review list rather than all of it, so daily practice needs to
-    // be scopeable the same way QuizArea's exam scope already is.
+    // Exam-cram source: practice against the compiled 80-word big-test list
+    // instead of the regular weekly date. NOTE: this does NOT sub-divide by
+    // date — an earlier attempt grouped words by each word's original
+    // serverData teaching date (e.g. "2026-09-03"), but that date is just
+    // when the word first appeared in a weekly batch months ago, not the
+    // day-grouping the teacher's actual 4-day/20-word review sheet uses.
+    // Real day-grouping needs to come from the parent re-supplying that
+    // sheet's groups explicitly before this can be sliced by day again.
     const [wordSource, setWordSource] = useState<WordSource>('REGULAR');
     const [examSets, setExamSets] = useState<ExamReviewSet[]>([]);
     const [selectedExamSetId, setSelectedExamSetId] = useState<string>('');
     const [examWords, setExamWords] = useState<Word[]>([]);
-    const [examDateOptions, setExamDateOptions] = useState<{ date: string; count: number }[]>([]);
-    const [selectedExamDate, setSelectedExamDate] = useState<string>(EXAM_ALL_DATES);
     
     const [phase, setPhase] = useState<Phase>('INTRO');
     const [chunkSize] = useState(5);
@@ -145,43 +147,18 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         };
     }, []);
 
-    // When an exam set is chosen, resolve its words once and derive the
-    // distinct original-teaching-dates within it (so "老師可能按照日期考" —
-    // she can drill just the slice the teacher is actually covering, not
-    // necessarily the whole compiled list).
+    // When an exam set is chosen, resolve its full word list once.
     useEffect(() => {
         const set = examSets.find(s => s.id === selectedExamSetId);
-        if (!set) {
-            setExamWords([]);
-            setExamDateOptions([]);
-            return;
-        }
-        const words = getWordsForExamSet(set);
-        setExamWords(words);
-        const counts = new Map<string, number>();
-        words.forEach(w => {
-            if (!w.date) return;
-            counts.set(w.date, (counts.get(w.date) || 0) + 1);
-        });
-        const options = Array.from(counts.entries())
-            .map(([date, count]) => ({ date, count }))
-            .sort((a, b) => a.date.localeCompare(b.date));
-        setExamDateOptions(options);
-        setSelectedExamDate(EXAM_ALL_DATES);
+        setExamWords(set ? getWordsForExamSet(set) : []);
     }, [selectedExamSetId, examSets]);
 
     useEffect(() => {
         if (wordSource !== 'EXAM') return;
-        const target = selectedExamDate === EXAM_ALL_DATES
-            ? examWords
-            : examWords.filter(w => w.date === selectedExamDate);
         const set = examSets.find(s => s.id === selectedExamSetId);
-        const label = selectedExamDate === EXAM_ALL_DATES
-            ? (set ? `🎯 ${set.label}` : '🎯 大考複習')
-            : selectedExamDate;
-        setActualTargetDate(label);
-        setTargetWords(target);
-    }, [wordSource, selectedExamDate, examWords, examSets, selectedExamSetId]);
+        setActualTargetDate(set ? `🎯 ${set.label}` : '🎯 大考複習');
+        setTargetWords(examWords);
+    }, [wordSource, examWords, examSets, selectedExamSetId]);
 
     useEffect(() => {
         if (wordSource !== 'REGULAR') return;
@@ -530,23 +507,8 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                     )}
 
                     {wordSource === 'EXAM' ? (
-                        <div className="mb-8">
-                            <label className="block text-xs font-black text-slate-400 mb-3 uppercase tracking-widest ml-1">老師可能按日期分段考，挑選範圍</label>
-                            <div className="relative">
-                                <select
-                                    value={selectedExamDate}
-                                    onChange={(e) => setSelectedExamDate(e.target.value)}
-                                    className="w-full appearance-none bg-white border-4 border-white text-slate-700 py-4 px-6 pr-12 rounded-2xl font-black text-xl shadow-xl focus:border-rose-400 outline-none transition-all"
-                                >
-                                    <option value={EXAM_ALL_DATES}>全部 {examWords.length} 字</option>
-                                    {examDateOptions.map(({ date, count }) => (
-                                        <option key={date} value={date}>{date}（{count} 字）</option>
-                                    ))}
-                                </select>
-                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-rose-400">
-                                    <ChevronDown size={28} />
-                                </div>
-                            </div>
+                        <div className="mb-8 p-6 rounded-2xl bg-rose-50 border-4 border-rose-100 text-rose-700 font-bold text-sm">
+                            這次練習會涵蓋大考複習表的全部 {examWords.length} 個字。
                         </div>
                     ) : (
                         <>
