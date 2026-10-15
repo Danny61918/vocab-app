@@ -20,10 +20,18 @@ export interface ExamReviewDayGroup {
 export interface ExamReviewSet {
   id: string;
   label: string;     // shown in the UI, e.g. "10/13 大考複習"
-  examDate: string;  // 'YYYY-MM-DD' — NOTE: unconfirmed as of 2026-10-11, user
-                      // suspects this may be wrong (the sheet's own day labels
-                      // run through 10/16, after this date) and is checking
-                      // the school contact book. Don't trust this for
+  examDate: string;  // 'YYYY-MM-DD' — NOTE: still unconfirmed as of 2026-10-15.
+                      // Originally guessed as 10/13; that already proved wrong
+                      // once (see git history — the sheet's own day labels run
+                      // through 10/16, and the 10/13 date silently expired the
+                      // whole exam-review feature a couple days before she was
+                      // actually done using it, since getActiveExamReviewSets
+                      // hides a set once `today > examDate`). Bumped to 10/16
+                      // as a grounded guess (last day actually printed on the
+                      // sheet) with a grace buffer added below so a future
+                      // wrong guess fails open instead of vanishing the
+                      // feature outright. Still needs confirming against the
+                      // school contact book — don't trust this for
                       // schedule-sensitive copy until confirmed.
   wordIds: number[]; // serverData ids, all days combined
   // Optional day-by-day breakdown, exactly as grouped on the school's own
@@ -36,9 +44,9 @@ export interface ExamReviewSet {
 
 export const EXAM_REVIEW_SETS: ExamReviewSet[] = [
   {
-    id: 'exam-2026-10-13',
-    label: '10/13 大考複習',
-    examDate: '2026-10-13',
+    id: 'exam-2026-10-16',
+    label: '10/16 大考複習',
+    examDate: '2026-10-16',
     wordIds: [897,974,931,1003,735,951,453,45,866,898,338,233,977,431,401,937,474,939,940,763,1004,941,928,259,895,926,41,945,950,109,169,971,955,915,925,873,965,54,919,675,989,207,164,582,914,991,449,975,958,470,527,970,922,986,1005,1008,874,1006,1007,70,901,927,862,863,635,934,861,875,202,881,946,899,949,973,117,956,961,959,860,872],
     dayGroups: [
       {
@@ -61,9 +69,20 @@ export const EXAM_REVIEW_SETS: ExamReviewSet[] = [
   },
 ];
 
-/** Exam sets whose date hasn't passed yet — only these show up as a practice option. */
+// How long a set stays visible after its (possibly wrong) examDate passes.
+// examDate is often a guess, not a confirmed fact — expiring immediately
+// means one wrong guess silently vanishes the whole practice feature with
+// no error, which already happened once (see the note on ExamReviewSet).
+// A week's grace makes that failure mode "stale label, still usable"
+// instead of "gone".
+const EXAM_SET_GRACE_DAYS = 7;
+
+/** Exam sets whose date hasn't passed (+ grace period) — these show up as a practice option. */
 export function getActiveExamReviewSets(today: string = new Date().toISOString().slice(0, 10)): ExamReviewSet[] {
-  return EXAM_REVIEW_SETS.filter((s) => s.examDate >= today);
+  const cutoff = new Date(today);
+  cutoff.setDate(cutoff.getDate() - EXAM_SET_GRACE_DAYS);
+  const cutoffStr = cutoff.toISOString().slice(0, 10);
+  return EXAM_REVIEW_SETS.filter((s) => s.examDate >= cutoffStr);
 }
 
 function wordsForIds(ids: number[]): Word[] {
