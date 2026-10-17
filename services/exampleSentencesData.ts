@@ -3015,5 +3015,565 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "My little sister always wants to play hide and seek with me.",
         "They play hide and seek behind the big trees in the park.",
         "Let's play hide and seek before dinner is ready."
+    ],
+    1009: [
+        "After the rain stopped, the sun began to shine through the clouds.",
+        "She polished her shoes until they started to shine like new.",
+        "The moon shines softly over the calm lake tonight.",
+        "His eyes shine with excitement whenever he talks about dinosaurs.",
+        "The golden medal shines under the bright stadium lights."
+    ],
+    1010: [
+        "The children built a snowman after the first snow of winter.",
+        "We hope it will snow again so we can go sledding.",
+        "A thick layer of snow covered the quiet mountain village.",
+        "Does it ever snow in your hometown during December?",
+        "The kids threw snow at each other and laughed all afternoon."
+    ],
+    1011: [
+        "The weather forecast says tomorrow will be warm and sunny.",
+        "She wore her favorite hat on the sunny afternoon.",
+        "On sunny days, my dog loves to nap in the garden.",
+        "It was a perfect sunny morning for a bike ride.",
+        "The sunny weather made everyone want to go swimming."
+    ],
+    1012: [
+        "It looks cloudy outside, so bring an umbrella just in case.",
+        "We could not see any stars because the night was too cloudy.",
+        "The weather has been cloudy and cool all week.",
+        "Even on a cloudy day, the park was full of joggers.",
+        "The pilot said the flight might be bumpy because it is cloudy."
+    ],
+    1013: [
+        "The kites flew high because it was a very windy afternoon.",
+        "Hold onto your hat — it's extremely windy today!",
+        "The windy weather blew all the leaves off the trees.",
+        "We canceled the boat trip because the lake was too windy.",
+        "On windy days, my little sister likes to fly her kite."
+    ],
+    1014: [
+        "My favorite thing to do on a rainy day is drink hot chocolate.",
+        "The streets were empty because of the rainy weather.",
+        "She always carries a small umbrella in case it gets rainy.",
+        "The rainy season usually starts in early June here.",
+        "I love the sound of raindrops on the window during a rainy night."
+    ],
+    1015: [
+        "We went skiing on a snowy weekend in the mountains.",
+        "The snowy roads made it hard for the bus to drive safely.",
+        "Birds fluffed their feathers to stay warm on the snowy morning.",
+        "The children made snow angels on the snowy front lawn.",
+        "Grandpa told us stories about snowy winters when he was young."
+    ],
+    1016: [
+        "It was so foggy this morning that we could barely see the school gate.",
+        "The ship's captain slowed down because the harbor was foggy.",
+        "On foggy days, the mountain top completely disappears from view.",
+        "We got a little lost in the foggy park near our house.",
+        "The foggy weather cleared up by the time lunch started."
+    ],
+    1017: [
+        "Our flight was delayed because of the stormy weather over the city.",
+        "The dog hid under the bed during the stormy night.",
+        "Trees swayed wildly in the stormy wind outside our window.",
+        "The picnic was canceled because the forecast predicted a stormy afternoon.",
+        "Lightning lit up the sky during the stormy summer evening."
+    ],
+    1018: [
+        "We watched the raindrops race each other down the window glass.",
+        "Tiny raindrops began to fall just as the game ended.",
+        "The leaves were covered in sparkling raindrops after the storm.",
+        "He caught a raindrop on his tongue and giggled happily.",
+        "The sound of raindrops on the roof helped me fall asleep."
+    ],
+    1019: [
+        "Water vapor in the warm air turns into tiny clouds high above us.",
+        "The bathroom mirror fogged up because of the hot shower's water vapor.",
+        "Our science teacher explained how water vapor forms from a boiling pot.",
+        "On cold mornings, you can see your breath because it turns into water vapor.",
+        "The glass became cloudy as water vapor touched its cool surface."
+    ],
+    1020: [
+        "Our class did an experiment to show how evaporation happens on a sunny day.",
+        "The wet towel dried quickly on the balcony because of evaporation.",
+        "Evaporation is the first step of the water cycle that we learned about.",
+        "The puddle disappeared by the afternoon because of fast evaporation.",
+        "Scientists use evaporation to explain why the sea never overflows."
+    ],
+    1021: [
+        "We saw condensation on the car window on a cold morning.",
+        "Tiny drops of condensation slid down the icy soda can.",
+        "Condensation is the step in the water cycle when water vapor turns back into liquid.",
+        "The bathroom mirror had condensation after my brother took a hot shower.",
+        "Clouds form high in the sky because of condensation."
+    ],
+    1022: [
+        "Every astronaut must train for years before flying into space.",
+        "My little brother dreams of becoming an astronaut one day.",
+        "The astronaut waved to the cheering crowd before the rocket launch.",
+        "We watched a documentary about an astronaut's first walk on the moon.",
+        "The astronaut took amazing photos of our planet from the space station."
+    ],
+    1023: [
+        "My aunt is an artist who draws beautiful pictures of animals.",
+        "The young artist won first prize at the art fair.",
+        "We visited a famous artist's studio during our field trip.",
+        "The artist mixed blue and yellow paint to make bright green.",
+        "She wants to become an artist and sell her paintings someday."
+    ],
+    1024: [
+        "A famous scientist discovered a new way to clean dirty water.",
+        "My uncle is a scientist who studies the weather and storms.",
+        "The young scientist carefully mixed the chemicals in her experiment.",
+        "Scientists around the world are working together to protect the oceans.",
+        "He wants to become a scientist and explore outer space."
+    ],
+    1025: [
+        "A police officer stopped the cars so the ducklings could cross safely.",
+        "The policeman waved us through the busy intersection this morning.",
+        "My neighbor became a police officer after finishing his training.",
+        "The police officer gave a safety talk at our school assembly.",
+        "A brave police officer rescued the kitten stuck in the tree."
+    ],
+    1026: [
+        "My cousin trained for three years to become an airline pilot.",
+        "The pilot carefully checked the plane before every flight.",
+        "We waved at the pilot as he walked into the cockpit.",
+        "The young pilot flew the small plane smoothly over the fields.",
+        "Being a pilot means you must stay calm during bad weather."
+    ],
+    1027: [
+        "My favorite actress played the role of a brave young queen.",
+        "The actor practiced his lines every night before the play.",
+        "She wants to become an actress and perform on a big stage.",
+        "The actor forgot his lines but recovered quickly during the scene.",
+        "A talented actress can make the audience laugh and cry in one scene."
+    ],
+    1028: [
+        "In the story, the pirate sailed across the sea looking for gold.",
+        "My little brother dressed up as a pirate for the costume party.",
+        "The pirate's ship had a black flag with a skull on it.",
+        "We read a fun book about a friendly pirate who loved cooking.",
+        "The pirate used an old map to find the hidden treasure."
+    ],
+    1029: [
+        "My older brother wants to become a professional football player someday.",
+        "The footballer trained every morning before school to improve his skills.",
+        "Fans cheered loudly when their favorite footballer ran onto the field.",
+        "The young football player practiced passing the ball with his teammates.",
+        "That footballer is famous for his amazing speed and teamwork."
+    ],
+    1030: [
+        "Firefighters wear heavy suits to protect themselves from the flames.",
+        "My uncle has been a firefighter at the city station for ten years.",
+        "The firefighter taught our class how to stay safe during a fire drill.",
+        "A quick-thinking firefighter helped everyone leave the building safely.",
+        "The young boy dreams of becoming a firefighter when he grows up."
+    ],
+    1031: [
+        "The new teacher is very kind and explains things clearly.",
+        "My favorite teacher always makes math class fun and exciting.",
+        "The teacher wrote the homework assignment on the whiteboard.",
+        "She thanked her teacher for helping her improve her English.",
+        "Our music teacher taught us a new song for the concert."
+    ],
+    1032: [
+        "The talented dancer performed gracefully on the big stage.",
+        "My sister wants to become a professional ballet dancer.",
+        "The dancer twirled quickly as the music grew louder.",
+        "Every dancer in the group wore a bright red costume.",
+        "He watched the street dancer perform amazing moves near the park."
+    ],
+    1033: [
+        "My mom is a doctor who works at the children's hospital.",
+        "The doctor told me to drink more water and rest well.",
+        "We visited the doctor for my little sister's yearly checkup.",
+        "The doctor gave the injured player some ice for his ankle.",
+        "I want to become a doctor so I can help sick people."
+    ],
+    1034: [
+        "My cousin is a talented cartoonist who creates characters for children's books.",
+        "The cartoonist spent hours sketching before finishing one comic page.",
+        "We met a cartoonist who showed us how to draw simple cartoon faces.",
+        "That cartoonist's drawings always make the whole class laugh.",
+        "The young cartoonist hopes to publish her own comic book someday."
+    ],
+    1035: [
+        "My favorite comics are about a superhero who can fly.",
+        "We traded our old comic books with friends at school.",
+        "The library has a whole shelf full of colorful comics.",
+        "She reads comic books under a blanket with a flashlight.",
+        "The comic books in his bag were falling apart from being read so much."
+    ],
+    1036: [
+        "The art gallery downtown is showing a new exhibit of ocean photographs.",
+        "We walked quietly through the art gallery, looking at every painting.",
+        "My mom took me to an art gallery for my birthday.",
+        "The art gallery was full of colorful sculptures and modern paintings.",
+        "A famous artist's work will be shown at the city art gallery next month."
+    ],
+    1037: [
+        "The old building next to our school is being repainted this week.",
+        "We took the elevator to the top floor of the building.",
+        "A new shopping building is being constructed near the train station.",
+        "The fire alarm rang, so everyone left the building quickly and calmly.",
+        "This historic building was built more than a hundred years ago."
+    ],
+    1038: [
+        "The old castle had a hundred stone steps leading to the top.",
+        "He skipped two steps at a time while running up the stairs.",
+        "Please hold the railing when you climb the steps.",
+        "The children counted the steps as they climbed to the tower.",
+        "A cat was sleeping quietly on the sunny front steps."
+    ],
+    1039: [
+        "She left one blank on the test because she forgot the answer.",
+        "The teacher asked us to write our names in the blank at the top.",
+        "My mind went blank when the teacher called on me suddenly.",
+        "There is a blank space on the form for your phone number.",
+        "He double-checked his paper to make sure no blank was left empty."
+    ],
+    1040: [
+        "Turkey is located between Europe and Asia.",
+        "We learned that Istanbul is the largest city in Turkey.",
+        "Many tourists enjoy the beautiful beaches along the coast of Turkey.",
+        "Our pen pal lives in Turkey and sent us photos of her town.",
+        "Turkey is known for its delicious food and colorful markets."
+    ],
+    1041: [
+        "Poland has many old castles and beautiful forests.",
+        "We read a story about a brave knight from Poland.",
+        "Poland is a country in Central Europe with a rich history.",
+        "Our new classmate moved here from Poland last year.",
+        "The capital city of Poland is Warsaw."
+    ],
+    1042: [
+        "We learned that London is the capital city of England.",
+        "Many tourists visit England to see its old castles and palaces.",
+        "It often rains in England, so people always carry umbrellas.",
+        "My uncle studied at a university in England for two years.",
+        "England is famous for its red double-decker buses."
+    ],
+    1043: [
+        "France is famous for its delicious bread and pastries.",
+        "We saw a photo of the Eiffel Tower in France.",
+        "Our French teacher grew up in a small town in France.",
+        "Many artists from around the world have studied painting in France.",
+        "France shares a border with several other European countries."
+    ],
+    1044: [
+        "Italy is shaped like a tall boot on the map.",
+        "My cousin studied art and music while living in Italy.",
+        "Italy is famous for its ancient ruins and beautiful art.",
+        "We watched a movie about a boy growing up in Italy.",
+        "Many tourists visit Italy to see its historic cities every year."
+    ],
+    1045: [
+        "Water freezes at zero degrees Celsius.",
+        "Most countries measure temperature using the Celsius scale.",
+        "The classroom thermometer showed twenty-five degrees Celsius.",
+        "It felt very hot outside at thirty-five degrees Celsius.",
+        "Our science teacher taught us how to read a Celsius thermometer."
+    ],
+    1046: [
+        "Water boils at two hundred twelve degrees Fahrenheit.",
+        "The thermometer showed seventy degrees Fahrenheit on the mild spring day.",
+        "My American cousin always talks about the weather in Fahrenheit.",
+        "We learned how to convert Celsius into Fahrenheit in math class.",
+        "It felt freezing outside at only twenty degrees Fahrenheit."
+    ],
+    1047: [
+        "The water cycle includes evaporation, condensation, and rainfall.",
+        "We drew a diagram to show each step of the water cycle.",
+        "Rivers and oceans are important parts of the water cycle.",
+        "The teacher used a boiling kettle to explain the water cycle.",
+        "Without the water cycle, plants and animals could not survive."
+    ],
+    1048: [
+        "The famous bridge was built in the early twentieth century.",
+        "Our school was built in 1998 by the local community.",
+        "That castle was built in medieval times to protect the town.",
+        "The museum was built in a style that matches the old city center.",
+        "This tall tower was built in just two years."
+    ],
+    1049: [
+        "We only need a couple of eggs to finish this recipe.",
+        "She will be back home in a couple of minutes.",
+        "I borrowed a couple of books from the school library.",
+        "A couple of my classmates are coming over to study tonight.",
+        "Mom bought a couple of apples at the fruit stand."
+    ],
+    1050: [
+        "A long time ago, my grandmother lived on a small farm.",
+        "This old story happened a long time ago, before cars were invented.",
+        "A long time ago, dinosaurs roamed across this very land.",
+        "We learned that the castle was built a long time ago.",
+        "A long time ago, people traveled mostly by horse and boat."
+    ],
+    1051: [
+        "We saw a lot of colorful fish at the aquarium.",
+        "He spent a lot of time practicing his piano this week.",
+        "A lot of students joined the science fair this year.",
+        "There was a lot of rain during last night's storm.",
+        "She has a lot of friends in her new class."
+    ],
+    1052: [
+        "He wore a pair of blue gloves to keep his hands warm.",
+        "She bought a pair of sunglasses for the summer vacation.",
+        "A pair of birds built a nest outside my bedroom window.",
+        "I lost a pair of socks somewhere in the laundry room.",
+        "He needs a pair of scissors to cut the colorful paper."
+    ],
+    1053: [
+        "Above all, our teacher wants us to try our best on the test.",
+        "She is smart and hardworking, but above all, she is honest.",
+        "Above all, we should always listen carefully to our parents.",
+        "The coach said that, above all, teamwork matters most in the game.",
+        "Above all, stay safe when you are riding your bicycle."
+    ],
+    1054: [
+        "According to my teacher, the test will cover the whole chapter.",
+        "According to the map, the museum is just two blocks away.",
+        "According to the schedule, our bus leaves at eight o'clock.",
+        "According to the recipe, we need two cups of flour.",
+        "According to the news, the school festival starts next Friday."
+    ],
+    1055: [
+        "She did pass the exam after all, even though she was nervous.",
+        "After all, he is still learning, so a few mistakes are normal.",
+        "We stayed home after all because the storm got worse.",
+        "After all, practice is the best way to improve your English.",
+        "They decided to invite him after all, since he apologized."
+    ],
+    1056: [
+        "The puppy chased its tail again and again around the yard.",
+        "She read her favorite book again and again before bedtime.",
+        "The waves crashed against the rocks again and again all afternoon.",
+        "I told him again and again to bring his umbrella.",
+        "The teacher explained the math problem again and again until we understood."
+    ],
+    1057: [
+        "Do you agree with the new rule about homework on weekends?",
+        "Most of the class agreed with the teacher's plan for the trip.",
+        "I don't agree with him about which movie to watch tonight.",
+        "My parents agreed with my idea to join the art club.",
+        "She nodded because she agreed with everything he said."
+    ],
+    1058: [
+        "We were playing quietly when, all of a sudden, the dog started barking.",
+        "All of a sudden, it began to rain during our picnic.",
+        "The classroom went silent all of a sudden when the principal walked in.",
+        "All of a sudden, she remembered where she left her keys.",
+        "The cat jumped onto the table all of a sudden and scared us."
+    ],
+    1059: [
+        "Students from all over the world study at this university.",
+        "This famous singer has fans all over the world.",
+        "Scientists all over the world are studying how to protect the oceans.",
+        "The news about the discovery spread all over the world quickly.",
+        "Tourists come from all over the world to visit this ancient temple."
+    ],
+    1060: [
+        "She loses her pencils all the time, so she buys new ones often.",
+        "It rains almost all the time during the monsoon season here.",
+        "He talks about his favorite video game all the time.",
+        "My grandmother tells funny stories all the time at dinner.",
+        "The dog wags its tail all the time when it sees us."
+    ],
+    1061: [
+        "We drove all the way to the beach without stopping once.",
+        "He climbed all the way to the top of the tall tree.",
+        "The kids sang songs all the way through the long car ride.",
+        "They cheered for their team all the way until the final whistle.",
+        "I carried my backpack all the way up the steep hill."
+    ],
+    1062: [
+        "She collects stamps, coins, old postcards, and so on.",
+        "The market sells fruit, vegetables, fresh bread, and so on.",
+        "He enjoys sports like soccer, basketball, swimming, and so on.",
+        "The teacher listed rules about homework, tests, attendance, and so on.",
+        "My bag is full of books, snacks, a water bottle, and so on."
+    ],
+    1063: [
+        "The train will arrive at the station in ten minutes.",
+        "Please let us know when you arrive at the airport.",
+        "They were tired after they arrived at the campsite so late.",
+        "What time did your plane arrive in Japan this morning?",
+        "We hope to arrive at school early for the field trip."
+    ],
+    1064: [
+        "She studied every night; as a result, she scored very well on the test.",
+        "The road was closed, and as a result, traffic was very heavy.",
+        "As a result of the storm, the school closed early today.",
+        "He practiced every day, and as a result, he became a strong swimmer.",
+        "As a result of the mistake, we had to start the project again."
+    ],
+    1065: [
+        "She packed snacks as well as water for the long hike.",
+        "The museum has paintings as well as ancient pottery on display.",
+        "He studies math as well as science every evening.",
+        "The teacher, as well as the students, enjoyed the field trip.",
+        "We invited our cousins as well as our neighbors to the party."
+    ],
+    1066: [
+        "He raised his hand to ask for permission to leave the room.",
+        "She asked for a glass of water after the long run.",
+        "Don't be shy to ask for directions if you get lost.",
+        "The customer asked for a refund because the toy was broken.",
+        "I asked for extra time to finish my science project."
+    ],
+    1067: [
+        "The librarian only lets us borrow three books at a time.",
+        "He ate his soup slowly, one spoonful at a time.",
+        "Only two students may use the computer at a time.",
+        "We solved the puzzle piece by piece, one at a time.",
+        "The nurse let only one visitor in at a time."
+    ],
+    1068: [
+        "The weather in the mountains can change at any time.",
+        "Visitors are welcome to tour the museum at any time during the day.",
+        "She might arrive at any time, so let's get ready now.",
+        "You are free to ask questions at any time during the lesson.",
+        "The fire alarm could ring at any time during the drill week."
+    ],
+    1069: [
+        "The scientist gave a brilliant speech about protecting the rainforest.",
+        "That was a brilliant idea for our class fundraising project.",
+        "He is a brilliant student who always finishes his homework early.",
+        "The coach praised the team for their brilliant performance in the final game.",
+        "Her brilliant painting won first place at the art show."
+    ],
+    1070: [
+        "I always forget where I put my keys in the morning.",
+        "She never forgets her friends' birthdays.",
+        "Did you forget to feed the fish again this morning?",
+        "He forgot his homework at home and had to call his mom.",
+        "Try not to forget your water bottle before the long hike."
+    ],
+    1071: [
+        "Even though it was raining, the players decided to continue the game.",
+        "Please continue working quietly while I check everyone's homework.",
+        "The singer paused for a moment and then continued her song.",
+        "We will continue our science project tomorrow after lunch.",
+        "The rain continued all afternoon, so the picnic was canceled."
+    ],
+    1072: [
+        "The TV programme about wild animals was very interesting to watch.",
+        "She wrote a simple computer programme to solve math problems.",
+        "The music programme at our school starts every Monday afternoon.",
+        "We signed up for a summer programme that teaches coding to kids.",
+        "The programme for tonight's concert included songs from many countries."
+    ],
+    1073: [
+        "The magic show was fantastic, and everyone clapped loudly at the end.",
+        "Thank you for the fantastic birthday gift; I love it!",
+        "She did a fantastic job presenting her science project to the class.",
+        "The view from the mountain top was absolutely fantastic.",
+        "It was a fantastic idea to have a picnic by the lake."
+    ],
+    1074: [
+        "Please be careful not to destroy the sandcastle we just built.",
+        "The fire destroyed an old barn on the farm last night.",
+        "Littering can destroy the natural beauty of our rivers and forests.",
+        "The puppy accidentally destroyed one of my favorite slippers.",
+        "The old bridge was destroyed and replaced with a stronger one."
+    ],
+    1075: [
+        "I guessed the answer correctly on the first try.",
+        "She tried to guess what gift was wrapped inside the box.",
+        "We played a game where you guess the animal from its sound.",
+        "He guessed wrong about the ending of the mystery movie.",
+        "Let's guess who will win the race this afternoon."
+    ],
+    1076: [
+        "The form had a blank where I needed to write my address.",
+        "He left the last blank empty because he ran out of time.",
+        "Fill in each blank with the correct verb form.",
+        "There was a blank page at the back of my notebook.",
+        "She stared at the blank screen, trying to think of an answer."
+    ],
+    1077: [
+        "We didn't have enough chairs for everyone at the party.",
+        "She studied enough to feel confident about the test.",
+        "There wasn't enough time to finish the whole chapter today.",
+        "He saved enough money to buy a new bicycle.",
+        "Is there enough food for all of our guests tonight?"
+    ],
+    1078: [
+        "The students worked together to raise funds for new library books.",
+        "They held a car wash to raise money for the school trip.",
+        "The charity event helped raise thousands of dollars for sick children.",
+        "We raised enough money to buy new sports equipment for the team.",
+        "The club is trying to raise money to plant trees in the park."
+    ],
+    1079: [
+        "My schedule is very busy this week with tests and practice.",
+        "The teacher posted the new exam schedule on the classroom wall.",
+        "We need to follow the schedule so we don't miss the bus.",
+        "Her weekend schedule includes piano lessons and soccer practice.",
+        "The train schedule shows that the next train leaves at noon."
+    ],
+    1080: [
+        "It rarely snows in this part of the country.",
+        "She rarely gets angry, even when things go wrong.",
+        "We rarely see our cousins since they moved far away.",
+        "My dad rarely watches television during the school week.",
+        "The old library is rarely crowded on weekday mornings."
+    ],
+    1081: [
+        "The hikers got lost for a while on the foggy mountain trail.",
+        "We could barely see the harbor because it was so foggy.",
+        "On foggy mornings, the streetlights stay on a little longer.",
+        "The foggy weather made the old house look spooky and mysterious.",
+        "By noon, the foggy sky had cleared into bright sunshine."
+    ],
+    1082: [
+        "We collected seashells along the beach during our vacation.",
+        "She collects stickers and keeps them neatly in a special book.",
+        "The students collected cans for the school's recycling project.",
+        "He collects old coins from countries all around the world.",
+        "Let's collect some leaves for our science class tomorrow."
+    ],
+    1083: [
+        "Everyone in the family has a chore to do before dinner.",
+        "My weekly chore is taking out the trash on Tuesdays.",
+        "She finished her chores quickly so she could go out and play.",
+        "Feeding the dog is a chore my little brother loves doing.",
+        "Dad gave us a list of chores to finish before the weekend."
+    ],
+    1084: [
+        "The teacher graded papers; meanwhile, the students read quietly at their desks.",
+        "He packed his bag for the trip; meanwhile, his sister checked the map.",
+        "The rain continued outside; meanwhile, we stayed warm and dry inside.",
+        "She practiced the piano; meanwhile, her brother practiced his lines for the play.",
+        "The coach set up the field; meanwhile, the players warmed up nearby."
+    ],
+    1085: [
+        "We canceled our beach trip because of the stormy forecast.",
+        "The stormy sky turned dark grey just before the heavy rain started.",
+        "Our dog hides under the table whenever it gets stormy outside.",
+        "The stormy winds knocked over several trash cans on our street.",
+        "Despite the stormy weather, the football match continued as planned."
+    ],
+    1086: [
+        "Polish your shoes well and they will shine like new.",
+        "The morning sun began to shine through the kitchen window.",
+        "Her trophy shines proudly on the shelf in her bedroom.",
+        "The stars shine clearly on a cloudless night in the countryside.",
+        "His smile seemed to shine whenever he talked about his puppy."
+    ],
+    1087: [
+        "My sister felt nervous before her job interview yesterday.",
+        "The school newspaper team did an interview with the new principal.",
+        "He prepared for the interview by practicing common questions.",
+        "During the interview, the famous singer talked about her new song.",
+        "The teacher gave us tips on how to answer interview questions calmly."
+    ],
+    1088: [
+        "The whole class cheered when our team won the relay race.",
+        "He ate the whole sandwich because he was so hungry.",
+        "We spent the whole summer vacation visiting our grandparents.",
+        "The whole school gathered in the gym for the special assembly.",
+        "I finished the whole puzzle in just one evening."
     ]
 };
