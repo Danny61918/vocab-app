@@ -17,6 +17,13 @@ export interface ReviewQuestion {
   explanation: string;      // parent-friendly Chinese, references the source sentence
   sourceSentence: string;   // the exact textbook sentence this question is built from
   questionType: ReviewQuestionType;
+  icon?: string;            // single emoji shown on the quiz card as a visual hint (not a textbook image — we can't reproduce those)
+}
+
+export interface GlossaryEntry {
+  term: string;   // the English word/phrase as it appears in sourceText
+  icon: string;   // emoji illustrating it
+  zh?: string;    // short Chinese gloss, shown under the icon
 }
 
 export interface ReviewChapter {
@@ -25,4 +32,5 @@ export interface ReviewChapter {
   sourceRef: string;        // textbook + unit/lesson, for traceability
   sourceText: string;       // the full passage, verbatim
   questions: ReviewQuestion[];
+  glossary?: GlossaryEntry[]; // emoji legend shown alongside the passage, since we can't show the textbook's own photos
 }

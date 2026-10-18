@@ -17,6 +17,17 @@ const chapter: ReviewChapter = {
     "The small drops of water join together and become rain drops. The raindrops are bigger and heavier than the clouds and fall to the ground. It's raining! " +
     "If it's very cold or high in the mountains, it snows. " +
     "The rain and snow falls into the rivers and the rivers carry the water back to the sea. And it starts all over again! This is the water cycle.",
+  glossary: [
+    { term: 'sun', icon: '☀️', zh: '太陽' },
+    { term: 'sea', icon: '🌊', zh: '海' },
+    { term: 'evaporation', icon: '💧➡️💨', zh: '蒸發（水變水蒸氣）' },
+    { term: 'cooler', icon: '🥶', zh: '變冷' },
+    { term: 'clouds', icon: '☁️', zh: '雲' },
+    { term: 'condensation', icon: '💨➡️💧', zh: '凝結（水蒸氣變水滴）' },
+    { term: 'raining', icon: '🌧️', zh: '下雨' },
+    { term: 'snows', icon: '❄️', zh: '下雪' },
+    { term: 'rivers', icon: '🏞️', zh: '河流' },
+  ],
   questions: [
     {
       id: 'wc-1',
@@ -26,6 +37,7 @@ const chapter: ReviewChapter = {
       explanation: '課文第一句就這樣寫：太陽照在海上，把海水曬熱，這是整個水循環的起點。',
       sourceSentence: 'First, the sun shines on the sea. It warms the water.',
       questionType: 'true_false',
+      icon: '☀️🌊',
     },
     {
       id: 'wc-2',
@@ -35,6 +47,7 @@ const chapter: ReviewChapter = {
       explanation: '水變成水蒸氣叫做「蒸發 evaporation」，不是凝結。凝結 (condensation) 是相反方向：水蒸氣變回水滴。',
       sourceSentence: 'The water becomes water vapour. This process is called evaporation.',
       questionType: 'true_false',
+      icon: '💧➡️💨',
     },
     {
       id: 'wc-3',
@@ -43,6 +56,7 @@ const chapter: ReviewChapter = {
       explanation: '太陽把水曬熱、水變成水蒸氣往上飄，這個過程叫 evaporation（蒸發）。',
       sourceSentence: 'The water becomes water vapour. This process is called evaporation.',
       questionType: 'fill_blank',
+      icon: '💧➡️💨',
     },
     {
       id: 'wc-4',
@@ -52,6 +66,7 @@ const chapter: ReviewChapter = {
       explanation: '課文說高空的空氣「比較冷 (cooler)」，不是比較熱。水蒸氣飄到高空遇到冷空氣，才會開始變成水滴。',
       sourceSentence: 'High in the sky the air is cooler.',
       questionType: 'true_false',
+      icon: '🥶',
     },
     {
       id: 'wc-5',
@@ -61,6 +76,7 @@ const chapter: ReviewChapter = {
       explanation: '水蒸氣遇到冷空氣，變成小水滴（也就是雲），這個過程叫 condensation（凝結）。',
       sourceSentence: 'When the water vapour meets the cooler air, it becomes very small drops of water that form clouds. This process is called condensation.',
       questionType: 'true_false',
+      icon: '💨➡️💧',
     },
     {
       id: 'wc-6',
@@ -69,6 +85,7 @@ const chapter: ReviewChapter = {
       explanation: '水蒸氣變冷、變回水滴、形成雲，這個過程叫 condensation（凝結）。',
       sourceSentence: 'This process is called condensation.',
       questionType: 'fill_blank',
+      icon: '💨➡️💧',
     },
     {
       id: 'wc-7',
@@ -78,6 +95,7 @@ const chapter: ReviewChapter = {
       explanation: '這題直接考方向：「變冷」觸發的是 condensation（凝結，水蒸氣變回水滴）。這是她最常搞反的地方，務必確認她能馬上答對。',
       sourceSentence: 'High in the sky the air is cooler. ... This process is called condensation.',
       questionType: 'multiple_choice',
+      icon: '🥶💨➡️💧',
     },
     {
       id: 'wc-8',
@@ -87,6 +105,7 @@ const chapter: ReviewChapter = {
       explanation: '「變熱」觸發的是 evaporation（蒸發，水變成水蒸氣）。跟上一題放在一起比較，幫助她記住：熱 → 蒸發，冷 → 凝結。',
       sourceSentence: 'First, the sun shines on the sea. It warms the water. The water becomes water vapour. This process is called evaporation.',
       questionType: 'multiple_choice',
+      icon: '☀️💧➡️💨',
     },
     {
       id: 'wc-9',
@@ -96,6 +115,7 @@ const chapter: ReviewChapter = {
       explanation: '課文說雨滴比雲「更大更重 (bigger and heavier)」，所以才會掉下來變成雨，不是更小更輕。',
       sourceSentence: 'The raindrops are bigger and heavier than the clouds and fall to the ground.',
       questionType: 'true_false',
+      icon: '☁️🌧️',
     },
     {
       id: 'wc-10',
@@ -105,6 +125,7 @@ const chapter: ReviewChapter = {
       explanation: '課文說天氣非常冷，或是在高山上，就會下雪而不是下雨。',
       sourceSentence: "If it's very cold or high in the mountains, it snows.",
       questionType: 'true_false',
+      icon: '🏔️❄️',
     },
     {
       id: 'wc-11',
@@ -114,6 +135,7 @@ const chapter: ReviewChapter = {
       explanation: '雨跟雪落下後流進河裡，河流把水帶回大海，整個循環又重新開始——這就是為什麼叫做「水循環 cycle」。',
       sourceSentence: 'The rain and snow falls into the rivers and the rivers carry the water back to the sea. And it starts all over again!',
       questionType: 'true_false',
+      icon: '🏞️🌊',
     },
   ],
 };

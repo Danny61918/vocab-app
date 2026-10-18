@@ -131,6 +131,22 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
         </button>
         <h1 className="text-2xl md:text-3xl font-black text-slate-800 mb-1">{chapter.title}</h1>
         <p className="text-sm text-slate-400 font-bold mb-6">{chapter.sourceRef}</p>
+
+        {chapter.glossary && chapter.glossary.length > 0 && (
+          <div className="bg-amber-50 border-2 border-amber-100 rounded-[2rem] p-6 mb-6">
+            <div className="text-sm font-black text-amber-700 mb-4">📌 看圖認識關鍵字</div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {chapter.glossary.map((g) => (
+                <div key={g.term} className="bg-white rounded-2xl p-3 text-center border-2 border-amber-100">
+                  <div className="text-3xl mb-1">{g.icon}</div>
+                  <div className="font-bold text-slate-700 text-sm">{g.term}</div>
+                  {g.zh && <div className="text-xs text-slate-400">{g.zh}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-md mb-8">
           <p className="text-lg text-slate-700 leading-relaxed">{chapter.sourceText}</p>
         </div>
@@ -157,6 +173,7 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
         </div>
 
         <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-md mb-6">
+          {q.icon && <div className="text-6xl text-center mb-4">{q.icon}</div>}
           <h2 className="text-xl md:text-2xl font-black text-slate-800 leading-relaxed mb-6">{q.questionText}</h2>
 
           {q.questionType === 'fill_blank' ? (

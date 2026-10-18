@@ -20,6 +20,13 @@ const chapter: ReviewChapter = {
     'Be careful! We say dates and numbers differently: 1,975 = one thousand, nine hundred and seventy-five. ' +
     '1975 = nineteen seventy-five. Here are some more dates: 1173 = eleven seventy-three. 2019 = twenty nineteen. ' +
     "Tell me about this tower. It's 216 metres high. It was built in 2010. It's in Turkey. It's the Sapphire Building.",
+  glossary: [
+    { term: 'The Sapphire Building', icon: '🇹🇷🏢', zh: '藍寶石大樓（土耳其）' },
+    { term: 'Leaning tower of Pisa', icon: '🇮🇹🗼', zh: '比薩斜塔（義大利）' },
+    { term: 'Big Ben', icon: '🇬🇧⏰', zh: '大笨鐘（英國）' },
+    { term: 'The Palace of Science and Culture', icon: '🇵🇱🏛️', zh: '科學文化宮（波蘭）' },
+    { term: 'The Eiffel Tower', icon: '🇫🇷🗼', zh: '艾菲爾鐵塔（法國）' },
+  ],
   questions: [
     {
       id: 'fb-1',
@@ -29,6 +36,7 @@ const chapter: ReviewChapter = {
       explanation: '課本寫著 "The Sapphire Building, Istanbul, Turkey."，就在土耳其的伊斯坦堡。',
       sourceSentence: 'The Sapphire Building, Istanbul, Turkey. Built in 2010. 216 m high.',
       questionType: 'true_false',
+      icon: '🇹🇷🏢',
     },
     {
       id: 'fb-2',
@@ -38,6 +46,7 @@ const chapter: ReviewChapter = {
       explanation: '比薩斜塔是 1173 到 1350 年蓋的，蓋了超過一百年！2010 年蓋好的其實是 The Sapphire Building。',
       sourceSentence: 'Leaning tower of Pisa, Italy. Built 1173-1350. It is 55 m high.',
       questionType: 'true_false',
+      icon: '🇮🇹🗼',
     },
     {
       id: 'fb-3',
@@ -47,6 +56,7 @@ const chapter: ReviewChapter = {
       explanation: '課本寫 "The Eiffel Tower, Paris, France. ... It is 329 m high."，230 m 是波蘭那座科學文化宮的高度。',
       sourceSentence: 'The Eiffel Tower, Paris, France. Built in 1889. It is 329 m high.',
       questionType: 'multiple_choice',
+      icon: '🇫🇷🗼',
     },
     {
       id: 'fb-4',
@@ -55,6 +65,7 @@ const chapter: ReviewChapter = {
       explanation: '艾菲爾鐵塔在法國巴黎（Paris）。',
       sourceSentence: 'The Eiffel Tower, Paris, France.',
       questionType: 'fill_blank',
+      icon: '🇫🇷🗼',
     },
     {
       id: 'fb-5',
@@ -64,6 +75,7 @@ const chapter: ReviewChapter = {
       explanation: '課本寫 "Big Ben, London, England. Built in 1858. It is 98 m high."',
       sourceSentence: 'Big Ben, London, England. Built in 1858. It is 98 m high.',
       questionType: 'true_false',
+      icon: '🇬🇧⏰',
     },
     {
       id: 'fb-6',
@@ -73,6 +85,7 @@ const chapter: ReviewChapter = {
       explanation: '比薩斜塔在義大利（Italy）；Poland（波蘭）是科學文化宮所在的國家。',
       sourceSentence: 'Leaning tower of Pisa, Italy.',
       questionType: 'multiple_choice',
+      icon: '🇮🇹🗼',
     },
     {
       id: 'fb-7',
@@ -81,6 +94,7 @@ const chapter: ReviewChapter = {
       explanation: '科學文化宮在波蘭（Poland）的華沙（Warsaw）。',
       sourceSentence: 'The Palace of Science and Culture, Warsaw, Poland.',
       questionType: 'fill_blank',
+      icon: '🇵🇱🏛️',
     },
     {
       id: 'fb-8',
@@ -90,6 +104,7 @@ const chapter: ReviewChapter = {
       explanation: '課本寫 "Built 1953-1955."，就是 1953 年到 1955 年之間蓋的。',
       sourceSentence: 'The Palace of Science and Culture, Warsaw, Poland. Built 1953-1955.',
       questionType: 'true_false',
+      icon: '🇵🇱🏛️',
     },
     {
       id: 'fb-9',
@@ -99,6 +114,7 @@ const chapter: ReviewChapter = {
       explanation: '年份通常念成兩組兩位數，1975 唸成 "nineteen seventy-five"；"one thousand, nine hundred and seventy-five" 是唸一般大數字 1,975 的方式，不是年份。',
       sourceSentence: '1,975 = one thousand, nine hundred and seventy-five. 1975 = nineteen seventy-five.',
       questionType: 'multiple_choice',
+      icon: '🔢',
     },
     {
       id: 'fb-10',
@@ -108,6 +124,7 @@ const chapter: ReviewChapter = {
       explanation: '課本直接舉例 "2019 = twenty nineteen"，念年份時習慣拆成兩組數字唸。',
       sourceSentence: '2019 = twenty nineteen.',
       questionType: 'multiple_choice',
+      icon: '🔢',
     },
     {
       id: 'fb-11',
@@ -117,6 +134,7 @@ const chapter: ReviewChapter = {
       explanation: '對話例句："It\'s 216 metres high. It was built in 2010. It\'s in Turkey. It\'s the Sapphire Building."',
       sourceSentence: "It's 216 metres high. It was built in 2010. It's in Turkey. It's the Sapphire Building.",
       questionType: 'multiple_choice',
+      icon: '🇹🇷🏢',
     },
   ],
 };
