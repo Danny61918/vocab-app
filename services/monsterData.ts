@@ -124,4 +124,12 @@ export const MONSTER_DATA: Record<number, Monster> = {
   108: { id: 108, name: '超能雲貓', image: 'monsters/mon_36.png', filter: '' },
   109: { id: 109, name: '極凍企鵝', image: 'monsters/mon_37.png', filter: '' },
   110: { id: 110, name: '岩石硬殼龜', image: 'monsters/mon_38.png', filter: '' },
+  111: { id: 111, name: '棉花糖獨角羊', image: 'monsters/mon_39.png', filter: '' },
+  112: { id: 112, name: '星塵貓頭鷹', image: 'monsters/mon_40.png', filter: '' },
+  113: { id: 113, name: '蜂蜜抱抱熊', image: 'monsters/mon_41.png', filter: '' },
+  114: { id: 114, name: '泡泡河豚', image: 'monsters/mon_42.png', filter: '' },
+  115: { id: 115, name: '彩蝶精靈', image: 'monsters/mon_43.png', filter: '' },
+  116: { id: 116, name: '草莓刺蝟', image: 'monsters/mon_44.png', filter: '' },
+  117: { id: 117, name: '月光兔耳貓', image: 'monsters/mon_45.png', filter: '' },
+  118: { id: 118, name: '小丑魚忍者', image: 'monsters/mon_46.png', filter: '' },
 };
