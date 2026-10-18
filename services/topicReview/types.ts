@@ -31,21 +31,26 @@ export interface GlossaryEntry {
 }
 
 export interface ReviewFact {
-  label: string; // e.g. '國家'
-  value: string; // e.g. 'Turkey 土耳其'
+  label: string; // e.g. 'Country'
+  value: string; // e.g. 'Turkey (Istanbul)'
 }
 
 export interface ReviewFactCard {
   title: string;        // English name, e.g. 'The Sapphire Building'
-  zh?: string;           // Chinese name
   image?: string;
   imageCredit?: string;
-  facts: ReviewFact[];   // 2-4 key facts, shown as a small label/value list under the photo
+  facts: ReviewFact[];   // shown stacked top-to-bottom next to the photo; English only — Chinese explanations live in the quiz's per-question explanation, not on the card
+}
+
+export interface ReviewNoteExample {
+  text: string;   // displayed line, e.g. '1975 → "nineteen seventy-five"'
+  speak: string;  // what to read aloud via speechSynthesis, e.g. 'nineteen seventy-five'
 }
 
 export interface ReviewNote {
   title: string;
-  body: string; // may contain \n for multiple lines/examples
+  body?: string;               // intro sentence, Chinese
+  examples?: ReviewNoteExample[]; // each gets its own 🔊 pronunciation button
 }
 
 export interface ReviewChapter {

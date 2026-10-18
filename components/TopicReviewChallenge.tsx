@@ -3,7 +3,7 @@ import { GameMode, GameType, TestResult } from '../types';
 import { saveResult } from '../services/storage';
 import { TOPIC_REVIEW_CHAPTERS } from '../services/topicReview';
 import { ReviewChapter, ReviewQuestion } from '../services/topicReview/types';
-import { BookOpen, ArrowRight, ArrowLeft, CheckCircle2, XCircle, Droplet } from 'lucide-react';
+import { BookOpen, ArrowRight, ArrowLeft, CheckCircle2, XCircle, Droplet, Volume2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import LetterTiles from './LetterTiles';
 
@@ -25,6 +25,16 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
   const selectChapter = (c: ReviewChapter) => {
     setChapter(c);
     setPhase('PASSAGE');
+  };
+
+  const speak = (text: string) => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      window.speechSynthesis.speak(utterance);
+    }
   };
 
   const startQuiz = () => {
@@ -135,19 +145,18 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
         {chapter.factCards && chapter.factCards.length > 0 ? (
           <div className="flex flex-col gap-4 mb-8">
             {chapter.factCards.map((card) => (
-              <div key={card.title} className="bg-white border-2 border-slate-100 rounded-[2rem] overflow-hidden shadow-md">
+              <div key={card.title} className="bg-white border-2 border-slate-100 rounded-[2rem] overflow-hidden shadow-md flex flex-col sm:flex-row">
                 {card.image && (
-                  <div className="bg-slate-100">
-                    <img src={card.image} alt={card.title} className="w-full h-64 object-contain" />
+                  <div className="bg-slate-100 sm:w-2/5 flex-shrink-0 flex flex-col">
+                    <img src={card.image} alt={card.title} className="w-full h-56 sm:h-full sm:flex-1 object-contain" />
                     {card.imageCredit && (
-                      <div className="text-[10px] text-slate-300 text-right px-4 pt-1">{card.imageCredit}</div>
+                      <div className="text-[10px] text-slate-300 text-right px-4 py-1">{card.imageCredit}</div>
                     )}
                   </div>
                 )}
-                <div className="p-6">
-                  <div className="font-black text-xl text-slate-800">{card.title}</div>
-                  {card.zh && <div className="text-sm text-slate-400 font-bold mb-3">{card.zh}</div>}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3">
+                <div className="p-6 flex-1">
+                  <div className="font-black text-xl text-slate-800 mb-3">{card.title}</div>
+                  <div className="flex flex-col gap-2">
                     {card.facts.map((f) => (
                       <div key={f.label} className="bg-slate-50 rounded-xl p-3">
                         <div className="text-xs text-slate-400 font-bold">{f.label}</div>
@@ -162,7 +171,23 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
             {chapter.notes?.map((n) => (
               <div key={n.title} className="bg-amber-50 border-2 border-amber-100 rounded-[2rem] p-6">
                 <div className="font-black text-amber-700 mb-2">{n.title}</div>
-                <p className="text-slate-600 leading-relaxed whitespace-pre-line">{n.body}</p>
+                {n.body && <p className="text-slate-600 leading-relaxed mb-3">{n.body}</p>}
+                {n.examples && (
+                  <div className="flex flex-col gap-2">
+                    {n.examples.map((ex) => (
+                      <div key={ex.text} className="flex items-center justify-between gap-3 bg-white rounded-xl px-4 py-3 border border-amber-100">
+                        <span className="text-slate-700 font-bold">{ex.text}</span>
+                        <button
+                          onClick={() => speak(ex.speak)}
+                          className="flex-shrink-0 text-amber-600 hover:text-amber-800 bg-amber-100 hover:bg-amber-200 rounded-full p-2 transition-colors"
+                          aria-label={`唸出 ${ex.speak}`}
+                        >
+                          <Volume2 size={18} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
