@@ -23,36 +23,76 @@ const chapter: ReviewChapter = {
   // Photos are real freely-licensed landmark photos from Wikimedia Commons
   // (not the textbook's own photos — those we can't reproduce), downloaded
   // into public/images/clil/famous-buildings/. Credits per Commons license terms.
-  glossary: [
+  //
+  // This chapter is a fact list (5 unrelated buildings), not a narrative like
+  // water-cycle, so it's rendered as one card per building (photo + key facts)
+  // instead of glossary+paragraph — a paragraph with no story line to follow
+  // just reads as a wall of disconnected facts.
+  factCards: [
     {
-      term: 'The Sapphire Building',
-      zh: '藍寶石大樓（土耳其）',
+      title: 'The Sapphire Building',
+      zh: '藍寶石大樓',
       image: 'images/clil/famous-buildings/istanbul-sapphire.jpg',
       imageCredit: 'Artemco, CC BY-SA 4.0, via Wikimedia Commons',
+      facts: [
+        { label: '國家 Country', value: 'Turkey 土耳其（伊斯坦堡 Istanbul）' },
+        { label: '建造年份 Built', value: '2010' },
+        { label: '高度 Height', value: '216 m' },
+      ],
     },
     {
-      term: 'Leaning tower of Pisa',
-      zh: '比薩斜塔（義大利）',
+      title: 'Leaning Tower of Pisa',
+      zh: '比薩斜塔',
       image: 'images/clil/famous-buildings/leaning-tower-pisa.jpg',
       imageCredit: 'Arne Müseler / www.arne-mueseler.com, CC BY-SA 3.0 de, via Wikimedia Commons',
+      facts: [
+        { label: '國家 Country', value: 'Italy 義大利' },
+        { label: '建造年份 Built', value: '1173-1350' },
+        { label: '高度 Height', value: '55 m' },
+      ],
     },
     {
-      term: 'Big Ben',
-      zh: '大笨鐘（英國）',
+      title: 'Big Ben',
+      zh: '大笨鐘',
       image: 'images/clil/famous-buildings/big-ben.jpg',
       imageCredit: 'Christian David, CC BY-SA 4.0, via Wikimedia Commons',
+      facts: [
+        { label: '國家 Country', value: 'England 英國（倫敦 London）' },
+        { label: '建造年份 Built', value: '1858' },
+        { label: '高度 Height', value: '98 m' },
+      ],
     },
     {
-      term: 'The Palace of Science and Culture',
-      zh: '科學文化宮（波蘭）',
+      title: 'The Palace of Science and Culture',
+      zh: '科學文化宮',
       image: 'images/clil/famous-buildings/palace-of-culture-science.jpg',
       imageCredit: 'Maciurella, CC BY-SA 4.0, via Wikimedia Commons',
+      facts: [
+        { label: '國家 Country', value: 'Poland 波蘭（華沙 Warsaw）' },
+        { label: '建造年份 Built', value: '1953-1955' },
+        { label: '高度 Height', value: '230 m' },
+      ],
     },
     {
-      term: 'The Eiffel Tower',
-      zh: '艾菲爾鐵塔（法國）',
+      title: 'The Eiffel Tower',
+      zh: '艾菲爾鐵塔',
       image: 'images/clil/famous-buildings/eiffel-tower.jpg',
       imageCredit: 'Benh Lieu Song, public domain, via Wikimedia Commons',
+      facts: [
+        { label: '國家 Country', value: 'France 法國（巴黎 Paris）' },
+        { label: '建造年份 Built', value: '1889' },
+        { label: '高度 Height', value: '329 m' },
+      ],
+    },
+  ],
+  notes: [
+    {
+      title: '📌 唸年份的小技巧（Be careful with dates!）',
+      body:
+        '年份通常拆成兩組兩位數字唸，不是當成一般大數字整個唸出來：\n' +
+        '1975 → "nineteen seventy-five"（不是 one thousand, nine hundred and seventy-five）\n' +
+        '1173 → "eleven seventy-three"\n' +
+        '2019 → "twenty nineteen"',
     },
   ],
   questions: [

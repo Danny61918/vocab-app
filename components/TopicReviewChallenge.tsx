@@ -132,29 +132,68 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
         <h1 className="text-2xl md:text-3xl font-black text-slate-800 mb-1">{chapter.title}</h1>
         <p className="text-sm text-slate-400 font-bold mb-6">{chapter.sourceRef}</p>
 
-        {chapter.glossary && chapter.glossary.length > 0 && (
-          <div className="bg-amber-50 border-2 border-amber-100 rounded-[2rem] p-6 mb-6">
-            <div className="text-sm font-black text-amber-700 mb-4">📌 看圖認識關鍵字</div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {chapter.glossary.map((g) => (
-                <div key={g.term} className="bg-white rounded-2xl p-3 text-center border-2 border-amber-100">
-                  {g.image ? (
-                    <img src={g.image} alt={g.term} className="w-full h-24 object-cover rounded-xl mb-2" />
-                  ) : (
-                    <div className="text-3xl mb-1">{g.icon}</div>
-                  )}
-                  <div className="font-bold text-slate-700 text-sm">{g.term}</div>
-                  {g.zh && <div className="text-xs text-slate-400">{g.zh}</div>}
-                  {g.imageCredit && <div className="text-[10px] text-slate-300 mt-1">{g.imageCredit}</div>}
+        {chapter.factCards && chapter.factCards.length > 0 ? (
+          <div className="flex flex-col gap-4 mb-8">
+            {chapter.factCards.map((card) => (
+              <div key={card.title} className="bg-white border-2 border-slate-100 rounded-[2rem] overflow-hidden shadow-md">
+                {card.image && (
+                  <div>
+                    <img src={card.image} alt={card.title} className="w-full h-48 object-cover" />
+                    {card.imageCredit && (
+                      <div className="text-[10px] text-slate-300 text-right px-4 pt-1">{card.imageCredit}</div>
+                    )}
+                  </div>
+                )}
+                <div className="p-6">
+                  <div className="font-black text-xl text-slate-800">{card.title}</div>
+                  {card.zh && <div className="text-sm text-slate-400 font-bold mb-3">{card.zh}</div>}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3">
+                    {card.facts.map((f) => (
+                      <div key={f.label} className="bg-slate-50 rounded-xl p-3">
+                        <div className="text-xs text-slate-400 font-bold">{f.label}</div>
+                        <div className="font-bold text-slate-700">{f.value}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
+
+            {chapter.notes?.map((n) => (
+              <div key={n.title} className="bg-amber-50 border-2 border-amber-100 rounded-[2rem] p-6">
+                <div className="font-black text-amber-700 mb-2">{n.title}</div>
+                <p className="text-slate-600 leading-relaxed whitespace-pre-line">{n.body}</p>
+              </div>
+            ))}
           </div>
+        ) : (
+          <>
+            {chapter.glossary && chapter.glossary.length > 0 && (
+              <div className="bg-amber-50 border-2 border-amber-100 rounded-[2rem] p-6 mb-6">
+                <div className="text-sm font-black text-amber-700 mb-4">📌 看圖認識關鍵字</div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  {chapter.glossary.map((g) => (
+                    <div key={g.term} className="bg-white rounded-2xl p-3 text-center border-2 border-amber-100">
+                      {g.image ? (
+                        <img src={g.image} alt={g.term} className="w-full h-24 object-cover rounded-xl mb-2" />
+                      ) : (
+                        <div className="text-3xl mb-1">{g.icon}</div>
+                      )}
+                      <div className="font-bold text-slate-700 text-sm">{g.term}</div>
+                      {g.zh && <div className="text-xs text-slate-400">{g.zh}</div>}
+                      {g.imageCredit && <div className="text-[10px] text-slate-300 mt-1">{g.imageCredit}</div>}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-md mb-8">
+              <p className="text-lg text-slate-700 leading-relaxed">{chapter.sourceText}</p>
+            </div>
+          </>
         )}
 
-        <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-md mb-8">
-          <p className="text-lg text-slate-700 leading-relaxed">{chapter.sourceText}</p>
-        </div>
         <button
           onClick={startQuiz}
           className="w-full bg-teal-600 hover:bg-teal-700 text-white py-5 rounded-[2rem] font-black text-xl shadow-xl transition-all active:scale-95 flex items-center justify-center gap-3"

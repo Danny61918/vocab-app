@@ -30,11 +30,31 @@ export interface GlossaryEntry {
   imageCredit?: string; // "Photographer, CC BY-SA X.X, via Wikimedia Commons"
 }
 
+export interface ReviewFact {
+  label: string; // e.g. '國家'
+  value: string; // e.g. 'Turkey 土耳其'
+}
+
+export interface ReviewFactCard {
+  title: string;        // English name, e.g. 'The Sapphire Building'
+  zh?: string;           // Chinese name
+  image?: string;
+  imageCredit?: string;
+  facts: ReviewFact[];   // 2-4 key facts, shown as a small label/value list under the photo
+}
+
+export interface ReviewNote {
+  title: string;
+  body: string; // may contain \n for multiple lines/examples
+}
+
 export interface ReviewChapter {
   id: string;
   title: string;
   sourceRef: string;        // textbook + unit/lesson, for traceability
-  sourceText: string;       // the full passage, verbatim
+  sourceText: string;       // the full passage, verbatim (kept for traceability; not always rendered — see factCards)
   questions: ReviewQuestion[];
-  glossary?: GlossaryEntry[]; // visual legend shown alongside the passage (emoji or a real freely-licensed photo), since we can't show the textbook's own photos
+  glossary?: GlossaryEntry[];   // visual legend shown next to the passage, for narrative-style chapters (water cycle, weather)
+  factCards?: ReviewFactCard[]; // one-card-per-item layout for list/fact-style chapters (e.g. famous buildings) — used INSTEAD of glossary+sourceText when present, since a wall of unrelated facts isn't discussable the way a narrative passage is
+  notes?: ReviewNote[];         // supplementary teaching points not tied to one fact card (e.g. "how to say dates aloud")
 }
