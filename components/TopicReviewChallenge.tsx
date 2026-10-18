@@ -138,9 +138,14 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               {chapter.glossary.map((g) => (
                 <div key={g.term} className="bg-white rounded-2xl p-3 text-center border-2 border-amber-100">
-                  <div className="text-3xl mb-1">{g.icon}</div>
+                  {g.image ? (
+                    <img src={g.image} alt={g.term} className="w-full h-24 object-cover rounded-xl mb-2" />
+                  ) : (
+                    <div className="text-3xl mb-1">{g.icon}</div>
+                  )}
                   <div className="font-bold text-slate-700 text-sm">{g.term}</div>
                   {g.zh && <div className="text-xs text-slate-400">{g.zh}</div>}
+                  {g.imageCredit && <div className="text-[10px] text-slate-300 mt-1">{g.imageCredit}</div>}
                 </div>
               ))}
             </div>
@@ -173,7 +178,14 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
         </div>
 
         <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-md mb-6">
-          {q.icon && <div className="text-6xl text-center mb-4">{q.icon}</div>}
+          {q.image ? (
+            <div className="mb-4">
+              <img src={q.image} alt="" className="w-full max-h-56 object-cover rounded-2xl" />
+              {q.imageCredit && <div className="text-[10px] text-slate-300 text-right mt-1">{q.imageCredit}</div>}
+            </div>
+          ) : (
+            q.icon && <div className="text-6xl text-center mb-4">{q.icon}</div>
+          )}
           <h2 className="text-xl md:text-2xl font-black text-slate-800 leading-relaxed mb-6">{q.questionText}</h2>
 
           {q.questionType === 'fill_blank' ? (

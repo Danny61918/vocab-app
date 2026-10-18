@@ -18,12 +18,16 @@ export interface ReviewQuestion {
   sourceSentence: string;   // the exact textbook sentence this question is built from
   questionType: ReviewQuestionType;
   icon?: string;            // single emoji shown on the quiz card as a visual hint (not a textbook image — we can't reproduce those)
+  image?: string;           // path under public/ to a real photo (e.g. a landmark); takes priority over icon when both are set
+  imageCredit?: string;     // "Photographer, CC BY-SA X.X, via Wikimedia Commons" — shown as a small caption under the photo
 }
 
 export interface GlossaryEntry {
   term: string;   // the English word/phrase as it appears in sourceText
-  icon: string;   // emoji illustrating it
-  zh?: string;    // short Chinese gloss, shown under the icon
+  icon?: string;   // emoji illustrating it (used when there's no real photo)
+  zh?: string;    // short Chinese gloss, shown under the icon/photo
+  image?: string; // path under public/ to a real photo; takes priority over icon when both are set
+  imageCredit?: string; // "Photographer, CC BY-SA X.X, via Wikimedia Commons"
 }
 
 export interface ReviewChapter {
@@ -32,5 +36,5 @@ export interface ReviewChapter {
   sourceRef: string;        // textbook + unit/lesson, for traceability
   sourceText: string;       // the full passage, verbatim
   questions: ReviewQuestion[];
-  glossary?: GlossaryEntry[]; // emoji legend shown alongside the passage, since we can't show the textbook's own photos
+  glossary?: GlossaryEntry[]; // visual legend shown alongside the passage (emoji or a real freely-licensed photo), since we can't show the textbook's own photos
 }
