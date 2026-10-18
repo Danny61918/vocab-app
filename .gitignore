@@ -26,3 +26,6 @@ dist-ssr
 
 # TypeScript
 *.tsbuildinfo
+
+# Monster generation intermediates (pre-cutout raw renders)
+scripts/monster_raw/

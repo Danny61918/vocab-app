@@ -13,13 +13,24 @@
    專案中的怪獸風格皆為 **可愛日系、2D 向量、類似寶可夢（Pokémon）的 Chibi（Q版）風格**。
    建議使用去背（透明背景）或純白背景的 PNG 圖檔。
 
-2. **AI 繪圖推薦提示詞 (Prompts)**：
-   您可以直接將以下提示詞提供給 AI 繪圖工具（如 Midjourney、DALL-E 3 等）或本專案的 AI 助手：
+2. **本機產圖（推薦，免費、無次數限制）**：
+   Gemini API 的圖像生成模型免費額度是 0（需要開計費），所以改用本機 GPU 跑
+   Stable Diffusion XL（這台電腦有 RTX PRO 5000，24GB VRAM，綽綽有餘）。
+   腳本在 `scripts/gen_monster_sdxl.py`，已經內建專案的風格提示詞跟去背邏輯
+   （用邊框連通的亮度去背，比單純比對顏色更能處理 SD 常見的暈影/陰影）。
+   ```bash
+   E:/Code/tools/tts-env/Scripts/python.exe scripts/gen_monster_sdxl.py \
+     '[["fire dragon with glowing wings", "mon_47.png", 12345]]'
+   ```
+   一次可以傳多個 `[描述, 檔名, seed]`，批次產生。產生後建議先用磁紅色（magenta）
+   底圖合成檢查去背有沒有乾淨（純白/灰階底圖容易誤判透明區域）。
+
+3. **或用 AI 繪圖提示詞**（Midjourney、DALL-E 3 等）：
    ```text
    A cute [你想要的怪獸特徵，例如：fire dragon / lightning squirrel], 2D vector art, cute Japanese anime style, gaming monster character, stand-alone asset, white background, vibrant colors, high quality, chibi, simple shaded.
    ```
 
-3. **存放位置**：
+4. **存放位置**：
    將產生的圖片存放到專案的靜態資源資料夾：
    📁 `public/monsters/`
    *建議命名格式：`mon_xx.png`（例如：`mon_26.png`）*
