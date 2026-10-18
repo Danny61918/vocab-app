@@ -137,8 +137,8 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
             {chapter.factCards.map((card) => (
               <div key={card.title} className="bg-white border-2 border-slate-100 rounded-[2rem] overflow-hidden shadow-md">
                 {card.image && (
-                  <div>
-                    <img src={card.image} alt={card.title} className="w-full h-48 object-cover" />
+                  <div className="bg-slate-100">
+                    <img src={card.image} alt={card.title} className="w-full h-64 object-contain" />
                     {card.imageCredit && (
                       <div className="text-[10px] text-slate-300 text-right px-4 pt-1">{card.imageCredit}</div>
                     )}
@@ -218,8 +218,8 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
 
         <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-md mb-6">
           {q.image ? (
-            <div className="mb-4">
-              <img src={q.image} alt="" className="w-full max-h-56 object-cover rounded-2xl" />
+            <div className="mb-4 bg-slate-100 rounded-2xl">
+              <img src={q.image} alt="" className="w-full h-56 object-contain rounded-2xl" />
               {q.imageCredit && <div className="text-[10px] text-slate-300 text-right mt-1">{q.imageCredit}</div>}
             </div>
           ) : (
