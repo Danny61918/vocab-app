@@ -5,6 +5,7 @@ import { TOPIC_REVIEW_CHAPTERS } from '../services/topicReview';
 import { ReviewChapter, ReviewQuestion } from '../services/topicReview/types';
 import { BookOpen, ArrowRight, ArrowLeft, CheckCircle2, XCircle, Droplet } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import LetterTiles from './LetterTiles';
 
 interface Props {
   onBack: () => void;
@@ -17,7 +18,6 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
   const [chapter, setChapter] = useState<ReviewChapter | null>(null);
   const [qIndex, setQIndex] = useState(0);
   const [selected, setSelected] = useState<string | null>(null);
-  const [blankInput, setBlankInput] = useState('');
   const [answered, setAnswered] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [wrongQuestions, setWrongQuestions] = useState<ReviewQuestion[]>([]);
@@ -33,7 +33,6 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
     setWrongQuestions([]);
     setAnswered(false);
     setSelected(null);
-    setBlankInput('');
     setPhase('QUIZ');
   };
 
@@ -63,7 +62,6 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
       setQIndex((i) => i + 1);
       setAnswered(false);
       setSelected(null);
-      setBlankInput('');
     } else {
       finishQuiz();
     }
@@ -148,7 +146,7 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
 
   if (phase === 'QUIZ' && chapter && currentQuestion) {
     const q = currentQuestion;
-    const correct = isAnswerCorrect(q, selected ?? blankInput);
+    const correct = selected !== null && isAnswerCorrect(q, selected);
     return (
       <div className="max-w-3xl mx-auto p-6 md:p-10 animate-fade-in pb-20">
         <div className="flex items-center justify-between mb-8">
@@ -162,24 +160,11 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
           <h2 className="text-xl md:text-2xl font-black text-slate-800 leading-relaxed mb-6">{q.questionText}</h2>
 
           {q.questionType === 'fill_blank' ? (
-            <div className="flex gap-3">
-              <input
-                type="text"
-                value={blankInput}
-                disabled={answered}
-                onChange={(e) => setBlankInput(e.target.value)}
-                onKeyDown={(e) => { if (e.key === 'Enter' && !answered && blankInput.trim()) submitAnswer(blankInput); }}
-                placeholder="輸入答案..."
-                className="flex-1 border-2 border-slate-200 rounded-xl px-4 py-3 text-lg font-bold outline-none focus:border-teal-400 disabled:bg-slate-50"
-              />
-              {!answered && (
-                <button
-                  onClick={() => blankInput.trim() && submitAnswer(blankInput)}
-                  disabled={!blankInput.trim()}
-                  className="bg-teal-600 disabled:bg-slate-200 text-white px-6 rounded-xl font-black"
-                >送出</button>
-              )}
-            </div>
+            <LetterTiles
+              targetWord={q.correctAnswer}
+              disabled={answered}
+              onComplete={(isCorrect, spelled) => submitAnswer(spelled)}
+            />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {(q.options ?? []).map((opt) => {
