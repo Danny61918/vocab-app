@@ -15,6 +15,7 @@ export enum GameType {
   CHINESE_TO_ENGLISH = 'CHINESE_TO_ENGLISH', // New: Chinese (Meaning) -> Choose English
   SENTENCE_CLOZE = 'SENTENCE_CLOZE', // New: Fill in the missing word in the example sentence
   GRAMMAR = 'GRAMMAR', // Grammar boss battle (GrammarChallenge) — no per-word ids, see correctIds/wrongIds note
+  TOPIC_REVIEW = 'TOPIC_REVIEW', // CLIL passage review (TopicReviewChallenge) — no per-word ids, same convention as GRAMMAR
 }
 
 export enum Difficulty {

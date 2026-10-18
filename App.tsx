@@ -14,14 +14,17 @@ import AchievementsView from './components/AchievementsView';
 import CreativeWorkshop from './components/CreativeWorkshop';
 import { TutorialGuide } from './components/TutorialGuide';
 import PracticeView from './components/PracticeView';
+import TopicReviewChallenge from './components/TopicReviewChallenge';
+import MistakeBookView from './components/MistakeBookView';
 import { getStreak, getUserData } from './services/gamification';
 import { getActiveExamReviewSets, getWordsForExamSet, ExamReviewSet } from './services/examReviewSets';
+import { TOPIC_REVIEW_CHAPTERS } from './services/topicReview';
 import { bootCloudSync } from './services/cloudSync';
 import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins, HelpCircle, Headphones } from 'lucide-react';
 
 const APP_VERSION = '7.1'; // Level 6 Week 19-20 (2026/6/15~6/23) 單字更新 & 關卡進度重置修復
 
-type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP' | 'PRACTICE';
+type ViewState = 'MENU' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP' | 'PRACTICE' | 'TOPIC_REVIEW' | 'MISTAKE_BOOK';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -163,6 +166,10 @@ function App() {
         return <CreativeWorkshop onBack={() => setCurrentView('MENU')} />;
       case 'PRACTICE':
         return <PracticeView onBack={() => setCurrentView('MENU')} />;
+      case 'TOPIC_REVIEW':
+        return <TopicReviewChallenge onBack={() => setCurrentView('MENU')} />;
+      case 'MISTAKE_BOOK':
+        return <MistakeBookView onBack={() => setCurrentView('MENU')} />;
       default:
         const streak = getStreak();
         const userData = getUserData();
@@ -253,6 +260,23 @@ function App() {
                     </div>
                 </button>
               </div>
+
+              {/* Row 1.5: CLIL topic review — a category, not a one-off (one chip per lesson, grows over time) */}
+              <button onClick={() => setCurrentView('TOPIC_REVIEW')} className="relative overflow-hidden w-full bg-gradient-to-br from-teal-500 to-cyan-600 text-white p-6 rounded-[2rem] shadow-xl hover:scale-[1.01] active:scale-95 transition-all text-left border-b-8 border-teal-800">
+                <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Book size={100} /></div>
+                <div className="relative z-10">
+                    <div className="flex items-center gap-2 mb-2">
+                        <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">📖 課文複習</span>
+                    </div>
+                    <h3 className="text-2xl font-black mb-2 drop-shadow-md">課文複習（CLIL）</h3>
+                    <p className="text-teal-50 text-sm font-bold mb-3">也是大考範圍，每一課的課文都會出現在這裡</p>
+                    <div className="flex flex-wrap gap-2">
+                        {TOPIC_REVIEW_CHAPTERS.map((c) => (
+                            <span key={c.id} className="bg-white/25 px-3 py-1 rounded-full text-xs font-bold">{c.title}</span>
+                        ))}
+                    </div>
+                </div>
+              </button>
 
               {/* Row 2: Custom Training Mode */}
               <div className="bg-white p-6 md:p-8 rounded-[2rem] shadow-lg border border-slate-200 relative overflow-hidden">
@@ -388,7 +412,7 @@ function App() {
               </div>
               
               {/* Row 3: Utility Tools */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 <button onClick={() => setCurrentView('PRACTICE')} className="bg-white h-24 rounded-[1.5rem] shadow-md border border-slate-100 flex flex-col items-center justify-center text-slate-600 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 transition">
                   <Headphones size={24} className="mb-2" /><span className="font-bold">練習</span>
                 </button>
@@ -397,6 +421,10 @@ function App() {
                 </button>
                 <button onClick={() => setCurrentView('MANAGER')} className="bg-white h-24 rounded-[1.5rem] shadow-md border border-slate-100 flex flex-col items-center justify-center text-slate-600 hover:bg-slate-50 hover:text-slate-800 transition">
                   <Book size={24} className="mb-2" /><span className="font-bold">單字庫管理</span>
+                </button>
+                <button onClick={() => setCurrentView('MISTAKE_BOOK')} className="relative bg-white h-24 rounded-[1.5rem] shadow-md border border-slate-100 flex flex-col items-center justify-center text-slate-600 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-200 transition">
+                  <span className="absolute top-2 right-2 bg-rose-100 text-rose-600 text-[10px] font-black px-2 py-0.5 rounded-full">NEW</span>
+                  <GraduationCap size={24} className="mb-2" /><span className="font-bold">錯題本</span>
                 </button>
                 <button onClick={() => setCurrentView('LEADERBOARD')} className="bg-white h-24 rounded-[1.5rem] shadow-md border border-slate-100 flex flex-col items-center justify-center text-slate-600 hover:bg-yellow-50 hover:text-yellow-600 hover:border-yellow-200 transition">
                   <Trophy size={24} className="text-yellow-500 mb-2" /><span className="font-bold">榮譽榜</span>
