@@ -168,7 +168,7 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
               </div>
             ))}
 
-            {chapter.notes?.map((n) => (
+            {chapter.notes && chapter.notes.length > 0 && chapter.notes.map((n) => (
               <div key={n.title} className="bg-amber-50 border-2 border-amber-100 rounded-[2rem] p-6">
                 <div className="font-black text-amber-700 mb-2">{n.title}</div>
                 {n.body && <p className="text-slate-600 leading-relaxed mb-3">{n.body}</p>}
@@ -213,8 +213,39 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
               </div>
             )}
 
+            {/* notes carry the actual teaching point (what to learn); put
+                them right after the glossary, before the raw source
+                sentences below, so the takeaway reads before the evidence */}
+            {chapter.notes && chapter.notes.length > 0 && (
+              <div className="flex flex-col gap-4 mb-8">
+                {chapter.notes.map((n) => (
+                  <div key={n.title} className="bg-amber-50 border-2 border-amber-100 rounded-[2rem] p-6">
+                    <div className="font-black text-amber-700 mb-2">{n.title}</div>
+                    {n.body && <p className="text-slate-600 leading-relaxed mb-3">{n.body}</p>}
+                    {n.examples && (
+                      <div className="flex flex-col gap-2">
+                        {n.examples.map((ex) => (
+                          <div key={ex.text} className="flex items-center justify-between gap-3 bg-white rounded-xl px-4 py-3 border border-amber-100">
+                            <span className="text-slate-700 font-bold">{ex.text}</span>
+                            <button
+                              onClick={() => speak(ex.speak)}
+                              className="flex-shrink-0 text-amber-600 hover:text-amber-800 bg-amber-100 hover:bg-amber-200 rounded-full p-2 transition-colors"
+                              aria-label={`唸出 ${ex.speak}`}
+                            >
+                              <Volume2 size={18} />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <div className="text-xs font-bold text-slate-400 mb-2">📎 原始例句出處</div>
             <div className="bg-white border-2 border-slate-100 rounded-[2rem] p-8 shadow-md mb-8">
-              <p className="text-lg text-slate-700 leading-relaxed">{chapter.sourceText}</p>
+              <p className="text-lg text-slate-700 leading-relaxed whitespace-pre-line">{chapter.sourceText}</p>
             </div>
           </>
         )}
