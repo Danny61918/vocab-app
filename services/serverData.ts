@@ -1107,7 +1107,19 @@ const serverData: Word[] = [
     { "id": 1085, "date": "2026-10-23", "english": "stormy", "chinese": "暴風雨的", "part_of_speech": "(adj.)", "example": "The captain decided to stay in port because the sea looked stormy." },
     { "id": 1086, "date": "2026-10-23", "english": "shine", "chinese": "發光；照耀", "part_of_speech": "(v.)", "example": "The lighthouse's beam continues to shine brightly across the dark sea." },
     { "id": 1087, "date": "2026-10-23", "english": "interview", "chinese": "訪問；面試", "part_of_speech": "(n.)", "example": "The reporter asked the young athlete several questions during the interview." },
-    { "id": 1088, "date": "2026-10-23", "english": "whole", "chinese": "完整的；全部的", "part_of_speech": "(adj.)", "example": "She spent the whole afternoon reading her new favorite book." }
+    { "id": 1088, "date": "2026-10-23", "english": "whole", "chinese": "完整的；全部的", "part_of_speech": "(adj.)", "example": "She spent the whole afternoon reading her new favorite book." },
+    { "id": 1089, "date": "2026-10-29", "english": "earache", "chinese": "耳朵痛", "part_of_speech": "(n.)", "example": "There is a small cockroach in his ear for over one week. This is the reason why he has an earache these days." },
+    { "id": 1090, "date": "2026-10-29", "english": "stomachache", "chinese": "胃痛", "part_of_speech": "(n.)", "example": "He ate twenty pieces of pizza and he has a stomachache now. He feels sick and can't eat any food." },
+    { "id": 1091, "date": "2026-10-29", "english": "cough", "chinese": "咳嗽", "part_of_speech": "(n.)", "example": "I had a cold yesterday. My chest felt painful and I was coughing at midnight. As a result, I don't have energy to go to school today." },
+    { "id": 1092, "date": "2026-10-29", "english": "cold", "chinese": "感冒", "part_of_speech": "(n.)", "example": "I had a cold yesterday. My chest felt painful and I was coughing at midnight. As a result, I don't have energy to go to school today." },
+    { "id": 1093, "date": "2026-10-29", "english": "toothache", "chinese": "牙痛", "part_of_speech": "(n.)", "example": "Tom likes to eat candy, but he doesn't like to brush his teeth. Finally, he has a bad toothache and goes to the dentist to deal with it." },
+    { "id": 1094, "date": "2026-10-29", "english": "at first", "chinese": "起初", "part_of_speech": "(ph.)", "example": "She was afraid of dogs at first. Now she loves them." },
+    { "id": 1095, "date": "2026-10-30", "english": "sore throat", "chinese": "喉嚨痛", "part_of_speech": "(n.)", "example": "The spicy food is burning my throat now. I have a sore throat after thirty minutes, so I drink some water to solve this problem." },
+    { "id": 1096, "date": "2026-10-30", "english": "headache", "chinese": "頭痛", "part_of_speech": "(n.)", "example": "The rock band is singing loudly now. I can't take a rest to get well from ill. The noise is giving me a headache." },
+    { "id": 1097, "date": "2026-10-30", "english": "feel", "chinese": "感覺", "part_of_speech": "(v.)", "example": "A: How are you feeling? B: Not bad, but I still have a slight headache." },
+    { "id": 1098, "date": "2026-10-30", "english": "sick", "chinese": "生病的", "part_of_speech": "(adj.)", "example": "John felt sick after working day and night. He can't go to work for over three days." },
+    { "id": 1099, "date": "2026-10-30", "english": "matter", "chinese": "事件", "part_of_speech": "(n.)", "example": "A: What's the matter? Why are you crying? B: I can't find my favorite Barbie. Please help me to look for it." },
+    { "id": 1100, "date": "2026-10-30", "english": "at last", "chinese": "最後", "part_of_speech": "(ph.)", "example": "A: Did you finish cleaning your room? B: Yes! After two hours of cleaning, I finished at last." }
 ];
 
 export default serverData; 
