@@ -137,19 +137,21 @@ const chapter: ReviewChapter = {
     {
       id: 'pfr-5',
       questionText: "Stay away from the ___ hive, or you probably get bee stings.",
+      options: ["bees'", "bee's", 'bees'],
       correctAnswer: "bees'",
       explanation: 'bees 是規則複數（字尾已經是 s），所有格只要加一撇：bees\'。',
       sourceSentence: "Stay away from the bees' hive, or you probably get bee stings.",
-      questionType: 'fill_blank',
+      questionType: 'multiple_choice',
       icon: '🐝',
     },
     {
       id: 'pfr-6',
       questionText: '___ tails are cute and curly.',
+      options: ["pigs'", "pig's", 'pigs'],
       correctAnswer: "pigs'",
       explanation: '跟 bees\' 是同一條規則：pigs 字尾已經是 s，所有格只加一撇。',
       sourceSentence: "The pigs' tails are cute and curly.",
-      questionType: 'fill_blank',
+      questionType: 'multiple_choice',
       icon: '🐷',
     },
     {
