@@ -91,6 +91,18 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         return monsters[Math.floor(Math.random() * monsters.length)];
     };
 
+    // Whether the words currently being practiced are big-exam-scope words —
+    // true not just when the 🎯 大考複習 tab is selected, but also when
+    // practicing a 本週進度 date whose words happen to all be part of the
+    // active exam review set (the 160-word scope is cumulative across many
+    // past weeks, so a REGULAR date pick can land entirely inside it). Used
+    // to skip the Chinese-handwriting phase for exam-scope words regardless
+    // of which tab was used to reach them — asked for after the exam scope
+    // grew to 160 words and handwriting drill stopped being the priority.
+    const examWordIdSet = new Set(examSets.flatMap(s => s.wordIds));
+    const isExamScopeWords = wordSource === 'EXAM'
+        || (targetWords.length > 0 && targetWords.every(w => examWordIdSet.has(w.id)));
+
     const getCoreWordForMasking = (englishStr: string): string => {
         let cleaned = englishStr.replace(/\(.*?\)/g, '').trim();
         cleaned = cleaned.split(/[\/\-]/)[0].trim();
@@ -315,11 +327,14 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             if (mode === 'RECOGNIZE') {
                 startSpellPhase();
             } else if (mode === 'SPELL') {
-                // 大考複習 skips Chinese handwriting (HanziCanvas) — 20 words x
+                // Exam-scope words skip Chinese handwriting (HanziCanvas) —
                 // writing out every character was too tiring for exam cram,
                 // which only needs to test word <-> meaning recall, not
-                // handwriting. Regular weekly practice keeps all 4 phases.
-                if (wordSource === 'EXAM') {
+                // handwriting. Regular (non-exam-scope) practice keeps all 4
+                // phases. isExamScopeWords also catches 本週進度 dates that
+                // happen to fall entirely inside the exam word list, not
+                // just the dedicated 🎯 大考複習 tab.
+                if (isExamScopeWords) {
                     startSentencePhase();
                 } else {
                     startWritePhase();
