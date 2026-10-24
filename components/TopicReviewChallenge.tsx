@@ -285,6 +285,7 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
 
           {q.questionType === 'fill_blank' ? (
             <LetterTiles
+              key={q.id}
               targetWord={q.correctAnswer}
               disabled={answered}
               onComplete={(isCorrect, spelled) => submitAnswer(spelled)}
