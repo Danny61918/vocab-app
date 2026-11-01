@@ -16,6 +16,18 @@ interface Props {
 
 type ChallengeMode = 'REVIEW' | 'PREVIEW';
 type Phase = 'INTRO' | 'LEARN' | 'QUIZ' | 'ROUND_END' | 'SUMMARY';
+
+/** Visible viewport size; updates on rotate / resize / browser-bar changes. */
+const useViewportSize = (): { w: number; h: number } => {
+    const read = () => (typeof window === 'undefined' ? { w: 1024, h: 800 } : { w: window.innerWidth, h: window.innerHeight });
+    const [size, setSize] = useState(read);
+    useEffect(() => {
+        const on = () => setSize(read());
+        window.addEventListener('resize', on);
+        return () => window.removeEventListener('resize', on);
+    }, []);
+    return size;
+};
 type WordSource = 'REGULAR' | 'EXAM';
 const EXAM_ALL = '__ALL__'; // sentinel: whole exam set, not one day's sub-group
 
@@ -62,6 +74,10 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const [monsterHp, setMonsterHp] = useState(100);
     const [mistakesCount, setMistakesCount] = useState(0);
     const [writeIndex, setWriteIndex] = useState(0);
+    const viewport = useViewportSize();
+    // Stroke-order canvas scales with the screen so the whole WRITE screen fits without scrolling
+    // (phones stack the panels, so the canvas gets a smaller share of the height there).
+    const canvasSize = Math.max(170, Math.min(320, Math.round(viewport.h * (viewport.w < 768 ? 0.26 : 0.34))));
     const [wordMistakes, setWordMistakes] = useState<Record<number, number>>({});
     const [sentenceHintActive, setSentenceHintActive] = useState(false);
     const sentenceHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -693,8 +709,8 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     if (phase === 'LEARN') {
         const word = currentChunk[learnIndex];
         return (
-            <div className="flex flex-col items-center justify-center min-h-[80vh] w-full max-w-4xl mx-auto p-4 md:p-8 animate-fade-in">
-                <div className="w-full flex justify-between items-center mb-6">
+            <div className="flex flex-col items-center justify-center min-h-[100dvh] w-full max-w-4xl mx-auto p-3 md:p-6 animate-fade-in">
+                <div className="w-full flex justify-between items-center mb-[var(--fit-mb)]">
                     <button onClick={onBack} className="text-slate-400 font-black hover:text-red-500">退出</button>
                     <div className="bg-purple-100 text-purple-700 px-4 py-2 rounded-xl font-black">
                         Round {currentChunkIndex + 1}/{chunks.length} - 學習中 {learnIndex + 1}/{currentChunk.length}
@@ -703,29 +719,29 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                 
                 <div 
                     onClick={() => playWord(word)}
-                    className="bg-white rounded-[3rem] shadow-2xl p-10 w-full flex flex-col items-center justify-center cursor-pointer transform transition hover:scale-[1.02] border-8 border-purple-50 group"
+                    className="bg-white rounded-[3rem] shadow-2xl p-[var(--fit-pad)] w-full flex flex-col items-center justify-center cursor-pointer transform transition hover:scale-[1.02] border-4 md:border-8 border-purple-50 group"
                 >
-                    <div className="w-48 h-48 mb-6 group-hover:animate-bounce flex items-center justify-center">
+                    <div className="w-[var(--fit-monster-l)] h-[var(--fit-monster-l)] mb-[var(--fit-mb)] group-hover:animate-bounce flex items-center justify-center">
                          {currentMonster && <img src={currentMonster.image} style={{filter: currentMonster.filter}} className="max-w-full max-h-full object-contain drop-shadow-md" alt="monster" />}
                     </div>
-                    <div className="text-6xl md:text-7xl font-black text-slate-800 mb-2 font-['Outfit'] tracking-wide">
+                    <div className="text-[length:var(--fit-word)] leading-tight font-black text-slate-800 mb-2 font-['Outfit'] tracking-wide">
                         {word.english}
                     </div>
-                    <div className="text-2xl text-slate-400 mb-6 font-bold italic">
+                    <div className="text-xl text-slate-400 mb-[var(--fit-mb)] font-bold italic">
                         {word.part_of_speech}
                     </div>
-                    <div className="text-4xl font-black text-emerald-600 drop-shadow-sm mb-8">
+                    <div className="text-[length:var(--fit-zh)] leading-tight font-black text-emerald-600 drop-shadow-sm mb-[var(--fit-mb)]">
                         {word.chinese}
                     </div>
                     
                     {word.example && (
-                        <div className="bg-slate-50 p-6 rounded-2xl w-full text-left border-2 border-slate-100">
+                        <div className="bg-slate-50 p-[var(--fit-box)] rounded-2xl w-full text-left border-2 border-slate-100">
                             <p className="text-slate-400 text-sm font-black uppercase mb-2">Example</p>
-                            <p className="text-xl text-slate-700 font-bold leading-relaxed">{word.example}</p>
+                            <p className="text-[length:var(--fit-body)] text-slate-700 font-bold leading-snug">{word.example}</p>
                         </div>
                     )}
                     
-                    <div className="mt-8 opacity-50 flex items-center gap-2">
+                    <div className="mt-[var(--fit-mb)] opacity-50 flex items-center gap-2 [@media(max-height:480px)]:hidden">
                         <span className="text-2xl">🔊</span>
                         <span className="text-lg font-bold text-slate-500">點擊念出發音</span>
                     </div>
@@ -733,7 +749,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
 
                 <button 
                     onClick={nextLearnCard}
-                    className="mt-10 bg-emerald-500 hover:bg-emerald-600 text-white text-3xl font-black py-5 w-full max-w-sm rounded-[2rem] shadow-xl active:scale-95 transition-all"
+                    className="mt-[var(--fit-gap)] bg-emerald-500 hover:bg-emerald-600 text-white text-[length:var(--fit-btn-font)] font-black py-[var(--fit-btn-py)] w-full max-w-sm rounded-[2rem] shadow-xl active:scale-95 transition-all"
                 >
                     我記住了！
                 </button>
@@ -748,15 +764,15 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         const coreWord = getCoreWordForMasking(word.english);
 
         return (
-            <div className="flex flex-col min-h-[80vh] p-4 md:p-8 w-full max-w-6xl mx-auto animate-fade-in select-none touch-manipulation">
+            <div className="flex flex-col justify-center min-h-[100dvh] p-3 md:p-6 w-full max-w-6xl mx-auto animate-fade-in select-none touch-manipulation">
                 {/* Header */}
-                <div className="w-full flex justify-between items-center mb-6">
-                    <div className="bg-red-500 text-white font-black text-xl px-5 py-2 rounded-xl shadow-md border-b-4 border-red-700 flex items-center gap-2">
+                <div className="w-full flex justify-between items-center mb-[var(--fit-mb)]">
+                    <div className="bg-red-500 text-white font-black text-sm md:text-xl px-3 md:px-5 py-1.5 md:py-2 rounded-xl shadow-md border-b-4 border-red-700 flex items-center gap-2">
                         <span>
                             {quizMode === 'RECOGNIZE' ? '👁️ 認字階段' : quizMode === 'SPELL' ? '✍️ 拼字階段' : quizMode === 'WRITE' ? '✨ 魔法封印' : '📖 例句階段'} 
                             - 剩餘怪獸: 
                         </span>
-                        <span className="text-2xl ml-2">{quizQueue.length}</span>
+                        <span className="text-xl md:text-2xl ml-1 md:ml-2">{quizQueue.length}</span>
                     </div>
                     <div className="flex items-center gap-4">
                         {combo > 1 && (
@@ -764,21 +780,21 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                 🔥 {combo} Combo!
                             </div>
                         )}
-                        <button onClick={onBack} className="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-4 py-2 rounded-xl border-b-4 border-slate-400 active:translate-y-1 active:border-b-0 transition-all">
+                        <button onClick={onBack} className="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm md:text-base px-3 md:px-4 py-1.5 md:py-2 rounded-xl border-b-4 border-slate-400 active:translate-y-1 active:border-b-0 transition-all">
                             中斷離開
                         </button>
                     </div>
                 </div>
 
                 {/* Split Layout for Tablet */}
-                <div className="flex flex-col md:flex-row gap-8 w-full items-stretch">
+                <div className="flex flex-col md:flex-row gap-[var(--fit-gap)] w-full items-stretch">
                     {/* Left Panel: Monster & HP */}
                     <div 
                         onClick={() => playWord(word)}
-                        className={`flex-1 text-white rounded-[3rem] p-10 text-center shadow-2xl relative cursor-pointer active:scale-[0.98] transition-all border-8 flex flex-col justify-center items-center ${quizMode === 'SENTENCE' ? 'bg-indigo-800 border-indigo-700' : 'bg-slate-800 border-slate-700'}`}
+                        className={`flex-1 text-white rounded-[3rem] p-[var(--fit-pad)] text-center shadow-2xl relative cursor-pointer active:scale-[0.98] transition-all border-4 md:border-8 flex flex-col justify-center items-center ${quizMode === 'SENTENCE' ? 'bg-indigo-800 border-indigo-700' : 'bg-slate-800 border-slate-700'}`}
                     >
-                        <div className="flex justify-center mb-8 relative h-40 md:h-56">
-                            <div className={`w-40 h-40 md:w-56 md:h-56 absolute transition-all duration-300 ${feedbackState === 'correct' ? 'opacity-0 scale-50 rotate-180' : 'opacity-100 scale-100'}`}>
+                        <div className="flex justify-center mb-[var(--fit-mb)] relative h-[var(--fit-monster)]">
+                            <div className={`w-[var(--fit-monster)] h-[var(--fit-monster)] absolute transition-all duration-300 ${feedbackState === 'correct' ? 'opacity-0 scale-50 rotate-180' : 'opacity-100 scale-100'}`}>
                                 {currentMonster && <img src={currentMonster.image} style={{filter: currentMonster.filter}} className="max-w-full max-h-full object-contain drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]" alt="monster" />}
                             </div>
                             {feedbackState === 'correct' && (
@@ -786,19 +802,19 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                             )}
                         </div>
                         
-                        <div className="w-full max-w-xs h-6 bg-slate-600 rounded-full mx-auto mb-8 overflow-hidden border-4 border-slate-900 shadow-inner">
+                        <div className="w-full max-w-xs h-4 md:h-6 bg-slate-600 rounded-full mx-auto mb-[var(--fit-mb)] overflow-hidden border-4 border-slate-900 shadow-inner">
                             <div className="h-full bg-red-500 transition-all duration-300" style={{width: `${monsterHp}%`}}></div>
                         </div>
 
                         {quizMode === 'RECOGNIZE' ? (
-                            <div className="text-5xl md:text-7xl font-black mb-2 font-['Outfit'] tracking-wider drop-shadow-lg">{word.english}</div>
+                            <div className="text-[length:var(--fit-word)] leading-tight font-black mb-2 font-['Outfit'] tracking-wider drop-shadow-lg">{word.english}</div>
                         ) : quizMode === 'SPELL' ? (
-                            <div className="text-4xl md:text-5xl font-black mb-2 tracking-wider text-emerald-400 drop-shadow-md">{word.chinese}</div>
+                            <div className="text-[length:var(--fit-zh)] leading-tight font-black mb-2 tracking-wider text-emerald-400 drop-shadow-md">{word.chinese}</div>
                         ) : quizMode === 'WRITE' ? (
-                            <div className="text-4xl md:text-5xl font-black mb-2 tracking-wider text-yellow-400 drop-shadow-md">{word.english}</div>
+                            <div className="text-[length:var(--fit-zh)] leading-tight font-black mb-2 tracking-wider text-yellow-400 drop-shadow-md">{word.english}</div>
                         ) : (
-                            <div className="bg-white/10 p-6 rounded-2xl mt-4 relative w-full">
-                                <div className="text-2xl md:text-4xl font-black leading-relaxed text-left text-white drop-shadow-md">
+                            <div className="bg-white/10 p-[var(--fit-box)] rounded-2xl mt-2 relative w-full">
+                                <div className="text-[length:var(--fit-sent)] font-black leading-snug text-left text-white drop-shadow-md">
                                     {sentenceMask}
                                 </div>
                                 {sentenceHintActive && (
@@ -822,14 +838,14 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                         )}
                         
                         {quizMode !== 'SENTENCE' && (
-                            <div className="text-2xl text-slate-400 font-bold italic mt-4">({word.part_of_speech})</div>
+                            <div className="text-xl text-slate-400 font-bold italic mt-2">({word.part_of_speech})</div>
                         )}
                     </div>
 
                     {/* Right Panel: Options / Input */}
-                    <div className="flex-1 flex flex-col justify-center items-center bg-slate-50 rounded-[3rem] p-8 border-8 border-slate-100 shadow-inner">
+                    <div className="flex-1 flex flex-col justify-center items-center bg-slate-50 rounded-[3rem] p-[var(--fit-pad-sm)] border-4 md:border-8 border-slate-100 shadow-inner">
                         {quizMode === 'RECOGNIZE' || quizMode === 'SENTENCE' ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full h-full content-center">
+                            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full h-full content-center">
                                 {options.map((opt, i) => {
                                     let btnClass = "bg-white hover:bg-blue-50 text-slate-700 border-4 border-slate-200 active:scale-95";
                                     let showStatus = false;
@@ -850,7 +866,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                             key={i}
                                             disabled={feedbackState !== 'idle'}
                                             onClick={() => handleAnswer(opt)}
-                                            className={`text-2xl md:text-3xl font-black p-8 rounded-3xl transition-all relative shadow-md min-h-[120px] flex items-center justify-center ${btnClass}`}
+                                            className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] rounded-3xl transition-all relative shadow-md min-h-[var(--fit-opt-min)] flex items-center justify-center break-words ${btnClass}`}
                                         >
                                             <span className="text-center">{opt}</span>
                                             {showStatus && opt === correctAnswer && feedbackState === 'correct' && (
@@ -861,8 +877,8 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                 })}
                             </div>
                         ) : quizMode === 'WRITE' ? (
-                            <div className="w-full flex flex-col items-center justify-center relative min-h-[300px]">
-                                <div className="text-2xl md:text-4xl font-black mb-8 flex flex-wrap justify-center gap-2 max-w-full leading-relaxed">
+                            <div className="w-full flex flex-col items-center justify-center relative min-h-0">
+                                <div className="text-[length:var(--fit-zh)] font-black mb-[var(--fit-mb)] flex flex-wrap justify-center gap-2 max-w-full leading-snug">
                                     {word.chinese.split('').map((char, idx) => {
                                         const isChinese = /[\u4e00-\u9fa5]/.test(char);
                                         if (!isChinese) {
@@ -878,20 +894,20 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                         key={writeIndex}
                                         character={word.chinese.split('')[writeIndex]} 
                                         onComplete={handleWriteNext}
-                                        size={320}
+                                        size={canvasSize}
                                     />
                                 )}
 
                                 <button
                                     type="button"
                                     onClick={skipWritePhase}
-                                    className="mt-8 px-6 py-3 rounded-2xl bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-700 font-bold text-lg border-4 border-slate-200 shadow-sm active:scale-95 transition-all"
+                                    className="mt-[var(--fit-mb)] px-6 py-2 md:py-3 rounded-2xl bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-700 font-bold text-lg border-4 border-slate-200 shadow-sm active:scale-95 transition-all"
                                 >
                                     ⏭️ 跳過中文字練習
                                 </button>
                             </div>
                         ) : (
-                            <div className="w-full flex flex-col items-center justify-center relative min-h-[300px]">
+                            <div className="w-full flex flex-col items-center justify-center relative min-h-0">
                                 {/* key includes totalQuestions (bumps on every attempt, right or
                                     wrong), not just word.id — a wrong SPELL answer gets requeued
                                     onto the end of quizQueue, and when it's the only word left

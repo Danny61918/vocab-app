@@ -7,6 +7,106 @@
     <title>Vocabulary Master - 英文單字快速複習</title>
     <!-- Tailwind CSS CDN 依然保留，用於開發便利 -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* ── Screen-fit tokens ─────────────────────────────────────────────
+         Game screens are single-screen interactions and should fit the visible
+         viewport (no scrolling) on tablets in both orientations, phones and
+         desktops. Big visuals (monster art, word, paddings, option buttons,
+         letter tiles) use these tokens. They shrink by viewport HEIGHT, and
+         phones (< 768px wide) get an extra-compact set. Used via Tailwind
+         arbitrary values, e.g. p-[var(--fit-pad)], text-[length:var(--fit-word)]. */
+      :root {
+        --fit-pad: 2.5rem;      --fit-pad-sm: 2rem;    --fit-box: 1.5rem;
+        --fit-gap: 2rem;        --fit-mb: 1.5rem;
+        --fit-monster: 14rem;   --fit-monster-l: 12rem;
+        --fit-word: 4.5rem;     --fit-zh: 2.25rem;     --fit-body: 1.25rem;  --fit-sent: 2.25rem;
+        --fit-opt-pad: 2rem;    --fit-opt-min: 7.5rem; --fit-opt-font: 1.875rem;
+        --fit-btn-py: 1.25rem;  --fit-btn-font: 1.875rem;
+        --fit-tile-w: 3.5rem;   --fit-tile-h: 4rem;    --fit-tile-font: 1.875rem;
+      }
+      @media (max-height: 940px) {
+        :root {
+          --fit-pad: 2rem;      --fit-pad-sm: 1.5rem;  --fit-box: 1.25rem;
+          --fit-gap: 1.5rem;    --fit-mb: 1.25rem;
+          --fit-monster: 11rem; --fit-monster-l: 9rem;
+          --fit-word: 4rem;     --fit-zh: 2rem;        --fit-body: 1.2rem;   --fit-sent: 2rem;
+          --fit-opt-pad: 1.5rem; --fit-opt-min: 6rem;  --fit-opt-font: 1.75rem;
+          --fit-btn-py: 1rem;   --fit-btn-font: 1.75rem;
+          --fit-tile-w: 3.25rem; --fit-tile-h: 3.75rem; --fit-tile-font: 1.75rem;
+        }
+      }
+      @media (max-height: 800px) {
+        :root {
+          --fit-pad: 1.5rem;    --fit-pad-sm: 1.25rem; --fit-box: 1rem;
+          --fit-gap: 1.25rem;   --fit-mb: 1rem;
+          --fit-monster: 8rem;  --fit-monster-l: 7rem;
+          --fit-word: 3.25rem;  --fit-zh: 1.75rem;     --fit-body: 1.1rem;   --fit-sent: 1.6rem;
+          --fit-opt-pad: 1rem;  --fit-opt-min: 4.75rem; --fit-opt-font: 1.5rem;
+          --fit-btn-py: .75rem; --fit-btn-font: 1.5rem;
+          --fit-tile-w: 3rem;   --fit-tile-h: 3.25rem; --fit-tile-font: 1.5rem;
+        }
+      }
+      @media (max-height: 700px) {
+        :root {
+          --fit-pad: 1rem;      --fit-pad-sm: 1rem;    --fit-box: .75rem;
+          --fit-gap: 1rem;      --fit-mb: .75rem;
+          --fit-monster: 6rem;  --fit-monster-l: 5.5rem;
+          --fit-word: 2.75rem;  --fit-zh: 1.5rem;      --fit-body: 1rem;     --fit-sent: 1.35rem;
+          --fit-opt-pad: .75rem; --fit-opt-min: 3.75rem; --fit-opt-font: 1.25rem;
+          --fit-btn-py: .6rem;  --fit-btn-font: 1.25rem;
+          --fit-tile-w: 2.6rem; --fit-tile-h: 2.9rem;  --fit-tile-font: 1.3rem;
+        }
+      }
+      @media (max-height: 600px) {
+        :root {
+          --fit-pad: .75rem;    --fit-pad-sm: .75rem;  --fit-box: .6rem;
+          --fit-gap: .75rem;    --fit-mb: .5rem;
+          --fit-monster: 4.5rem; --fit-monster-l: 4.5rem;
+          --fit-word: 2.25rem;  --fit-zh: 1.25rem;     --fit-body: .95rem;   --fit-sent: 1.15rem;
+          --fit-opt-pad: .5rem; --fit-opt-min: 3rem;   --fit-opt-font: 1.1rem;
+          --fit-btn-py: .5rem;  --fit-btn-font: 1.1rem;
+          --fit-tile-w: 2.25rem; --fit-tile-h: 2.5rem; --fit-tile-font: 1.15rem;
+        }
+      }
+      @media (max-height: 480px) {
+        :root {
+          --fit-pad: .5rem;     --fit-pad-sm: .5rem;   --fit-box: .5rem;
+          --fit-gap: .5rem;     --fit-mb: .3rem;
+          --fit-monster: 3rem;  --fit-monster-l: 3rem;
+          --fit-word: 1.75rem;  --fit-zh: 1.1rem;      --fit-body: .85rem;   --fit-sent: 1rem;
+          --fit-opt-pad: .3rem; --fit-opt-min: 2.4rem; --fit-opt-font: .95rem;
+          --fit-btn-py: .35rem; --fit-btn-font: 1rem;
+          --fit-tile-w: 1.9rem; --fit-tile-h: 2.1rem;  --fit-tile-font: 1rem;
+        }
+      }
+      /* Short tablets / small laptop windows (landscape): scale the root a little so every screen
+         that was laid out for taller displays still fits. Unchanged at >= 760px high. */
+      @media (min-width: 768px) and (max-height: 760px) {
+        html {
+          font-size: clamp(12px, calc(100vh / 46), 16px);
+          font-size: clamp(12px, calc(100dvh / 46), 16px);
+        }
+      }
+      /* Phones (portrait). Tailwind sizes are rem-based, so scaling the root font size shrinks
+         every screen in proportion to the available height (short phones get smaller UI, tall
+         phones stay close to normal size). dvh = the visible height without browser bars. */
+      @media (max-width: 767px) {
+        html {
+          font-size: clamp(11px, calc(100vh / 58), 16px);
+          font-size: clamp(11px, calc(100dvh / 58), 16px);
+        }
+        /* Daily Challenge tokens, tuned for the scaled root above (~12px on a 700px-high phone). */
+        :root {
+          --fit-pad: 1.35rem;    --fit-pad-sm: 1rem;     --fit-box: 1rem;
+          --fit-gap: 1rem;       --fit-mb: 1rem;
+          --fit-monster: 7.3rem; --fit-monster-l: 9.3rem;
+          --fit-word: 3.3rem;    --fit-zh: 2rem;         --fit-body: 1.33rem;  --fit-sent: 1.65rem;
+          --fit-opt-pad: .8rem;  --fit-opt-min: 4.65rem; --fit-opt-font: 1.5rem;
+          --fit-btn-py: 1rem;    --fit-btn-font: 1.8rem;
+          --fit-tile-w: 3.2rem;  --fit-tile-h: 3.6rem;   --fit-tile-font: 1.65rem;
+        }
+      }
+    </style>
   <script type="importmap">
 {
   "imports": {

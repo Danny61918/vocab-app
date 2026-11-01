@@ -122,7 +122,7 @@ const LetterTiles: React.FC<Props> = ({
   };
 
   return (
-    <div className="flex flex-col items-center gap-6 w-full max-w-2xl mx-auto">
+    <div className="flex flex-col items-center gap-[var(--fit-mb)] w-full max-w-2xl mx-auto">
       {/* Hint */}
       {hint && (
         <div className="text-center">
@@ -144,7 +144,7 @@ const LetterTiles: React.FC<Props> = ({
           ("at the camp") show a visible gap between words; the gap itself
           isn't a tappable slot, letterIndex just skips over it so the
           letter-only placed/targetLetters arrays still line up correctly. */}
-      <div className="flex gap-2 flex-wrap justify-center min-h-[4rem]">
+      <div className="flex gap-2 flex-wrap justify-center min-h-[var(--fit-tile-h)]">
         {(() => {
           let letterIndex = -1;
           return targetChars.map((ch, charI) => {
@@ -162,7 +162,7 @@ const LetterTiles: React.FC<Props> = ({
                 onClick={() => handleSlotTap(i)}
                 disabled={disabled || !placedTile}
                 className={`
-                  w-12 h-14 md:w-14 md:h-16 rounded-xl border-4 text-2xl md:text-3xl font-black
+                  w-[var(--fit-tile-w)] h-[var(--fit-tile-h)] rounded-xl border-4 text-[length:var(--fit-tile-font)] font-black
                   uppercase transition-all duration-150
                   ${
                     placedTile
@@ -189,7 +189,7 @@ const LetterTiles: React.FC<Props> = ({
               onClick={() => handleTileTap(tile.id)}
               disabled={disabled || isUsed}
               className={`
-                w-12 h-14 md:w-14 md:h-16 rounded-xl border-b-4 text-2xl md:text-3xl font-black
+                w-[var(--fit-tile-w)] h-[var(--fit-tile-h)] rounded-xl border-b-4 text-[length:var(--fit-tile-font)] font-black
                 uppercase transition-all duration-150
                 ${
                   isUsed
