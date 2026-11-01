@@ -3575,5 +3575,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "We spent the whole summer vacation visiting our grandparents.",
         "The whole school gathered in the gym for the special assembly.",
         "I finished the whole puzzle in just one evening."
+    ],
+    1101: [
+        "I felt dizzy after spinning around in circles ten times.",
+        "The little boy got dizzy on the merry-go-round and had to sit down.",
+        "If you stand up too fast, you may feel dizzy for a moment.",
+        "She was too dizzy to walk straight after the long boat ride.",
+        "My grandfather says the hot weather makes him dizzy."
+    ],
+    1102: [
+        "I bought a bottle of water on the way to school this morning.",
+        "We saw a rainbow on the way to the park.",
+        "Tom dropped his phone on the way to the bus stop.",
+        "On the way to the library, she met her English teacher.",
+        "My dad listens to the radio on the way to work every day."
+    ],
+    1103: [
+        "Please wait here while I get my coat.",
+        "We had to wait twenty minutes for the next train.",
+        "Wait for me at the school gate after class.",
+        "He waited quietly for his turn to speak.",
+        "Do you want to wait inside because it is raining?"
+    ],
+    1104: [
+        "Please sit still while I take your picture.",
+        "The lake was so still that we could see the mountains in the water.",
+        "Stand still and don't move, or the bird will fly away.",
+        "The cat stayed perfectly still before it jumped on the toy.",
+        "The air was still, and not a single leaf moved on the tree."
+    ],
+    1105: [
+        "There was a big traffic jam on the highway because of the rain.",
+        "We were late for the movie because of a traffic jam.",
+        "My mom leaves early to avoid the morning traffic jam.",
+        "The accident caused a long traffic jam near the bridge.",
+        "Taking the MRT is a good way to escape a traffic jam."
+    ],
+    1106: [
+        "At first, I could not ride a bike without help.",
+        "The soup tasted strange at first, but I liked it later.",
+        "Mia was shy at first, but she made friends quickly.",
+        "At first, the homework looked easy, but it took two hours.",
+        "Everyone felt nervous at first on the first day of school."
+    ],
+    1107: [
+        "The river is very wide, so we need a boat to cross it.",
+        "She opened her eyes wide when she saw the birthday cake.",
+        "The road is wide enough for two big trucks.",
+        "A wide smile appeared on his face when he got the gift.",
+        "We walked across a wide field full of yellow flowers."
+    ],
+    1108: [
+        "The sun shines through the window every morning.",
+        "The cat ran through the garden and chased a butterfly.",
+        "We walked through the forest to reach the lake.",
+        "The children ran through the sprinkler on a hot day.",
+        "Water flows through the pipe into the tank."
+    ],
+    1109: [
+        "The plane will take off in ten minutes.",
+        "We watched the airplane take off from the window.",
+        "The helicopter took off from the roof of the building.",
+        "The rocket will take off tomorrow morning.",
+        "My flight takes off at seven o'clock, so I must get up early."
+    ],
+    1110: [
+        "I think my little brother is hiding under the bed.",
+        "What do you think about this picture?",
+        "She thinks math is the most interesting subject.",
+        "We think it is a good idea to bring an umbrella today.",
+        "Do you think it will snow this winter?"
+    ],
+    1111: [
+        "Our family went to the beach for summer vacation.",
+        "During the winter vacation, I read ten story books.",
+        "She is on vacation in Japan with her cousins.",
+        "My dad took a one-week vacation to visit his hometown.",
+        "Everyone in my class is excited about the long vacation."
+    ],
+    1112: [
+        "After a long wait, the bus came at last.",
+        "At last, I finished reading the whole book.",
+        "We reached the top of the mountain at last.",
+        "The rain stopped at last, and we could play outside.",
+        "At last, the little puppy found its way home."
+    ],
+    1113: [
+        "I like to travel to different countries with my family.",
+        "Birds travel thousands of kilometers to find warmer weather.",
+        "They travel by train from Taipei to Kaohsiung.",
+        "My aunt travels a lot because of her job.",
+        "Light travels faster than sound."
+    ],
+    1114: [
+        "The car drove into a long, dark tunnel.",
+        "The children dug a tunnel in the sand at the beach.",
+        "There is a tunnel under the river that connects the two cities.",
+        "The mole lives in a tunnel under the ground.",
+        "We could see a light at the end of the tunnel."
+    ],
+    1115: [
+        "I have a great idea for our science project.",
+        "It was Amy's idea to make a birthday card for Mom.",
+        "Do you have any idea where my pencil case is?",
+        "Going to the zoo on Saturday is a wonderful idea.",
+        "Tom shared his idea with the whole class."
+    ],
+    1116: [
+        "The teacher does not allow us to eat in class.",
+        "My parents allow me to watch TV for one hour after dinner.",
+        "The park does not allow dogs without a leash.",
+        "Please allow me to help you carry those boxes.",
+        "The library allows students to borrow five books at a time."
+    ],
+    1117: [
+        "We took a taxi to the airport early in the morning.",
+        "The airport was full of people going on holiday.",
+        "My uncle works at the airport and helps passengers.",
+        "Grandma waved goodbye to us at the airport.",
+        "There is a bus that goes from the city center to the airport."
+    ],
+    1118: [
+        "You should drink at least six glasses of water every day.",
+        "I read at least one book every week.",
+        "It will take at least two hours to drive to the beach.",
+        "At least ten students came to the club meeting.",
+        "Please practice the piano for at least thirty minutes."
+    ],
+    1119: [
+        "It is not nice to laugh at other people's mistakes.",
+        "Please don't laugh at me; I'm trying my best.",
+        "Everyone laughed at the clown's silly hat.",
+        "The students laughed at the funny story and clapped.",
+        "He did not laugh at the joke because he didn't understand it."
+    ],
+    1120: [
+        "There is little milk left in the bottle.",
+        "We have little time, so we must hurry.",
+        "He ate very little food because he was not hungry.",
+        "There was little rain this summer, so the plants got dry.",
+        "She has little money, so she can't buy the new bag."
+    ],
+    1121: [
+        "My family went water rafting on a river in Hualien last summer.",
+        "Water rafting is fun, but you must listen to the guide.",
+        "We got wet from head to toe while water rafting.",
+        "Dad wants to try water rafting this weekend.",
+        "You need a life jacket and a helmet to go water rafting."
+    ],
+    1122: [
+        "A: Let's have a picnic in the park. B: What a great idea!",
+        "A: Shall we make a birthday cake for Mom? B: What a great idea!",
+        "A: Why don't we ride our bikes to the lake? B: What a great idea!",
+        "A: How about watching a movie tonight? B: What a great idea!",
+        "A: Let's clean the classroom together. B: What a great idea!"
+    ],
+    1123: [
+        "The new swimming pool is open for use from nine o'clock.",
+        "The school library is open for use after class.",
+        "The playground is finally open for use after the repair.",
+        "The new bridge will be open for use next month.",
+        "The computer room is open for use during lunch break."
+    ],
+    1124: [
+        "Come here at once, or we will be late.",
+        "Stop playing and do your homework at once.",
+        "When the teacher called my name, I stood up at once.",
+        "Mom told us to wash our hands at once.",
+        "The baby stopped crying at once when she heard the song."
     ]
 };

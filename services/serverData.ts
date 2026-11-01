@@ -1119,7 +1119,31 @@ const serverData: Word[] = [
     { "id": 1097, "date": "2026-10-30", "english": "feel", "chinese": "感覺", "part_of_speech": "(v.)", "example": "A: How are you feeling? B: Not bad, but I still have a slight headache." },
     { "id": 1098, "date": "2026-10-30", "english": "sick", "chinese": "生病的", "part_of_speech": "(adj.)", "example": "John felt sick after working day and night. He can't go to work for over three days." },
     { "id": 1099, "date": "2026-10-30", "english": "matter", "chinese": "事件", "part_of_speech": "(n.)", "example": "A: What's the matter? Why are you crying? B: I can't find my favorite Barbie. Please help me to look for it." },
-    { "id": 1100, "date": "2026-10-30", "english": "at last", "chinese": "最後", "part_of_speech": "(ph.)", "example": "A: Did you finish cleaning your room? B: Yes! After two hours of cleaning, I finished at last." }
+    { "id": 1100, "date": "2026-10-30", "english": "at last", "chinese": "最後", "part_of_speech": "(ph.)", "example": "A: Did you finish cleaning your room? B: Yes! After two hours of cleaning, I finished at last." },
+    { "id": 1101, "date": "2026-11-02", "english": "dizzy", "chinese": "頭暈的", "part_of_speech": "(adj.)", "example": "After riding on the roller coaster, I feel dizzy." },
+    { "id": 1102, "date": "2026-11-02", "english": "on the way to", "chinese": "去…的路上", "part_of_speech": "(ph.)", "example": "My mother met an old friend from her high school on the way to work this evening." },
+    { "id": 1103, "date": "2026-11-02", "english": "wait", "chinese": "等待", "part_of_speech": "(v.)", "example": "There are a lot of students waiting for the bus at the bus station." },
+    { "id": 1104, "date": "2026-11-02", "english": "still", "chinese": "靜止的", "part_of_speech": "(adj.)", "example": "His three-year-old daughter can't sit still for a very long time." },
+    { "id": 1105, "date": "2026-11-02", "english": "traffic jam", "chinese": "塞車", "part_of_speech": "(n.)", "example": "They were stuck in a traffic jam this morning, so they didn't go to work on time." },
+    { "id": 1106, "date": "2026-11-02", "english": "at first", "chinese": "起初", "part_of_speech": "(ph.)", "example": "Jenny was afraid of dogs at first. Now she loves them." },
+    { "id": 1107, "date": "2026-11-04", "english": "wide", "chinese": "寬闊的", "part_of_speech": "(adj.)", "example": "There is a wide sea between the two countries." },
+    { "id": 1108, "date": "2026-11-04", "english": "through", "chinese": "穿越", "part_of_speech": "(prep.)", "example": "He went through the gate and entered the old house." },
+    { "id": 1109, "date": "2026-11-04", "english": "take off", "chinese": "起飛", "part_of_speech": "(ph.)", "example": "We must arrive at the airport two hours before our airplane takes off, so we have enough time to check in and go through security." },
+    { "id": 1110, "date": "2026-11-04", "english": "think", "chinese": "認為", "part_of_speech": "(v.)", "example": "Danny thinks it's going to rain heavily today because the sky is very dark and the wind is getting stronger." },
+    { "id": 1111, "date": "2026-11-04", "english": "vacation", "chinese": "度假", "part_of_speech": "(n.)", "example": "Lisa took many pictures during her vacation because she wanted to remember the fun trip." },
+    { "id": 1112, "date": "2026-11-04", "english": "at last", "chinese": "最後", "part_of_speech": "(ph.)", "example": "A: Did you finish cleaning your room? B: Yes! After one hour of cleaning, I finished at last." },
+    { "id": 1113, "date": "2026-11-05", "english": "travel", "chinese": "旅行", "part_of_speech": "(v.)", "example": "Tommy's family often travels during holidays to spend time together." },
+    { "id": 1114, "date": "2026-11-05", "english": "tunnel", "chinese": "隧道", "part_of_speech": "(n.)", "example": "The train goes through a tunnel to get to the other side of the mountain." },
+    { "id": 1115, "date": "2026-11-05", "english": "idea", "chinese": "想法", "part_of_speech": "(n.)", "example": "A: Let's go shopping. B: That's a good idea!" },
+    { "id": 1116, "date": "2026-11-05", "english": "allow", "chinese": "允許", "part_of_speech": "(v.)", "example": "My dad allows me to play board games on the weekend after I finish my homework and help clean up my room." },
+    { "id": 1117, "date": "2026-11-05", "english": "airport", "chinese": "機場", "part_of_speech": "(n.)", "example": "We arrived at the airport just in time to catch the plane." },
+    { "id": 1118, "date": "2026-11-05", "english": "at least", "chinese": "至少", "part_of_speech": "(ph.)", "example": "A: How many times do you brush your teeth in a day? B: I brush them at least three times every day." },
+    { "id": 1119, "date": "2026-11-06", "english": "laugh at", "chinese": "嘲笑", "part_of_speech": "(ph.)", "example": "Please don't laugh at your little brother when he cannot answer the question correctly." },
+    { "id": 1120, "date": "2026-11-06", "english": "little", "chinese": "少量的", "part_of_speech": "(adj.)", "example": "There is little sugar in my tea, so it does not taste very sweet." },
+    { "id": 1121, "date": "2026-11-06", "english": "water rafting", "chinese": "泛舟", "part_of_speech": "(n.)", "example": "Water rafting is an exciting outdoor activity, and people wear helmets and life jackets when they ride in a raft down a river." },
+    { "id": 1122, "date": "2026-11-06", "english": "What a great idea!", "chinese": "真是個好主意", "part_of_speech": "(ph.)", "example": "A: Shall we have spaghetti for dinner? B: What a great idea!" },
+    { "id": 1123, "date": "2026-11-06", "english": "open for use", "chinese": "開放使用", "part_of_speech": "(ph.)", "example": "The new MRT station is finished. It is open for use." },
+    { "id": 1124, "date": "2026-11-06", "english": "at once", "chinese": "立刻", "part_of_speech": "(ph.)", "example": "When we heard the fire alarm, we left at once." }
 ];
 
 export default serverData; 
