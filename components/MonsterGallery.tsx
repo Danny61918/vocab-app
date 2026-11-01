@@ -79,7 +79,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
             <img 
               src={monster.image} 
               alt={monster.name} 
-              className={`max-w-full max-h-full object-contain animate-fade-in ${glowStyle} ${sizeClass}`}
+              loading="lazy" decoding="async" className={`max-w-full max-h-full object-contain animate-fade-in ${glowStyle} ${sizeClass}`}
               style={{ filter: monster.filter }}
             />
           ) : (
@@ -87,7 +87,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
               <img 
                 src={monster.image} 
                 alt="Locked" 
-                className="max-w-full max-h-full object-contain drop-shadow-[0_0_8px_rgba(0,0,0,1)]"
+                loading="lazy" decoding="async" className="max-w-full max-h-full object-contain drop-shadow-[0_0_8px_rgba(0,0,0,1)]"
                 style={{ filter: monster.filter }}
               />
               <div className="absolute inset-0 flex items-center justify-center text-4xl text-gray-800 scale-150">?</div>
