@@ -1,94 +1,124 @@
 # 怪獸圖鑑新增指南 (Monster Creation Guide)
 
-本文件說明如何為《Vocabulary Master》的每日挑戰與文法挑戰中，新增並註冊全新的可愛小怪獸。
+本文件說明如何為《Vocabulary Master》的每日挑戰、文法挑戰與扭蛋圖鑑，新增並註冊全新的可愛小怪獸。
+
+## 圖片規格
+
+- 格式：**WebP（含透明）**，**512×512**，檔名 `public/monsters/<名稱>.webp`。
+- 角色去背、四周留白約 6%，所有怪獸在格子裡大小一致。
+- 單張約 45 KB。（原本 1024px PNG 一張約 3 MB，168 隻會到 140 MB 以上，所以統一用 WebP。）
+- 風格：可愛 Q 版（kawaii chibi），圓滾滾、大眼睛、柔和色彩、粗線條。
 
 ---
 
-## 👾 新增怪獸二步驟
+## 批次流程（建議，新增一隻或多隻都適用）
 
-新增一隻怪獸只需要「產生圖片」與「執行腳本」兩個步驟即可完成。
+全部用本機 GPU 的 SDXL，免費、無次數限制。以下指令都在專案根目錄、用 TTS 的 venv Python 執行：
+`E:/Code/tools/tts-env/Scripts/python.exe`。
 
-### 步驟一：產生並準備怪獸圖片
-1. **風格建議**：
-   專案中的怪獸風格皆為 **可愛日系、2D 向量、類似寶可夢（Pokémon）的 Chibi（Q版）風格**。
-   建議使用去背（透明背景）或純白背景的 PNG 圖檔。
+### 1. 寫企劃：`scripts/monster_batch_plan.json`
 
-2. **本機產圖（推薦，免費、無次數限制）**：
-   Gemini API 的圖像生成模型免費額度是 0（需要開計費），所以改用本機 GPU 跑
-   Stable Diffusion XL（這台電腦有 RTX PRO 5000，24GB VRAM，綽綽有餘）。
-   腳本在 `scripts/gen_monster_sdxl.py`，已經內建專案的風格提示詞跟去背邏輯
-   （用邊框連通的亮度去背，比單純比對顏色更能處理 SD 常見的暈影/陰影）。
-   ```bash
-   E:/Code/tools/tts-env/Scripts/python.exe scripts/gen_monster_sdxl.py \
-     '[["fire dragon with glowing wings", "mon_47.png", 12345]]'
-   ```
-   一次可以傳多個 `[描述, 檔名, seed]`，批次產生。產生後建議先用磁紅色（magenta）
-   底圖合成檢查去背有沒有乾淨（純白/灰階底圖容易誤判透明區域）。
+```json
+{"monsters": [
+  {"slot": "new", "key": "mon_n051", "name": "雷電松鼠", "prompt": "squirrel with lightning bolt tail and tiny storm cloud"},
+  {"slot": 21, "key": "mon_b021", "name": "雷霆機關神", "prompt": "...", "boss": true}
+]}
+```
 
-3. **或用 AI 繪圖提示詞**（Midjourney、DALL-E 3 等）：
-   ```text
-   A cute [你想要的怪獸特徵，例如：fire dragon / lightning squirrel], 2D vector art, cute Japanese anime style, gaming monster character, stand-alone asset, white background, vibrant colors, high quality, chibi, simple shaded.
-   ```
+- `slot: "new"`：新增一隻，編號會接在目前最大編號之後。
+- `slot: <數字>`：取代該編號現有怪獸的圖與名字（編號、Boss 標記、發光特效保留）。
+- `key`：圖片檔名（不含副檔名），不可重複。
+- `prompt`：**英文、短、主體在最前面**。SDXL 的文字編碼器只讀前 77 個 token，後面的字會被直接丟掉。腳本會自動加上可愛風格的結尾提示詞，不用自己寫。
+- 避免 `anime`（會畫成動漫少女）、`scary`、`fangs` 這類字，會讓怪獸變兇。
+- 這份企劃檔會被 `batch_sheet.py`、`finalize_monsters.py` 一起讀，新一批請直接替換內容；上一批的企劃可從 git 歷史找回。
 
-4. **存放位置**：
-   將產生的圖片存放到專案的靜態資源資料夾：
-   📁 `public/monsters/`
-   *建議命名格式：`mon_xx.png`（例如：`mon_26.png`）*
-
----
-
-### 步驟二：執行自動化腳本註冊怪獸
-專案內建了 `addMonster.cjs` 腳本，會自動尋找目前最大的 ID，並自動將新怪獸寫入 `services/monsterData.ts`。
-
-開啟終端機（Terminal）並確保在專案根目錄下，執行以下指令：
+### 2. 產圖並去背：`scripts/gen_monster_batch.py`
 
 ```bash
-node scripts/addMonster.cjs <怪獸名稱> <圖片檔案名稱> <是否為Boss(true/false)> [CSS濾鏡]
+python scripts/gen_monster_batch.py          # 全部
+python scripts/gen_monster_batch.py 0 20     # 只跑企劃的第 0 到 19 筆
 ```
 
-#### 參數說明：
-*   **怪獸名稱**：在圖鑑與戰鬥中顯示的名稱。
-*   **圖片檔案名稱**：剛剛存放在 `public/monsters/` 裡的完整檔名（例：`mon_26.png`）。
-*   **是否為Boss**：`true` 代表傳奇 Boss（會有大絕招、用於文法挑戰等），`false` 代表普通怪獸。
-*   **CSS濾鏡 (選填)**：可用於快速產生異色版怪獸或 Boss 的炫光特效。
+- 每隻產生 A、B、C 三張候選，可以中斷後再跑（已存在的會跳過）。
+- 原圖在 `scripts/monster_raw/batch7/<key>_a.png`，去背後在 `scripts/monster_raw/batch7/cut/`。
+- `scripts/monster_raw/` 已被 gitignore，不會進版本庫。
+- 新一批請先把 `batch7` 資料夾改名或搬走，否則舊的會被當成「已完成」跳過。
+- 速度約 10–15 秒一張（RTX PRO 5000）。
 
-#### 實際執行範例：
+### 3. 挑圖
 
-*   **範例一：新增一隻普通怪獸**
-    ```bash
-    node scripts/addMonster.cjs "雷電松鼠" "mon_26.png" false
-    ```
+```bash
+python scripts/batch_sheet.py 0 122 out_dir   # 每 5 隻一張總覽圖，粉紅色是透明處
+```
 
-*   **範例二：新增一隻 Boss 怪獸（附帶紫色外發光特效）**
-    ```bash
-    node scripts/addMonster.cjs "暗影機械龍" "mon_27.png" true "drop-shadow(0 0 15px purple)"
-    ```
+總覽圖用粉紅底，背景沒去乾淨、有白邊或孔洞會看得出來。若 AI 畫成整幅場景（沒有純色底），去背會失敗，整張都不透明：這種可以重跑，或決定保留場景當背景。
+
+### 4. 轉檔並註冊：`scripts/finalize_monsters.py`
+
+建立 `scripts/monster_choices.json`，內容是「企劃第幾筆 → 選哪張」，沒寫的預設 A：
+
+```json
+{"1": "B", "3": "C"}
+```
+
+先模擬再實際執行：
+
+```bash
+python scripts/finalize_monsters.py scripts/monster_choices.json --dry-run
+python scripts/finalize_monsters.py scripts/monster_choices.json
+```
+
+它會：
+- 裁掉多餘空白、置中、縮成 512，存成 `public/monsters/<key>.webp`。
+- 修改 `services/monsterData.ts`（取代現有編號，或在最後新增）。
+- 順手把 `public/monsters/` 裡還沒轉的 PNG 轉成 WebP 並更新路徑（舊 PNG 不會刪，確認後自己 `git rm`）。
+
+最後跑 `npm test` 與 `npm run build`，在圖鑑裡看一眼。
+
+> 轉 WebP 用 `method=4`。`method=6` 在某些透明圖上會卡住不動，不要改回去。
 
 ---
 
-## 🎨 實用 CSS 濾鏡（Filter）推薦
-如果想要在不增加圖片檔案的前提下，快速製作「異色版」或「強化版」怪獸，可以在第四個參數傳入 CSS 濾鏡：
+## 單張流程（已有現成圖片時）
 
-| 效果種類 | CSS 濾鏡語法 | 說明 |
+1. 圖片先去背：`python scripts/cutout_monsters.py <檔名不含副檔名>`（白底圖；`--help` 看選項）。
+2. 縮成 512×512 WebP 放進 `public/monsters/`。
+3. 註冊：
+
+   ```bash
+   node scripts/addMonster.cjs <怪獸名稱> <圖片檔名> <是否為Boss(true/false)> [CSS濾鏡]
+   ```
+
+   例如：
+
+   ```bash
+   node scripts/addMonster.cjs "雷電松鼠" "mon_n051.webp" false
+   node scripts/addMonster.cjs "暗影機械龍" "mon_n052.webp" true "drop-shadow(0 0 15px purple)"
+   ```
+
+   腳本會找出目前最大的編號，自動寫入 `services/monsterData.ts`。
+
+`scripts/gen_monster_sdxl.py` 是舊的單張產圖腳本（只認白底、不是可愛風格），新怪獸請用上面的批次流程。
+
+---
+
+## 🎨 CSS 濾鏡（Filter）
+
+目前怪獸都是各自獨立的圖，不再用換色濾鏡做「異色版」（那樣只是同一張圖換顏色）。Boss 只保留發光效果：
+
+| 效果 | CSS 濾鏡 | 說明 |
 | :--- | :--- | :--- |
-| **異色版 (變色)** | `hue-rotate(120deg)` | 旋轉色相，120度通常會變綠/藍色，240度變紫/紅色。 |
-| **暗黑版** | `brightness(0.5) grayscale(0.5)` | 降低亮並轉為灰階，呈現受詛咒的感覺。 |
-| **狂暴/高飽和** | `saturate(2)` | 讓色彩更鮮艷。 |
-| **傳奇 Boss 金光** | `hue-rotate(60deg) saturate(2) drop-shadow(0 0 30px gold)` | 變色、加飽和度、並加上耀眼的金色外發光。 |
-| **幽冥藍光** | `drop-shadow(0 0 20px cyan)` | 加上青藍色的幽火外發光。 |
+| 傳奇 Boss 發光 | `drop-shadow(0 0 20px yellow)` | 外發光，顏色可改。 |
+| 幽冥藍光 | `drop-shadow(0 0 20px cyan)` | 青藍色外發光。 |
 
 ---
 
-## 🔍 手動維護與確認
-若您想要確認或手動微調怪獸數值，可以開啟以下檔案：
-📄 `src/services/monsterData.ts`（或 `services/monsterData.ts`）
+## 🔍 手動維護
 
-資料結構格式：
+資料在 `services/monsterData.ts`，格式：
+
 ```typescript
-{ 
-  id: 26, 
-  name: '雷電松鼠', 
-  image: 'monsters/mon_26.png', 
-  filter: '' 
-}
+26: { id: 26, name: '雷電松鼠', image: 'monsters/mon_n051.webp', filter: '' },
 ```
+
+Boss 另外加 `isLegendary: true`。每日挑戰只會抽非 Boss，文法挑戰用 Boss，扭蛋會從全部抽。

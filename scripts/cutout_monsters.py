@@ -28,7 +28,10 @@ PUBLIC = os.path.join(ROOT, "public", "monsters")
 RAW = os.path.join(ROOT, "scripts", "monster_raw")
 
 BG_MIN_CHANNEL = 232   # pixels this light and border-connected are definite background
-BAND_PX = 3            # width of the edge band that gets proper alpha
+ADAPTIVE_TOL = 26      # adaptive mode: max per-channel distance from the border colour that counts as background
+SHADOW_MAX_SAT = 18    # adaptive mode: light, nearly colourless pixels are treated as ground shadow
+SHADOW_MIN_LIGHT = 170
+BAND_PX = 3          # width of the edge band that gets proper alpha
 LIGHT_FG_DIST2 = 4000  # |fg - white|^2 below this: foreground is too white to unmix, keep opaque
 ENCLOSED_WHITE_MIN_PX = 600
 
@@ -38,12 +41,24 @@ def has_alpha(img: Image.Image) -> bool:
     return float((a < 16).mean()) > 0.02
 
 
-def cutout(img: Image.Image):
-    """Returns (RGBA image, number of large enclosed pure-white regions left untouched)."""
+def cutout(img: Image.Image, adaptive: bool = False):
+    """Returns (RGBA image, number of large enclosed pure-white regions left untouched).
+
+    adaptive=False assumes a white background (what the first 38 monsters had).
+    adaptive=True takes the background colour from the image border, for fresh SDXL renders whose
+    "white" backdrop is tinted by the subject (e.g. pink behind pink petals)."""
     rgb = np.array(img.convert("RGB")).astype(np.float32)
     h, w, _ = rgb.shape
 
-    candidate = rgb.min(axis=2) >= BG_MIN_CHANNEL
+    if adaptive:
+        edge = np.concatenate([rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]])
+        bg_color = np.median(edge, axis=0).astype(np.float32)
+        candidate = np.abs(rgb - bg_color).max(axis=2) <= ADAPTIVE_TOL
+        # pale grey ground shadows: low saturation and light, only removed when connected to the border
+        candidate |= (rgb.max(axis=2) - rgb.min(axis=2) <= SHADOW_MAX_SAT) & (rgb.min(axis=2) >= SHADOW_MIN_LIGHT)
+    else:
+        bg_color = np.float32([255.0, 255.0, 255.0])
+        candidate = rgb.min(axis=2) >= BG_MIN_CHANNEL
     labeled, _ = ndi.label(candidate)
     border = set(labeled[0, :].tolist()) | set(labeled[-1, :].tolist())
     border |= set(labeled[:, 0].tolist()) | set(labeled[:, -1].tolist())
@@ -57,11 +72,10 @@ def cutout(img: Image.Image):
     _, (iy, ix) = ndi.distance_transform_edt(~interior, return_indices=True)
     fg = rgb[iy, ix]
 
-    white = np.float32(255.0)
-    d = fg - white
+    d = fg - bg_color
     denom = (d * d).sum(axis=2)
     alpha = np.ones((h, w), np.float32)
-    num = ((rgb - white) * d).sum(axis=2)
+    num = ((rgb - bg_color) * d).sum(axis=2)
     ok = near_bg & (denom > LIGHT_FG_DIST2)
     alpha[ok] = np.clip(num[ok] / denom[ok], 0.0, 1.0)
     alpha[bg] = 0.0

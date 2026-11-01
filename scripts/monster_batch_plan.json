@@ -1,0 +1,747 @@
+{
+  "_comment": "slot = existing monsterData id to REPLACE (keeps id, rarity, collection) or 'new' to append. key = file stem. boss = legendary (isLegendary stays as in data for replaced slots).",
+  "monsters": [
+    {
+      "slot": 11,
+      "key": "mon_r011",
+      "name": "霸王花",
+      "prompt": "carnivorous flower monster with a big big friendly smile, green vines and soft leaves, pink and purple petals"
+    },
+    {
+      "slot": 12,
+      "key": "mon_r012",
+      "name": "午夜烏鴉",
+      "prompt": "small raven with dark purple feathers and a glowing crescent moon pendant, bright yellow eyes"
+    },
+    {
+      "slot": 13,
+      "key": "mon_r013",
+      "name": "毒沼蛙",
+      "prompt": "poison dart frog monster, bright blue and yellow skin with purple poison bubbles"
+    },
+    {
+      "slot": 14,
+      "key": "mon_r014",
+      "name": "黑曜犰狳",
+      "prompt": "armadillo made of black volcanic glass with glowing orange cracks"
+    },
+    {
+      "slot": 15,
+      "key": "mon_r015",
+      "name": "赤紅蜻蜓",
+      "prompt": "red dragonfly creature with big round eyes and translucent red wings"
+    },
+    {
+      "slot": 16,
+      "key": "mon_r016",
+      "name": "雪貂",
+      "prompt": "ermine weasel wearing a tiny ice-blue scarf, white fur with snowflake patterns"
+    },
+    {
+      "slot": 18,
+      "key": "mon_r018",
+      "name": "雷鳴鷹",
+      "prompt": "golden eagle chick with lightning bolt feathers and sparks on its wings"
+    },
+    {
+      "slot": 19,
+      "key": "mon_r019",
+      "name": "幽光水母",
+      "prompt": "glowing jellyfish creature with soft cyan and violet translucent bell and ribbon tentacles"
+    },
+    {
+      "slot": 20,
+      "key": "mon_r020",
+      "name": "夜光螢火蟲",
+      "prompt": "firefly creature with a big glowing yellow-green lantern tail and tiny wings"
+    },
+    {
+      "slot": 40,
+      "key": "mon_r040",
+      "name": "冰霜雙頭龍",
+      "prompt": "small two-headed ice dragon with crystal horns and pale blue scales"
+    },
+    {
+      "slot": 41,
+      "key": "mon_r041",
+      "name": "仙人掌怪",
+      "prompt": "cactus monster with a cute face, tiny pink flower on top and soft spines"
+    },
+    {
+      "slot": 42,
+      "key": "mon_r042",
+      "name": "黃金倉鼠",
+      "prompt": "chubby golden hamster holding a shiny gold coin, cheeks stuffed"
+    },
+    {
+      "slot": 43,
+      "key": "mon_r043",
+      "name": "深海章魚",
+      "prompt": "cute octopus with glowing blue spots on its tentacles, deep ocean colors"
+    },
+    {
+      "slot": 44,
+      "key": "mon_r044",
+      "name": "小惡魔",
+      "prompt": "little imp devil with tiny horns, small bat wings, a pointy tail and a tiny pitchfork"
+    },
+    {
+      "slot": 45,
+      "key": "mon_r045",
+      "name": "枯木樹精",
+      "prompt": "withered tree spirit with a sleepy face in the trunk, bare twisty branches and a few autumn leaves"
+    },
+    {
+      "slot": 46,
+      "key": "mon_r046",
+      "name": "雪猴",
+      "prompt": "snow monkey with fluffy white fur and tiny icicles on its shoulders"
+    },
+    {
+      "slot": 47,
+      "key": "mon_r047",
+      "name": "珊瑚海馬",
+      "prompt": "seahorse with pink coral growing on its back and a curled tail"
+    },
+    {
+      "slot": 50,
+      "key": "mon_r050",
+      "name": "疾風飛鼠",
+      "prompt": "flying squirrel gliding with a leaf cape, swirling wind lines on its tail"
+    },
+    {
+      "slot": 51,
+      "key": "mon_r051",
+      "name": "藍晶蟹",
+      "prompt": "crab with a sapphire crystal shell and big claws, sparkling blue gems"
+    },
+    {
+      "slot": 52,
+      "key": "mon_r052",
+      "name": "紫晶蝸牛",
+      "prompt": "snail with an amethyst crystal shell, purple gems, friendly eyestalks"
+    },
+    {
+      "slot": 53,
+      "key": "mon_r053",
+      "name": "翡翠變色龍",
+      "prompt": "jade green chameleon with a spiral tail and gem-like scales"
+    },
+    {
+      "slot": 54,
+      "key": "mon_r054",
+      "name": "赤焰獅",
+      "prompt": "lion cub with a mane made of orange flames, golden fur"
+    },
+    {
+      "slot": 55,
+      "key": "mon_r055",
+      "name": "雪豹",
+      "prompt": "snow leopard cub with a fluffy long tail, pale blue-gray spots, tiny icicle accessory"
+    },
+    {
+      "slot": 56,
+      "key": "mon_r056",
+      "name": "暗影黑貓",
+      "prompt": "black cat with glowing purple eyes and a wispy shadow tail"
+    },
+    {
+      "slot": 59,
+      "key": "mon_r059",
+      "name": "大地象",
+      "prompt": "baby elephant with stone armor plates and moss, tiny trunk"
+    },
+    {
+      "slot": 60,
+      "key": "mon_r060",
+      "name": "旋風雀",
+      "prompt": "sparrow made of swirling wind with spiral feathers and a small tornado tail"
+    },
+    {
+      "slot": 61,
+      "key": "mon_r061",
+      "name": "彩虹蛇",
+      "prompt": "cute rainbow-striped snake coiled up, smiling, shiny scales"
+    },
+    {
+      "slot": 62,
+      "key": "mon_r062",
+      "name": "紅熊貓",
+      "prompt": "red panda with a bushy ringed tail, cream face markings, holding a bamboo leaf"
+    },
+    {
+      "slot": 63,
+      "key": "mon_r063",
+      "name": "鋼鐵犀牛",
+      "prompt": "baby rhinoceros with steel armor plates and a metal horn"
+    },
+    {
+      "slot": 64,
+      "key": "mon_r064",
+      "name": "冰晶鯨",
+      "prompt": "baby whale made of translucent ice crystal, tiny snowflakes spouting from its blowhole"
+    },
+    {
+      "slot": 65,
+      "key": "mon_r065",
+      "name": "暗影幼龍",
+      "prompt": "black and purple shadow dragon hatchling with glowing magenta eyes and small wings"
+    },
+    {
+      "slot": 66,
+      "key": "mon_r066",
+      "name": "深淵海星",
+      "prompt": "starfish with glowing rune patterns on its arms, deep sea purple and teal"
+    },
+    {
+      "slot": 67,
+      "key": "mon_r067",
+      "name": "發條老鼠",
+      "prompt": "clockwork windup mouse with brass gears and a turning key on its back"
+    },
+    {
+      "slot": 68,
+      "key": "mon_r068",
+      "name": "岩漿蠑螈",
+      "prompt": "salamander made of dark rock with glowing lava stripes"
+    },
+    {
+      "slot": 69,
+      "key": "mon_r069",
+      "name": "珍珠水獺",
+      "prompt": "otter holding a shiny pearl, wet fur, floating on its back"
+    },
+    {
+      "slot": 71,
+      "key": "mon_r071",
+      "name": "藥水精靈",
+      "prompt": "living potion bottle with a cork hat, bubbling green liquid, tiny arms and legs"
+    },
+    {
+      "slot": 72,
+      "key": "mon_r072",
+      "name": "雷電鯊",
+      "prompt": "baby shark with yellow lightning stripes and electric sparks around its fins"
+    },
+    {
+      "slot": 73,
+      "key": "mon_r073",
+      "name": "電鰻",
+      "prompt": "electric eel curled into loops with blue lightning arcs and a happy face"
+    },
+    {
+      "slot": 74,
+      "key": "mon_r074",
+      "name": "蒼藍海龍",
+      "prompt": "leafy sea dragon with ornate fins, deep blue and teal body"
+    },
+    {
+      "slot": 75,
+      "key": "mon_r075",
+      "name": "月光蛾",
+      "prompt": "moth with large soft glowing white wings with moon patterns and feathery antennae"
+    },
+    {
+      "slot": 76,
+      "key": "mon_r076",
+      "name": "毒牙小蛇",
+      "prompt": "small green and purple cobra with a hood pattern and a friendly smile"
+    },
+    {
+      "slot": 77,
+      "key": "mon_r077",
+      "name": "毒牙蜘蛛",
+      "prompt": "cute round spider with big eyes, purple body and cute smile, tiny web ribbon"
+    },
+    {
+      "slot": 78,
+      "key": "mon_r078",
+      "name": "聖光天鵝",
+      "prompt": "white swan with a golden halo and soft light feathers"
+    },
+    {
+      "slot": 79,
+      "key": "mon_r079",
+      "name": "珍珠貝精",
+      "prompt": "oyster monster with an open shell revealing a big pearl, little face on the pearl"
+    },
+    {
+      "slot": 81,
+      "key": "mon_r081",
+      "name": "冰霜海豹",
+      "prompt": "baby seal pup with white fluffy fur, balancing an ice cube on its nose"
+    },
+    {
+      "slot": 82,
+      "key": "mon_r082",
+      "name": "雪花精靈",
+      "prompt": "snowflake sprite with six crystal arms, a tiny face in the center, sparkling"
+    },
+    {
+      "slot": 83,
+      "key": "mon_r083",
+      "name": "雷電水豚",
+      "prompt": "capybara with small yellow lightning marks and static sparks in its fur"
+    },
+    {
+      "slot": 84,
+      "key": "mon_r084",
+      "name": "骷髏骨狗",
+      "prompt": "skeleton puppy with big round eye sockets, wagging bony tail, holding a bone"
+    },
+    {
+      "slot": 85,
+      "key": "mon_r085",
+      "name": "深淵鸚鵡螺",
+      "prompt": "nautilus with a glowing spiral shell in deep purple and teal, tentacles peeking out"
+    },
+    {
+      "slot": 86,
+      "key": "mon_r086",
+      "name": "蒼藍小狼",
+      "prompt": "blue wolf pup with a fluffy tail and a crescent mark on its forehead"
+    },
+    {
+      "slot": 87,
+      "key": "mon_r087",
+      "name": "小吸血鬼",
+      "prompt": "chibi vampire kid with a red-lined cape, cute smile and bat-shaped hair clips"
+    },
+    {
+      "slot": 88,
+      "key": "mon_r088",
+      "name": "小巨魔",
+      "prompt": "friendly troll with mossy green skin, big nose and a small wooden club"
+    },
+    {
+      "slot": 89,
+      "key": "mon_r089",
+      "name": "雷電浣熊",
+      "prompt": "raccoon with lightning-shaped mask markings and a striped tail crackling with sparks"
+    },
+    {
+      "slot": 91,
+      "key": "mon_r091",
+      "name": "冰晶麋鹿",
+      "prompt": "baby reindeer with crystal ice antlers and a frosty scarf"
+    },
+    {
+      "slot": 92,
+      "key": "mon_r092",
+      "name": "暗影忍者貓",
+      "prompt": "ninja cat in a dark hood with only eyes showing, tiny shuriken, shadowy swirls"
+    },
+    {
+      "slot": 93,
+      "key": "mon_r093",
+      "name": "炸彈兵",
+      "prompt": "round black bomb creature with a lit fuse on top, tiny feet and a cute worried face"
+    },
+    {
+      "slot": 94,
+      "key": "mon_r094",
+      "name": "磁鐵怪",
+      "prompt": "red and blue horseshoe magnet monster with tiny arms, small metal bolts stuck to it"
+    },
+    {
+      "slot": 95,
+      "key": "mon_r095",
+      "name": "暗影海蛇",
+      "prompt": "sea serpent with dark navy scales, glowing teal fin ridge, coiled playfully"
+    },
+    {
+      "slot": 96,
+      "key": "mon_r096",
+      "name": "雪旅鼠",
+      "prompt": "lemming with thick white winter fur and a knitted hat"
+    },
+    {
+      "slot": 97,
+      "key": "mon_r097",
+      "name": "石像鬼",
+      "prompt": "cute gargoyle statue with small wings, gray stone and glowing eyes, perched crouching"
+    },
+    {
+      "slot": 98,
+      "key": "mon_r098",
+      "name": "蒼藍蜂鳥",
+      "prompt": "hummingbird with shimmering blue feathers hovering near a flower, long beak"
+    },
+    {
+      "slot": 99,
+      "key": "mon_r099",
+      "name": "冰霜海象",
+      "prompt": "walrus with big white tusks like ice crystals, blue-gray skin, fluffy whiskers"
+    },
+    {
+      "slot": 21,
+      "key": "mon_b021",
+      "name": "雷霆機關神",
+      "boss": true,
+      "prompt": "mighty golden clockwork god colossus, brass gears and armor, lightning crackling around, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 23,
+      "key": "mon_b023",
+      "name": "黃金獅鷲",
+      "boss": true,
+      "prompt": "majestic golden griffin with eagle head, lion body and huge wings, shining armor, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 48,
+      "key": "mon_b048",
+      "name": "墮落獨角獸",
+      "boss": true,
+      "prompt": "corrupted dark unicorn with black coat, purple flame mane, cracked horn and big eyes, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 49,
+      "key": "mon_b049",
+      "name": "虛空騎士",
+      "boss": true,
+      "prompt": "void knight in dark armor with swirling purple galaxy visor and cape, giant sword, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 57,
+      "key": "mon_b057",
+      "name": "黃金飛龍",
+      "boss": true,
+      "prompt": "golden wyvern dragon with large spread wings, glowing gold scales and small horns, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 58,
+      "key": "mon_b058",
+      "name": "深海巨蛇",
+      "boss": true,
+      "prompt": "deep sea leviathan serpent with glowing blue fins  coiling upward, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 70,
+      "key": "mon_b070",
+      "name": "雷霆暴龍",
+      "boss": true,
+      "prompt": "thunder tyrannosaurus with electric blue stripes, sparks from its happy open mouth, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 80,
+      "key": "mon_b080",
+      "name": "烈焰鳳凰",
+      "boss": true,
+      "prompt": "blazing phoenix with huge flaming wings spread, long fire tail feathers, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 90,
+      "key": "mon_b090",
+      "name": "冰霜女王",
+      "boss": true,
+      "prompt": "ice queen creature with a jagged crystal crown, flowing frozen cape of snow, icy scepter, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": 100,
+      "key": "mon_b100",
+      "name": "毒王蟾蜍",
+      "boss": true,
+      "prompt": "giant toxic toad king wearing a small crown, warty purple-green skin with glowing poison drips, powerful yet adorable, chubby chibi proportions, big sparkly eyes"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n001",
+      "name": "柴犬騎士",
+      "prompt": "shiba inu puppy wearing a tiny knight helmet and carrying a small shield"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n002",
+      "name": "河童",
+      "prompt": "kappa river creature with a water dish on its head, green skin and a turtle shell, holding a cucumber"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n003",
+      "name": "狸貓",
+      "prompt": "tanuki raccoon dog with a leaf on its head, round belly and a small sake gourd"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n004",
+      "name": "招財貓",
+      "prompt": "maneki-neko lucky cat with a raised paw, gold coin necklace and red bib"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n005",
+      "name": "雨傘妖",
+      "prompt": "one-eyed umbrella yokai hopping on one leg with a long tongue, purple paper umbrella"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n006",
+      "name": "達摩不倒翁",
+      "prompt": "red daruma doll creature with big white eyes and gold patterns"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n007",
+      "name": "麻糬怪",
+      "prompt": "round white mochi rice cake blob with a soft smile and a small pink bow"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n008",
+      "name": "壽司怪",
+      "prompt": "salmon nigiri sushi creature with a seaweed belt and chopstick sword"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n009",
+      "name": "拉麵怪",
+      "prompt": "ramen bowl creature with noodles for hair, a soft-boiled egg and narutomaki, steaming"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n010",
+      "name": "漢堡怪",
+      "prompt": "hamburger creature with a sesame bun hat, lettuce skirt and a cheese slice, tiny legs"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n011",
+      "name": "冰淇淋怪",
+      "prompt": "ice cream cone monster with three scoops, sprinkles and a cherry on top"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n012",
+      "name": "布丁怪",
+      "prompt": "custard pudding creature with a caramel top and a cherry, jiggly, happy face"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n013",
+      "name": "爆米花怪",
+      "prompt": "popcorn bucket creature with popcorn bursting from the top, red and white stripes"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n014",
+      "name": "甜甜圈怪",
+      "prompt": "pink frosted donut creature with sprinkles and a bite taken out, tiny arms"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n015",
+      "name": "生日蛋糕怪",
+      "prompt": "strawberry birthday cake creature with a lit candle and cream frosting"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n016",
+      "name": "咖啡杯精靈",
+      "prompt": "coffee cup sprite with latte art heart on its face, steam curls and a small saucer base"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n017",
+      "name": "茶壺貓",
+      "prompt": "cat inside a teapot with its tail as the spout, blue floral pattern"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n018",
+      "name": "西瓜怪",
+      "prompt": "watermelon slice creature with seed eyes and a green rind smile, juicy red"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n019",
+      "name": "香蕉猴",
+      "prompt": "monkey wearing a banana peel costume, holding a banana"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n020",
+      "name": "鳳梨怪",
+      "prompt": "pineapple creature with a spiky green crown and sunglasses, golden crosshatch body"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n021",
+      "name": "辣椒怪",
+      "prompt": "red chili pepper creature with a green stem cap, steam from ears, cute"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n022",
+      "name": "南瓜燈怪",
+      "prompt": "jack-o-lantern pumpkin creature with a glowing carved smile and a curly vine"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n023",
+      "name": "太空貓",
+      "prompt": "cat in an astronaut suit with a bubble helmet, floating, tiny star badge"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n024",
+      "name": "小外星人",
+      "prompt": "cute green alien with big black eyes, antennae and a small silver ray gun toy"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n025",
+      "name": "火箭怪",
+      "prompt": "rocket ship creature with a round window face, fins as arms and a small flame at the bottom"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n026",
+      "name": "流星魚",
+      "prompt": "fish shaped like a shooting star with a sparkling comet tail, yellow and navy"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n027",
+      "name": "土星怪",
+      "prompt": "saturn planet creature with rings and a cheerful face, orange and cream stripes"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n028",
+      "name": "太陽神鳥",
+      "prompt": "golden sun bird with a sun-shaped halo and radiant feathers, three tail plumes"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n029",
+      "name": "雨雲精靈",
+      "prompt": "small gray rain cloud sprite holding a tiny umbrella, raindrops falling, blue boots"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n030",
+      "name": "彩虹蝸牛",
+      "prompt": "snail with a rainbow-swirl shell and soft pastel body"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n031",
+      "name": "聖誕樹怪",
+      "prompt": "christmas tree creature with ornaments, star on top and a candy-cane arm"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n032",
+      "name": "溫泉鴨",
+      "prompt": "rubber duck-like duckling with a towel on its head, relaxing in hot spring steam"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n033",
+      "name": "海盜鸚鵡",
+      "prompt": "parrot pirate with an eyepatch, tricorn hat and bright red-blue feathers"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n034",
+      "name": "海盜熊貓",
+      "prompt": "panda pirate captain with a bandana and a toy hook hand, black and white fur"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n035",
+      "name": "武士蛙",
+      "prompt": "samurai frog with a tiny katana and kabuto helmet, green skin"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n036",
+      "name": "魔法帽怪",
+      "prompt": "living wizard hat creature with eyes and a smiling brim, stars and moons, tiny feet"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n037",
+      "name": "魔法書怪",
+      "prompt": "magic spellbook creature with open pages as wings, glowing runes, ribbon bookmark tail"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n038",
+      "name": "骰子怪",
+      "prompt": "six-sided dice creature with pips as eyes, tiny arms and legs, red cube"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n039",
+      "name": "寶箱怪",
+      "prompt": "treasure chest mimic monster with a open lid with gold coins inside, little tongue"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n040",
+      "name": "鬧鐘雞",
+      "prompt": "chick shaped like an alarm clock with twin bells on top, yellow body and little wings"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n041",
+      "name": "風箏怪",
+      "prompt": "diamond-shaped kite creature with a colorful ribbon tail and string, smiling in the wind"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n042",
+      "name": "氣球狗",
+      "prompt": "balloon animal dog twisted from shiny red balloons with a happy face"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n043",
+      "name": "蠟筆怪",
+      "prompt": "orange crayon creature with a pointy paper wrapper and a scribble tail"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n044",
+      "name": "書蟲",
+      "prompt": "green bookworm wearing round glasses and reading a tiny open book"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n045",
+      "name": "字母積木怪",
+      "prompt": "wooden alphabet block creature with a bold letter A on its face, colorful blocks as arms"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n046",
+      "name": "恐龍蛋寶寶",
+      "prompt": "baby dinosaur hatching from a spotted egg with cracked shell pieces on its head"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n047",
+      "name": "三角龍寶寶",
+      "prompt": "baby triceratops with three small horns and a frilled shield, green and orange"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n048",
+      "name": "猛獁象寶寶",
+      "prompt": "baby woolly mammoth with shaggy brown fur, small curved tusks and a snow-dusted back"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n049",
+      "name": "劍齒虎寶寶",
+      "prompt": "saber-toothed tiger cub with two small tusk-like teeth and orange stripes, playful"
+    },
+    {
+      "slot": "new",
+      "key": "mon_n050",
+      "name": "渡渡鳥",
+      "prompt": "dodo bird with a round gray body, big hooked beak and curly tail feather"
+    }
+  ]
+}
