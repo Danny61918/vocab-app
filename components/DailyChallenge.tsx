@@ -366,13 +366,14 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             if (startIdx >= target.chinese.length) {
                 // No Chinese characters — auto-skip using refs so we never touch a stale closure
                 setTimeout(() => {
-                    if (feedbackStateRef.current !== 'idle') return;
+                    if (feedbackStateRef.current !== 'idle' || quizModeRef.current !== 'WRITE') return;
                     setTotalQuestions(t => t + 1);
                     setCorrectCount(c => c + 1);
                     setCombo(c => c + 1);
                     setFeedbackState('correct');
                     setMonsterHp(0);
                     setTimeout(() => {
+                        if (quizModeRef.current !== 'WRITE') return; // phase changed (e.g. skipped) meanwhile
                         const latestQueue = quizQueueRef.current;
                         const latestMode  = quizModeRef.current;
                         const newQueue    = latestQueue.slice(1);
@@ -430,6 +431,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         if (feedbackStateRef.current !== 'idle' || !currentQuizWordRef.current) return;
 
         const word = currentQuizWordRef.current;
+        const modeAtAnswer = quizModeRef.current;
         let isCorrect = false;
         if (quizModeRef.current === 'RECOGNIZE') {
             isCorrect = selectedAns === word.chinese;
@@ -451,6 +453,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             setMonsterHp(0);
             
             setTimeout(() => {
+                if (quizModeRef.current !== modeAtAnswer) return; // phase changed (e.g. skipped) meanwhile
                 // Use refs to get the *latest* queue and mode (not the stale closure)
                 const latestQueue = quizQueueRef.current;
                 const latestMode  = quizModeRef.current;
@@ -469,6 +472,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
             setWrongIds(prev => [...prev, word.id]);
             
             setTimeout(() => {
+                if (quizModeRef.current !== modeAtAnswer) return; // phase changed (e.g. skipped) meanwhile
                 const latestQueue = quizQueueRef.current;
                 const latestMode  = quizModeRef.current;
                 const latestWord  = currentQuizWordRef.current;
@@ -483,6 +487,8 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
 
 
     const handleWriteNext = () => {
+        // HanziCanvas fires onComplete from a 500ms timer; ignore it if the child already skipped past WRITE
+        if (quizModeRef.current !== 'WRITE') return;
         if (!currentQuizWord) return;
         const fullText = currentQuizWord.chinese;
         let nextIndex = writeIndex + 1;
@@ -495,6 +501,15 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         } else {
             handleAnswer(''); 
         }
+    };
+
+    // Skip the rest of the Chinese-character (stroke order) practice for this round and
+    // go straight to the sentence phase. Stroke-order writing is slow when a round is
+    // repeated, so it must never be a hard requirement. WRITE answers always count as
+    // correct, so skipping changes no score or mistake stats.
+    const skipWritePhase = () => {
+        if (quizModeRef.current !== 'WRITE') return;
+        startSentencePhase();
     };
 
     const finishRound = () => {
@@ -860,6 +875,14 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                         size={320}
                                     />
                                 )}
+
+                                <button
+                                    type="button"
+                                    onClick={skipWritePhase}
+                                    className="mt-8 px-6 py-3 rounded-2xl bg-white hover:bg-slate-100 text-slate-500 hover:text-slate-700 font-bold text-lg border-4 border-slate-200 shadow-sm active:scale-95 transition-all"
+                                >
+                                    ⏭️ 跳過中文字練習
+                                </button>
                             </div>
                         ) : (
                             <div className="w-full flex flex-col items-center justify-center relative min-h-[300px]">
