@@ -11,6 +11,7 @@ import {
   checkAndUnlockLegendaryMonsters
 } from '../services/srsStorage';
 import { getAllSentences, tryCreateCloze, findServerAudioId } from '../services/exampleLookup';
+import { playAudio, preloadAudio } from '../services/audioPlayer';
 import { logAnswer, makeWordKey } from '../services/answerLog';
 import { awardCoins } from '../services/gamification';
 import confetti from 'canvas-confetti';
@@ -75,6 +76,10 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   useEffect(() => {
     const words = mode === 'level' ? getWordsForLevel(levelId || 1) : getDailyHuntWords();
     setWordsList(words);
+    preloadAudio(words.flatMap((w) => {
+      const audioId = findServerAudioId(w.word);
+      return audioId == null ? [] : [`audio/word_${audioId}.mp3`];
+    }));
   }, [mode, levelId]);
 
   const speak = (text: string) => {
@@ -97,15 +102,9 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
       speak(text);
       return;
     }
-    const audio = new window.Audio(`audio/word_${audioId}.mp3`);
-    let handled = false;
-    const fallback = () => {
-      if (handled) return;
-      handled = true;
-      speak(text);
-    };
-    audio.addEventListener('error', fallback, { once: true });
-    audio.play().catch(fallback);
+    void playAudio(`audio/word_${audioId}.mp3`).then((status) => {
+      if (status === 'unavailable') speak(text);
+    });
   };
 
   // ════════════════════════════════

@@ -7,6 +7,7 @@ import { MONSTER_DATA } from '../services/monsterData';
 import { EXTRA_SENTENCES } from '../services/exampleSentencesData';
 import { HanziCanvas } from './HanziCanvas';
 import LetterTiles from './LetterTiles';
+import { playAudio, preloadAudio } from '../services/audioPlayer';
 import { getActiveExamReviewSets, getWordsForExamSet, getWordsForDayGroup, ExamReviewSet } from '../services/examReviewSets';
 
 interface Props {
@@ -224,18 +225,14 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         }
     };
 
-    // Pre-generated natural word audio (Kokoro TTS), falls back to browser
-    // speechSynthesis if the file is missing or fails to play.
+    // Pre-generated natural word audio (Kokoro TTS) via services/audioPlayer
+    // (preloaded, leading silence skipped); falls back to browser speechSynthesis
+    // if the file is missing or cannot be played.
+    const wordAudioUrl = (w: Word) => `audio/word_${w.id}.mp3`;
     const playWord = (w: Word) => {
-        const audio = new window.Audio(`audio/word_${w.id}.mp3`);
-        let handled = false;
-        const fallback = () => {
-            if (handled) return;
-            handled = true;
-            speak(w.english);
-        };
-        audio.addEventListener('error', fallback, { once: true });
-        audio.play().catch(fallback);
+        void playAudio(wordAudioUrl(w)).then((status) => {
+            if (status === 'unavailable') speak(w.english);
+        });
     };
 
     const chunks = [];
@@ -243,6 +240,15 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         chunks.push(targetWords.slice(i, i + chunkSize));
     }
     const currentChunk = chunks[currentChunkIndex] || [];
+
+    // Warm the audio cache for this round and the next as soon as they are known, so the
+    // first card and every quiz question play without waiting for a download.
+    useEffect(() => {
+        if (phase === 'SUMMARY') return;
+        const base = phase === 'INTRO' ? selectedStartChunk : currentChunkIndex;
+        preloadAudio([...(chunks[base] || []), ...(chunks[base + 1] || [])].map(wordAudioUrl));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [phase, currentChunkIndex, selectedStartChunk, targetWords]);
 
     const startChallenge = () => {
         const startAt = Math.min(selectedStartChunk, Math.max(chunks.length - 1, 0));

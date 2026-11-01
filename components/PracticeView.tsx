@@ -3,6 +3,7 @@ import { Word } from '../types';
 import { getWords } from '../services/storage';
 import { EXTRA_SENTENCES } from '../services/exampleSentencesData';
 import { loadCustomSentences } from '../services/customContent';
+import { playAudio, preloadAudio, stopAudio } from '../services/audioPlayer';
 import { ArrowLeft, BookOpen, Users, Headphones, Volume2, Turtle } from 'lucide-react';
 
 interface Props {
@@ -103,44 +104,35 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
     return sentences;
   };
 
-  // Pre-generated natural sentence audio (Kokoro TTS), falls back to
-  // browser speechSynthesis if the file is missing (e.g. a brand-new
-  // week whose audio batch hasn't been generated yet) or fails to play.
+  // Pre-generated natural audio (Kokoro TTS) played through services/audioPlayer:
+  // preloaded, leading silence skipped. Falls back to browser speechSynthesis if the
+  // file is missing (e.g. a brand-new week whose audio batch hasn't been generated
+  // yet) or cannot be played.
+  const sentenceUrl = (w: Word, slow: boolean) => `audio/${w.id}${slow ? '_slow' : ''}.mp3`;
+  const wordUrl = (w: Word, slow: boolean) => `audio/word_${w.id}${slow ? '_slow' : ''}.mp3`;
+  const preloadWordAudio = (w: Word) =>
+    preloadAudio([wordUrl(w, false), sentenceUrl(w, false), wordUrl(w, true), sentenceUrl(w, true)]);
+
   const playSentence = (w: Word, slow: boolean) => {
-    const suffix = slow ? '_slow' : '';
-    const audio = new window.Audio(`audio/${w.id}${suffix}.mp3`);
-    let handled = false;
-    const fallback = () => {
-      if (handled) return;
-      handled = true;
+    void playAudio(sentenceUrl(w, slow)).then((status) => {
+      if (status !== 'unavailable') return;
       const s = sentencesFor(w)[0];
       if (s) speak(s, slow ? 0.7 : undefined);
-    };
-    audio.addEventListener('error', fallback, { once: true });
-    audio.play().catch(fallback);
+    });
   };
 
-  // Same idea as playSentence, but for the standalone word (Kokoro TTS),
-  // falling back to browser speechSynthesis if the file is missing or fails.
   const playWord = (w: Word, slow: boolean, onEnd?: () => void) => {
-    const suffix = slow ? '_slow' : '';
-    const audio = new window.Audio(`audio/word_${w.id}${suffix}.mp3`);
-    let handled = false;
-    const fallback = () => {
-      if (handled) return;
-      handled = true;
-      speak(speechWord(w), slow ? 0.7 : undefined, onEnd);
-    };
-    if (onEnd) {
-      audio.addEventListener('ended', () => {
-        if (handled) return;
-        handled = true;
-        onEnd();
-      }, { once: true });
-    }
-    audio.addEventListener('error', fallback, { once: true });
-    audio.play().catch(fallback);
+    void playAudio(wordUrl(w, slow), { onEnded: onEnd }).then((status) => {
+      if (status === 'unavailable') speak(speechWord(w), slow ? 0.7 : undefined, onEnd);
+    });
   };
+
+  // Warm the cache for the first cards so the first taps are instant; the other cards
+  // are warmed when a pointer/finger reaches them (see the card's onPointerEnter).
+  useEffect(() => {
+    preloadAudio(words.slice(0, 8).flatMap((w) => [wordUrl(w, false), sentenceUrl(w, false)]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [words]);
 
   // ─── Learn tab: play-all ────────────────────────────────────────────────
   const [isPlayingAll, setIsPlayingAll] = useState(false);
@@ -148,6 +140,7 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
 
   const togglePlayAll = () => {
     if (isPlayingAllRef.current) {
+      stopAudio();
       window.speechSynthesis.cancel();
       isPlayingAllRef.current = false;
       setIsPlayingAll(false);
@@ -165,6 +158,7 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
         return;
       }
       const w = words[idx];
+      preloadAudio(words.slice(idx + 1, idx + 3).map((n) => wordUrl(n, false)));
       const sentence = sentencesFor(w)[0];
       playWord(w, false, () => {
         setTimeout(() => {
@@ -188,6 +182,7 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
     // Stop any playback when leaving the tab / changing scope
     isPlayingAllRef.current = false;
     setIsPlayingAll(false);
+    stopAudio();
     window.speechSynthesis?.cancel();
   }, [tab, scope, dateStart, dateEnd]);
 
@@ -221,6 +216,7 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
     setQuizOptions([target, ...wrongs].sort(() => Math.random() - 0.5));
     setAnswerState('idle');
     setChosenId(null);
+    preloadAudio(pool.slice(i, i + 3).flatMap((q) => [wordUrl(q, false), wordUrl(q, true), sentenceUrl(q, false)]));
     setTimeout(() => playWord(target, false), 300);
   };
 
@@ -332,7 +328,7 @@ const PracticeView: React.FC<Props> = ({ onBack }) => {
             {words.map(w => {
               const sentences = sentencesFor(w);
               return (
-                <div key={w.id} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
+                <div key={w.id} onPointerEnter={() => preloadWordAudio(w)} onTouchStart={() => preloadWordAudio(w)} className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4">
                   <div className="flex justify-between items-start flex-wrap gap-2 mb-2">
                     <div className="flex items-center gap-2 flex-wrap">
                       <span className="text-xl font-black text-slate-800">{w.english}</span>
