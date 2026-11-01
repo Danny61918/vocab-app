@@ -3594,7 +3594,7 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "Please wait here while I get my coat.",
         "We had to wait twenty minutes for the next train.",
         "Wait for me at the school gate after class.",
-        "He waited quietly for his turn to speak.",
+        "He will wait quietly for his turn to speak.",
         "Do you want to wait inside because it is raining?"
     ],
     1104: [
@@ -3635,14 +3635,14 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
     1109: [
         "The plane will take off in ten minutes.",
         "We watched the airplane take off from the window.",
-        "The helicopter took off from the roof of the building.",
+        "The helicopter is ready to take off from the roof of the building.",
         "The rocket will take off tomorrow morning.",
-        "My flight takes off at seven o'clock, so I must get up early."
+        "My flight is going to take off at seven o'clock, so I must get up early."
     ],
     1110: [
         "I think my little brother is hiding under the bed.",
         "What do you think about this picture?",
-        "She thinks math is the most interesting subject.",
+        "I think math is the most interesting subject.",
         "We think it is a good idea to bring an umbrella today.",
         "Do you think it will snow this winter?"
     ],
@@ -3664,8 +3664,8 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "I like to travel to different countries with my family.",
         "Birds travel thousands of kilometers to find warmer weather.",
         "They travel by train from Taipei to Kaohsiung.",
-        "My aunt travels a lot because of her job.",
-        "Light travels faster than sound."
+        "My aunt has to travel a lot because of her job.",
+        "Light can travel faster than sound."
     ],
     1114: [
         "The car drove into a long, dark tunnel.",
@@ -3686,7 +3686,7 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "My parents allow me to watch TV for one hour after dinner.",
         "The park does not allow dogs without a leash.",
         "Please allow me to help you carry those boxes.",
-        "The library allows students to borrow five books at a time."
+        "The library will allow students to borrow five books at a time."
     ],
     1117: [
         "We took a taxi to the airport early in the morning.",
@@ -3705,8 +3705,8 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
     1119: [
         "It is not nice to laugh at other people's mistakes.",
         "Please don't laugh at me; I'm trying my best.",
-        "Everyone laughed at the clown's silly hat.",
-        "The students laughed at the funny story and clapped.",
+        "Everyone began to laugh at the clown's silly hat.",
+        "The students laugh at the funny story and clap their hands.",
         "He did not laugh at the joke because he didn't understand it."
     ],
     1120: [
