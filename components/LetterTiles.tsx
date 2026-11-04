@@ -121,8 +121,18 @@ const LetterTiles: React.FC<Props> = ({
     setPlaced((prev) => prev.slice(0, slotIndex));
   };
 
+  // Long words / phrases need more tiles than fit at full size, so the tiles shrink in steps
+  // (the base size is the fluid --fit-tile-* tokens, which are big on a tablet).
+  const tileCount = allTiles.length;
+  const k = tileCount <= 9 ? 1 : tileCount <= 12 ? 0.86 : tileCount <= 15 ? 0.74 : 0.62;
+  const sizeVars = {
+    '--tw': `calc(var(--fit-tile-w) * ${k})`,
+    '--th': `calc(var(--fit-tile-h) * ${k})`,
+    '--tf': `calc(var(--fit-tile-font) * ${k})`,
+  } as React.CSSProperties;
+
   return (
-    <div className="flex flex-col items-center gap-[var(--fit-mb)] w-full max-w-2xl mx-auto">
+    <div style={sizeVars} className="flex flex-col items-center gap-[var(--fit-mb)] w-full max-w-3xl mx-auto">
       {/* Hint */}
       {hint && (
         <div className="text-center">
@@ -144,7 +154,7 @@ const LetterTiles: React.FC<Props> = ({
           ("at the camp") show a visible gap between words; the gap itself
           isn't a tappable slot, letterIndex just skips over it so the
           letter-only placed/targetLetters arrays still line up correctly. */}
-      <div className="flex gap-2 flex-wrap justify-center min-h-[var(--fit-tile-h)]">
+      <div className="flex gap-2 flex-wrap justify-center min-h-[var(--th)]">
         {(() => {
           let letterIndex = -1;
           return targetChars.map((ch, charI) => {
@@ -162,7 +172,7 @@ const LetterTiles: React.FC<Props> = ({
                 onClick={() => handleSlotTap(i)}
                 disabled={disabled || !placedTile}
                 className={`
-                  w-[var(--fit-tile-w)] h-[var(--fit-tile-h)] rounded-xl border-4 text-[length:var(--fit-tile-font)] font-black
+                  w-[var(--tw)] h-[var(--th)] rounded-xl border-4 text-[length:var(--tf)] font-black
                   uppercase transition-all duration-150
                   ${
                     placedTile
@@ -189,7 +199,7 @@ const LetterTiles: React.FC<Props> = ({
               onClick={() => handleTileTap(tile.id)}
               disabled={disabled || isUsed}
               className={`
-                w-[var(--fit-tile-w)] h-[var(--fit-tile-h)] rounded-xl border-b-4 text-[length:var(--fit-tile-font)] font-black
+                w-[var(--tw)] h-[var(--th)] rounded-xl border-b-4 text-[length:var(--tf)] font-black
                 uppercase transition-all duration-150
                 ${
                   isUsed

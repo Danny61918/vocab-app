@@ -9,79 +9,62 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       /* ── Screen-fit tokens ─────────────────────────────────────────────
-         Game screens are single-screen interactions and should fit the visible
-         viewport (no scrolling) on tablets in both orientations, phones and
-         desktops. Big visuals (monster art, word, paddings, option buttons,
-         letter tiles) use these tokens. They shrink by viewport HEIGHT, and
-         phones (< 768px wide) get an extra-compact set. Used via Tailwind
-         arbitrary values, e.g. p-[var(--fit-pad)], text-[length:var(--fit-word)]. */
+         Game screens are single-screen interactions (no scrolling) for a child on a tablet,
+         phone or desktop. Big visuals (monster art, word, paddings, option buttons, letter
+         tiles) use these tokens via Tailwind arbitrary values, e.g. p-[var(--fit-pad)],
+         text-[length:var(--fit-word)].
+         They are FLUID: clamp(min, a share of the visible height or width, max), so a bigger
+         screen simply gets bigger pieces instead of the stepped shrinking used before (which
+         left tablets with a small card, a small monster and empty margins). Landscape screens
+         lay the learn / quiz screens out in two columns, so they can use much bigger pieces
+         than the stacked portrait layout. dvh = visible height without browser bars. */
       :root {
-        --fit-pad: 2.5rem;      --fit-pad-sm: 2rem;    --fit-box: 1.5rem;
-        --fit-gap: 2rem;        --fit-mb: 1.5rem;
-        --fit-monster: 14rem;   --fit-monster-l: 12rem;
-        --fit-word: 4.5rem;     --fit-zh: 2.25rem;     --fit-body: 1.25rem;  --fit-sent: 2.25rem;
-        --fit-opt-pad: 2rem;    --fit-opt-min: 7.5rem; --fit-opt-font: 1.875rem;
-        --fit-btn-py: 1.25rem;  --fit-btn-font: 1.875rem;
-        --fit-tile-w: 3.5rem;   --fit-tile-h: 4rem;    --fit-tile-font: 1.875rem;
+        /* default = landscape tablets, laptops, desktops */
+        --fit-pad: clamp(.75rem, 3.5dvh, 2.5rem);   --fit-pad-sm: clamp(.6rem, 3dvh, 2rem);
+        --fit-box: clamp(.6rem, 2.4dvh, 1.5rem);
+        --fit-gap: clamp(.6rem, 3dvh, 2rem);        --fit-mb: clamp(.4rem, 2dvh, 1.5rem);
+        --fit-monster: clamp(4rem, min(40dvh, 31vw), 24rem);
+        --fit-monster-l: clamp(6rem, min(62dvh, 36vw), 30rem);
+        --fit-word: clamp(2rem, min(11dvh, 7vw), 6.5rem);
+        --fit-zh: clamp(1.5rem, min(7dvh, 4.6vw), 4rem);
+        --fit-body: clamp(1rem, min(3.2dvh, 2.2vw), 1.9rem);
+        --fit-sent: clamp(1.2rem, min(5.2dvh, 3.4vw), 3rem);
+        --fit-opt-pad: clamp(.5rem, 2.4dvh, 1.6rem);
+        --fit-opt-min: clamp(3.2rem, 15dvh, 9rem);
+        --fit-opt-row: clamp(5rem, 28dvh, 13rem);
+        --fit-opt-font: clamp(1.2rem, min(5.2dvh, 3.4vw), 3rem);
+        --fit-btn-py: clamp(.5rem, 2.2dvh, 1.5rem);
+        --fit-btn-font: clamp(1.2rem, 4.6dvh, 2.4rem);
+        --fit-tile-w: clamp(2rem, min(11dvh, 7.5vw), 6rem);
+        --fit-tile-h: clamp(2.4rem, min(12.5dvh, 8.5vw), 6.75rem);
+        --fit-tile-font: clamp(1.2rem, min(6.5dvh, 4.5vw), 3.6rem);
       }
-      @media (max-height: 940px) {
+      /* Portrait tablets: one column, so the height is shared by the pieces. */
+      @media (orientation: portrait) {
         :root {
-          --fit-pad: 2rem;      --fit-pad-sm: 1.5rem;  --fit-box: 1.25rem;
-          --fit-gap: 1.5rem;    --fit-mb: 1.25rem;
-          --fit-monster: 11rem; --fit-monster-l: 9rem;
-          --fit-word: 4rem;     --fit-zh: 2rem;        --fit-body: 1.2rem;   --fit-sent: 2rem;
-          --fit-opt-pad: 1.5rem; --fit-opt-min: 6rem;  --fit-opt-font: 1.75rem;
-          --fit-btn-py: 1rem;   --fit-btn-font: 1.75rem;
-          --fit-tile-w: 3.25rem; --fit-tile-h: 3.75rem; --fit-tile-font: 1.75rem;
+          --fit-pad: clamp(.75rem, 2.6dvh, 2.5rem);  --fit-pad-sm: clamp(.6rem, 2.2dvh, 2rem);
+          --fit-box: clamp(.6rem, 1.8dvh, 1.5rem);
+          --fit-gap: clamp(.6rem, 2.2dvh, 2rem);     --fit-mb: clamp(.4rem, 1.6dvh, 1.5rem);
+          --fit-monster: clamp(4rem, min(20dvh, 38vw), 16rem);
+          --fit-monster-l: clamp(6rem, min(30dvh, 58vw), 24rem);
+          --fit-word: clamp(2rem, min(7dvh, 12vw), 6rem);
+          --fit-zh: clamp(1.5rem, min(4.5dvh, 8vw), 3.5rem);
+          --fit-body: clamp(1rem, min(2.4dvh, 3.8vw), 1.8rem);
+          --fit-sent: clamp(1.2rem, min(3.6dvh, 5.6vw), 2.6rem);
+          --fit-opt-pad: clamp(.5rem, 1.8dvh, 1.5rem);
+          --fit-opt-min: clamp(3.2rem, 10dvh, 8rem);
+          --fit-opt-font: clamp(1.2rem, min(3.6dvh, 5.6vw), 2.6rem);
+          --fit-btn-py: clamp(.5rem, 1.8dvh, 1.4rem);
+          --fit-btn-font: clamp(1.2rem, 3.4dvh, 2.2rem);
+          --fit-tile-w: clamp(2rem, min(7.5dvh, 12vw), 5.5rem);
+          --fit-tile-h: clamp(2.4rem, min(8.5dvh, 13vw), 6rem);
+          --fit-tile-font: clamp(1.2rem, min(4.6dvh, 6.5vw), 3.2rem);
         }
       }
-      @media (max-height: 800px) {
-        :root {
-          --fit-pad: 1.5rem;    --fit-pad-sm: 1.25rem; --fit-box: 1rem;
-          --fit-gap: 1.25rem;   --fit-mb: 1rem;
-          --fit-monster: 8rem;  --fit-monster-l: 7rem;
-          --fit-word: 3.25rem;  --fit-zh: 1.75rem;     --fit-body: 1.1rem;   --fit-sent: 1.6rem;
-          --fit-opt-pad: 1rem;  --fit-opt-min: 4.75rem; --fit-opt-font: 1.5rem;
-          --fit-btn-py: .75rem; --fit-btn-font: 1.5rem;
-          --fit-tile-w: 3rem;   --fit-tile-h: 3.25rem; --fit-tile-font: 1.5rem;
-        }
-      }
-      @media (max-height: 700px) {
-        :root {
-          --fit-pad: 1rem;      --fit-pad-sm: 1rem;    --fit-box: .75rem;
-          --fit-gap: 1rem;      --fit-mb: .75rem;
-          --fit-monster: 6rem;  --fit-monster-l: 5.5rem;
-          --fit-word: 2.75rem;  --fit-zh: 1.5rem;      --fit-body: 1rem;     --fit-sent: 1.35rem;
-          --fit-opt-pad: .75rem; --fit-opt-min: 3.75rem; --fit-opt-font: 1.25rem;
-          --fit-btn-py: .6rem;  --fit-btn-font: 1.25rem;
-          --fit-tile-w: 2.6rem; --fit-tile-h: 2.9rem;  --fit-tile-font: 1.3rem;
-        }
-      }
-      @media (max-height: 600px) {
-        :root {
-          --fit-pad: .75rem;    --fit-pad-sm: .75rem;  --fit-box: .6rem;
-          --fit-gap: .75rem;    --fit-mb: .5rem;
-          --fit-monster: 4.5rem; --fit-monster-l: 4.5rem;
-          --fit-word: 2.25rem;  --fit-zh: 1.25rem;     --fit-body: .95rem;   --fit-sent: 1.15rem;
-          --fit-opt-pad: .5rem; --fit-opt-min: 3rem;   --fit-opt-font: 1.1rem;
-          --fit-btn-py: .5rem;  --fit-btn-font: 1.1rem;
-          --fit-tile-w: 2.25rem; --fit-tile-h: 2.5rem; --fit-tile-font: 1.15rem;
-        }
-      }
-      @media (max-height: 480px) {
-        :root {
-          --fit-pad: .5rem;     --fit-pad-sm: .5rem;   --fit-box: .5rem;
-          --fit-gap: .5rem;     --fit-mb: .3rem;
-          --fit-monster: 3rem;  --fit-monster-l: 3rem;
-          --fit-word: 1.75rem;  --fit-zh: 1.1rem;      --fit-body: .85rem;   --fit-sent: 1rem;
-          --fit-opt-pad: .3rem; --fit-opt-min: 2.4rem; --fit-opt-font: .95rem;
-          --fit-btn-py: .35rem; --fit-btn-font: 1rem;
-          --fit-tile-w: 1.9rem; --fit-tile-h: 2.1rem;  --fit-tile-font: 1rem;
-        }
-      }
-      /* Short tablets / small laptop windows (landscape): scale the root a little so every screen
-         that was laid out for taller displays still fits. Unchanged at >= 760px high. */
-      @media (min-width: 768px) and (max-height: 760px) {
+      /* Very short landscape windows (a phone on its side): scale the root a little so screens that
+         were laid out for taller displays still fit. Tablets are NOT shrunk: the fluid tokens above
+         already fit them, and a smaller root made everything small for the child. */
+      @media (min-width: 768px) and (max-height: 560px) {
         html {
           font-size: clamp(12px, calc(100vh / 46), 16px);
           font-size: clamp(12px, calc(100dvh / 46), 16px);
@@ -95,16 +78,7 @@
           font-size: clamp(11px, calc(100vh / 58), 16px);
           font-size: clamp(11px, calc(100dvh / 58), 16px);
         }
-        /* Daily Challenge tokens, tuned for the scaled root above (~12px on a 700px-high phone). */
-        :root {
-          --fit-pad: 1.35rem;    --fit-pad-sm: 1rem;     --fit-box: 1rem;
-          --fit-gap: 1rem;       --fit-mb: 1rem;
-          --fit-monster: 7.3rem; --fit-monster-l: 9.3rem;
-          --fit-word: 3.3rem;    --fit-zh: 2rem;         --fit-body: 1.33rem;  --fit-sent: 1.65rem;
-          --fit-opt-pad: .8rem;  --fit-opt-min: 4.65rem; --fit-opt-font: 1.5rem;
-          --fit-btn-py: 1rem;    --fit-btn-font: 1.8rem;
-          --fit-tile-w: 3.2rem;  --fit-tile-h: 3.6rem;   --fit-tile-font: 1.65rem;
-        }
+        /* No phone-only token set any more: the fluid portrait tokens above fit phones too. */
       }
     </style>
   <script type="importmap">

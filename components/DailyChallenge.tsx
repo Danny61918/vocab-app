@@ -77,7 +77,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     const viewport = useViewportSize();
     // Stroke-order canvas scales with the screen so the whole WRITE screen fits without scrolling
     // (phones stack the panels, so the canvas gets a smaller share of the height there).
-    const canvasSize = Math.max(170, Math.min(320, Math.round(viewport.h * (viewport.w < 768 ? 0.26 : 0.34))));
+    const canvasSize = Math.max(170, Math.min(380, Math.round(viewport.h * (viewport.w < 768 ? 0.26 : viewport.w > viewport.h ? 0.42 : 0.26))));
     const [wordMistakes, setWordMistakes] = useState<Record<number, number>>({});
     const [sentenceHintActive, setSentenceHintActive] = useState(false);
     const sentenceHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -709,47 +709,50 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
     if (phase === 'LEARN') {
         const word = currentChunk[learnIndex];
         return (
-            <div className="flex flex-col items-center justify-center min-h-[100dvh] w-full max-w-4xl mx-auto p-3 md:p-6 animate-fade-in">
-                <div className="w-full flex justify-between items-center mb-[var(--fit-mb)]">
-                    <button onClick={onBack} className="text-slate-400 font-black hover:text-red-500">退出</button>
-                    <div className="bg-purple-100 text-purple-700 px-4 py-2 rounded-xl font-black">
+            <div className="flex flex-col min-h-[100dvh] landscape:h-[100dvh] w-full max-w-[1500px] mx-auto p-3 md:p-5 animate-fade-in">
+                <div className="w-full flex justify-between items-center mb-[var(--fit-mb)] shrink-0">
+                    <button onClick={onBack} className="text-slate-400 font-black text-base md:text-xl px-2 py-1 hover:text-red-500">退出</button>
+                    <div className="bg-purple-100 text-purple-700 px-4 md:px-6 py-2 rounded-xl font-black text-sm md:text-xl">
                         Round {currentChunkIndex + 1}/{chunks.length} - 學習中 {learnIndex + 1}/{currentChunk.length}
                     </div>
                 </div>
-                
-                <div 
+
+                {/* Landscape: monster on the left, word on the right (uses the width). Portrait: stacked. */}
+                <div
                     onClick={() => playWord(word)}
-                    className="bg-white rounded-[3rem] shadow-2xl p-[var(--fit-pad)] w-full flex flex-col items-center justify-center cursor-pointer transform transition hover:scale-[1.02] border-4 md:border-8 border-purple-50 group"
+                    className="flex-1 min-h-0 bg-white rounded-[3rem] shadow-2xl p-[var(--fit-pad)] w-full flex flex-col landscape:flex-row items-center justify-center gap-[var(--fit-gap)] cursor-pointer active:scale-[0.99] transition-transform border-4 md:border-8 border-purple-50 group"
                 >
-                    <div className="w-[var(--fit-monster-l)] h-[var(--fit-monster-l)] mb-[var(--fit-mb)] group-hover:animate-bounce flex items-center justify-center">
+                    <div className="shrink-0 w-[var(--fit-monster-l)] h-[var(--fit-monster-l)] group-hover:animate-bounce flex items-center justify-center">
                          {currentMonster && <img src={currentMonster.image} style={{filter: currentMonster.filter}} className="max-w-full max-h-full object-contain drop-shadow-md" alt="monster" />}
                     </div>
-                    <div className="text-[length:var(--fit-word)] leading-tight font-black text-slate-800 mb-2 font-['Outfit'] tracking-wide">
-                        {word.english}
-                    </div>
-                    <div className="text-xl text-slate-400 mb-[var(--fit-mb)] font-bold italic">
-                        {word.part_of_speech}
-                    </div>
-                    <div className="text-[length:var(--fit-zh)] leading-tight font-black text-emerald-600 drop-shadow-sm mb-[var(--fit-mb)]">
-                        {word.chinese}
-                    </div>
-                    
-                    {word.example && (
-                        <div className="bg-slate-50 p-[var(--fit-box)] rounded-2xl w-full text-left border-2 border-slate-100">
-                            <p className="text-slate-400 text-sm font-black uppercase mb-2">Example</p>
-                            <p className="text-[length:var(--fit-body)] text-slate-700 font-bold leading-snug">{word.example}</p>
+                    <div className="flex flex-col items-center landscape:items-start text-center landscape:text-left min-w-0 landscape:flex-1 w-full">
+                        <div className="text-[length:var(--fit-word)] leading-tight font-black text-slate-800 mb-1 font-['Outfit'] tracking-wide break-words max-w-full">
+                            {word.english}
                         </div>
-                    )}
-                    
-                    <div className="mt-[var(--fit-mb)] opacity-50 flex items-center gap-2 [@media(max-height:480px)]:hidden">
-                        <span className="text-2xl">🔊</span>
-                        <span className="text-lg font-bold text-slate-500">點擊念出發音</span>
+                        <div className="text-[length:var(--fit-body)] text-slate-400 mb-[var(--fit-mb)] font-bold italic">
+                            {word.part_of_speech}
+                        </div>
+                        <div className="text-[length:var(--fit-zh)] leading-tight font-black text-emerald-600 drop-shadow-sm mb-[var(--fit-mb)]">
+                            {word.chinese}
+                        </div>
+
+                        {word.example && (
+                            <div className="bg-slate-50 p-[var(--fit-box)] rounded-2xl w-full text-left border-2 border-slate-100">
+                                <p className="text-slate-400 text-xs md:text-sm font-black uppercase mb-1">Example</p>
+                                <p className="text-[length:var(--fit-body)] text-slate-700 font-bold leading-snug">{word.example}</p>
+                            </div>
+                        )}
+
+                        <div className="mt-[var(--fit-mb)] opacity-60 flex items-center gap-2 [@media(max-height:480px)]:hidden">
+                            <span className="text-2xl md:text-3xl">🔊</span>
+                            <span className="text-base md:text-xl font-bold text-slate-500">點一下，聽發音</span>
+                        </div>
                     </div>
                 </div>
 
-                <button 
+                <button
                     onClick={nextLearnCard}
-                    className="mt-[var(--fit-gap)] bg-emerald-500 hover:bg-emerald-600 text-white text-[length:var(--fit-btn-font)] font-black py-[var(--fit-btn-py)] w-full max-w-sm rounded-[2rem] shadow-xl active:scale-95 transition-all"
+                    className="mt-[var(--fit-gap)] shrink-0 self-center bg-emerald-500 hover:bg-emerald-600 text-white text-[length:var(--fit-btn-font)] font-black py-[var(--fit-btn-py)] w-full max-w-xl rounded-[2rem] shadow-xl active:scale-95 transition-all"
                 >
                     我記住了！
                 </button>
@@ -764,15 +767,15 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
         const coreWord = getCoreWordForMasking(word.english);
 
         return (
-            <div className="flex flex-col justify-center min-h-[100dvh] p-3 md:p-6 w-full max-w-6xl mx-auto animate-fade-in select-none touch-manipulation">
+            <div className="flex flex-col min-h-[100dvh] landscape:h-[100dvh] p-3 md:p-5 w-full max-w-[1600px] mx-auto animate-fade-in select-none touch-manipulation">
                 {/* Header */}
-                <div className="w-full flex justify-between items-center mb-[var(--fit-mb)]">
-                    <div className="bg-red-500 text-white font-black text-sm md:text-xl px-3 md:px-5 py-1.5 md:py-2 rounded-xl shadow-md border-b-4 border-red-700 flex items-center gap-2">
+                <div className="w-full flex justify-between items-center mb-[var(--fit-mb)] shrink-0">
+                    <div className="bg-red-500 text-white font-black text-sm md:text-2xl px-3 md:px-6 py-1.5 md:py-2.5 rounded-xl shadow-md border-b-4 border-red-700 flex items-center gap-2">
                         <span>
                             {quizMode === 'RECOGNIZE' ? '👁️ 認字階段' : quizMode === 'SPELL' ? '✍️ 拼字階段' : quizMode === 'WRITE' ? '✨ 魔法封印' : '📖 例句階段'} 
                             - 剩餘怪獸: 
                         </span>
-                        <span className="text-xl md:text-2xl ml-1 md:ml-2">{quizQueue.length}</span>
+                        <span className="text-xl md:text-3xl ml-1 md:ml-2">{quizQueue.length}</span>
                     </div>
                     <div className="flex items-center gap-4">
                         {combo > 1 && (
@@ -780,14 +783,14 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                 🔥 {combo} Combo!
                             </div>
                         )}
-                        <button onClick={onBack} className="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm md:text-base px-3 md:px-4 py-1.5 md:py-2 rounded-xl border-b-4 border-slate-400 active:translate-y-1 active:border-b-0 transition-all">
+                        <button onClick={onBack} className="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm md:text-xl px-3 md:px-5 py-1.5 md:py-2.5 rounded-xl border-b-4 border-slate-400 active:translate-y-1 active:border-b-0 transition-all">
                             中斷離開
                         </button>
                     </div>
                 </div>
 
                 {/* Split Layout for Tablet */}
-                <div className="flex flex-col md:flex-row gap-[var(--fit-gap)] w-full items-stretch">
+                <div className="flex flex-col landscape:flex-row gap-[var(--fit-gap)] w-full items-stretch flex-1 min-h-0">
                     {/* Left Panel: Monster & HP */}
                     <div 
                         onClick={() => playWord(word)}
@@ -802,7 +805,7 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                             )}
                         </div>
                         
-                        <div className="w-full max-w-xs h-4 md:h-6 bg-slate-600 rounded-full mx-auto mb-[var(--fit-mb)] overflow-hidden border-4 border-slate-900 shadow-inner">
+                        <div className="w-full max-w-md h-4 md:h-7 bg-slate-600 rounded-full mx-auto mb-[var(--fit-mb)] overflow-hidden border-4 border-slate-900 shadow-inner">
                             <div className="h-full bg-red-500 transition-all duration-300" style={{width: `${monsterHp}%`}}></div>
                         </div>
 
@@ -838,14 +841,14 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                         )}
                         
                         {quizMode !== 'SENTENCE' && (
-                            <div className="text-xl text-slate-400 font-bold italic mt-2">({word.part_of_speech})</div>
+                            <div className="text-[length:var(--fit-body)] text-slate-400 font-bold italic mt-2">({word.part_of_speech.replace(/^\(|\)$/g, '')})</div>
                         )}
                     </div>
 
                     {/* Right Panel: Options / Input */}
-                    <div className="flex-1 flex flex-col justify-center items-center bg-slate-50 rounded-[3rem] p-[var(--fit-pad-sm)] border-4 md:border-8 border-slate-100 shadow-inner">
+                    <div className="flex-1 flex flex-col justify-center items-center min-h-0 bg-slate-50 rounded-[3rem] p-[var(--fit-pad-sm)] border-4 md:border-8 border-slate-100 shadow-inner">
                         {quizMode === 'RECOGNIZE' || quizMode === 'SENTENCE' ? (
-                            <div className="grid grid-cols-2 gap-3 md:gap-4 w-full h-full content-center">
+                            <div className="grid grid-cols-2 gap-3 md:gap-5 w-full flex-1 landscape:flex-none landscape:auto-rows-[var(--fit-opt-row)] content-center">
                                 {options.map((opt, i) => {
                                     let btnClass = "bg-white hover:bg-blue-50 text-slate-700 border-4 border-slate-200 active:scale-95";
                                     let showStatus = false;

@@ -17,6 +17,7 @@ import { awardCoins } from '../services/gamification';
 import { getRemainingDrill } from '../services/mistakeBook/drillProgress';
 import { getPlannedTargetWords } from '../services/mistakeBook/vocabLink';
 import { MistakeDrill } from './MistakeDrill';
+import { MONSTER_DATA } from '../services/monsterData';
 import confetti from 'canvas-confetti';
 
 interface Props {
@@ -36,6 +37,11 @@ type Phase = 'intro' | 'learn' | 'quiz' | 'cloze' | 'summary';
 
 export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) => {
   const [phase, setPhase] = useState<Phase>('intro');
+  // One monster per session keeps the screens friendly without distracting from the word.
+  const [monster] = useState(() => {
+    const pool = Object.values(MONSTER_DATA).filter((m) => !m.isLegendary);
+    return pool[Math.floor(Math.random() * pool.length)];
+  });
   const [showDrill, setShowDrill] = useState(false); // P9: mistake drill follows the daily review
   const [wordsList, setWordsList] = useState<VocabWord[]>([]);
 
@@ -379,17 +385,32 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     return <MistakeDrill onClose={onClose} />;
   }
 
+  // Screens share the fluid --fit-* tokens (index.html): big pieces on tablets, two columns in
+  // landscape (monster / word on the left, answers on the right), stacked in portrait.
+  const monsterImg = (extra = '') => (
+    <img
+      src={monster.image}
+      style={{ filter: monster.filter }}
+      className={`max-w-full max-h-full object-contain drop-shadow-md ${extra}`}
+      alt="monster"
+    />
+  );
+  const screen = 'flex flex-col min-h-[100dvh] landscape:h-[100dvh] w-full max-w-[1600px] mx-auto p-3 md:p-5';
+
   // ── Intro ──
   if (phase === 'intro') {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center bg-blue-50 rounded-3xl shadow-xl">
-        <h1 className="text-4xl font-black text-blue-800 mb-6 font-['Outfit']">
+      <div className="flex flex-col items-center justify-center min-h-[100dvh] landscape:h-[100dvh] p-4 text-center bg-blue-50">
+        <div className="w-[var(--fit-monster)] h-[var(--fit-monster)] mb-[var(--fit-mb)] flex items-center justify-center">
+          {monsterImg('animate-bounce')}
+        </div>
+        <h1 className="text-[length:var(--fit-zh)] leading-tight font-black text-blue-800 mb-[var(--fit-mb)] font-['Outfit']">
           {mode === 'daily' ? '🌟 每日單字探險 🌟' : `🗺️ 關卡挑戰：第 ${levelId} 關`}
         </h1>
-        <p className="text-2xl text-blue-600 mb-4 font-bold">
+        <p className="text-[length:var(--fit-body)] text-blue-600 mb-[var(--fit-mb)] font-bold">
           今天有 {wordsList.length} 個小怪獸等著你收服！
         </p>
-        <div className="flex gap-6 mb-10 text-lg text-blue-500 font-bold">
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-1 mb-[var(--fit-gap)] text-[length:var(--fit-body)] text-blue-500 font-bold">
           <span>📖 第一關：認識單字</span>
           <span>→</span>
           <span>👾 第二關：選中文</span>
@@ -398,11 +419,11 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
         </div>
         <button
           onClick={startLearning}
-          className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-3xl font-black py-6 px-16 rounded-[2rem] shadow-lg transform transition hover:scale-105"
+          className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-[length:var(--fit-btn-font)] font-black py-[var(--fit-btn-py)] px-12 md:px-20 rounded-[2rem] shadow-lg transform transition hover:scale-105"
         >
           開始冒險！(Start!)
         </button>
-        <button onClick={onClose} className="mt-8 text-xl text-gray-500 font-bold hover:text-gray-700">
+        <button onClick={onClose} className="mt-[var(--fit-gap)] text-lg md:text-2xl text-gray-500 font-bold hover:text-gray-700 px-4 py-2">
           離開 (Quit)
         </button>
       </div>
@@ -413,33 +434,41 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   if (phase === 'learn') {
     const word = wordsList[learnIndex];
     return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] w-[80%] mx-auto relative p-8">
-        <div className="absolute top-4 left-4 text-2xl font-bold text-gray-500 border-2 border-gray-400 rounded-xl px-4 py-2">
-          📖 學習：{learnIndex + 1} / {wordsList.length}
+      <div className={`${screen} animate-fade-in`}>
+        <div className="w-full flex justify-between items-center mb-[var(--fit-mb)] shrink-0">
+          <button onClick={onClose} className="text-gray-400 font-black text-base md:text-xl px-2 py-1 hover:text-red-500">離開</button>
+          <div className="bg-indigo-100 text-indigo-700 px-4 md:px-6 py-2 rounded-xl font-black text-sm md:text-xl">
+            📖 學習：{learnIndex + 1} / {wordsList.length}
+          </div>
         </div>
 
         <div
           onClick={() => playWord(word.word)}
-          className="bg-white rounded-[3rem] shadow-2xl p-16 w-full max-w-3xl flex flex-col items-center justify-center cursor-pointer transform transition hover:scale-105 border-4 border-indigo-100"
+          className="flex-1 min-h-0 bg-white rounded-[3rem] shadow-2xl p-[var(--fit-pad)] w-full flex flex-col landscape:flex-row items-center justify-center gap-[var(--fit-gap)] cursor-pointer active:scale-[0.99] transition-transform border-4 md:border-8 border-indigo-100 group"
         >
-          <div className="text-7xl font-black text-indigo-800 mb-4 font-['Outfit'] tracking-wide">
-            {word.word}
+          <div className="shrink-0 w-[var(--fit-monster-l)] h-[var(--fit-monster-l)] group-hover:animate-bounce flex items-center justify-center">
+            {monsterImg()}
           </div>
-          <div className="text-3xl text-gray-500 mb-8 font-bold italic">
-            ({word.partOfSpeech})
-          </div>
-          <div className="text-5xl font-black text-green-600 drop-shadow-sm">
-            {word.meaning}
-          </div>
-          <div className="mt-12 opacity-50 flex items-center gap-2">
-            <span className="text-3xl">🔊</span>
-            <span className="text-xl font-bold">點擊念出發音</span>
+          <div className="flex flex-col items-center landscape:items-start text-center landscape:text-left min-w-0 landscape:flex-1 w-full">
+            <div className="text-[length:var(--fit-word)] leading-tight font-black text-indigo-800 mb-1 font-['Outfit'] tracking-wide break-words max-w-full">
+              {word.word}
+            </div>
+            <div className="text-[length:var(--fit-body)] text-gray-500 mb-[var(--fit-mb)] font-bold italic">
+              ({word.partOfSpeech})
+            </div>
+            <div className="text-[length:var(--fit-zh)] leading-tight font-black text-green-600 drop-shadow-sm break-words max-w-full">
+              {word.meaning}
+            </div>
+            <div className="mt-[var(--fit-mb)] opacity-60 flex items-center gap-2 [@media(max-height:480px)]:hidden">
+              <span className="text-2xl md:text-3xl">🔊</span>
+              <span className="text-base md:text-xl font-bold text-slate-500">點一下，聽發音</span>
+            </div>
           </div>
         </div>
 
         <button
           onClick={nextLearnCard}
-          className="mt-12 bg-green-500 hover:bg-green-600 text-white text-4xl font-black py-6 px-20 border-b-8 border-green-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"
+          className="mt-[var(--fit-gap)] shrink-0 self-center bg-green-500 hover:bg-green-600 text-white text-[length:var(--fit-btn-font)] font-black py-[var(--fit-btn-py)] w-full max-w-xl border-b-8 border-green-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"
         >
           我記住了 (Got It!)
         </button>
@@ -453,62 +482,69 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     if (!word) return null;
 
     return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 w-full max-w-4xl mx-auto">
+      <div className={`${screen} select-none touch-manipulation`}>
         {/* HUD */}
-        <div className="w-full flex justify-between items-center mb-8 px-4">
-          <div className="bg-red-500 text-white font-black text-2xl px-6 py-3 rounded-2xl shadow-md border-b-4 border-red-700 flex items-center gap-2">
+        <div className="w-full flex justify-between items-center mb-[var(--fit-mb)] shrink-0">
+          <div className="bg-red-500 text-white font-black text-base md:text-2xl px-4 md:px-6 py-2 md:py-2.5 rounded-2xl shadow-md border-b-4 border-red-700 flex items-center gap-2">
             <span>👾 剩餘怪獸：</span>
-            <span className="text-3xl">{quizQueue.length}</span>
+            <span className="text-xl md:text-3xl">{quizQueue.length}</span>
           </div>
           {combo > 1 && (
-            <div className="animate-bounce bg-orange-400 text-white font-black text-3xl px-6 py-2 rounded-2xl shadow-xl transform rotate-3">
+            <div className="animate-bounce bg-orange-400 text-white font-black text-lg md:text-3xl px-4 md:px-6 py-1 md:py-2 rounded-2xl shadow-xl transform rotate-3">
               🔥 {combo} Combo!
             </div>
           )}
         </div>
 
-        {/* Question Card */}
-        <div
-          onClick={() => playWord(word.word)}
-          className="bg-indigo-600 text-white w-full rounded-t-3xl p-12 text-center shadow-2xl relative cursor-pointer active:scale-[0.98] transition-transform"
-        >
-          <div className="text-6xl font-black mb-4 font-['Outfit'] tracking-wider">{word.word}</div>
-          <div className="text-3xl text-indigo-200 font-bold italic">({word.partOfSpeech})</div>
-          <div className="absolute top-4 right-4 text-3xl opacity-50">🔊</div>
-        </div>
+        <div className="flex flex-col landscape:flex-row gap-[var(--fit-gap)] w-full items-stretch flex-1 min-h-0">
+          {/* Question Card */}
+          <div
+            onClick={() => playWord(word.word)}
+            className="flex-1 min-h-0 bg-indigo-600 text-white rounded-[3rem] p-[var(--fit-pad)] text-center shadow-2xl relative cursor-pointer active:scale-[0.98] transition-transform border-4 md:border-8 border-indigo-700 flex flex-col justify-center items-center"
+          >
+            <div className="w-[var(--fit-monster)] h-[var(--fit-monster)] mb-[var(--fit-mb)] flex items-center justify-center">
+              {monsterImg()}
+            </div>
+            <div className="text-[length:var(--fit-word)] leading-tight font-black mb-1 font-['Outfit'] tracking-wider break-words max-w-full">{word.word}</div>
+            <div className="text-[length:var(--fit-body)] text-indigo-200 font-bold italic">({word.partOfSpeech})</div>
+            <div className="absolute top-4 right-5 text-2xl md:text-4xl opacity-60">🔊</div>
+          </div>
 
-        {/* Answer Options (Chinese) */}
-        <div className="grid grid-cols-2 gap-4 w-full bg-white p-8 rounded-b-3xl shadow-xl border-4 border-t-0 border-indigo-600">
-          {options.map((opt, i) => {
-            let btnClass = "bg-gray-100 hover:bg-blue-100 text-gray-800 border-b-8 border-gray-300 active:border-b-0 active:translate-y-2";
-            let showStatus = false;
+          {/* Answer Options (Chinese) */}
+          <div className="flex-1 min-h-0 flex flex-col justify-center bg-white p-[var(--fit-pad-sm)] rounded-[3rem] shadow-xl border-4 md:border-8 border-indigo-600">
+            <div className="grid grid-cols-2 gap-3 md:gap-5 w-full landscape:auto-rows-[var(--fit-opt-row)]">
+              {options.map((opt, i) => {
+                let btnClass = "bg-gray-100 hover:bg-blue-100 text-gray-800 border-b-8 border-gray-300 active:border-b-0 active:translate-y-2";
+                let showStatus = false;
 
-            if (feedbackState !== 'idle') {
-              if (opt === word.meaning) {
-                btnClass = "bg-green-500 text-white border-b-8 border-green-700 z-10 scale-105";
-                showStatus = true;
-              } else if (feedbackState === 'wrong') {
-                btnClass = "bg-gray-200 text-gray-400 opacity-50 border-gray-200";
-              }
-            }
+                if (feedbackState !== 'idle') {
+                  if (opt === word.meaning) {
+                    btnClass = "bg-green-500 text-white border-b-8 border-green-700 z-10 scale-105";
+                    showStatus = true;
+                  } else if (feedbackState === 'wrong') {
+                    btnClass = "bg-gray-200 text-gray-400 opacity-50 border-gray-200";
+                  }
+                }
 
-            return (
-              <button
-                key={i}
-                disabled={feedbackState !== 'idle'}
-                onClick={() => handleQuizAnswer(opt)}
-                className={`text-4xl font-black p-8 rounded-2xl transition-all relative ${btnClass}`}
-              >
-                {opt}
-                {showStatus && feedbackState === 'correct' && (
-                  <div className="absolute -top-4 -right-4 text-5xl animate-bounce">🟢</div>
-                )}
-                {showStatus && feedbackState === 'wrong' && (
-                  <div className="absolute -top-4 -right-4 text-4xl">👀 答案在這</div>
-                )}
-              </button>
-            );
-          })}
+                return (
+                  <button
+                    key={i}
+                    disabled={feedbackState !== 'idle'}
+                    onClick={() => handleQuizAnswer(opt)}
+                    className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] min-h-[var(--fit-opt-min)] rounded-3xl transition-all relative break-words ${btnClass}`}
+                  >
+                    {opt}
+                    {showStatus && feedbackState === 'correct' && (
+                      <div className="absolute -top-3 -right-3 text-4xl animate-bounce">🟢</div>
+                    )}
+                    {showStatus && feedbackState === 'wrong' && (
+                      <div className="absolute -top-3 -right-3 text-xl md:text-2xl bg-white rounded-full px-3 py-1 shadow">👀 答案在這</div>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -523,93 +559,100 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     const parts = current.blankedSentence.split('_____');
 
     return (
-      <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 w-full max-w-4xl mx-auto">
+      <div className={`${screen} select-none touch-manipulation`}>
         {/* HUD */}
-        <div className="w-full flex justify-between items-center mb-8 px-4">
-          <div className="bg-emerald-500 text-white font-black text-2xl px-6 py-3 rounded-2xl shadow-md border-b-4 border-emerald-700">
+        <div className="w-full flex justify-between items-center mb-[var(--fit-mb)] shrink-0">
+          <div className="bg-emerald-500 text-white font-black text-base md:text-2xl px-4 md:px-6 py-2 md:py-2.5 rounded-2xl shadow-md border-b-4 border-emerald-700">
             ✏️ 例句填空：{currentClozeIdx + 1} / {clozeQueue.length}
           </div>
-          <div className="bg-amber-400 text-white font-black text-2xl px-6 py-3 rounded-2xl shadow-md border-b-4 border-amber-600">
+          <div className="bg-amber-400 text-white font-black text-base md:text-2xl px-4 md:px-6 py-2 md:py-2.5 rounded-2xl shadow-md border-b-4 border-amber-600">
             ⭐ {clozeCorrect} / {currentClozeIdx + (clozeFeedback !== 'idle' ? 1 : 0)}
           </div>
         </div>
 
-        {/* Sentence Card */}
-        <div className="bg-gradient-to-br from-emerald-500 to-teal-600 text-white w-full rounded-t-3xl p-10 shadow-2xl">
-          <div className="text-lg font-bold opacity-70 mb-4 text-center">
-            選出正確的英文單字／片語填入空格
-          </div>
-          {/* Sentence with inline styled blank */}
-          <div className="text-3xl font-black leading-relaxed font-['Outfit'] text-center">
-            {parts.map((part, i) => (
-              <React.Fragment key={i}>
-                {part}
-                {i < parts.length - 1 && (
-                  <span
-                    className={`
-                      inline-block mx-2 px-6 py-1 rounded-xl border-b-4 min-w-[120px] text-center align-middle
-                      ${clozeFeedback === 'correct'
-                        ? 'bg-green-400 border-green-600 text-white'
+        <div className="flex flex-col landscape:flex-row gap-[var(--fit-gap)] w-full items-stretch flex-1 min-h-0">
+          {/* Sentence Card */}
+          <div className="flex-1 min-h-0 bg-gradient-to-br from-emerald-500 to-teal-600 text-white rounded-[3rem] p-[var(--fit-pad)] shadow-2xl border-4 md:border-8 border-emerald-600 flex flex-col justify-center items-center">
+            <div className="w-[var(--fit-monster)] h-[var(--fit-monster)] mb-[var(--fit-mb)] flex items-center justify-center shrink-0">
+              {monsterImg()}
+            </div>
+            <div className="text-[length:var(--fit-body)] font-bold opacity-80 mb-[var(--fit-mb)] text-center">
+              選出正確的英文單字／片語填入空格
+            </div>
+            {/* Sentence with inline styled blank */}
+            <div className="text-[length:var(--fit-sent)] font-black leading-snug font-['Outfit'] text-center">
+              {parts.map((part, i) => (
+                <React.Fragment key={i}>
+                  {part}
+                  {i < parts.length - 1 && (
+                    <span
+                      className={`
+                        inline-block mx-2 px-4 md:px-6 py-1 rounded-xl border-b-4 min-w-[5rem] text-center align-middle
+                        ${clozeFeedback === 'correct'
+                          ? 'bg-green-400 border-green-600 text-white'
+                          : clozeFeedback === 'wrong'
+                          ? 'bg-red-400 border-red-600 text-white'
+                          : 'bg-white/30 border-white/50 text-white/80'}
+                      `}
+                    >
+                      {clozeFeedback === 'correct'
+                        ? `✅ ${current.word.word}`
                         : clozeFeedback === 'wrong'
-                        ? 'bg-red-400 border-red-600 text-white'
-                        : 'bg-white/30 border-white/50 text-white/80'}
-                    `}
+                        ? `❌ ${current.options[current.correctIdx]}`
+                        : '？？？'}
+                    </span>
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+            {/* Hint: Chinese meaning */}
+            <div className="text-center mt-3 min-h-[2.5rem] flex items-center justify-center">
+              {sentenceHintActive ? (
+                <div className="text-[length:var(--fit-body)] opacity-90 font-bold text-yellow-300 animate-pulse">
+                  💡 提示：{current.word.meaning}（{current.word.partOfSpeech}）
+                </div>
+              ) : (
+                (clozeMistakes[current.word.id] || 0) >= 3 && (
+                  <button
+                    type="button"
+                    onClick={() => triggerSentenceHint()}
+                    className="bg-yellow-400 hover:bg-yellow-300 text-yellow-950 font-black text-lg md:text-xl px-6 py-2 rounded-xl border-b-4 border-yellow-600 active:border-b-0 active:translate-y-1 transition-all shadow-md animate-bounce"
                   >
-                    {clozeFeedback === 'correct'
-                      ? `✅ ${current.word.word}`
-                      : clozeFeedback === 'wrong'
-                      ? `❌ ${current.options[current.correctIdx]}`
-                      : '？？？'}
-                  </span>
-                )}
-              </React.Fragment>
-            ))}
+                    💡 提示
+                  </button>
+                )
+              )}
+            </div>
           </div>
-          {/* Hint: Chinese meaning */}
-          <div className="text-center mt-4 min-h-[40px] flex items-center justify-center">
-            {sentenceHintActive ? (
-              <div className="text-lg opacity-90 font-bold text-yellow-300 animate-pulse">
-                💡 提示：{current.word.meaning}（{current.word.partOfSpeech}）
-              </div>
-            ) : (
-              (clozeMistakes[current.word.id] || 0) >= 3 && (
-                <button
-                  type="button"
-                  onClick={() => triggerSentenceHint()}
-                  className="bg-yellow-400 hover:bg-yellow-300 text-yellow-950 font-black px-6 py-2 rounded-xl border-b-4 border-yellow-600 active:border-b-0 active:translate-y-1 transition-all shadow-md animate-bounce"
-                >
-                  💡 提示
-                </button>
-              )
-            )}
+
+          {/* Answer Options (English words/phrases) */}
+          <div className="flex-1 min-h-0 flex flex-col justify-center bg-white p-[var(--fit-pad-sm)] rounded-[3rem] shadow-xl border-4 md:border-8 border-emerald-500">
+            <div className="grid grid-cols-2 gap-3 md:gap-5 w-full landscape:auto-rows-[var(--fit-opt-row)]">
+              {current.options.map((opt, i) => {
+                const isCorrect = i === current.correctIdx;
+                let btnClass = "bg-gray-100 hover:bg-emerald-100 text-gray-800 border-b-8 border-gray-300 active:border-b-0 active:translate-y-2";
+
+                if (clozeFeedback !== 'idle') {
+                  if (isCorrect) {
+                    btnClass = "bg-green-500 text-white border-b-8 border-green-700 scale-105";
+                  } else {
+                    btnClass = "bg-gray-200 text-gray-400 opacity-40 border-gray-200";
+                  }
+                }
+
+                return (
+                  <button
+                    key={i}
+                    disabled={clozeFeedback !== 'idle'}
+                    onClick={() => handleClozeAnswer(i)}
+                    className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] min-h-[var(--fit-opt-min)] rounded-3xl transition-all break-words ${btnClass}`}
+                  >
+                    {opt}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-
-        {/* Answer Options (English words/phrases) */}
-        <div className="grid grid-cols-2 gap-4 w-full bg-white p-8 rounded-b-3xl shadow-xl border-4 border-t-0 border-emerald-500">
-          {current.options.map((opt, i) => {
-            const isCorrect = i === current.correctIdx;
-            let btnClass = "bg-gray-100 hover:bg-emerald-100 text-gray-800 border-b-8 border-gray-300 active:border-b-0 active:translate-y-2";
-
-            if (clozeFeedback !== 'idle') {
-              if (isCorrect) {
-                btnClass = "bg-green-500 text-white border-b-8 border-green-700 scale-105";
-              } else {
-                btnClass = "bg-gray-200 text-gray-400 opacity-40 border-gray-200";
-              }
-            }
-
-            return (
-              <button
-                key={i}
-                disabled={clozeFeedback !== 'idle'}
-                onClick={() => handleClozeAnswer(i)}
-                className={`text-2xl font-black p-6 rounded-2xl transition-all ${btnClass}`}
-              >
-                {opt}
-              </button>
-            );
-          })}
         </div>
       </div>
     );
@@ -618,33 +661,37 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   // ── Summary ──
   const drillLeft = mode === 'daily' ? getRemainingDrill().length : 0;
   return (
-    <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center bg-yellow-50 rounded-3xl shadow-xl border-8 border-yellow-400">
-      <div className="text-8xl mb-8 animate-bounce">🏆</div>
-      <h1 className="text-6xl font-black text-yellow-600 mb-4 drop-shadow-md">
-        Perfect Clear!
+    <div className="flex flex-col items-center justify-center min-h-[100dvh] landscape:h-[100dvh] p-4 text-center bg-yellow-50">
+      <div className="w-[calc(var(--fit-monster)*0.6)] h-[calc(var(--fit-monster)*0.6)] mb-[var(--fit-mb)] flex items-center justify-center animate-bounce">
+        {monsterImg()}
+      </div>
+      <h1 className="text-[length:var(--fit-word)] leading-tight font-black text-yellow-600 mb-2 drop-shadow-md">
+        Perfect Clear! 🏆
       </h1>
-      <p className="text-3xl text-yellow-700 mb-4 font-bold">
-        所有的怪獸都被你收服了！太厲害了！
+      <p className="text-[length:var(--fit-zh)] leading-tight text-yellow-700 mb-[var(--fit-mb)] font-bold">
+        所有的怪獸都被你收服了！
       </p>
-      {clozeQueue.length > 0 && (
-        <p className="text-2xl text-emerald-700 mb-4 font-bold bg-emerald-50 px-6 py-3 rounded-2xl border-2 border-emerald-200">
-          ✏️ 例句填空得分：{clozeCorrect} / {clozeQueue.length}
+      <div className="flex flex-wrap justify-center gap-3 mb-[var(--fit-gap)] text-[length:var(--fit-body)] font-bold">
+        {clozeQueue.length > 0 && (
+          <p className="text-emerald-700 bg-emerald-50 px-5 py-2 rounded-2xl border-2 border-emerald-200">
+            ✏️ 例句填空得分：{clozeCorrect} / {clozeQueue.length}
+          </p>
+        )}
+        <p className="text-amber-700 bg-amber-50 px-5 py-2 rounded-2xl border-2 border-amber-200">
+          🪙 獲得金幣：+{(quizCorrectCount + clozeCorrect) * 10}
         </p>
-      )}
-      <p className="text-2xl text-amber-700 mb-8 font-bold bg-amber-50 px-6 py-3 rounded-2xl border-2 border-amber-200">
-        🪙 獲得金幣：+{(quizCorrectCount + clozeCorrect) * 10}
-      </p>
+      </div>
       {drillLeft > 0 && (
         <button
           onClick={() => setShowDrill(true)}
-          className="mb-6 bg-amber-500 hover:bg-amber-600 text-white text-3xl font-black py-5 px-12 border-b-8 border-amber-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"
+          className="mb-[var(--fit-mb)] bg-amber-500 hover:bg-amber-600 text-white text-[length:var(--fit-btn-font)] font-black py-[var(--fit-btn-py)] px-10 md:px-16 border-b-8 border-amber-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"
         >
           🛠️ 接著練錯題（{drillLeft} 題）
         </button>
       )}
       <button
         onClick={onClose}
-        className="bg-yellow-500 hover:bg-yellow-600 text-white text-4xl font-black py-6 px-20 border-b-8 border-yellow-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"
+        className="bg-yellow-500 hover:bg-yellow-600 text-white text-[length:var(--fit-btn-font)] font-black py-[var(--fit-btn-py)] px-10 md:px-16 border-b-8 border-yellow-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"
       >
         領取獎勵並返回 (Claim Reward)
       </button>
