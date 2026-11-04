@@ -17,7 +17,7 @@
 ```ts
 export interface SkillTag {
   id: string;                       // 'G.SVA.plural_subject'
-  domain: 'G' | 'V' | 'R' | 'M';
+  domain: 'G' | 'V' | 'R' | 'M' | 'FMT'; // FMT = 題型技能
   label: string;                    // 中文顯示名
   legacyCategory?: ErrorCategory;
 }

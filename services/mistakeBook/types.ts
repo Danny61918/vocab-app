@@ -53,6 +53,7 @@ export interface MistakeRecord {
 
   errorCategory: ErrorCategory;  // fixed taxonomy — see categoryMap.ts
   rawErrorType: string;          // Gemini's original free-text label, kept for audit/traceability
+  skills?: string[];             // P9: fine-grained skill ids (skills.ts); drives drill scheduling, not the book display
 
   teacherExplanation: string;    // why the answer is what it is
   reviewAdvice: string;          // how to practice this at home

@@ -74,3 +74,17 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - SRS 時間/亂數採**注入式**接縫（`now`、`rng`），使跨天/快轉/洗牌可確定性測試。
 - 開發模式＝**自主迴圈**：AI 自行寫測試→實作→跑測試/型別/build→自我 review→修正→commit，做到全綠；使用者唯一介入點＝**最後手動測試驗收**。
 - 文件根目錄合併為單一 `.doc/`；命名採 SDD 五件式。
+
+## [2026-11-04] P9/TASK-00 — 錯題練習化：開分支與基線
+- 動作：開 `feat/mistake-drill`（main 一 push 就部署，不在 main 開發）；commit spec 三份文件；跑基線。
+- 結果：`npm test` 30/30、`tsc --noEmit` ✅、`vite build` ✅。
+- 問題：無。
+- 修正：—
+- commit：`P9: add mistake-drill spec`
+
+## [2026-11-04] P9/TASK-01 — 技能表與易混字組
+- 動作：新增 `services/mistakeBook/skills.ts`（12 個技能）、`confusionSets.ts`（`cs.health`）；`MistakeRecord` 加選填 `skills?: string[]`；測試 `skills.test.ts`。
+- 結果：測試 36/36、tsc ✅。
+- 決策：`FMT.choose_correct` 是題型技能，不屬 G/V/R/M，所以 `SkillDomain` 多一個 `'FMT'`（DESIGN §2 已同步）。
+- 問題：無。
+- commit：`P9/TASK-01: skills and confusion sets`
