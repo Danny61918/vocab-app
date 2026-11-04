@@ -114,11 +114,11 @@ const grammar: DrillItem[] = [
   // ---- "choose the correct sentence": check all four ----
   {
     id: `${SEED.doesQ}#v3`, seedMistakeId: SEED.doesQ, skillIds: ['FMT.choose_correct', 'G.PS.does_question_base'], kind: 'mc',
-    stem: 'Choose the correct sentence: ___', answer: 'Does your uncle work in a bank every day?',
+    stem: 'Choose the correct sentence: ___', answer: 'Does your uncle work in a bank?',
     distractors: opts(
-      'Do your uncle work in a bank every day?',
-      'Does your uncle works in a bank every day?',
-      'Your uncle work in a bank every day?'
+      'Do your uncle work in a bank?',
+      'Does your uncle works in a bank?',
+      'Your uncle work in a bank?'
     ),
     difficulty: 2, variation: ['question'], explanation: 'your uncle 是單數，問句用 Does，後面動詞用原形 work；其他三句各錯一處。',
   },
@@ -181,7 +181,7 @@ const healthItems: DrillItem[] = [
     'is 後面接形容詞，sick 是「生病的」；cough、headache 是名詞，不能直接放在 is 後面。', 1, ['dizzy']),
   health('sick', 2, SEED.sick, ['V.COLLOC', 'V.CONFUSE'], 'collocation',
     'If you feel ___, tell your teacher and go to the nurse.', ['cough', 'headache', 'sore throat'],
-    'feel 後面接形容詞，feel sick 是「覺得不舒服、想吐」；名詞前面要有 a 或 have。', 2, ['dizzy']),
+    'feel 後面接形容詞，feel sick 是「覺得不舒服、想吐」；cough、headache、sore throat 是名詞，要說 have a headache、have a sore throat，不能放在 feel 後面。', 2, ['dizzy']),
 
   health('cough', 1, SEED.cough, ['V.POS_SLOT', 'V.CONFUSE'], 'verb',
     'Remember to cover your mouth when you sneeze or ___.', ['sick', 'dizzy', 'headache'],
@@ -201,18 +201,18 @@ const healthItems: DrillItem[] = [
     'My head hurts a lot. I have a ___.', ['sick', 'dizzy', 'stomachache'],
     '頭痛是 headache（head + ache）；a 後面接名詞。', 1, ['cold']),
   health('headache', 2, undefined, ['V.CONFUSE'], 'meaning',
-    "Lucy's forehead hurt, so she lay down. She had a bad ___.", ['sick', 'cough', 'stomachache'],
-    '額頭痛是 headache；a bad 後面接名詞。', 2, ['cold']),
+    "Lucy's head hurts, so she needs to rest. She has a bad ___.", ['sick', 'cough', 'stomachache'],
+    '頭痛是 headache（head + ache）；a bad 後面接名詞。', 2, ['cold']),
 
   health('stomachache', 1, undefined, ['V.CONFUSE'], 'meaning',
-    "Ben's stomach hurts after he ate too much. He has a ___.", ['headache', 'sore throat', 'dizzy'],
+    'Ben ate too much, and now his stomach hurts. He has a ___.', ['headache', 'sore throat', 'dizzy'],
     '肚子痛是 stomachache（stomach + ache）。', 1),
   health('stomachache', 2, undefined, ['V.CONFUSE'], 'noun',
     'Ben ate five hot dogs and felt pain in his belly. The doctor said it was a ___.', ['headache', 'cough', 'sick'],
     '吃太多、肚子痛，醫生說是 a stomachache；a 後面接名詞。', 2),
 
   health('sore throat', 1, undefined, ['V.CONFUSE'], 'meaning',
-    "Ann's throat hurts when she swallows. She has a ___.", ['headache', 'stomachache', 'dizzy'],
+    "Ann's throat hurts when she eats or talks. She has a ___.", ['headache', 'stomachache', 'dizzy'],
     '喉嚨痛是 sore throat；throat 是「喉嚨」，sore 是「痛的」。', 1),
   health('sore throat', 2, undefined, ['V.CONFUSE'], 'noun',
     'My throat is red and it hurts when I talk. I have a ___.', ['headache', 'stomachache', 'sick'],
@@ -225,7 +225,7 @@ const otherWords: DrillItem[] = [
     id: `${SEED.still}#v1`, seedMistakeId: SEED.still, skillIds: ['V.POLYSEMY', 'V.COLLOC'], kind: 'mc',
     stem: 'Please sit ___ while Mom takes your photo.', answer: 'still', distractors: opts('slow', 'loud', 'busy'),
     targetWords: ['still'], clue: 'collocation', difficulty: 1, variation: ['context'],
-    explanation: 'sit still／stay still 是「坐著不動」，still 在這裡是「靜止的」。',
+    explanation: 'sit still 是「坐著不動」，stay still 是「保持不動」；still 在這裡是「靜止的、不動的」。',
   },
   {
     id: `${SEED.still}#v2`, seedMistakeId: SEED.still, skillIds: ['V.POLYSEMY'], kind: 'mc',

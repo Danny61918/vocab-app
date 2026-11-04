@@ -144,3 +144,16 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - Firestore 規則只做 uid 限制，不限欄位，不用改。
 - 結果：100 通過、tsc ✅。
 - commit：`P9/TASK-07: sync skill progress to cloud`
+
+## [2026-11-04] P9/TASK-06b — GATE-A 通過 + Opus 審題修正
+- 家長在審題頁看過 35 題，沒有發現問題（但自述英文不好，無法保證）。
+- 為此加做一輪 Opus 5.5 審題（給它答案與中文解釋，專找第二答案、不自然句子、解釋錯誤）。列出 6 項，全部採用：
+  - must-fix #28：stem 現在式與過去式混用 → 改成 "Ben ate too much, and now his stomach hurts."
+  - #27：forehead／lay 太冷僻且說法不自然 → "Lucy's head hurts, so she needs to rest."，解釋改為 head + ache
+  - #21：解釋「名詞前面要有 a 或 have」不精確 → 改為 have a headache／have a sore throat
+  - #32：解釋把 stay still 說成「坐著不動」→ 分開說明 sit still／stay still
+  - #30：swallows 對小學生太難 → eats or talks
+  - #16：選正確句的 "every day" 不自然且多餘 → 整組拿掉
+- 結果：100 通過、tsc ✅。
+- 備註：審題與盲解的工具都是 Claude 系列，Gemini 額度用完時沒有跨廠牌的第二意見。
+- commit：`P9/TASK-06b: fix drill items after audit`
