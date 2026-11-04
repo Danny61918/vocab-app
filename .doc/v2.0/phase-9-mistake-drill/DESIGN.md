@@ -82,6 +82,7 @@ interface DrillItem {
   distractors: DrillOption[];
   alsoFits?: string[];        // 組內其他也說得通的字，禁止當干擾項
   targetWords?: string[];     // 正規化（小寫、去頭尾空白）後的單字／片語
+  clue?: 'noun' | 'adj' | 'verb' | 'collocation' | 'meaning'; // 易混字組題：靠什麼線索判斷
   difficulty: 1 | 2 | 3;
   variation: ('subject' | 'verb' | 'polarity' | 'question' | 'short_answer' | 'context')[];
   explanation: string;        // 中文，答錯時顯示

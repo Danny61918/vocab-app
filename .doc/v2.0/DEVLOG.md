@@ -88,3 +88,11 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - 決策：`FMT.choose_correct` 是題型技能，不屬 G/V/R/M，所以 `SkillDomain` 多一個 `'FMT'`（DESIGN §2 已同步）。
 - 問題：無。
 - commit：`P9/TASK-01: skills and confusion sets`
+
+## [2026-11-04] P9/TASK-02 — 題目型別與驗證測試
+- 動作：新增 `drills/types.ts`（`DrillItem`、`DrillOption`、`DrillClue`）、`drills/index.ts`（`ALL_DRILLS`，目前空）、`drills/validate.ts`（`validateDrillItem`、`validateDrillBank`）、`drills.test.ts`。
+- 紅：先寫測試，`validate` 不存在時整個測試檔載入失敗（確認紅）。
+- 綠：實作後 49 通過 / 1 略過（整庫檢查在題庫為空時略過，TASK-06 起生效）；tsc ✅。
+- 決策：`DrillItem` 多一個選填 `clue`（noun/adj/verb/collocation/meaning），用來檢查「同一字至少兩種不同線索」；DESIGN §4 同步。
+- 問題：無。
+- commit：`P9/TASK-02: drill types and validator`
