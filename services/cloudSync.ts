@@ -33,11 +33,13 @@ interface CloudDocument {
   customMonsters: any[]; // P7 custom monster uploads
   customSentences: any[]; // P7 child-authored sentences
   wishList: any[];       // P7 feature wish list
+  skillProgress: Record<string, any>; // P9 mistake-drill skill progress
+  seededMistakes: string[];           // P9 exam word-mistake seeds already applied
   lastSyncedAt: any;    // serverTimestamp
 }
 
 // localStorage keys that we sync (mirrors the keys used in srsStorage / answerLog / gamification / customContent)
-const LS_KEYS = {
+export const LS_KEYS = {
   srsMastery: 'vocab_srs_mastery',
   answerLog: 'vocab_answer_log',
   levelProgress: 'vocab_level_progress',
@@ -47,6 +49,8 @@ const LS_KEYS = {
   customMonsters: 'vocab_custom_monsters',
   customSentences: 'vocab_custom_sentences',
   wishList: 'vocab_wish_list',
+  skillProgress: 'vocab_skill_progress',
+  seededMistakes: 'vocab_seeded_mistakes',
 } as const;
 
 // ---- Helpers ----
@@ -64,6 +68,52 @@ function readLocal(key: string): any {
   }
 }
 
+// Every field written to the cloud document, with the localStorage key it mirrors. Kept as one
+// list so push and pull cannot drift apart (a key added to only one of them is silently lost).
+type SyncedField = Exclude<keyof CloudDocument, 'lastSyncedAt'>;
+const SYNC_FIELDS: [SyncedField, string, unknown][] = [
+  ['srsMastery', LS_KEYS.srsMastery, {}],
+  ['answerLog', LS_KEYS.answerLog, []],
+  ['levelProgress', LS_KEYS.levelProgress, {}],
+  ['userData', LS_KEYS.userData, {}],
+  ['streak', LS_KEYS.streak, {}],
+  ['achievements', LS_KEYS.achievements, []],
+  ['customMonsters', LS_KEYS.customMonsters, []],
+  ['customSentences', LS_KEYS.customSentences, []],
+  ['wishList', LS_KEYS.wishList, []],
+  ['skillProgress', LS_KEYS.skillProgress, {}],
+  ['seededMistakes', LS_KEYS.seededMistakes, []],
+];
+
+/** The cloud document as it would be pushed now (without the server timestamp). */
+export function buildPayload(): Omit<CloudDocument, 'lastSyncedAt'> {
+  const out: Record<string, unknown> = {};
+  for (const [field, key, empty] of SYNC_FIELDS) out[field] = readLocal(key) ?? empty;
+  return out as Omit<CloudDocument, 'lastSyncedAt'>;
+}
+
+/** Writes cloud values into localStorage for keys that are empty locally; returns whether any was. */
+export function restoreEmptyKeys(cloud: Partial<CloudDocument>): boolean {
+  let merged = false;
+  for (const [field, key] of SYNC_FIELDS) {
+    const cloudValue = cloud[field];
+    if (cloudValue == null) continue;
+
+    const local = readLocal(key);
+    const localEmpty =
+      local == null ||
+      (typeof local === 'object' && !Array.isArray(local) && Object.keys(local).length === 0) ||
+      (Array.isArray(local) && local.length === 0);
+
+    if (localEmpty) {
+      localStorage.setItem(key, JSON.stringify(cloudValue));
+      merged = true;
+      console.log(`[CloudSync] restored "${key}" from cloud`);
+    }
+  }
+  return merged;
+}
+
 // ---- Public API ----
 
 /**
@@ -78,18 +128,7 @@ export async function pushToCloud(): Promise<void> {
     const uid = getUid();
     if (!uid) return; // not signed in yet — skip silently
 
-    const payload: CloudDocument = {
-      srsMastery: readLocal(LS_KEYS.srsMastery) ?? {},
-      answerLog: readLocal(LS_KEYS.answerLog) ?? [],
-      levelProgress: readLocal(LS_KEYS.levelProgress) ?? {},
-      userData: readLocal(LS_KEYS.userData) ?? {},
-      streak: readLocal(LS_KEYS.streak) ?? {},
-      achievements: readLocal(LS_KEYS.achievements) ?? [],
-      customMonsters: readLocal(LS_KEYS.customMonsters) ?? [],
-      customSentences: readLocal(LS_KEYS.customSentences) ?? [],
-      wishList: readLocal(LS_KEYS.wishList) ?? [],
-      lastSyncedAt: serverTimestamp(),
-    };
+    const payload: CloudDocument = { ...buildPayload(), lastSyncedAt: serverTimestamp() };
 
     await setDoc(userDocRef(uid), payload, { merge: true });
     console.log('[CloudSync] pushed to cloud');
@@ -113,39 +152,8 @@ export async function pullFromCloud(): Promise<{ merged: boolean }> {
     const snap = await getDoc(userDocRef(uid));
     if (!snap.exists()) return { merged: false };
 
-    const cloud = snap.data() as CloudDocument;
-    let merged = false;
-
     // For each syncable key, write cloud data into localStorage only if local is empty
-    const pairs: [string, any][] = [
-      [LS_KEYS.srsMastery, cloud.srsMastery],
-      [LS_KEYS.answerLog, cloud.answerLog],
-      [LS_KEYS.levelProgress, cloud.levelProgress],
-      [LS_KEYS.userData, cloud.userData],
-      [LS_KEYS.streak, cloud.streak],
-      [LS_KEYS.achievements, cloud.achievements],
-      [LS_KEYS.customMonsters, cloud.customMonsters],
-      [LS_KEYS.customSentences, cloud.customSentences],
-      [LS_KEYS.wishList, cloud.wishList],
-    ];
-
-    for (const [key, cloudValue] of pairs) {
-      if (cloudValue == null) continue;
-
-      const local = readLocal(key);
-      const localEmpty =
-        local == null ||
-        (typeof local === 'object' && !Array.isArray(local) && Object.keys(local).length === 0) ||
-        (Array.isArray(local) && local.length === 0);
-
-      if (localEmpty) {
-        localStorage.setItem(key, JSON.stringify(cloudValue));
-        merged = true;
-        console.log(`[CloudSync] restored "${key}" from cloud`);
-      }
-    }
-
-    return { merged };
+    return { merged: restoreEmptyKeys(snap.data() as CloudDocument) };
   } catch (err) {
     console.warn('[CloudSync] pull failed:', err);
     return { merged: false };
