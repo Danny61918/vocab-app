@@ -25,6 +25,12 @@ const REQUIRED_STRING_FIELDS = [
   'questionType', 'importedAt',
 ];
 
+// Skill ids registered in services/mistakeBook/skills.ts (read by pattern, the file is TypeScript).
+const SKILLS_FILE = path.join(ROOT, 'services', 'mistakeBook', 'skills.ts');
+const KNOWN_SKILLS = new Set(
+  [...fs.readFileSync(SKILLS_FILE, 'utf8').matchAll(/\{\s*id:\s*'([^']+)'\s*,\s*domain:/g)].map((m) => m[1])
+);
+
 function fnv1a(str) {
   let hash = 0x811c9dc5;
   for (let i = 0; i < str.length; i++) {
@@ -100,6 +106,17 @@ function main() {
       }
       if (rec.questionType && !VALID_QUESTION_TYPES.has(rec.questionType)) {
         errors.push(`${where}: invalid questionType "${rec.questionType}"`);
+      }
+
+      // P9: optional fine-grained skills; every id must be registered in skills.ts
+      if (rec.skills !== undefined) {
+        if (!Array.isArray(rec.skills) || rec.skills.length === 0) {
+          errors.push(`${where}: "skills" present but not a non-empty array`);
+        } else {
+          for (const s of rec.skills) {
+            if (!KNOWN_SKILLS.has(s)) errors.push(`${where}: skill "${s}" is not registered in services/mistakeBook/skills.ts`);
+          }
+        }
       }
 
       if (rec.examDate && rec.questionText && rec.correctAnswer) {

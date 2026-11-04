@@ -173,3 +173,9 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - 限制：這次是用腳本代答，沒有真人在手機上實際操作（那是 GATE-B）。
 - 注意：種子字當天先被降箱（今天算「答錯過」），所以今天在錯題練習答對它們不會升箱，從明天起才算——這是套用「同日先錯再對不升箱」的結果。
 - commit：`P9/TASK-08: mistake drill screen and wiring`
+
+## [2026-11-04] P9/TASK-11 — 匯入流程固化（TASK-09、TASK-10 選做，暫不做）
+- 動作：`validate_import.cjs` 新增 `skills` 檢查（必須是非空陣列、每個 id 都登記在 `skills.ts`）；新增 `IMPORT_CHECKLIST.md`（寫錯題 → 種子字 → 變化題 → 驗證 → 盲解與審題 → 提交，含「不要改 APP_VERSION」）。
+- 驗證：目前 176 筆全過；故意把一筆技能改成未登記的 `V.NOPE`，驗證會擋下並指出 `2026-11-04.ts[5]`，還原後再次全過。
+- 決策：TASK-09（填空題單字邊界、易混字干擾項）與 TASK-10（弱點排行）為選做，沒有被要求，先不做，避免在第一版加範圍；之後有需要再開。
+- commit：`P9/TASK-11: import checklist and skills validation`
