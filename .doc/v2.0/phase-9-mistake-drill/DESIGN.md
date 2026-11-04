@@ -88,12 +88,8 @@ interface DrillItem {
   explanation: string;        // 中文，答錯時顯示
 }
 
-interface SkillProgress {
+interface SkillProgress extends BoxState { // BoxState 來自 services/leitner.ts（boxLevel、dueDate、consecutiveCorrectDays、lastCorrectDate、lastWrongDate…）
   key: string;                // skillId 或 confusionSetId
-  box: number;
-  dueDate: number;
-  consecutiveCorrectDays: number;
-  lastCorrectDate?: string;
   recent: { date: string; itemId: string; correct: boolean; ms: number; picked?: string }[]; // 最近 10 筆
 }
 ```

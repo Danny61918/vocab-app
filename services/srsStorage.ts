@@ -1,21 +1,14 @@
 import { vocabData, VocabWord } from './newVocabData';
+import { applyAnswer, BOX_INTERVALS, BoxState, DAY_MS, newBoxState } from './leitner';
 
 const SRS_STORAGE_KEY = 'vocab_srs_mastery';
 const LEVEL_PROGRESS_KEY = 'vocab_level_progress';
 
-export const DAY_MS = 24 * 60 * 60 * 1000;
+// Re-exported so existing importers keep working; the scheduling maths lives in leitner.ts.
+export { BOX_INTERVALS, DAY_MS };
 
-// Leitner box intervals in days; index === boxLevel (0..5)
-export const BOX_INTERVALS = [0, 1, 3, 7, 14, 30];
-
-export interface VocabMastery {
+export interface VocabMastery extends BoxState {
   wordId: string;
-  boxLevel: number;               // 0..5, Leitner box
-  intervalDays: number;           // derived: BOX_INTERVALS[boxLevel]
-  dueDate: number;                // timestamp of next review
-  consecutiveCorrectDays: number; // cross-day correct streak (same-day repeats count once)
-  lastCorrectDate?: string;       // 'YYYY-MM-DD', for cross-day judgement
-  lastReviewDate?: number;        // timestamp
 }
 
 export interface LevelProgress {
@@ -211,35 +204,8 @@ const DAILY_CAP = 15;
 export function updateWordMastery(wordId: string, isCorrect: boolean, deps?: SrsDeps) {
   const { now, today } = resolveDeps(deps);
   const data = loadMasteryData(deps);
-  const m: VocabMastery =
-    data[wordId] || {
-      wordId,
-      boxLevel: 0,
-      intervalDays: BOX_INTERVALS[0],
-      dueDate: now,
-      consecutiveCorrectDays: 0,
-    };
-
-  if (isCorrect) {
-    if (m.lastCorrectDate !== today) {
-      // cross-day correct: promote one box
-      m.consecutiveCorrectDays += 1;
-      m.boxLevel = Math.min(m.boxLevel + 1, 5);
-      m.intervalDays = BOX_INTERVALS[m.boxLevel];
-      m.dueDate = now + m.intervalDays * DAY_MS;
-      m.lastCorrectDate = today;
-    }
-    // same-day correct: no promotion (only lastReviewDate updates below)
-  } else {
-    // wrong: drop back to box 1, due tomorrow
-    m.boxLevel = 1;
-    m.consecutiveCorrectDays = 0;
-    m.intervalDays = BOX_INTERVALS[1];
-    m.dueDate = now + BOX_INTERVALS[1] * DAY_MS;
-  }
-
-  m.lastReviewDate = now;
-  data[wordId] = m;
+  const prev: VocabMastery = data[wordId] || { wordId, ...newBoxState(now) };
+  data[wordId] = applyAnswer(prev, isCorrect, now, today);
   saveMasteryData(data);
 }
 

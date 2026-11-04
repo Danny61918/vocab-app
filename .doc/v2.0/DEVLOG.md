@@ -96,3 +96,10 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - 決策：`DrillItem` 多一個選填 `clue`（noun/adj/verb/collocation/meaning），用來檢查「同一字至少兩種不同線索」；DESIGN §4 同步。
 - 問題：無。
 - commit：`P9/TASK-02: drill types and validator`
+
+## [2026-11-04] P9/TASK-03 — 排程純函式 applyAnswer
+- 動作：新增 `services/leitner.ts`（`BOX_INTERVALS`、`DAY_MS`、`BoxState`、`newBoxState`、`applyAnswer`）；`srsStorage.updateWordMastery` 改用 `applyAnswer`，`BOX_INTERVALS`／`DAY_MS` 由 srsStorage 轉出口，舊的 import 不用改；`VocabMastery extends BoxState`，新增選填 `lastWrongDate`。
+- 行為變更（有測試明寫）：**同一天先答錯再答對不再升箱**。原本答錯不更新 `lastCorrectDate`，同日再答對會從第 1 箱直接升到第 2 箱，錯題練習與單字複習連動後更容易發生。
+- 結果：58 通過 / 1 略過、tsc ✅；原有 30 個測試無回歸。
+- 問題：無。
+- commit：`P9/TASK-03: applyAnswer shared by vocab and skills`
