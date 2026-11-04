@@ -195,3 +195,10 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - 沒做（刻意）：「易混字組的字，干擾項改從同組挑」。填空題的句子（例如 "I had a ___ yesterday… coughing"）常常同組的字也放得進去，改成同組干擾項會製造第二個正確答案；這是錯題練習最怕的問題。同組辨析已經由錯題小挑戰負責。
 - 結果：108 通過、tsc ✅。
 - commit：`P9/TASK-09: cloze word boundary and health sentences`
+
+## [2026-11-04] P9/TASK-10 — 弱點排行（家長專區）
+- 動作：新增 `mistakeBook/weakness.ts`（`getSkillWeaknesses`：依錯題的 `skills` 統計考卷錯幾次、最近一次考卷日期、練習狀態［還沒練／練習中／已畢業］、最近答對率；排序為未畢業在前、錯得多在前、答對率低在前）；`MistakeBookView` 加分頁「錯題列表／弱點排行」，弱點排行底下列出容易搞混的字（由 `getConfusionPairs` 推算，如「cold 被選成 sick：2 次」）。只給家長看，不做週報。
+- 只統計有 `skills` 標記的錯題（2026-11-04 起）；更早的錯題不參與。
+- 測試 `weakness.test.ts`（5 項）；瀏覽器實測：家長工具 → 錯題本 → 弱點排行，顯示 12 個技能，練習狀態與答對率和剛才的練習結果一致；主畫面上的 10/28 大考橫幅確認已消失。
+- 結果：113 通過、tsc ✅、build ✅。
+- commit：`P9/TASK-10: weakness ranking tab`
