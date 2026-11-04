@@ -113,3 +113,16 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
   - 進度 key 為 `vocab_skill_progress`（TASK-07 同步到雲端）；每日計畫 `vocab_drill_plan` 是可重建的快取，不同步。
 - 問題：無。
 - commit：`P9/TASK-04: skill progress and daily drill planning`
+
+## [2026-11-04] P9/TASK-05 — 單字連動
+- 動作：
+  - `srsStorage.ts`：`VocabMastery` 加選填 `needsContext`／`contextCorrectDays`／`lastContextCorrectDate`；`updateWordMastery` 多第 4 參數 `source: 'recognition' | 'context'`（預設 recognition，舊呼叫不變）；有 `needsContext` 的字「看英文選中文」答對不升箱，句子題跨日答對 2 次解除（答錯歸零、同日先錯再對不算）；`SrsDeps` 加 `excludeWords`，`getDailyHuntWords` 會排除。
+  - `SmartDailyReview.tsx`：例句填空兩處呼叫改傳 `'context'`（其他不動）。
+  - 新增 `mistakeBook/vocabLink.ts`：`idsForWord`（同字全部 id）、`applySeedWordMistakes`（考卷錯字降箱 + 標 needsContext，每個 seed 只套用一次，記在 `vocab_seeded_mistakes`）、`applyDrillToVocab`、`answerDrill`（技能進度 + 單字一起更新）、`getPlannedTargetWords`、`getConfusionPairs`（由技能進度的 recent 推算，不另存）。新增 `drills/seedWords.ts`（2026-11-04：cold, sick, cough, still, traffic jam）。
+- 結果：90 通過 / 1 略過、tsc ✅；原有測試無回歸。
+- 決策：
+  - 排除清單用**注入**（`deps.excludeWords`）而不是 srsStorage 直接讀每日計畫，避免 srsStorage ↔ drillProgress 循環相依；呼叫端（TASK-08）傳 `getPlannedTargetWords()`。這個函式會順便建立並快取當天計畫，所以先做每日複習也排得掉。
+  - `vocab_seeded_mistakes` 是新的 localStorage key，TASK-07 一併登記到雲端同步。
+  - 句子題答錯只降「正解字」，干擾項不動；混淆對由 recent 的 `picked` 推算。
+- 風險：`needsContext` 字若沒有任何句子題可答就解除不了。對策：TASK-06 的題庫要讓 5 個種子字（cold, sick, cough, still, traffic jam）每個都有題。
+- commit：`P9/TASK-05: vocab linkage and needsContext`

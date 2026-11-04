@@ -9,7 +9,15 @@ export { BOX_INTERVALS, DAY_MS };
 
 export interface VocabMastery extends BoxState {
   wordId: string;
+  // P9: the word was missed on an exam and must be answered in a sentence before it counts again.
+  // While set, a correct "English -> Chinese" answer does not promote the box.
+  needsContext?: boolean;
+  contextCorrectDays?: number;      // cross-day correct sentence answers so far (cleared at CONTEXT_CLEAR_DAYS)
+  lastContextCorrectDate?: string;  // 'YYYY-MM-DD'
 }
+
+export type AnswerContext = 'recognition' | 'context';
+const CONTEXT_CLEAR_DAYS = 2;
 
 export interface LevelProgress {
   highestUnlockedLevel: number;
@@ -22,6 +30,7 @@ export interface SrsDeps {
   now?: number;
   today?: string;
   rng?: () => number;
+  excludeWords?: ReadonlySet<string>; // normalized words to keep out of today's hunt (P9: they appear in the mistake drill)
 }
 
 export function localYmd(ts: number): string {
@@ -201,11 +210,39 @@ const MAX_NEW = 5;
 const DAILY_CAP = 15;
 
 // Update mastery after answering. Cross-day gating prevents same-session "fake mastery".
-export function updateWordMastery(wordId: string, isCorrect: boolean, deps?: SrsDeps) {
+// `source` says how the word was asked: 'recognition' = English -> Chinese, 'context' = in a sentence
+// (cloze or mistake drill). Only sentence answers can clear a needsContext flag.
+export function updateWordMastery(
+  wordId: string,
+  isCorrect: boolean,
+  deps?: SrsDeps,
+  source: AnswerContext = 'recognition'
+) {
   const { now, today } = resolveDeps(deps);
   const data = loadMasteryData(deps);
   const prev: VocabMastery = data[wordId] || { wordId, ...newBoxState(now) };
-  data[wordId] = applyAnswer(prev, isCorrect, now, today);
+
+  if (isCorrect && source === 'recognition' && prev.needsContext) {
+    data[wordId] = { ...prev, lastReviewDate: now }; // recognition alone proves nothing for this word
+  } else {
+    const next = applyAnswer(prev, isCorrect, now, today);
+    if (prev.needsContext) {
+      if (!isCorrect) {
+        next.contextCorrectDays = 0;
+      } else if (prev.lastContextCorrectDate !== today && prev.lastWrongDate !== today) {
+        const n = (prev.contextCorrectDays ?? 0) + 1;
+        if (n >= CONTEXT_CLEAR_DAYS) {
+          delete next.needsContext;
+          delete next.contextCorrectDays;
+          delete next.lastContextCorrectDate;
+        } else {
+          next.contextCorrectDays = n;
+          next.lastContextCorrectDate = today;
+        }
+      }
+    }
+    data[wordId] = next;
+  }
   saveMasteryData(data);
 }
 
@@ -213,8 +250,11 @@ export function updateWordMastery(wordId: string, isCorrect: boolean, deps?: Srs
 export function getDailyHuntWords(deps?: SrsDeps): VocabWord[] {
   const { now, rng } = resolveDeps(deps);
   const mastery = loadMasteryData(deps);
+  const excluded = deps?.excludeWords;
 
-  const stats = vocabData.map((word) => ({ word, m: mastery[word.id] as VocabMastery | undefined }));
+  const stats = vocabData
+    .filter((word) => !excluded?.has(word.word.trim().toLowerCase()))
+    .map((word) => ({ word, m: mastery[word.id] as VocabMastery | undefined }));
 
   // Due words (have mastery and dueDate reached), most overdue first
   const due = stats

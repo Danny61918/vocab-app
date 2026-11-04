@@ -312,11 +312,11 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
     setClozeFeedback(isCorrect ? 'correct' : 'wrong');
     if (isCorrect) {
       setClozeCorrect(prev => prev + 1);
-      updateWordMastery(current.word.id, true);
+      updateWordMastery(current.word.id, true, undefined, 'context');
     } else {
       // P3/TASK-11d: guessing → skip demotion
       if (!isGuessing) {
-        updateWordMastery(current.word.id, false);
+        updateWordMastery(current.word.id, false, undefined, 'context');
       }
       setClozeMistakes(prev => ({
         ...prev,
