@@ -126,3 +126,21 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
   - 句子題答錯只降「正解字」，干擾項不動；混淆對由 recent 的 `picked` 推算。
 - 風險：`needsContext` 字若沒有任何句子題可答就解除不了。對策：TASK-06 的題庫要讓 5 個種子字（cold, sick, cough, still, traffic jam）每個都有題。
 - commit：`P9/TASK-05: vocab linkage and needsContext`
+
+## [2026-11-04] P9/TASK-06 — 題庫內容（等 GATE-A）
+- 動作：
+  - 新增 `data/2026-11-04.ts`（今天兩頁的 10 題錯題，含 `skills`；id 用 `idUtil` 同一公式算出，`validate_import.cjs` 通過：13 檔 176 筆），並登記進 `mistakeBook/index.ts`。
+  - 新增 `drills/2026-11-04.ts`：35 題 = 文法 17（I/you 2、第三人稱 2、複數主詞 3、合併主詞 2、否定 2、does 問句 2、簡答 2、選正確句 2）+ 單字 18（cs.health 七個字各 2 句、still 2、traffic jam 2）；登記進 `drills/index.ts`。
+  - `drills.test.ts` 加整庫檢查：驗證全過、`seedMistakeId` 都存在、錯題 `skills` 都登記、5 個種子字各有 ≥ 2 題、題數落在預期範圍。
+- 設計：每題只有一個可接受答案——干擾項不是詞性放不進空格，就是和句意矛盾；「也說得通」的字（sick/dizzy、cold/cough…）寫進 `alsoFits`，不當選項。原題兩個歧義題（P1-1、P2-3）沒有原樣使用。
+- 盲解：Gemini 額度用完（429），改用一個完全沒看過答案的子代理盲解 35 題；結果 35 題都只認出標準答案、沒有任何備註或多解。
+- 結果：100 通過、tsc ✅。
+- 限制（要讓家長知道）：盲解者是另一個 Claude 子代理，不是不同廠牌的模型，可能和我有同樣的盲點；所以仍要家長人工過目（GATE-A）。
+- commit：`P9/TASK-06: drill content for 2026-11-04`
+
+## [2026-11-04] P9/TASK-07 — 雲端備份
+- 動作：`cloudSync.ts` 新增 `skillProgress`（`vocab_skill_progress`）、`seededMistakes`（`vocab_seeded_mistakes`）；把 push 與 pull 兩份欄位清單合併成單一 `SYNC_FIELDS`（新增 key 不會再只登記一處）；匯出 `LS_KEYS`、`buildPayload`、`restoreEmptyKeys` 供測試。行為不變：本機有資料就不被雲端覆蓋。
+- 測試 `cloudSync.test.ts`（5 項，mock firebase）：key 已登記、每個 key 都在 payload、往返還原、不覆蓋本機、舊雲端文件缺新欄位也能還原。
+- Firestore 規則只做 uid 限制，不限欄位，不用改。
+- 結果：100 通過、tsc ✅。
+- commit：`P9/TASK-07: sync skill progress to cloud`

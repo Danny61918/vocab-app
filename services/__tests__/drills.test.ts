@@ -3,6 +3,9 @@ import { ALL_DRILLS } from '../mistakeBook/drills';
 import { DrillItem } from '../mistakeBook/drills/types';
 import { validateDrillBank, validateDrillItem } from '../mistakeBook/drills/validate';
 import { ALL_CONFUSION_SETS } from '../mistakeBook/confusionSets';
+import { ALL_MISTAKES } from '../mistakeBook';
+import { getSkill } from '../mistakeBook/skills';
+import { SEED_WORD_MISTAKES } from '../mistakeBook/drills/seedWords';
 
 const good: DrillItem = {
   id: 'seed-a#v1',
@@ -114,8 +117,38 @@ describe('ALL_DRILLS 實際題庫', () => {
     }
   });
 
-  // 題庫內容在 TASK-06 才寫入；空題庫時略過整庫檢查。
-  it.skipIf(ALL_DRILLS.length === 0)('the bank as a whole passes validation', () => {
+  it('the bank as a whole passes validation', () => {
+    expect(ALL_DRILLS.length).toBeGreaterThan(0);
     expect(validateDrillBank(ALL_DRILLS)).toEqual([]);
+  });
+
+  it('every seedMistakeId points at a real mistake record', () => {
+    const ids = new Set(ALL_MISTAKES.map((m) => m.id));
+    for (const item of ALL_DRILLS) {
+      if (item.seedMistakeId) expect(ids.has(item.seedMistakeId), item.id).toBe(true);
+    }
+  });
+
+  it('every skill tag on a mistake record is registered', () => {
+    for (const m of ALL_MISTAKES) {
+      for (const s of m.skills ?? []) expect(getSkill(s), `${m.id}: ${s}`).toBeDefined();
+    }
+  });
+
+  it('every word that is flagged needsContext has at least 2 sentence items to clear it', () => {
+    for (const seed of SEED_WORD_MISTAKES) {
+      for (const word of seed.words) {
+        const n = ALL_DRILLS.filter((i) => i.targetWords?.includes(word)).length;
+        expect(n, `${seed.id}: ${word}`).toBeGreaterThanOrEqual(2);
+      }
+    }
+  });
+
+  it('keeps a reasonable size: 15-20 grammar items and 16-20 word items', () => {
+    const vocab = ALL_DRILLS.filter((i) => i.targetWords && i.targetWords.length > 0);
+    expect(ALL_DRILLS.length - vocab.length).toBeGreaterThanOrEqual(15);
+    expect(ALL_DRILLS.length - vocab.length).toBeLessThanOrEqual(20);
+    expect(vocab.length).toBeGreaterThanOrEqual(16);
+    expect(vocab.length).toBeLessThanOrEqual(20);
   });
 });
