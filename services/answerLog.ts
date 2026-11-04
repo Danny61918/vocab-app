@@ -3,7 +3,7 @@ import { GameType } from '../types';
 
 // Which dataset the word/question came from. 'grammar' ids are GrammarQuestion.id
 // (string), not a vocab Word — same composite-key bridge as 'srs' vs 'server', see ADR-002.
-export type AnswerSource = 'srs' | 'server' | 'grammar';
+export type AnswerSource = 'srs' | 'server' | 'grammar' | 'drill'; // 'drill' ids are DrillItem.id (P9 mistake drill)
 
 export type AnswerGameType =
   | 'multiple_choice'

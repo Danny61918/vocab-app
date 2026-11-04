@@ -14,6 +14,9 @@ import { getAllSentences, tryCreateCloze, findServerAudioId } from '../services/
 import { playAudio, preloadAudio } from '../services/audioPlayer';
 import { logAnswer, makeWordKey } from '../services/answerLog';
 import { awardCoins } from '../services/gamification';
+import { getRemainingDrill } from '../services/mistakeBook/drillProgress';
+import { getPlannedTargetWords } from '../services/mistakeBook/vocabLink';
+import { MistakeDrill } from './MistakeDrill';
 import confetti from 'canvas-confetti';
 
 interface Props {
@@ -33,6 +36,7 @@ type Phase = 'intro' | 'learn' | 'quiz' | 'cloze' | 'summary';
 
 export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) => {
   const [phase, setPhase] = useState<Phase>('intro');
+  const [showDrill, setShowDrill] = useState(false); // P9: mistake drill follows the daily review
   const [wordsList, setWordsList] = useState<VocabWord[]>([]);
 
   // ── Learn Phase ──
@@ -74,7 +78,8 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   }, []);
 
   useEffect(() => {
-    const words = mode === 'level' ? getWordsForLevel(levelId || 1) : getDailyHuntWords();
+    // Words that appear in today's mistake drill are skipped here so a word never shows up twice in one day.
+    const words = mode === 'level' ? getWordsForLevel(levelId || 1) : getDailyHuntWords({ excludeWords: getPlannedTargetWords() });
     setWordsList(words);
     preloadAudio(words.flatMap((w) => {
       const audioId = findServerAudioId(w.word);
@@ -370,6 +375,10 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   // RENDERS
   // ════════════════════════════════
 
+  if (showDrill) {
+    return <MistakeDrill onClose={onClose} />;
+  }
+
   // ── Intro ──
   if (phase === 'intro') {
     return (
@@ -607,6 +616,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   }
 
   // ── Summary ──
+  const drillLeft = mode === 'daily' ? getRemainingDrill().length : 0;
   return (
     <div className="flex flex-col items-center justify-center min-h-[70vh] p-8 text-center bg-yellow-50 rounded-3xl shadow-xl border-8 border-yellow-400">
       <div className="text-8xl mb-8 animate-bounce">🏆</div>
@@ -624,6 +634,14 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
       <p className="text-2xl text-amber-700 mb-8 font-bold bg-amber-50 px-6 py-3 rounded-2xl border-2 border-amber-200">
         🪙 獲得金幣：+{(quizCorrectCount + clozeCorrect) * 10}
       </p>
+      {drillLeft > 0 && (
+        <button
+          onClick={() => setShowDrill(true)}
+          className="mb-6 bg-amber-500 hover:bg-amber-600 text-white text-3xl font-black py-5 px-12 border-b-8 border-amber-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"
+        >
+          🛠️ 接著練錯題（{drillLeft} 題）
+        </button>
+      )}
       <button
         onClick={onClose}
         className="bg-yellow-500 hover:bg-yellow-600 text-white text-4xl font-black py-6 px-20 border-b-8 border-yellow-700 rounded-[2rem] active:border-b-0 active:translate-y-2 transition-all shadow-xl"

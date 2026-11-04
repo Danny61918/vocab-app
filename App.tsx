@@ -16,6 +16,9 @@ import { TutorialGuide } from './components/TutorialGuide';
 import PracticeView from './components/PracticeView';
 import TopicReviewChallenge from './components/TopicReviewChallenge';
 import MistakeBookView from './components/MistakeBookView';
+import MistakeDrill from './components/MistakeDrill';
+import { getRemainingDrill } from './services/mistakeBook/drillProgress';
+import { applySeedWordMistakes } from './services/mistakeBook/vocabLink';
 import { getStreak, getUserData } from './services/gamification';
 import { getActiveExamReviewSets, getWordsForExamSet, getWordsForDayGroup, ExamReviewSet } from './services/examReviewSets';
 import { TOPIC_REVIEW_CHAPTERS } from './services/topicReview';
@@ -26,7 +29,7 @@ const APP_VERSION = '7.1'; // Level 6 Week 19-20 (2026/6/15~6/23) 單字更新 &
 
 // MENU = 小孩主畫面（練習入口 + 大考快速開始）；PARENT_TOOLS / CUSTOM_TRAINING
 // 是家長專區（分析、單字庫管理、錯題本、詳細練習設定），從 MENU 的齒輪圖示進入。
-type ViewState = 'MENU' | 'PARENT_TOOLS' | 'CUSTOM_TRAINING' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP' | 'PRACTICE' | 'TOPIC_REVIEW' | 'MISTAKE_BOOK';
+type ViewState = 'MENU' | 'PARENT_TOOLS' | 'CUSTOM_TRAINING' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP' | 'PRACTICE' | 'TOPIC_REVIEW' | 'MISTAKE_BOOK' | 'MISTAKE_DRILL';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -34,11 +37,14 @@ function App() {
   // P6: boot cloud sync (anonymous auth + restore empty keys from cloud)
   useEffect(() => {
     bootCloudSync().then(({ merged }) => {
+      // P9: demote words missed on exam papers. Runs after the cloud restore so an empty device
+      // is not "filled" with a few demoted words before its backup has been pulled.
+      applySeedWordMistakes();
       if (merged) {
         console.log('[App] Cloud data merged — refreshing state');
-        // Force re-render so views pick up restored data
-        setCurrentView((v) => v);
       }
+      // Force re-render so views pick up restored / updated data
+      setCurrentView((v) => v);
     });
   }, []);
 
@@ -194,6 +200,8 @@ function App() {
         return <TopicReviewChallenge onBack={() => setCurrentView('MENU')} />;
       case 'MISTAKE_BOOK':
         return <MistakeBookView onBack={() => setCurrentView('PARENT_TOOLS')} />;
+      case 'MISTAKE_DRILL':
+        return <MistakeDrill onClose={() => setCurrentView('MENU')} />;
       case 'PARENT_TOOLS': {
         const toolCards: { view: ViewState; icon: React.ReactNode; title: string; desc: string; badge?: string; iconBg: string; iconColor: string }[] = [
           { view: 'CUSTOM_TRAINING', icon: <Settings size={22} />, title: '自訂特訓中心', desc: '設定題型、難度、時間、單字範圍', iconBg: 'bg-slate-100', iconColor: 'text-slate-600' },
@@ -365,6 +373,7 @@ function App() {
       default: {
         const streak = getStreak();
         const userData = getUserData();
+        const drillLeft = getRemainingDrill().length;
         return (
           <div className="max-w-4xl mx-auto p-6 animate-fade-in pb-20">
             {/* Header */}
@@ -515,6 +524,19 @@ function App() {
                               <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">⚡ 文法特訓</span>
                           </div>
                           <h3 className="text-2xl font-black mb-2 drop-shadow-md">文法大挑戰</h3>
+                      </div>
+                  </button>
+
+                  {/* P9: mistake drill — today's leftover questions from the quiz mistakes */}
+                  <button onClick={() => setCurrentView('MISTAKE_DRILL')} className="relative overflow-hidden bg-gradient-to-br from-amber-400 to-orange-600 text-white p-6 rounded-[2rem] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-orange-800">
+                      <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Target size={100} /></div>
+                      <div className="flex-1 text-left relative z-10">
+                          <div className="flex items-center gap-2 mb-2">
+                              <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">🛠️ 錯題練習</span>
+                              {drillLeft > 0 && <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black text-white shadow-inner">今天 {drillLeft} 題</span>}
+                          </div>
+                          <h3 className="text-2xl font-black mb-2 drop-shadow-md">錯題小挑戰</h3>
+                          <p className="text-orange-100 text-sm font-bold">{drillLeft > 0 ? '把會搞混的地方練熟' : '今天都完成了'}</p>
                       </div>
                   </button>
 

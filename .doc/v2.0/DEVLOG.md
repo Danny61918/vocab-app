@@ -157,3 +157,19 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - 結果：100 通過、tsc ✅。
 - 備註：審題與盲解的工具都是 Claude 系列，Gemini 額度用完時沒有跨廠牌的第二意見。
 - commit：`P9/TASK-06b: fix drill items after audit`
+
+## [2026-11-04] P9/TASK-08 — 練習畫面與串接
+- 先查（待查項目已結案）：`parentAnalytics` 只依 `gameType` 與日期彙總（`errorRateByGameType`、`diagnoseByGameType`、`dailyStudyMinutes`），不依 `AnswerSource` 分流；所以新增 `AnswerSource 'drill'` 只是型別擴充，不破壞任何統計。作答時文法題記為 `grammar`、單字句子題記為 `sentence_cloze`，家長的弱點診斷與學習時間會自然納入。
+- 動作：
+  - `components/MistakeDrill.tsx`：開始畫面（題數、約幾分鐘）→ 逐題作答 → 答對 0.9 秒自動下一題、答錯顯示正確答案與中文解釋後按「知道了」→ 結算（答對題數、金幣 +10／題、紙花）；無題時顯示「今天都完成了」。答錯時句子填的是正確答案，不顯示錯誤句子。中途離開，剩下的題目下次還在。
+  - `SmartDailyReview.tsx`：每日單字用 `getPlannedTargetWords()` 排除今天錯題練習會出現的字；結算畫面若今天還有題，顯示「接著練錯題（N 題）」。
+  - `App.tsx`：主畫面新卡片「錯題小挑戰」（顯示今天剩幾題）；`applySeedWordMistakes()` 在雲端還原之後才執行（避免新裝置的空資料被這幾個降箱字「填滿」而擋住雲端還原）。
+  - `answerLog.ts`：`AnswerSource` 加 `'drill'`；測試確認含 `:`、`#` 的 id 往返正確。
+- 瀏覽器實測（Vite dev server，清空 localStorage 後）：
+  - 主畫面出現卡片與「今天 8 題」；種子字套用（`vocab_seeded_mistakes` = 2026-11-04）。
+  - 完整做完 8 題（故意答錯 1 題：看到解釋）→ 7/8、+70 金幣；技能進度、單字 `needsContext`（cold/sick/cough/still/traffic jam 共 6 個 id 全部降到第 1 箱）、作答紀錄（drill:… 的 grammar／sentence_cloze）都正確寫入；回主畫面顯示「今天都完成了」。
+  - 每日複習 15 字與計畫中的 cold/sick/headache/still 沒有重疊；跑完整個每日複習（學習→選中文→填空 12/12）後結算畫面出現「接著練錯題（8 題）」，點進去可開始。
+  - 手機寬度（375px）版面正常；console 沒有錯誤。
+- 限制：這次是用腳本代答，沒有真人在手機上實際操作（那是 GATE-B）。
+- 注意：種子字當天先被降箱（今天算「答錯過」），所以今天在錯題練習答對它們不會升箱，從明天起才算——這是套用「同日先錯再對不升箱」的結果。
+- commit：`P9/TASK-08: mistake drill screen and wiring`

@@ -53,6 +53,12 @@ describe('E2E-log-2 composite word key', () => {
     expect(parseWordKey('server:802')).toEqual({ source: 'server', id: '802' });
     expect(parseWordKey('srs:knight_a1b2c')).toEqual({ source: 'srs', id: 'knight_a1b2c' });
   });
+
+  it('P9: drill ids round-trip even when the id itself contains ":" and "#"', () => {
+    const key = makeWordKey('drill', 'cs.health:headache#v1');
+    expect(key).toBe('drill:cs.health:headache#v1');
+    expect(parseWordKey(key)).toEqual({ source: 'drill', id: 'cs.health:headache#v1' });
+  });
 });
 
 describe('E2E-log-3 ring buffer caps at 2000', () => {
