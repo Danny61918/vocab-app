@@ -3743,5 +3743,25 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "When the teacher called my name, I stood up at once.",
         "Mom told us to wash our hands at once.",
         "The baby stopped crying at once when she heard the song."
+    ],
+    1090: [
+        "Ben ate too much, and now his stomach hurts. He has a stomachache.",
+        "Ben ate five hot dogs and felt pain in his belly. The doctor said it was a stomachache."
+    ],
+    1091: [
+        "Remember to cover your mouth when you cough.",
+        "Grandpa has a bad cough and cannot sleep well."
+    ],
+    1092: [
+        "Mia stayed home from school because she caught a cold.",
+        "I have a runny nose and I keep sneezing. I think I have a cold."
+    ],
+    1095: [
+        "Ann's throat hurts when she eats or talks. She has a sore throat.",
+        "My throat is red and it hurts when I talk. I have a sore throat."
+    ],
+    1098: [
+        "Tom is sick today, so he is staying in bed and taking medicine.",
+        "If you feel sick, tell your teacher and go to the nurse."
     ]
 };

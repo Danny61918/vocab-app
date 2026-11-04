@@ -102,29 +102,34 @@ export interface ClozeData {
  * Returns null if the word (or its common inflections) cannot be found in the sentence.
  */
 export function tryCreateCloze(sentence: string, word: string): ClozeData | null {
+  // Vocab entries like "step(s)" or "raindrop(s)" mean "the word, optionally plural"
+  const base = word.replace(/\(s\)\s*$/i, '').trim();
   // Escape regex special characters in the word
-  const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escaped = base.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-  // 1. Exact match (case-insensitive) — handles phrases and exact base forms
-  const exactRegex = new RegExp(escaped, 'i');
+  // Both matches must start at a word boundary, written without a look-behind so older Safari
+  // versions can still build the regex ("$1" keeps the character in front of the match).
+
+  // 1. Exact match (case-insensitive) — handles phrases and exact base forms.
+  //    It must not end inside another word: "cough" is not found in "coughing" (that would
+  //    blank to "_____ing"), and "cold" is not found in "scolded".
+  const exactRegex = new RegExp(`(^|[^A-Za-z])${escaped}(?![A-Za-z])`, 'i');
   if (exactRegex.test(sentence)) {
     return {
-      blankedSentence: sentence.replace(exactRegex, '_____'),
+      blankedSentence: sentence.replace(exactRegex, '$1_____'),
       answer: word,
     };
   }
 
-  // 2. Word-boundary prefix match for single words — handles plurals/verb inflections
-  //    e.g. "knight" matches "knights", "juggle" matches "juggling"
-  if (!word.includes(' ')) {
-    const prefixRegex = new RegExp(`\\b${escaped}\\w*`, 'i');
-    const m = sentence.match(prefixRegex);
-    if (m) {
-      return {
-        blankedSentence: sentence.replace(prefixRegex, '_____'),
-        answer: word,
-      };
-    }
+  // 2. Inflected form — handles plurals/verb inflections of words and phrases, and blanks the
+  //    whole inflected word so no "-s"/"-ing" is left behind to give the form away.
+  //    e.g. "knight" matches "knights", "in-line skate" matches "in-line skates"
+  const inflectedRegex = new RegExp(`(^|[^A-Za-z])${escaped}[A-Za-z]+`, 'i');
+  if (inflectedRegex.test(sentence)) {
+    return {
+      blankedSentence: sentence.replace(inflectedRegex, '$1_____'),
+      answer: word,
+    };
   }
 
   return null;

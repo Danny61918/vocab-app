@@ -179,3 +179,19 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - 驗證：目前 176 筆全過；故意把一筆技能改成未登記的 `V.NOPE`，驗證會擋下並指出 `2026-11-04.ts[5]`，還原後再次全過。
 - 決策：TASK-09（填空題單字邊界、易混字干擾項）與 TASK-10（弱點排行）為選做，沒有被要求，先不做，避免在第一版加範圍；之後有需要再開。
 - commit：`P9/TASK-11: import checklist and skills validation`
+
+## [2026-11-04] 關閉大考快速入口（家長要求：大考結束，CLIL 持續更新）
+- 動作：`ExamReviewSet` 加選填 `closed`；10/28 大考複習設為 `closed: true`，`getActiveExamReviewSets` 排除。主畫面橫幅與「綜合每日挑戰」裡的大考選項（兩處都用這個函式）一起消失；資料保留在檔案裡，之後新大考只要新增一筆。
+- CLIL（`TOPIC_REVIEW`）完全沒動，之後仍可照原流程新增章節。
+- 測試 `examReviewSets.test.ts`：closed 的不顯示；沒 closed 的在寬限期（+7 天）內顯示、之後自動過期。
+- commit：`Close the finished 10/28 exam review entry`
+
+## [2026-11-04] P9/TASK-09 — 填空題小修（部分完成）
+- 做了：
+  1. `tryCreateCloze` 精確比對加單字邊界：cough 不再在 "coughing" 裡被挖成 `_____ing`，cold 不會在 "scolded" 裡被找到。不使用 look-behind（舊版 Safari 不支援）。
+  2. 變化形（複數、-ing、-s）改成整個字一起挖掉，不再留下 `_____s`；同時擴到片語與 "step(s)"、"raindrop(s)" 這類寫法。
+  3. 把 5 個健康字（cold, cough, sick, stomachache, sore throat）各補 2 句已驗證的例句到 `EXTRA_SENTENCES`（之前 serverData 這些字只有 cold/cough 共用的一句，其餘幾乎沒有）；每句該字只出現一次，不洩漏答案。dizzy、headache 原本就有例句。
+- 影響量測（全部單字庫共 3434 句，舊／新邏輯對照）：原本 165 句挖出來帶著黏住的尾巴（如 `_____s`、`_____ing`），現在全部乾淨；新增 9 句可用；只有 5 句原本就挖壞的（"ride the subway to..." 變成 `_____rk`、"listen to..." 變成 `_____assical` 等）不再出題，沒有其他字失去填空題。
+- 沒做（刻意）：「易混字組的字，干擾項改從同組挑」。填空題的句子（例如 "I had a ___ yesterday… coughing"）常常同組的字也放得進去，改成同組干擾項會製造第二個正確答案；這是錯題練習最怕的問題。同組辨析已經由錯題小挑戰負責。
+- 結果：108 通過、tsc ✅。
+- commit：`P9/TASK-09: cloze word boundary and health sentences`
