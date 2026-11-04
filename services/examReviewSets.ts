@@ -32,6 +32,10 @@ export interface ExamReviewSet {
   // invent a grouping from each word's unrelated historical serverData date
   // (that caused a bug once already, see git history).
   dayGroups?: ExamReviewDayGroup[];
+  // Set once the exam is over and the practice entry should disappear right away instead of
+  // waiting out the grace period below. The set stays in this file as a record (and to bring
+  // back by deleting this flag); a new exam just gets a new entry.
+  closed?: boolean;
 }
 
 export const EXAM_REVIEW_SETS: ExamReviewSet[] = [
@@ -39,6 +43,7 @@ export const EXAM_REVIEW_SETS: ExamReviewSet[] = [
     id: 'exam-2026-10-28',
     label: '10/28 大考複習',
     examDate: '2026-10-28',
+    closed: true, // exam finished; entry turned off on 2026-11-04 at the parent's request
     wordIds: [897,974,931,1003,735,951,453,45,866,898,338,233,977,431,401,937,474,939,940,763,1004,941,928,259,895,926,41,945,950,109,169,971,955,915,925,873,965,54,919,675,989,207,164,582,914,991,449,975,958,470,527,970,922,986,1005,1008,874,1006,1007,70,901,927,862,863,635,934,861,875,202,881,946,899,949,973,117,956,961,959,860,872,1009,1010,1011,1012,1013,1014,1015,1016,1017,1018,1019,1020,1021,1022,1023,1024,1025,1026,1027,1028,1029,1030,1031,1032,1033,1034,1035,1036,1037,1038,1039,1040,1041,1042,1043,1044,1045,1046,1047,1048,1049,1050,1051,1052,1053,1054,1055,1056,1057,1058,1059,1060,1061,1062,1063,1064,1065,1066,1067,1068,1069,1070,1071,1072,1073,1074,1075,1076,1077,1078,1079,1080,1081,1082,1083,1084,1085,1086,1087,1088],
     dayGroups: [
       {
@@ -90,7 +95,7 @@ export function getActiveExamReviewSets(today: string = new Date().toISOString()
   const cutoff = new Date(today);
   cutoff.setDate(cutoff.getDate() - EXAM_SET_GRACE_DAYS);
   const cutoffStr = cutoff.toISOString().slice(0, 10);
-  return EXAM_REVIEW_SETS.filter((s) => s.examDate >= cutoffStr);
+  return EXAM_REVIEW_SETS.filter((s) => !s.closed && s.examDate >= cutoffStr);
 }
 
 function wordsForIds(ids: number[]): Word[] {
