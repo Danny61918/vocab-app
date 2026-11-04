@@ -103,3 +103,13 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - 結果：58 通過 / 1 略過、tsc ✅；原有 30 個測試無回歸。
 - 問題：無。
 - commit：`P9/TASK-03: applyAnswer shared by vocab and skills`
+
+## [2026-11-04] P9/TASK-04 — 技能進度與每日出題
+- 動作：新增 `services/mistakeBook/drillProgress.ts`：`SkillProgress`、`recordDrillAnswer`（技能與易混字組各自 `applyAnswer`，recent 最多 10 筆）、`isGraduated`（跨 3 天、3 題不同、中間不得答錯）、`getTodayDrill`／`getRemainingDrill`（每日 ≤ 8、同主技能 ≤ 2、到期才出、沒出過的優先、答錯後降一級難度、文法與單字技能交錯、當天計畫快取於 `vocab_drill_plan`）、`presentOptions`（選項打亂）。測試 `drillProgress.test.ts`（17 項）。
+- 結果：75 通過 / 1 略過、tsc ✅。
+- 決策：
+  - 「到期」以**日曆日**比較（`localYmd(dueDate) <= today`），不用時間戳，否則孩子今天比昨天早做就會「還沒到期」。
+  - 出題**廣度優先**（每個技能先 1 題，再補第 2 題），診斷面較廣；「同技能」以 `skillIds[0]` 為主技能計算。
+  - 進度 key 為 `vocab_skill_progress`（TASK-07 同步到雲端）；每日計畫 `vocab_drill_plan` 是可重建的快取，不同步。
+- 問題：無。
+- commit：`P9/TASK-04: skill progress and daily drill planning`
