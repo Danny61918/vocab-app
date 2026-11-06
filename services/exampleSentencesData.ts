@@ -3763,5 +3763,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
     1098: [
         "Tom is sick today, so he is staying in bed and taking medicine.",
         "If you feel sick, tell your teacher and go to the nurse."
+    ],
+    1125: [
+        "My grandma gives me sweets when I visit her house.",
+        "Too many sweets can make your teeth bad.",
+        "Sam likes sweets, but he also eats fruit every day.",
+        "We bought some sweets for the party tonight.",
+        "The shop on the corner sells sweets of many colors."
+    ],
+    1126: [
+        "Can you give me a lift to the train station?",
+        "It's raining hard, so Mom will give us a ride to school today.",
+        "Uncle Joe often gives his neighbor a ride to work.",
+        "Thank you for giving me a lift home after the party.",
+        "Could you give my sister a ride to the library this afternoon?"
+    ],
+    1127: [
+        "I am so excited because we are going to the zoo tomorrow.",
+        "The little girl was excited to open her birthday present.",
+        "Are you excited about the school trip next week?",
+        "Tom felt excited when he heard the good news.",
+        "The excited fans shouted when their team scored a goal."
+    ],
+    1128: [
+        "Eating fruit and vegetables keeps you healthy.",
+        "My grandpa is old, but he is still very healthy.",
+        "A healthy breakfast gives you energy for the whole morning.",
+        "Going to bed early is a healthy habit.",
+        "The doctor said the baby is strong and healthy."
+    ],
+    1129: [
+        "Good food and enough sleep are important for your health.",
+        "Eating too much candy is bad for your health.",
+        "My grandma goes for a walk every day to take care of her health.",
+        "The nurse asked me some questions about my health.",
+        "Your health is more important than a game."
+    ],
+    1130: [
+        "The star is at the top of the Christmas tree.",
+        "Write your name at the top of the page.",
+        "We took a photo at the top of the hill.",
+        "The cat is sitting at the top of the stairs.",
+        "Her team is at the top of the list this week."
+    ],
+    1131: [
+        "It is important to wash your hands before you eat.",
+        "Family is the most important thing to me.",
+        "The teacher said the test is very important, so we studied hard.",
+        "Sleep is important for growing children.",
+        "Please remember this important rule: never talk to strangers."
+    ],
+    1132: [
+        "I ate a small portion of rice because I wasn't very hungry.",
+        "The restaurant serves a big portion of noodles.",
+        "Mom cut the cake and gave each child a portion.",
+        "Could I have a larger portion of fries, please?",
+        "One portion of fruit a day is good for you."
+    ],
+    1133: [
+        "Chips and soda are junk food.",
+        "Eating too much junk food can make you feel tired.",
+        "Our school doesn't sell junk food in the cafeteria.",
+        "Ben tries not to eat junk food before dinner.",
+        "Instead of junk food, I like to eat apples and nuts."
+    ],
+    1134: [
+        "An adult must go with the children on the trip.",
+        "Ask an adult for help if you cannot open the door.",
+        "My uncle is an adult, so he can drive a car.",
+        "Tickets for adults cost more than tickets for children.",
+        "Most adults go to work from Monday to Friday."
+    ],
+    1135: [
+        "You look tired. Please sit down and rest for a while.",
+        "The doctor told my dad to rest at home for three days.",
+        "After running, the boys rested under a big tree.",
+        "Our dog likes to rest on the sofa in the afternoon.",
+        "Let's rest for ten minutes before we keep walking."
+    ],
+    1136: [
+        "Be quiet! The teacher is about to speak.",
+        "I was about to go out when the phone rang.",
+        "The baby is about to cry, so please give her the toy.",
+        "Hurry up! The concert is about to begin.",
+        "The students are about to go home after the last class."
+    ],
+    1137: [
+        "It's cold outside, so I want to stay in bed this morning.",
+        "When you are sick, you should stay in bed and rest.",
+        "My brother likes to stay in bed until noon on Sundays.",
+        "Don't stay in bed too long, or you will be late for school.",
+        "She stayed in bed all day because she had a fever."
+    ],
+    1138: [
+        "Do we have enough chairs for all the guests?",
+        "I am old enough to ride a bike by myself.",
+        "There is enough food for everyone at the party.",
+        "He didn't get enough sleep last night, so he feels tired.",
+        "Two hours is enough time to finish the homework."
+    ],
+    1139: [
+        "Regular exercise helps us stay healthy and gives us more energy.",
+        "I exercise for thirty minutes after school every day.",
+        "Swimming is a good exercise for the whole body.",
+        "The doctor says we should exercise at least three times a week.",
+        "Jenny does morning exercise in the park with her grandma."
+    ],
+    1140: [
+        "I agree with you. That is a great idea.",
+        "Do you agree that we should go to the beach?",
+        "My parents agreed to let me have a dog.",
+        "The two friends couldn't agree on which movie to watch.",
+        "All the students agree that the new teacher is kind."
+    ],
+    1141: [
+        "Pizza is popular with children all over the world.",
+        "That singer is very popular among teenagers.",
+        "The park is popular on weekends because it has a big playground.",
+        "Soccer is a popular sport in many countries.",
+        "Why is this toy so popular this year?"
+    ],
+    1142: [
+        "Lily was absent from class yesterday because she had a stomachache.",
+        "Two students are absent from the meeting today.",
+        "Please tell the teacher if you will be absent from school.",
+        "He has never been absent from practice.",
+        "Who was absent from the party last night?"
+    ],
+    1143: [
+        "Our family goes to the beach every summer holiday.",
+        "Christmas is a happy holiday for many people.",
+        "There is no school on a national holiday.",
+        "What are you going to do during the holiday?",
+        "Mom cooks a big dinner on every holiday."
+    ],
+    1144: [
+        "Don't scare the cat. It is sleeping.",
+        "The thunder scared the little boy.",
+        "My brother likes to scare me with a toy spider.",
+        "The ghost story scared all of the children.",
+        "The dog was scared by the loud noise."
+    ],
+    1145: [
+        "We watched the fireworks by the river on New Year's Eve.",
+        "The fireworks were red, blue, and gold.",
+        "Many people go to the park to see the fireworks show.",
+        "My dog hides under the bed when he hears fireworks.",
+        "The children shouted happily when the fireworks began."
+    ],
+    1146: [
+        "Take an umbrella if you go out in the rain.",
+        "Sam likes to go out in the rain and jump in the puddles.",
+        "Don't go out in the rain without a raincoat, or you will catch a cold.",
+        "Mom told us not to go out in the rain because it was cold.",
+        "Would you go out in the rain to play soccer?"
+    ],
+    1147: [
+        "Fizzy drinks have lots of little bubbles.",
+        "The soda is too fizzy for me.",
+        "My dentist says I shouldn't drink so many fizzy drinks.",
+        "If you shake the bottle, the fizzy water will jump out.",
+        "She poured the fizzy juice into a tall glass."
+    ],
+    1148: [
+        "My little sister is afraid of spiders.",
+        "Are you afraid of heights?",
+        "Don't be afraid of making mistakes when you learn English.",
+        "The boy is afraid of the big dog next door.",
+        "I was afraid of the dark when I was little."
     ]
 };

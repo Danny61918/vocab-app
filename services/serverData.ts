@@ -1143,7 +1143,31 @@ const serverData: Word[] = [
     { "id": 1121, "date": "2026-11-06", "english": "water rafting", "chinese": "泛舟", "part_of_speech": "(n.)", "example": "Water rafting is an exciting outdoor activity, and people wear helmets and life jackets when they ride in a raft down a river." },
     { "id": 1122, "date": "2026-11-06", "english": "What a great idea!", "chinese": "真是個好主意", "part_of_speech": "(ph.)", "example": "A: Shall we have spaghetti for dinner? B: What a great idea!" },
     { "id": 1123, "date": "2026-11-06", "english": "open for use", "chinese": "開放使用", "part_of_speech": "(ph.)", "example": "The new MRT station is finished. It is open for use." },
-    { "id": 1124, "date": "2026-11-06", "english": "at once", "chinese": "立刻", "part_of_speech": "(ph.)", "example": "When we heard the fire alarm, we left at once." }
+    { "id": 1124, "date": "2026-11-06", "english": "at once", "chinese": "立刻", "part_of_speech": "(ph.)", "example": "When we heard the fire alarm, we left at once." },
+    { "id": 1125, "date": "2026-11-09", "english": "sweets", "chinese": "甜食", "part_of_speech": "(n.)", "example": "You shouldn't eat too many sweets like candy, donuts, and ice cream because you may get a toothache." },
+    { "id": 1126, "date": "2026-11-09", "english": "give a lift / ride", "chinese": "載某人一程（開車送某人）", "part_of_speech": "(ph.)", "example": "My friend lives far away, so his dad often gives him a ride to school." },
+    { "id": 1127, "date": "2026-11-09", "english": "excited", "chinese": "興奮的", "part_of_speech": "(adj.)", "example": "The students are excited because they will have a Halloween party at school tomorrow." },
+    { "id": 1128, "date": "2026-11-09", "english": "healthy", "chinese": "健康的", "part_of_speech": "(adj.)", "example": "Drinking water is very healthy. You need to drink enough water every day." },
+    { "id": 1129, "date": "2026-11-09", "english": "health", "chinese": "健康", "part_of_speech": "(n.)", "example": "Doing regular exercise every day keeps your body strong, gives you lots of energy, and is good for your health." },
+    { "id": 1130, "date": "2026-11-09", "english": "at the top of", "chinese": "最高", "part_of_speech": "(ph.)", "example": "He is standing at the top of the mountain, enjoying the great view." },
+    { "id": 1131, "date": "2026-11-11", "english": "important", "chinese": "重要的", "part_of_speech": "(adj.)", "example": "It is important to cross the street safely by looking left and right to check for cars." },
+    { "id": 1132, "date": "2026-11-11", "english": "portion", "chinese": "一份", "part_of_speech": "(n.)", "example": "Please give me a smaller portion. I can't finish such a large meal." },
+    { "id": 1133, "date": "2026-11-11", "english": "junk food", "chinese": "垃圾食物", "part_of_speech": "(n.)", "example": "It's not good for children to eat a lot of junk food." },
+    { "id": 1134, "date": "2026-11-11", "english": "adult", "chinese": "成人", "part_of_speech": "(n.)", "example": "People need to rest every day. Most adults need eight hours of sleep every night, and children need more." },
+    { "id": 1135, "date": "2026-11-11", "english": "rest", "chinese": "休息", "part_of_speech": "(v.)", "example": "People need to rest every day. Most adults need eight hours of sleep every night, and children need more." },
+    { "id": 1136, "date": "2026-11-11", "english": "be about to", "chinese": "正要", "part_of_speech": "(ph.)", "example": "Hurry up! The school bus is about to leave." },
+    { "id": 1137, "date": "2026-11-12", "english": "stay in bed", "chinese": "躺在床上", "part_of_speech": "(ph.)", "example": "I can stay in bed longer at the weekend because I don't have to go to school." },
+    { "id": 1138, "date": "2026-11-12", "english": "enough", "chinese": "足夠的", "part_of_speech": "(adj.)", "example": "There isn't enough water in the bottle, so I need to fill it again." },
+    { "id": 1139, "date": "2026-11-12", "english": "exercise", "chinese": "做運動；運動", "part_of_speech": "(v./n.)", "example": "My dad likes to exercise every morning to stay strong and healthy." },
+    { "id": 1140, "date": "2026-11-12", "english": "agree", "chinese": "同意", "part_of_speech": "(v.)", "example": "My sister and I like the same foods. We always agree on what to eat." },
+    { "id": 1141, "date": "2026-11-12", "english": "popular", "chinese": "受歡迎的", "part_of_speech": "(adj.)", "example": "Everyone likes Teacher Eric. He is the most popular teacher at Sunshine." },
+    { "id": 1142, "date": "2026-11-12", "english": "be absent from", "chinese": "缺席", "part_of_speech": "(ph.)", "example": "Tom is absent from school today because he is sick." },
+    { "id": 1143, "date": "2026-11-13", "english": "holiday", "chinese": "假期", "part_of_speech": "(n.)", "example": "Lunar New Year is a popular holiday in China, where families get together to eat delicious food and give red envelopes." },
+    { "id": 1144, "date": "2026-11-13", "english": "scare", "chinese": "使驚嚇", "part_of_speech": "(v.)", "example": "The loud noise scared away the birds from the tree." },
+    { "id": 1145, "date": "2026-11-13", "english": "fireworks", "chinese": "煙火", "part_of_speech": "(n.)", "example": "The fireworks made a loud sound and lit up the dark night." },
+    { "id": 1146, "date": "2026-11-13", "english": "go out in the rain", "chinese": "冒雨出去", "part_of_speech": "(ph.)", "example": "I don't want to go out in the rain without an umbrella because I don't want to get wet." },
+    { "id": 1147, "date": "2026-11-13", "english": "fizzy", "chinese": "泡沫的", "part_of_speech": "(adj.)", "example": "I like to drink fizzy drinks like Cola or Sprite." },
+    { "id": 1148, "date": "2026-11-13", "english": "be afraid of", "chinese": "害怕", "part_of_speech": "(ph.)", "example": "Children are afraid of the dark. They rarely walk alone at night." }
 ];
 
 export default serverData; 
