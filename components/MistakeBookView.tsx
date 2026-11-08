@@ -3,6 +3,8 @@ import { ALL_MISTAKES } from '../services/mistakeBook';
 import { ErrorCategory, MistakeRecord } from '../services/mistakeBook/types';
 import { getSkillWeaknesses, SkillStatus } from '../services/mistakeBook/weakness';
 import { getConfusionPairs } from '../services/mistakeBook/vocabLink';
+import { ALL_DRILLS } from '../services/mistakeBook/drills';
+import MistakeStatsPanel from './MistakeStatsPanel';
 import { ArrowLeft, Lightbulb } from 'lucide-react';
 
 interface Props {
@@ -36,6 +38,9 @@ const STATUS_LABELS: Record<SkillStatus, { text: string; cls: string }> = {
 };
 
 // 弱點排行：依考卷錯題標的「細技能」統計，並顯示錯題小挑戰的練習進度（只給家長看）。
+// Skills that have practice questions (drills are scheduled by their first skill id).
+const DRILL_SKILLS = new Set(ALL_DRILLS.map((d) => d.skillIds[0]));
+
 const WeaknessPanel: React.FC = () => {
   const rows = getSkillWeaknesses(ALL_MISTAKES);
   const pairs = getConfusionPairs().slice(0, 5);
@@ -43,11 +48,12 @@ const WeaknessPanel: React.FC = () => {
   return (
     <div className="space-y-4">
       <p className="text-sm text-slate-400 font-bold">
-        只統計有標記技能的錯題（2026-11-04 起）。連續 3 個不同日、3 題不同的題目都答對，就算畢業。
+        依考卷錯題的細技能統計。還沒有練習題的技能會標示「尚無練習題」。連續 3 個不同日、3 題不同的題目都答對，就算畢業。
       </p>
       {rows.length === 0 && <div className="text-center text-slate-400 font-bold py-16">還沒有標記技能的錯題</div>}
       {rows.map((r) => {
-        const st = STATUS_LABELS[r.status];
+        const hasDrill = DRILL_SKILLS.has(r.skill.id);
+        const st = hasDrill ? STATUS_LABELS[r.status] : { text: '尚無練習題', cls: 'bg-slate-100 text-slate-400' };
         return (
           <div key={r.skill.id} className="bg-white border-2 border-slate-100 rounded-[1.5rem] p-5 shadow-sm">
             <div className="flex items-start justify-between gap-3 flex-wrap">
@@ -61,7 +67,7 @@ const WeaknessPanel: React.FC = () => {
             </div>
             <div className="mt-3 text-sm text-slate-500 font-bold">
               {r.attempts === 0
-                ? '尚未開始練習'
+                ? hasDrill ? '尚未開始練習' : '考卷有錯，但還沒有對應的練習題'
                 : `最近 ${r.attempts} 題答對 ${Math.round((r.correctRate ?? 0) * 100)}%`}
             </div>
           </div>
@@ -85,7 +91,7 @@ const WeaknessPanel: React.FC = () => {
 };
 
 const MistakeBookView: React.FC<Props> = ({ onBack }) => {
-  const [tab, setTab] = useState<'list' | 'weakness'>('list');
+  const [tab, setTab] = useState<'list' | 'weakness' | 'stats'>('list');
   const [filter, setFilter] = useState<string>(ALL_FILTER);
 
   const counts = ALL_MISTAKES.reduce<Record<string, number>>((acc, m) => {
@@ -124,7 +130,7 @@ const MistakeBookView: React.FC<Props> = ({ onBack }) => {
       </div>
 
       <div className="flex gap-2 mb-6">
-        {([['list', '錯題列表'], ['weakness', '弱點排行']] as const).map(([key, label]) => (
+        {([['list', '錯題列表'], ['stats', '統計報告'], ['weakness', '弱點排行']] as const).map(([key, label]) => (
           <button
             key={key}
             onClick={() => setTab(key)}
@@ -136,6 +142,8 @@ const MistakeBookView: React.FC<Props> = ({ onBack }) => {
       </div>
 
       {tab === 'weakness' && <WeaknessPanel />}
+
+      {tab === 'stats' && <MistakeStatsPanel />}
 
       {tab === 'list' && <>
       <div className="flex flex-wrap gap-2 mb-8">

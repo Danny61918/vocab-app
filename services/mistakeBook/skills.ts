@@ -40,6 +40,19 @@ export const ALL_SKILLS: SkillTag[] = [
   { id: 'R.INFER', domain: 'R', label: '閱讀：推論人物的感受與擔心', legacyCategory: 'content_comprehension' },
   { id: 'R.DETAIL', domain: 'R', label: '閱讀：依文章細節判斷（誰、哪一句正確）', legacyCategory: 'content_comprehension' },
   { id: 'R.CLIL.science', domain: 'R', label: '科普內容（水循環、方格複製圖片）', legacyCategory: 'content_comprehension' },
+  { id: 'G.POSS.apostrophe_s', domain: 'G', label: "所有格 's／s'／of（woman's、women's、pigs'）", legacyCategory: 'plural_possessive' },
+  { id: 'G.PLURAL.noun_form', domain: 'G', label: '名詞複數形（watermelons、shelves）', legacyCategory: 'plural_possessive' },
+  { id: 'G.COUNT.uncountable', domain: 'G', label: '可數／不可數名詞（some、any、is／are）', legacyCategory: 'plural_possessive' },
+  { id: 'G.BE.agreement', domain: 'G', label: 'be 動詞要對應主詞（There is／are、a pair of）', legacyCategory: 'plural_possessive' },
+  { id: 'G.PRON.reference', domain: 'G', label: '代名詞的種類與指涉（these／they）', legacyCategory: 'pronoun_reference' },
+  { id: 'G.MODAL.base_verb', domain: 'G', label: '助動詞（can、can\'t）後面接動詞原形', legacyCategory: 'verb_tense' },
+  { id: 'M.CAP.letter_case', domain: 'M', label: '大小寫（句首大寫、句中不大寫）', legacyCategory: 'capitalization' },
+  { id: 'M.PUNCT.comma_period', domain: 'M', label: '逗號、句號與問號', legacyCategory: 'sentence_structure' },
+  { id: 'M.COMBINE.missing_words', domain: 'M', label: '合併句子時漏字、多字、漏冠詞', legacyCategory: 'sentence_structure' },
+  { id: 'M.SPELL.ing_form', domain: 'M', label: '加 -ing 的拼字規則（去 e、重複字尾、ie→y）', legacyCategory: 'spelling' },
+  { id: 'FMT.careless', domain: 'FMT', label: '粗心：漏作答、重複作答、看錯題目', legacyCategory: 'context_carelessness' },
+  { id: 'R.CLIL.numbers', domain: 'R', label: '數字、年份與日期的唸法', legacyCategory: 'content_comprehension' },
+  { id: 'R.CLIL.landmarks', domain: 'R', label: '世界地標與常識（比薩斜塔、艾菲爾鐵塔）', legacyCategory: 'content_comprehension' },
 ];
 
 export const SKILL_IDS: string[] = ALL_SKILLS.map((s) => s.id);
