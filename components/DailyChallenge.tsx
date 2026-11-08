@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import FitText from './FitText';
 import { Word, TestResult, GameMode, GameType, Difficulty } from '../types';
 import { getWords, saveResult } from '../services/storage';
 import { CalendarDays, ChevronDown, BookOpen, TrendingUp, AlertCircle, ArrowRight, XCircle, CheckCircle, Target } from 'lucide-react';
@@ -726,9 +727,9 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                          {currentMonster && <img src={currentMonster.image} style={{filter: currentMonster.filter}} className="max-w-full max-h-full object-contain drop-shadow-md" alt="monster" />}
                     </div>
                     <div className="flex flex-col items-center landscape:items-start text-center landscape:text-left min-w-0 landscape:flex-1 w-full">
-                        <div className="text-[length:var(--fit-word)] leading-tight font-black text-slate-800 mb-1 font-['Outfit'] tracking-wide break-words max-w-full">
+                        <FitText size="var(--fit-word)" className="leading-tight font-black text-slate-800 mb-1 font-['Outfit'] tracking-wide max-w-full">
                             {word.english}
-                        </div>
+                        </FitText>
                         <div className="text-[length:var(--fit-body)] text-slate-400 mb-[var(--fit-mb)] font-bold italic">
                             {word.part_of_speech}
                         </div>
@@ -869,9 +870,9 @@ export const DailyChallenge: React.FC<Props> = ({ onBack }) => {
                                             key={i}
                                             disabled={feedbackState !== 'idle'}
                                             onClick={() => handleAnswer(opt)}
-                                            className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] rounded-3xl transition-all relative shadow-md min-h-[var(--fit-opt-min)] flex items-center justify-center break-words ${btnClass}`}
+                                            className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] rounded-3xl transition-all relative shadow-md min-h-[var(--fit-opt-min)] flex items-center justify-center min-w-0 ${btnClass}`}
                                         >
-                                            <span className="text-center">{opt}</span>
+                                            <FitText as="span" size="var(--fit-opt-font)" className="block w-full text-center min-w-0">{opt}</FitText>
                                             {showStatus && opt === correctAnswer && feedbackState === 'correct' && (
                                                 <div className="absolute -top-4 -right-4 text-5xl animate-bounce">🟢</div>
                                             )}

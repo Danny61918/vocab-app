@@ -1,4 +1,5 @@
 import React, { useMemo, useRef, useState } from 'react';
+import FitText from './FitText';
 import confetti from 'canvas-confetti';
 import { getRemainingDrill, presentOptions } from '../services/mistakeBook/drillProgress';
 import { answerDrill } from '../services/mistakeBook/vocabLink';
@@ -162,7 +163,7 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
           <div className={`mb-[var(--fit-mb)] flex items-center justify-center shrink-0 transition-all ${answered && !isCorrect ? "w-[calc(var(--fit-monster)*0.4)] h-[calc(var(--fit-monster)*0.4)] portrait:hidden [@media(max-height:760px)]:hidden" : "w-[var(--fit-monster)] h-[var(--fit-monster)]"}`}>
             {monsterImg()}
           </div>
-          <p className="text-[length:var(--fit-sent)] font-bold text-slate-800 leading-snug text-center break-words max-w-full">
+          <FitText as="p" size="var(--fit-sent)" className="font-bold text-slate-800 leading-snug text-center max-w-full">
             {before}
             <span
               className={`inline-block min-w-[4rem] px-2 mx-1 border-b-4 font-black ${
@@ -172,7 +173,7 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
               {answered ? item.answer : '___'}
             </span>
             {after}
-          </p>
+          </FitText>
 
           {answered && !isCorrect && (
             <div className="mt-[var(--fit-mb)] w-full bg-rose-50 border-2 border-rose-200 rounded-2xl p-4 md:p-5 text-left">
@@ -201,9 +202,9 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
                   key={opt}
                   disabled={answered}
                   onClick={() => handlePick(opt)}
-                  className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] min-h-[var(--fit-opt-min)] rounded-3xl transition-all break-words ${cls}`}
+                  className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] min-h-[var(--fit-opt-min)] rounded-3xl transition-all min-w-0 ${cls}`}
                 >
-                  {opt}
+                  <FitText as="span" size="var(--fit-opt-font)" className="block w-full text-center min-w-0">{opt}</FitText>
                 </button>
               );
             })}
