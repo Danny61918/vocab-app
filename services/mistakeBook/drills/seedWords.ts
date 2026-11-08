@@ -9,5 +9,6 @@ export interface SeedWordMistakes {
 }
 
 export const SEED_WORD_MISTAKES: SeedWordMistakes[] = [
+  { id: '2026-10-28', words: ['at a time', 'as well as', 'all the time', 'after all', 'relax', 'go for a walk', 'interview', 'several', 'research', 'trip', 'pirate'] },
   { id: '2026-11-04', words: ['cold', 'sick', 'cough', 'still', 'traffic jam'] },
 ];

@@ -144,11 +144,11 @@ describe('ALL_DRILLS 實際題庫', () => {
     }
   });
 
-  it('keeps a reasonable size: 15-20 grammar items and 16-20 word items', () => {
+  it('keeps a reasonable size: at least 15 grammar items and 16 word items, and no runaway growth', () => {
     const vocab = ALL_DRILLS.filter((i) => i.targetWords && i.targetWords.length > 0);
     expect(ALL_DRILLS.length - vocab.length).toBeGreaterThanOrEqual(15);
-    expect(ALL_DRILLS.length - vocab.length).toBeLessThanOrEqual(20);
+    expect(ALL_DRILLS.length - vocab.length).toBeLessThanOrEqual(60);
     expect(vocab.length).toBeGreaterThanOrEqual(16);
-    expect(vocab.length).toBeLessThanOrEqual(20);
+    expect(vocab.length).toBeLessThanOrEqual(60);
   });
 });

@@ -30,6 +30,16 @@ export const ALL_SKILLS: SkillTag[] = [
   { id: 'V.CONFUSE', domain: 'V', label: '易混單字辨析（cold／sick／cough）', legacyCategory: 'content_comprehension' },
   { id: 'V.POS_SLOT', domain: 'V', label: '詞性位置（are 後接形容詞、you 後接動詞）', legacyCategory: 'content_comprehension' },
   { id: 'V.POLYSEMY', domain: 'V', label: '一字多義（still：仍然／靜止）', legacyCategory: 'content_comprehension' },
+  { id: 'V.PHRASE', domain: 'V', label: '片語與連接用語（at a time、as well as、all the time、after all）', legacyCategory: 'content_comprehension' },
+  { id: 'V.CONTEXT', domain: 'V', label: '依句中線索選單字（relax、interview、several、trip、pirate）', legacyCategory: 'content_comprehension' },
+  { id: 'G.POSS.their_its', domain: 'G', label: '所有格 their／its／theirs／it\'s 的區別', legacyCategory: 'plural_possessive' },
+  { id: 'G.PROG.present_continuous', domain: 'G', label: '現在進行式（at the moment、now → be + V-ing）', legacyCategory: 'verb_tense' },
+  { id: 'M.COMMA.series', domain: 'M', label: '三個以上動作並列的逗號（A, B and C）', legacyCategory: 'sentence_structure' },
+  { id: 'M.SPELL.careful_copy', domain: 'M', label: '抄寫與拼字要逐字核對（mother、would、too）', legacyCategory: 'spelling' },
+  { id: 'R.MAIN_IDEA', domain: 'R', label: '閱讀：選最適合的標題／主旨', legacyCategory: 'content_comprehension' },
+  { id: 'R.INFER', domain: 'R', label: '閱讀：推論人物的感受與擔心', legacyCategory: 'content_comprehension' },
+  { id: 'R.DETAIL', domain: 'R', label: '閱讀：依文章細節判斷（誰、哪一句正確）', legacyCategory: 'content_comprehension' },
+  { id: 'R.CLIL.science', domain: 'R', label: '科普內容（水循環、方格複製圖片）', legacyCategory: 'content_comprehension' },
 ];
 
 export const SKILL_IDS: string[] = ALL_SKILLS.map((s) => s.id);
