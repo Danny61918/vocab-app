@@ -11,6 +11,7 @@ import data20261020 from './data/2026-10-20';
 import data20261022 from './data/2026-10-22';
 import data20261023 from './data/2026-10-23';
 import data20261025 from './data/2026-10-25';
+import data20261028 from './data/2026-10-28';
 import data20261104 from './data/2026-11-04';
 
 // Flat list across every imported exam, newest exam last. Add a new
@@ -29,6 +30,7 @@ export const ALL_MISTAKES: MistakeRecord[] = [
   ...data20261022,
   ...data20261023,
   ...data20261025,
+  ...data20261028,
   ...data20261104,
 ];
 
