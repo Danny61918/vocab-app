@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import FitText from './FitText';
 import { VocabWord, vocabData } from '../services/newVocabData';
 import {
   getDailyHuntWords,
@@ -450,9 +451,9 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
             {monsterImg()}
           </div>
           <div className="flex flex-col items-center landscape:items-start text-center landscape:text-left min-w-0 landscape:flex-1 w-full">
-            <div className="text-[length:var(--fit-word)] leading-tight font-black text-indigo-800 mb-1 font-['Outfit'] tracking-wide break-words max-w-full">
+            <FitText size="var(--fit-word)" className="leading-tight font-black text-indigo-800 mb-1 font-['Outfit'] tracking-wide max-w-full">
               {word.word}
-            </div>
+            </FitText>
             <div className="text-[length:var(--fit-body)] text-gray-500 mb-[var(--fit-mb)] font-bold italic">
               ({word.partOfSpeech})
             </div>
@@ -505,7 +506,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
             <div className="w-[var(--fit-monster)] h-[var(--fit-monster)] mb-[var(--fit-mb)] flex items-center justify-center">
               {monsterImg()}
             </div>
-            <div className="text-[length:var(--fit-word)] leading-tight font-black mb-1 font-['Outfit'] tracking-wider break-words max-w-full">{word.word}</div>
+            <FitText size="var(--fit-word)" className="leading-tight font-black mb-1 font-['Outfit'] tracking-wider max-w-full">{word.word}</FitText>
             <div className="text-[length:var(--fit-body)] text-indigo-200 font-bold italic">({word.partOfSpeech})</div>
             <div className="absolute top-4 right-5 text-2xl md:text-4xl opacity-60">🔊</div>
           </div>
@@ -531,9 +532,9 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
                     key={i}
                     disabled={feedbackState !== 'idle'}
                     onClick={() => handleQuizAnswer(opt)}
-                    className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] min-h-[var(--fit-opt-min)] rounded-3xl transition-all relative break-words ${btnClass}`}
+                    className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] min-h-[var(--fit-opt-min)] rounded-3xl transition-all relative min-w-0 ${btnClass}`}
                   >
-                    {opt}
+                    <FitText as="span" size="var(--fit-opt-font)" className="block w-full text-center min-w-0">{opt}</FitText>
                     {showStatus && feedbackState === 'correct' && (
                       <div className="absolute -top-3 -right-3 text-4xl animate-bounce">🟢</div>
                     )}
@@ -645,9 +646,9 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
                     key={i}
                     disabled={clozeFeedback !== 'idle'}
                     onClick={() => handleClozeAnswer(i)}
-                    className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] min-h-[var(--fit-opt-min)] rounded-3xl transition-all break-words ${btnClass}`}
+                    className={`text-[length:var(--fit-opt-font)] leading-tight font-black p-[var(--fit-opt-pad)] min-h-[var(--fit-opt-min)] rounded-3xl transition-all min-w-0 ${btnClass}`}
                   >
-                    {opt}
+                    <FitText as="span" size="var(--fit-opt-font)" className="block w-full text-center min-w-0">{opt}</FitText>
                   </button>
                 );
               })}
