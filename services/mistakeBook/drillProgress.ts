@@ -1,6 +1,7 @@
 import { applyAnswer, BoxState, newBoxState } from '../leitner';
 import { localYmd, shuffle, SrsDeps } from '../srsStorage';
 import { getSkill } from './skills';
+import { ALL_MISTAKES } from './index';
 import { ALL_DRILLS } from './drills';
 import { DrillItem } from './drills/types';
 
@@ -170,8 +171,14 @@ function buildPlan(items: DrillItem[], today: string, progress: Record<string, S
   }
 
   // Skills that have history and are due come first (most overdue first), then brand-new skills.
+  // Brand-new skills are ordered by how often the child actually got that skill wrong on an
+  // exam (ALL_MISTAKES), so the weakest area is practiced first rather than whichever happens
+  // to be first in the drill files; ties keep the original (file) order.
+  const mistakeCount = new Map<string, number>();
+  for (const m of ALL_MISTAKES) for (const id of m.skills ?? []) mistakeCount.set(id, (mistakeCount.get(id) ?? 0) + 1);
   due.sort((a, b) => {
     if ((a.dueDate === null) !== (b.dueDate === null)) return a.dueDate === null ? 1 : -1;
+    if (a.dueDate === null && b.dueDate === null) return (mistakeCount.get(b.skill) ?? 0) - (mistakeCount.get(a.skill) ?? 0);
     return (a.dueDate ?? 0) - (b.dueDate ?? 0);
   });
 

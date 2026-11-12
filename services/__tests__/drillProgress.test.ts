@@ -205,3 +205,22 @@ describe('presentOptions 選項打亂', () => {
     expect(presentOptions(it, seededRng(1))).toEqual(a);
   });
 });
+
+describe('brand-new skills are scheduled by how often the child got them wrong', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('on day 1 the most-missed grammar-type and vocab skills are both in the plan', async () => {
+    const { ALL_DRILLS } = await import('../mistakeBook/drills');
+    const { ALL_MISTAKES } = await import('../mistakeBook');
+    const count = new Map<string, number>();
+    for (const m of ALL_MISTAKES) for (const s of m.skills ?? []) count.set(s, (count.get(s) ?? 0) + 1);
+    const drilled = [...new Set(ALL_DRILLS.map((d) => d.skillIds[0]))];
+    const byCount = (a: string, b: string) => (count.get(b) ?? 0) - (count.get(a) ?? 0);
+    const topVocab = drilled.filter((s) => s.startsWith('V.')).sort(byCount)[0];
+    const topOther = drilled.filter((s) => !s.startsWith('V.')).sort(byCount)[0];
+
+    const plan = getTodayDrill(day(0), ALL_DRILLS).map((i) => i.skillIds[0]);
+    expect(plan).toContain(topVocab);
+    expect(plan).toContain(topOther);
+  });
+});
