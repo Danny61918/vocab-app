@@ -1,6 +1,12 @@
 import { GrammarQuestion, GrammarCategory } from '../types';
+import { PREPOSITION_TIME_QUESTIONS } from './grammar/prepositionTime';
+import { PREPOSITION_PLACE_QUESTIONS } from './grammar/prepositionPlace';
+import { PRESENT_SIMPLE_QUESTIONS } from './grammar/presentSimple';
+import { PRESENT_CONTINUOUS_QUESTIONS } from './grammar/presentContinuous';
+import { POSSESSIVE_QUESTIONS } from './grammar/possessive';
+import { THERE_BE_SOME_ANY_QUESTIONS } from './grammar/thereBeSomeAny';
 
-export const GRAMMAR_QUESTIONS: GrammarQuestion[] = [
+const BASE_QUESTIONS: GrammarQuestion[] = [
   // ----------------------------------------------------
   // Prepositions of Time
   // ----------------------------------------------------
@@ -31,10 +37,10 @@ export const GRAMMAR_QUESTIONS: GrammarQuestion[] = [
   {
     id: "prep_time_4",
     category: GrammarCategory.PREPOSITION_TIME,
-    sentenceContext: "What are you doing ___ the weekend?",
+    sentenceContext: "What are you doing ___ Saturday?",
     options: ["At", "In", "On"],
-    correctAnswer: "At",
-    ruleReminder: "在週末通常使用 At (at the weekend)。"
+    correctAnswer: "On",
+    ruleReminder: "特定的星期幾使用 On (例: on Saturday, on Sunday morning)。"
   },
   {
     id: "prep_time_5",
@@ -343,6 +349,18 @@ export const getRandomGrammarQuestions = (count: number = 10): GrammarQuestion[]
   const shuffled = [...GRAMMAR_QUESTIONS].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 };
+
+// Base questions plus the expanded per-category banks (~54 per category, enough
+// for three battles of up to 17 questions each without a repeat).
+export const GRAMMAR_QUESTIONS: GrammarQuestion[] = [
+  ...BASE_QUESTIONS,
+  ...PREPOSITION_TIME_QUESTIONS,
+  ...PREPOSITION_PLACE_QUESTIONS,
+  ...PRESENT_SIMPLE_QUESTIONS,
+  ...PRESENT_CONTINUOUS_QUESTIONS,
+  ...POSSESSIVE_QUESTIONS,
+  ...THERE_BE_SOME_ANY_QUESTIONS,
+];
 
 export const GRAMMAR_BOSS_MAP: Record<GrammarCategory, number> = {
   [GrammarCategory.PREPOSITION_TIME]: 24, // 時光幽魂

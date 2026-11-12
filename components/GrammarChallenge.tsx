@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { GrammarCategory, GrammarQuestion, GameMode, GameType, TestResult } from '../types';
 import { GRAMMAR_QUESTIONS, GRAMMAR_BOSS_MAP } from '../services/grammarData';
+import { pickBattleQuestions } from '../services/grammarQueue';
 import { MONSTER_DATA } from '../services/monsterData';
 import { unlockMonster } from '../services/srsStorage';
 import { saveResult } from '../services/storage';
@@ -63,10 +64,12 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
     // Get all questions matching category
     const categoryQuestions = GRAMMAR_QUESTIONS.filter(q => q.category === category);
 
-    // Random queue of questions
-    const battleQueue = Array.from({length: 20}).map(() => {
-        return categoryQuestions[Math.floor(Math.random() * categoryQuestions.length)];
-    });
+    // Distinct questions; what was seen is remembered so repeated battles don't
+    // repeat until the category's pool is used up. A battle ends after at most
+    // 17 answers (15 hits to win; 3 hearts to lose = 15 + 2 misses or 14 + 3
+    // misses), so queue exactly that many: extra unplayed questions would be
+    // counted as "seen" and burn through the pool.
+    const battleQueue = pickBattleQuestions(category, categoryQuestions, 17);
 
     setQuestions(battleQueue);
     setCurrentQIndex(0);
