@@ -1365,4 +1365,14 @@ export const vocabData: VocabWord[] = [
   { id: "s1170", word: "stick", partOfSpeech: "v.", meaning: "黏住" },
   { id: "s1171", word: "get out of", partOfSpeech: "ph.", meaning: "離開" },
   { id: "s1172", word: "be covered with", partOfSpeech: "ph.", meaning: "被…覆蓋" },
+  // Unit 3 textbook (health / pulse) words that the CLIL chapters use and the weekly lists did not cover
+  { id: "c3_1", word: "gently", partOfSpeech: "adv.", meaning: "輕輕地" },
+  { id: "c3_2", word: "vegetables", partOfSpeech: "n.", meaning: "蔬菜" },
+  { id: "c3_3", word: "teeth", partOfSpeech: "n.", meaning: "牙齒（tooth 的複數）" },
+  { id: "c3_4", word: "tired", partOfSpeech: "adj.", meaning: "累的" },
+  { id: "c3_5", word: "late", partOfSpeech: "adj.", meaning: "遲到的；晚的" },
+  { id: "c3_6", word: "nearly", partOfSpeech: "adv.", meaning: "幾乎；快要" },
+  { id: "c3_7", word: "what's the matter?", partOfSpeech: "ph.", meaning: "怎麼了？" },
+  { id: "c3_8", word: "sit still", partOfSpeech: "ph.", meaning: "坐著不動" },
+  { id: "c3_9", word: "beats per minute", partOfSpeech: "ph.", meaning: "每分鐘心跳數（BPM）" },
 ];

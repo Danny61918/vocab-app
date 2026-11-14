@@ -46,6 +46,7 @@ export const ALL_SKILLS: SkillTag[] = [
   { id: 'G.BE.agreement', domain: 'G', label: 'be 動詞要對應主詞（There is／are、a pair of）', legacyCategory: 'plural_possessive' },
   { id: 'G.PRON.reference', domain: 'G', label: '代名詞的種類與指涉（these／they）', legacyCategory: 'pronoun_reference' },
   { id: 'G.MODAL.base_verb', domain: 'G', label: '助動詞（can、can\'t）後面接動詞原形', legacyCategory: 'verb_tense' },
+  { id: 'G.MODAL.should', domain: 'G', label: 'should／shouldn\'t 給建議（後面接原形、本身不加 s）', legacyCategory: 'verb_tense' },
   { id: 'M.CAP.letter_case', domain: 'M', label: '大小寫（句首大寫、句中不大寫）', legacyCategory: 'capitalization' },
   { id: 'M.PUNCT.comma_period', domain: 'M', label: '逗號、句號與問號', legacyCategory: 'sentence_structure' },
   { id: 'M.COMBINE.missing_words', domain: 'M', label: '合併句子時漏字、多字、漏冠詞', legacyCategory: 'sentence_structure' },

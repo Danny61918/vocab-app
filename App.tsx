@@ -21,7 +21,7 @@ import { getRemainingDrill } from './services/mistakeBook/drillProgress';
 import { applySeedWordMistakes } from './services/mistakeBook/vocabLink';
 import { getStreak, getUserData } from './services/gamification';
 import { getActiveExamReviewSets, getWordsForExamSet, getWordsForDayGroup, ExamReviewSet } from './services/examReviewSets';
-import { TOPIC_REVIEW_CHAPTERS } from './services/topicReview';
+import { getVisibleTopicReviewChapters } from './services/topicReview';
 import { bootCloudSync } from './services/cloudSync';
 import { GraduationCap, Settings, PieChart, Book, Clock, Play, Trophy, Calendar, RefreshCw, Sparkles, Map, PenTool, Flame, Coins, HelpCircle, Headphones, ChevronLeft, Target } from 'lucide-react';
 
@@ -485,7 +485,7 @@ function App() {
                     <h3 className="text-2xl font-black mb-2 drop-shadow-md">課文複習（CLIL）</h3>
                     <p className="text-teal-50 text-sm font-bold mb-3">也是大考範圍，每一課的課文都會出現在這裡</p>
                     <div className="flex flex-wrap gap-2">
-                        {TOPIC_REVIEW_CHAPTERS.map((c) => (
+                        {getVisibleTopicReviewChapters().map((c) => (
                             <span key={c.id} className="bg-white/25 px-3 py-1 rounded-full text-xs font-bold">{c.title}</span>
                         ))}
                     </div>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { GameMode, GameType, TestResult } from '../types';
 import { saveResult } from '../services/storage';
-import { TOPIC_REVIEW_CHAPTERS } from '../services/topicReview';
+import { getVisibleTopicReviewChapters } from '../services/topicReview';
+import { isReviewAnswerCorrect } from '../services/topicReview/answerCheck';
 import { ReviewChapter, ReviewQuestion } from '../services/topicReview/types';
 import { BookOpen, ArrowRight, ArrowLeft, CheckCircle2, XCircle, Droplet, Volume2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -48,12 +49,7 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
 
   const currentQuestion: ReviewQuestion | null = chapter ? chapter.questions[qIndex] : null;
 
-  const isAnswerCorrect = (q: ReviewQuestion, answer: string): boolean => {
-    if (q.questionType === 'fill_blank') {
-      return answer.trim().toLowerCase() === q.correctAnswer.trim().toLowerCase();
-    }
-    return answer === q.correctAnswer;
-  };
+  const isAnswerCorrect = (q: ReviewQuestion, answer: string): boolean => isReviewAnswerCorrect(q, answer);
 
   const submitAnswer = (answer: string) => {
     if (!currentQuestion || answered) return;
@@ -112,7 +108,7 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
         </div>
 
         <div className="grid grid-cols-1 gap-4">
-          {TOPIC_REVIEW_CHAPTERS.map((c) => (
+          {getVisibleTopicReviewChapters().map((c) => (
             <button
               key={c.id}
               onClick={() => selectChapter(c)}
