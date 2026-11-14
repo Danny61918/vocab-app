@@ -227,3 +227,15 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
   - 限制：審題者都是 AI，可能有共同盲點；沒有請孩子（最終使用者）參與審題，這是家長的決定。
 - 瀏覽器實測（Vite dev server + headless Chromium，清空 localStorage）：種子字套用（`vocab_seeded_mistakes` 含 2026-11-10）；錯題小挑戰 8 題桌機（1180×820）與手機（390×844）都完整跑完、一對一錯路徑都走過、沒有垂直溢出、沒有 console 錯誤、沒有 undefined／NaN；新題（at first、cold）有出現在第一天。
 - 備註：未做閱讀題的變化題；產生的題庫會讓舊的 11-04 考卷題在同技能裡排在新題之後（先出沒做過的、同難度看檔案順序）。
+
+## [2026-11-14] CLIL Unit 3（健康／心臟／脈搏）：研究 → 摘要 → 出題 → 上線
+- 流程（不使用 Gemini，見使用者新指示）：Opus 5.5 子代理研究與設計（`.doc/v2.0/phase-10-clil-unit3/RESEARCH.md`：逐字抄錄、家長摘要、學習研究、出題設計、48 題草稿、家長活動）→ 另一個 Opus 子代理盲解兩輪（第一輪不給課文 46/48；第二輪附逐字抄錄 48/48）→ 依意見修 A10 前提與 C1「The poster says…」→ 寫入程式。
+- 內容：5 章 48 題（`services/topicReview/data/u3-*.ts`）：音樂會故事 10、should／shouldn't 9、健康四規則 10、脈搏（一）9、脈搏（二）10。題型 32 選擇、10 是非、6 單字拼寫（字母方塊）。針對她的弱點：一字之差、NOT／LOWEST、健康字詞性位置（I've got a＋名詞 vs I feel＋形容詞）、片語意思、should 後面不加 s 與「該加 s」的對照。
+- 孩子看到的解釋已拿掉對家長講的話（「她 11/04 考卷錯過」等），由產生腳本過濾；草稿與家長說明仍留在 RESEARCH.md。
+- 程式：
+  - `ReviewChapter.availableFrom`：脈搏兩章 2026-11-16 起才出現在清單（跟第 12 週單字同步）；清單改用 `getVisibleTopicReviewChapters()`（App.tsx 與 TopicReviewChallenge）。
+  - 修正多字拼寫判錯：新增 `services/topicReview/answerCheck.ts`，拼寫答案兩邊都只比對 a–z 字母（字母方塊回傳不含空格）。目前章節的拼寫題仍是單字。
+  - 新增技能 `G.MODAL.should`（只登記，尚無變化題）；`newVocabData.ts` 加入 9 個課文新字（gently、vegetables、teeth、tired、late、nearly、what's the matter?、sit still、beats per minute；van 已存在）。
+  - 測試：`topicReviewUnit3.test.ts`（題目結構、唯一答案、選項位置分布、孩子看不到家長用語、拼寫比對、日期顯示）。
+- 驗證：tsc、`npm test` 147 項、build 全過；瀏覽器實測（Vite + headless Chromium）：2026-11-14 只顯示前三章、用假時鐘 2026-11-16 五章全顯示；5 章從頭到尾答完（含字母方塊拼寫、故意答錯看解釋），正確數與預期吻合，console 無錯誤。
+- 限制：審題者與抄錄都是 AI；課本書名未知，`sourceRef` 寫「Unit 3 textbook」；選項不洗牌（已把正確答案位置錯開）；CLIL 作答沒有逐題記錄、沒有接入錯題排程（RESEARCH.md 5.6 有建議）。

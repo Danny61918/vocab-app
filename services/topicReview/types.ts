@@ -62,4 +62,5 @@ export interface ReviewChapter {
   glossary?: GlossaryEntry[];   // visual legend shown next to the passage, for narrative-style chapters (water cycle, weather)
   factCards?: ReviewFactCard[]; // one-card-per-item layout for list/fact-style chapters (e.g. famous buildings) — used INSTEAD of glossary+sourceText when present, since a wall of unrelated facts isn't discussable the way a narrative passage is
   notes?: ReviewNote[];         // supplementary teaching points not tied to one fact card (e.g. "how to say dates aloud")
+  availableFrom?: string;       // 'YYYY-MM-DD': the chapter is hidden from the lists before this local date (e.g. a unit that goes with a later week's words)
 }
