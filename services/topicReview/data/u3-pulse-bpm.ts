@@ -1,4 +1,5 @@
 import { ReviewChapter } from '../types';
+import lesson from './u3-pulse-lesson';
 
 // Source: the Unit 3 textbook ("Unit 3 textbook" — the book title is not recorded), lessons named in sourceRef. Every question is built from a
 // sentence printed in the book (sourceSentence). Designed and checked in .doc/v2.0/phase-10-clil-unit3/RESEARCH.md: each question has exactly one
@@ -9,6 +10,7 @@ const chapter: ReviewChapter = {
   title: "脈搏（二）數字與活動 (BPM and Activities)",
   sourceRef: "Unit 3 textbook, Lessons 9–10 (p24–25)",
   availableFrom: "2026-11-16", // pulse lessons go with the week-12 words (2026-11-16 to 11-20)
+  lesson, // the same teaching lesson sits in front of both pulse chapters
   sourceText:
     "What's her pulse after sleeping? It's 68. What's her pulse after playing football? It's 120.\n" +
     "Time 7.00 / 7.30 / 8.00 — A: 150 BPM, 70 BPM, 100 BPM. B: 70 BPM, 75 BPM, 80 BPM. C: 65 BPM, 70 BPM, 150 BPM.\n" +

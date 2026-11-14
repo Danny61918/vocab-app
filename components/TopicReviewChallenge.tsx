@@ -7,12 +7,13 @@ import { ReviewChapter, ReviewQuestion } from '../services/topicReview/types';
 import { BookOpen, ArrowRight, ArrowLeft, CheckCircle2, XCircle, Droplet, Volume2 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import LetterTiles from './LetterTiles';
+import LessonView from './LessonView';
 
 interface Props {
   onBack: () => void;
 }
 
-type Phase = 'SELECT' | 'PASSAGE' | 'QUIZ' | 'SUMMARY';
+type Phase = 'SELECT' | 'PASSAGE' | 'LESSON' | 'QUIZ' | 'SUMMARY';
 
 const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
   const [phase, setPhase] = useState<Phase>('SELECT');
@@ -129,6 +130,17 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
     );
   }
 
+  if (phase === 'LESSON' && chapter?.lesson) {
+    return (
+      <LessonView
+        lesson={chapter.lesson}
+        speak={speak}
+        onExit={() => setPhase('PASSAGE')}
+        onDone={startQuiz}
+      />
+    );
+  }
+
   if (phase === 'PASSAGE' && chapter) {
     return (
       <div className="max-w-3xl mx-auto p-6 md:p-10 animate-fade-in pb-20">
@@ -137,6 +149,21 @@ const TopicReviewChallenge: React.FC<Props> = ({ onBack }) => {
         </button>
         <h1 className="text-2xl md:text-3xl font-black text-slate-800 mb-1">{chapter.title}</h1>
         <p className="text-sm text-slate-400 font-bold mb-6">{chapter.sourceRef}</p>
+
+        {chapter.lesson && (
+          <button
+            onClick={() => setPhase('LESSON')}
+            data-testid="start-lesson"
+            className="w-full mb-6 bg-gradient-to-r from-amber-400 to-orange-400 hover:from-amber-500 hover:to-orange-500 text-white p-5 rounded-[2rem] shadow-lg active:scale-[0.98] transition-all text-left flex items-center gap-4"
+          >
+            <span className="text-4xl">📖</span>
+            <span className="flex-1">
+              <span className="block font-black text-xl">先上一堂小課：{chapter.lesson.title}</span>
+              <span className="block text-sm font-bold text-amber-50">看不懂課文也沒關係，一步一步學，大約 {Math.max(5, Math.round(chapter.lesson.steps.length * 1.2))} 分鐘</span>
+            </span>
+            <ArrowRight size={24} />
+          </button>
+        )}
 
         {chapter.factCards && chapter.factCards.length > 0 ? (
           <div className="flex flex-col gap-4 mb-8">
