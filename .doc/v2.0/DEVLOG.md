@@ -212,3 +212,18 @@ Append-only 過程紀錄。用途：追蹤自主開發迴圈中發生的事、�
 - 實測（Vite dev server，用 iframe 設定真實視窗大小，逐畫面量 scrollHeight − clientHeight）：1180×760、1180×820、1024×690、1366×1024、1440×900、768×1024、820×1180、844×390（手機橫放）、390×844、360×640：DailyChallenge 五個畫面與錯題小挑戰（含答錯解釋）全部**零溢出**；上次記錄的「手機橫放仍溢出 20–40px」也一併解決。1180×760 的怪獸高度 128px → 約 300px（學習畫面約 425px）。單字島每日抓寶在 1180×760 實測學習、選中文、例句、結算畫面零溢出。
 - 限制：只在桌面瀏覽器模擬實際尺寸，沒有拿真實 iPad 量；`dvh` 需要 iOS Safari 15.4 以上。
 - 結果：113 通過、tsc ✅、build ✅。
+
+## [2026-11-14] 匯入 2026-11-10 考卷（文法 81/100、單字 38/50）+ 現在簡單式題庫擴充
+- 錯題本：`data/2026-11-10.ts` 共 17 筆。文法 A Q2、Q11；文法 B 7 題（#1、4、5、7、8、9、10，全是 Does 問句後動詞又加 -s）；閱讀 Reading 2 Q3、Q4（家長決定只記錄、標為專心度 `FMT.careless`，不出變化題）；單字 A-1 #3 sore throat、#7 coughs、A-2 #2 cold、B #1 at least、#3 at last、#4 At first。原答案看不到的寫「未知」；文法 B 的紅斜線落在 -s 形上，推測原本選了 -s 形並在 `studentAnswer` 註明。
+- 種子字：sore throat、cough、cold、at least、at last、at first（`seedWords.ts`）。
+- 題庫策略：她的錯是規則（助動詞之後動詞回原形），不是單題內容，所以以「技能題池」擴充。
+  - 文法用產生器 `scripts/mistakeBook/gen_present_simple_drills.cjs` + 手工挑選的詞庫（主詞分小孩／大人、複數主詞用複數用語）產出**靜態檔** `drills/supp/genPresentSimple.ts`（142 題：does_question_base 36、third_person_s 30、plural_subject 30、short_answer 30、dont_doesnt 16）。產生器沒有亂數，重跑結果相同；執行時 App 不組句。干擾項都是「放進空格不合文法」的形式，並標迷思（`does_plus_s_verb`、`3sg_s_on_plural`、`do_with_3sg`…）。
+  - 單字／拼寫／cold／help 共 18 題手寫在 `drills/2026-11-10.ts`；新增易混字組 `cs.at_phrases`（at first／at last／at least，各 3 句、線索不同）；拼寫題用「選出拼對的」形式，不需新題型。
+- 排程：同一技能裡同難度的題目依 `ALL_DRILLS` 順序決定，所以把 2026-11-10 的檔案放在最前面，讓最新的錯先出現。
+- 驗證與審題（不使用 Gemini，見使用者新指示）：
+  - validate_import 通過、tsc、`npm test` 136 項、build 全過；兩個舊測試改為涵蓋所有易混字組、文法題上限 200 → 400。
+  - 盲解：160 題只給題目不給答案。前 135 題由 Gemini、最後 25 題由 Opus 5.5 子代理（Gemini 回 503）做，160/160 與標準答案一致。過程中盲解抓到 4 處我的設計錯誤（開關店動詞的干擾項「is open」也對、`read` 可當過去式、`at last` 的一題 at least 也成立），全部修掉。
+  - 解釋審查：Gemini 與 Opus 各一輪，沒有錯誤答案或錯誤解釋；採納自然度意見（大人不做功課／騎車上學、複數不共用一個書包、`at parties`、價格題改為 Bags in this shop…、拼寫題時態一致）。修改措辭的 8 題另請 Opus 重新盲解。
+  - 限制：審題者都是 AI，可能有共同盲點；沒有請孩子（最終使用者）參與審題，這是家長的決定。
+- 瀏覽器實測（Vite dev server + headless Chromium，清空 localStorage）：種子字套用（`vocab_seeded_mistakes` 含 2026-11-10）；錯題小挑戰 8 題桌機（1180×820）與手機（390×844）都完整跑完、一對一錯路徑都走過、沒有垂直溢出、沒有 console 錯誤、沒有 undefined／NaN；新題（at first、cold）有出現在第一天。
+- 備註：未做閱讀題的變化題；產生的題庫會讓舊的 11-04 考卷題在同技能裡排在新題之後（先出沒做過的、同難度看檔案順序）。

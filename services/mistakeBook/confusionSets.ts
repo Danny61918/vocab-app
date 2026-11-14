@@ -16,6 +16,12 @@ export const ALL_CONFUSION_SETS: ConfusionSet[] = [
     contrastNote:
       'cold 是感冒（名詞，catch a cold）；sick 是生病的（形容詞，be sick）；dizzy 是頭暈的（形容詞，feel dizzy）；cough 是咳嗽（名詞，也可當動詞）；headache／stomachache／sore throat 是哪裡痛的名詞。',
   },
+  {
+    id: 'cs.at_phrases',
+    words: ['at first', 'at last', 'at least'],
+    contrastNote:
+      'at first 是「起初」（常接 but now 對照）；at last 是「終於」（等了很久之後）；at least 是「至少」（後面常接數量）。三個都以 at 開頭，要用句意分辨。',
+  },
 ];
 
 const BY_ID = new Map(ALL_CONFUSION_SETS.map((c) => [c.id, c]));
