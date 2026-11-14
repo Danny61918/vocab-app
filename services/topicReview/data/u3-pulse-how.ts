@@ -1,4 +1,5 @@
 import { ReviewChapter } from '../types';
+import lesson from './u3-pulse-lesson';
 
 // Source: the Unit 3 textbook ("Unit 3 textbook" — the book title is not recorded), lessons named in sourceRef. Every question is built from a
 // sentence printed in the book (sourceSentence). Designed and checked in .doc/v2.0/phase-10-clil-unit3/RESEARCH.md: each question has exactly one
@@ -9,6 +10,7 @@ const chapter: ReviewChapter = {
   title: "脈搏（一）心臟與量脈搏 (Pulse Rates)",
   sourceRef: "Unit 3 textbook, Lesson 9 (p24)",
   availableFrom: "2026-11-16", // pulse lessons go with the week-12 words (2026-11-16 to 11-20)
+  lesson, // the same teaching lesson sits in front of both pulse chapters
   sourceText:
     "Your heart pumps blood around your body. Your heart usually beats about 70 times per minute. When you do a lot of exercise, your heart works more and so it beats more.\n" +
     "You can feel these heartbeats. Put two fingers under the thumb on your left wrist. Press your wrist gently with your fingers. This is your pulse. You measure your pulse in beats per minute (BPM). Take your pulse for 10 seconds. How many beats? Now multiply this number by 6. How many beats per minute is your pulse?",

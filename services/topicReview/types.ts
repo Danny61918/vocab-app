@@ -62,5 +62,51 @@ export interface ReviewChapter {
   glossary?: GlossaryEntry[];   // visual legend shown next to the passage, for narrative-style chapters (water cycle, weather)
   factCards?: ReviewFactCard[]; // one-card-per-item layout for list/fact-style chapters (e.g. famous buildings) — used INSTEAD of glossary+sourceText when present, since a wall of unrelated facts isn't discussable the way a narrative passage is
   notes?: ReviewNote[];         // supplementary teaching points not tied to one fact card (e.g. "how to say dates aloud")
+  lesson?: ChapterLesson;       // optional step-by-step teaching shown before the questions (see ChapterLesson)
   availableFrom?: string;       // 'YYYY-MM-DD': the chapter is hidden from the lists before this local date (e.g. a unit that goes with a later week's words)
+}
+
+// ---- Teaching lesson (shown BEFORE the practice questions, for children who find the passage hard) ----
+
+/** One English sentence from the passage, read aloud with a Chinese meaning underneath. */
+export interface LessonLine {
+  en: string;       // the textbook sentence (or a short simple sentence) in English
+  zh: string;       // its meaning in Chinese
+  speak?: string;   // what to read aloud if it differs from en (default: en)
+}
+
+export interface LessonWord {
+  term: string;     // English word or phrase
+  zh: string;       // Chinese meaning
+  icon?: string;    // one emoji
+  tip?: string;     // how to remember / pronounce it, Chinese (e.g. "thumb 的 b 不發音")
+}
+
+/** A quick, ungraded 'think about it' check at the end of a step. Any answer just shows the hint; nothing is recorded. */
+export interface LessonCheck {
+  prompt: string;     // the question (English, or Chinese for concept checks)
+  options: string[];  // 2-3 options, exactly one correct
+  answer: string;     // must equal one option
+  hintZh: string;     // shown after ANY answer: why the answer is what it is (Chinese)
+}
+
+export type LessonWidget =
+  | 'pulse-calc'    // pick the number of beats counted in 10 seconds -> shows the x6 and the BPM
+  | 'bpm-compare';  // six activities as bars (sleeping 68 ... skipping 140): more active = higher pulse
+
+export interface LessonStep {
+  id: string;
+  title: string;            // short Chinese title
+  zh: string;               // plain Chinese explanation for a 9-10 year old (short paragraphs; use \n between paragraphs)
+  lines?: LessonLine[];     // sentence-by-sentence reading
+  words?: LessonWord[];     // new words introduced in this step
+  tryIt?: string;           // a short 'try it' for the parent and child (Chinese, with the English prompt to read aloud)
+  widget?: LessonWidget;
+  check?: LessonCheck;
+}
+
+export interface ChapterLesson {
+  title: string;            // Chinese
+  intro: string;            // 1-2 friendly Chinese sentences: what you will be able to do after the lesson
+  steps: LessonStep[];      // 6-8 steps, easy to hard
 }

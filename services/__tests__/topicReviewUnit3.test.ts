@@ -107,3 +107,49 @@ describe('Unit 3 support data', () => {
     }
   });
 });
+
+describe('Pulse teaching lesson', () => {
+  const pulse = UNIT3.filter((c) => c.id.startsWith('u3-pulse'));
+  const lesson = pulse[0]?.lesson;
+
+  it('both pulse chapters carry the same lesson, and no other unit-3 chapter does', () => {
+    expect(pulse.length).toBe(2);
+    expect(pulse[0].lesson).toBeDefined();
+    expect(pulse[1].lesson).toBe(pulse[0].lesson);
+    expect(UNIT3.filter((c) => !c.id.startsWith('u3-pulse')).every((c) => !c.lesson)).toBe(true);
+  });
+
+  it('has 6-8 steps with unique ids, Chinese explanations and well-formed checks', () => {
+    expect(lesson).toBeDefined();
+    const steps = lesson!.steps;
+    expect(steps.length).toBeGreaterThanOrEqual(6);
+    expect(steps.length).toBeLessThanOrEqual(8);
+    expect(new Set(steps.map((s) => s.id)).size).toBe(steps.length);
+    expect(CJK.test(lesson!.title) && CJK.test(lesson!.intro)).toBe(true);
+    for (const s of steps) {
+      expect(CJK.test(s.zh), `${s.id} zh`).toBe(true);
+      for (const l of s.lines ?? []) {
+        expect(l.en.trim().length, `${s.id} line en`).toBeGreaterThan(0);
+        expect(CJK.test(l.zh), `${s.id} line zh: ${l.en}`).toBe(true);
+      }
+      for (const w of s.words ?? []) expect(CJK.test(w.zh), `${s.id} word ${w.term}`).toBe(true);
+      if (s.check) {
+        expect(s.check.options.length, `${s.id} options`).toBeGreaterThanOrEqual(2);
+        expect(s.check.options.length, `${s.id} options`).toBeLessThanOrEqual(3);
+        expect(s.check.options.filter((o) => o === s.check!.answer).length, `${s.id} answer must be exactly one option`).toBe(1);
+        expect(CJK.test(s.check.hintZh), `${s.id} hint`).toBe(true);
+      }
+    }
+  });
+
+  it('uses each built-in widget at most once and only known ones', () => {
+    const widgets = lesson!.steps.map((s) => s.widget).filter(Boolean);
+    expect(new Set(widgets).size).toBe(widgets.length);
+    for (const w of widgets) expect(['pulse-calc', 'bpm-compare']).toContain(w);
+  });
+
+  it('the child-facing lesson has no parent-facing remarks about her mistakes or exams', () => {
+    const text = JSON.stringify(lesson);
+    expect(text).not.toMatch(/考卷|盲解|草稿|錯題|11\/0\d|11\/1\d/);
+  });
+});
