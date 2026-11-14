@@ -3931,5 +3931,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "Don't be afraid of making mistakes when you learn English.",
         "The boy is afraid of the big dog next door.",
         "I was afraid of the dark when I was little."
+    ],
+    1149: [
+        "Put your hand on your chest and you can feel your heart.",
+        "My heart beats fast when I ride a roller coaster.",
+        "The heart is a strong muscle that never takes a rest.",
+        "Mia drew a big red heart on the birthday card for her mom.",
+        "Doing exercise every day is good for your heart."
+    ],
+    1150: [
+        "Tom's finger hurt, and a little blood came out.",
+        "The doctor took some blood to check if I was healthy.",
+        "Our heart sends blood to every part of our body.",
+        "Don't be afraid of blood. A small cut is not a big danger.",
+        "Red blood is moving around inside you right now."
+    ],
+    1151: [
+        "I have ten fingers, and I can count to ten with them.",
+        "Be careful! Don't put your finger in the door.",
+        "Ben points his finger at the monster on the screen.",
+        "Her fingers were cold, so she put on warm gloves.",
+        "The baby held my finger and smiled at me."
+    ],
+    1152: [
+        "My thumb is the biggest finger on my hand.",
+        "The teacher gave a thumb up to the whole class.",
+        "Don't suck your thumb. It isn't good for your teeth.",
+        "Lily hurt her thumb when she closed the box.",
+        "You need your thumb to hold a pencil."
+    ],
+    1153: [
+        "Dad wears a watch on his left wrist.",
+        "My wrist hurt after I played video games for three hours.",
+        "The doctor put his fingers on my wrist to feel my pulse.",
+        "Amy wears a pink band around her wrist.",
+        "Your wrist is the part between your hand and your arm."
+    ],
+    1154: [
+        "Mom is angry with me because I didn't clean my room.",
+        "Don't be angry with your little brother. He is only three years old.",
+        "Are you angry with me? I'm sorry I was late.",
+        "The teacher was angry with the boys because they were too loud.",
+        "My sister was angry with the cat because it ate her fish."
+    ],
+    1155: [
+        "The nurse put her finger on my wrist to check my pulse.",
+        "My pulse is slow when I rest in bed.",
+        "After the race, his pulse was very fast.",
+        "You can feel your pulse on your wrist or your neck.",
+        "The doctor counted my pulse for one minute."
+    ],
+    1156: [
+        "The heart can pump blood to every part of the body.",
+        "Dad uses a machine to pump air into the bicycle tire.",
+        "The farmer pumps water from the well to the garden.",
+        "My heart pumps faster when I run up the stairs.",
+        "We pump up the balloons for the birthday party."
+    ],
+    1157: [
+        "Your heart beats about seventy times a minute when you rest.",
+        "My heart beats fast when I am excited.",
+        "The doctor listened to hear if my heart was beating well.",
+        "Her heart beats loudly before she sings on the stage.",
+        "A healthy heart beats all day and all night."
+    ],
+    1158: [
+        "The doctor will measure my height and weight.",
+        "Let's measure the desk to see if it fits in the room.",
+        "Mom uses a cup to measure the flour for the cake.",
+        "We measure the temperature with a thermometer when we are sick.",
+        "Can you measure the length of your thumb with a ruler?"
+    ],
+    1159: [
+        "Your pulse rate will increase when you run fast.",
+        "The number of students in our class will increase next year.",
+        "Eating healthy food and sleeping well can increase your energy.",
+        "The store will increase the price of ice cream in summer.",
+        "If you practice every day, your English will increase little by little."
+    ],
+    1160: [
+        "I am anxious about my first day at the new school.",
+        "Don't be anxious about the quiz. You studied very hard.",
+        "Mom is anxious about my cough, so she takes me to the doctor.",
+        "Are you anxious about the big game on Friday?",
+        "The boy was anxious about meeting the big dog."
+    ],
+    1161: [
+        "If you multiply two by five, you get ten.",
+        "We learn to multiply big numbers in math class.",
+        "Can you multiply four by four without a calculator?",
+        "Rabbits multiply quickly, so there are many of them on the farm.",
+        "To multiply numbers, you need to remember the times tables."
+    ],
+    1162: [
+        "My pulse rate is lower when I rest in bed.",
+        "The nurse wrote down my pulse rate on the paper.",
+        "A high pulse rate can mean you are excited or anxious.",
+        "We measure our pulse rate before and after exercise.",
+        "Your pulse rate goes up when you play soccer."
+    ],
+    1163: [
+        "I can hear my heartbeat when the room is quiet.",
+        "The doctor listens to the baby's heartbeat with a small tool.",
+        "A fast heartbeat can mean you are scared.",
+        "Put your hand on your chest and feel your heartbeat.",
+        "Her heartbeat is slow when she is sleeping."
+    ],
+    1164: [
+        "Press the red button to start the game.",
+        "The nurse pressed on my arm to stop the blood.",
+        "Please press the elevator button for the third floor.",
+        "Don't press the buttons on the TV all day.",
+        "Press your finger on the paper so it won't move."
+    ],
+    1165: [
+        "Swimming alone in the river is a danger for children.",
+        "The sign says Danger! Don't go in.",
+        "The firefighters ran into the danger to help people.",
+        "Eating too much junk food is a danger to your health.",
+        "The dog barked loudly to tell us about the danger."
+    ],
+    1166: [
+        "I am anxious to open my birthday present.",
+        "The kids are anxious to go to the park after school.",
+        "Mia is anxious to see her grandma on the holiday.",
+        "We are anxious to eat the pizza because it smells so good.",
+        "My brother was anxious to know who won the game."
+    ],
+    1167: [
+        "Tomatoes grow fast in the summer sun.",
+        "Eat healthy food and you will grow tall and strong.",
+        "I want to grow up and become a doctor.",
+        "My grandpa likes to grow flowers in his garden.",
+        "Puppies grow quickly, so they need lots of food and rest."
+    ],
+    1168: [
+        "A tadpole will become a frog one day.",
+        "If you practice every day, you can become a great singer.",
+        "It will become cold next week, so bring a jacket.",
+        "My little brother wants to become a firefighter.",
+        "Water becomes ice when it is very cold."
+    ],
+    1169: [
+        "Too much rain can cause a flood.",
+        "Playing with fire can cause a big accident.",
+        "What causes a headache? Maybe too many video games!",
+        "A small bug can cause a lot of trouble in the kitchen.",
+        "Junk food and no exercise can cause health problems."
+    ],
+    1170: [
+        "Please stick this picture on the wall.",
+        "The candy will stick to your teeth, so brush them well.",
+        "Use glue to stick the paper on the box.",
+        "Mom sticks a note on the fridge to remind me of my homework.",
+        "The cat likes to stick its nose into every bag."
+    ],
+    1171: [
+        "I get out of bed at seven o'clock every morning.",
+        "Please get out of the car slowly and carefully.",
+        "The kids get out of the pool when it starts to rain.",
+        "Get out of the room, little mouse!",
+        "My brother never wants to get out of bed on a cold morning."
+    ],
+    1172: [
+        "The mountain is covered with white snow in winter.",
+        "My shoes were covered with mud after the soccer game.",
+        "The cake is covered with sweet chocolate and strawberries.",
+        "The floor is covered with toys. Please clean up your room.",
+        "Her face was covered with ice cream after lunch."
     ]
 };

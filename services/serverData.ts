@@ -1167,7 +1167,31 @@ const serverData: Word[] = [
     { "id": 1145, "date": "2026-11-13", "english": "fireworks", "chinese": "煙火", "part_of_speech": "(n.)", "example": "The fireworks made a loud sound and lit up the dark night." },
     { "id": 1146, "date": "2026-11-13", "english": "go out in the rain", "chinese": "冒雨出去", "part_of_speech": "(ph.)", "example": "I don't want to go out in the rain without an umbrella because I don't want to get wet." },
     { "id": 1147, "date": "2026-11-13", "english": "fizzy", "chinese": "泡沫的", "part_of_speech": "(adj.)", "example": "I like to drink fizzy drinks like Cola or Sprite." },
-    { "id": 1148, "date": "2026-11-13", "english": "be afraid of", "chinese": "害怕", "part_of_speech": "(ph.)", "example": "Children are afraid of the dark. They rarely walk alone at night." }
+    { "id": 1148, "date": "2026-11-13", "english": "be afraid of", "chinese": "害怕", "part_of_speech": "(ph.)", "example": "Children are afraid of the dark. They rarely walk alone at night." },
+    { "id": 1149, "date": "2026-11-16", "english": "heart", "chinese": "心臟", "part_of_speech": "(n.)", "example": "The teacher drew a picture showing how the blood flows through the heart." },
+    { "id": 1150, "date": "2026-11-16", "english": "blood", "chinese": "血液", "part_of_speech": "(n.)", "example": "There is some blood on the table because Susan wasn't careful and cut herself with the knife." },
+    { "id": 1151, "date": "2026-11-16", "english": "finger", "chinese": "手指", "part_of_speech": "(n.)", "example": "After Sam finished ten worksheets, his fingers hurt." },
+    { "id": 1152, "date": "2026-11-16", "english": "thumb", "chinese": "大拇指", "part_of_speech": "(n.)", "example": "Missing a thumb makes it impossible for us to write or draw pictures with a pencil at all." },
+    { "id": 1153, "date": "2026-11-16", "english": "wrist", "chinese": "手腕", "part_of_speech": "(n.)", "example": "This watch is too big for my wrist. It doesn't look good." },
+    { "id": 1154, "date": "2026-11-16", "english": "be angry with", "chinese": "對…生氣", "part_of_speech": "(ph.)", "example": "The father was angry with his son because he painted on the table." },
+    { "id": 1155, "date": "2026-11-18", "english": "pulse", "chinese": "脈搏", "part_of_speech": "(n.)", "example": "When I see a doctor, he always takes my pulse and temperature to know if I am sick." },
+    { "id": 1156, "date": "2026-11-18", "english": "pump", "chinese": "輸送", "part_of_speech": "(v.)", "example": "Our strong heart beats non-stop every day to pump fresh red blood all around our whole body." },
+    { "id": 1157, "date": "2026-11-18", "english": "beat", "chinese": "(心臟)跳動", "part_of_speech": "(v.)", "example": "When you run fast in the playground, your strong heart beats much quicker to help your body." },
+    { "id": 1158, "date": "2026-11-18", "english": "measure", "chinese": "測量", "part_of_speech": "(v.)", "example": "Could you please measure how tall I am standing against this high wall?" },
+    { "id": 1159, "date": "2026-11-18", "english": "increase", "chinese": "增加", "part_of_speech": "(v.)", "example": "The price of a movie ticket will increase from NT$150 to NT$250 next month." },
+    { "id": 1160, "date": "2026-11-18", "english": "be anxious about", "chinese": "擔憂", "part_of_speech": "(ph.)", "example": "The kid was anxious about taking the test." },
+    { "id": 1161, "date": "2026-11-19", "english": "multiply", "chinese": "相乘", "part_of_speech": "(v.)", "example": "If you multiply three by three together carefully, you will get nine as your answer." },
+    { "id": 1162, "date": "2026-11-19", "english": "pulse rate", "chinese": "脈搏率", "part_of_speech": "(n.)", "example": "Doing exercise like running and jumping will quickly increase your heart pulse rate." },
+    { "id": 1163, "date": "2026-11-19", "english": "heartbeat", "chinese": "心跳", "part_of_speech": "(n.)", "example": "Your strong heartbeat becomes much faster when you do aerobic exercise." },
+    { "id": 1164, "date": "2026-11-19", "english": "press", "chinese": "按壓", "part_of_speech": "(v.)", "example": "Don't press the carton of eggs, or they will break." },
+    { "id": 1165, "date": "2026-11-19", "english": "danger", "chinese": "危險", "part_of_speech": "(n.)", "example": "My dad told me about the danger of playing with fire because it can cause a big accident." },
+    { "id": 1166, "date": "2026-11-19", "english": "be anxious to", "chinese": "渴望做…", "part_of_speech": "(ph.)", "example": "They are anxious to know the answer." },
+    { "id": 1167, "date": "2026-11-20", "english": "grow", "chinese": "長大；成長", "part_of_speech": "(v.)", "example": "Plants need sunlight and water to grow." },
+    { "id": 1168, "date": "2026-11-20", "english": "become", "chinese": "變成", "part_of_speech": "(v.)", "example": "The cute little girl will grow up and become a wise woman one day with many bright dreams." },
+    { "id": 1169, "date": "2026-11-20", "english": "cause", "chinese": "造成", "part_of_speech": "(v.)", "example": "Eating too much candy can cause toothaches, so remember to brush your teeth every day." },
+    { "id": 1170, "date": "2026-11-20", "english": "stick", "chinese": "黏住", "part_of_speech": "(v.)", "example": "My little sister likes to stick colorful stickers on her notebook." },
+    { "id": 1171, "date": "2026-11-20", "english": "get out of", "chinese": "離開", "part_of_speech": "(ph.)", "example": "When frogs start to grow legs, they get out of the water." },
+    { "id": 1172, "date": "2026-11-20", "english": "be covered with", "chinese": "被…覆蓋", "part_of_speech": "(ph.)", "example": "My wooden desk is always covered with many fun storybooks." }
 ];
 
 export default serverData; 
