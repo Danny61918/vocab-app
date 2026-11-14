@@ -90,18 +90,21 @@ describe('validateDrillBank 題庫驗證', () => {
     expect(one).toMatch(/cs\.health.*sick/);
 
     const items: DrillItem[] = [];
-    for (const w of ALL_CONFUSION_SETS[0].words) {
-      const others = ALL_CONFUSION_SETS[0].words.filter((x) => x !== w).slice(0, 3);
-      const mk = (n: number, clue: DrillItem['clue']): DrillItem => ({
-        ...good,
-        id: `${w.replace(/\s/g, '_')}#v${n}`,
-        stem: `Sentence ${n} about ___.`,
-        answer: w,
-        distractors: others.map((text) => ({ text })),
-        targetWords: [w],
-        clue,
-      });
-      items.push(mk(1, 'noun'), mk(2, 'collocation'));
+    for (const set of ALL_CONFUSION_SETS) {
+      for (const w of set.words) {
+        const others = set.words.filter((x) => x !== w).slice(0, 3);
+        const mk = (n: number, clue: DrillItem['clue']): DrillItem => ({
+          ...good,
+          id: `${set.id}:${w.replace(/\s/g, '_')}#v${n}`,
+          confusionSetId: set.id,
+          stem: `Sentence ${n} about ___.`,
+          answer: w,
+          distractors: others.map((text) => ({ text })),
+          targetWords: [w],
+          clue,
+        });
+        items.push(mk(1, 'noun'), mk(2, 'collocation'));
+      }
     }
     expect(validateDrillBank(items)).toEqual([]);
 
@@ -147,7 +150,8 @@ describe('ALL_DRILLS 實際題庫', () => {
   it('keeps a reasonable size: at least 15 grammar items and 16 word items, and no runaway growth', () => {
     const vocab = ALL_DRILLS.filter((i) => i.targetWords && i.targetWords.length > 0);
     expect(ALL_DRILLS.length - vocab.length).toBeGreaterThanOrEqual(15);
-    expect(ALL_DRILLS.length - vocab.length).toBeLessThanOrEqual(200);
+    // 2026-11-10: raised from 200 when the generated present-simple bank (supp/genPresentSimple.ts, 142 items) was added.
+    expect(ALL_DRILLS.length - vocab.length).toBeLessThanOrEqual(400);
     expect(vocab.length).toBeGreaterThanOrEqual(16);
     expect(vocab.length).toBeLessThanOrEqual(60);
   });
