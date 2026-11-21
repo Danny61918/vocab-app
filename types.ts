@@ -115,4 +115,6 @@ export interface OwnedMonster {
 export interface UserData {
   coins: number;
   ownedMonsters: Record<number, OwnedMonster>;
+  // Set after a duplicate draw: the next draw is guaranteed to be a monster not owned yet.
+  guaranteeNew?: boolean;
 }
