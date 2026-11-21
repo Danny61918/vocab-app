@@ -46,7 +46,8 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
 
   const finish = () => {
     if (correctRef.current > 0) confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
-    setRoundsAfter(getRoundsAfterCurrent());
+    // Round 1 is fully answered by now, so ask whether another round is waiting (not how many follow the current one).
+    setRoundsAfter(getRoundDrill().length > 0 ? 1 : 0);
     setPhase('done');
   };
 

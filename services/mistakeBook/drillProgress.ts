@@ -237,6 +237,14 @@ function allocateSlots(cands: Cand[]): Map<string, number> {
   for (const g of GROUPS) {
     const pool = cands.filter((c) => g.match(c.skill));
     let used = pool.reduce((n, c) => n + count(c), 0);
+    // Distinct skills first (heaviest first), so one heavy skill cannot take a whole group's quota.
+    for (const c of [...pool].sort((a, b) => b.weight - a.weight)) {
+      if (used >= g.quota || total >= MAX_PER_DAY) break;
+      if (count(c) === 0 && hasRoom(c)) {
+        give(c);
+        used += 1;
+      }
+    }
     while (used < g.quota && total < MAX_PER_DAY) {
       const c = best(pool);
       if (!c) break;
