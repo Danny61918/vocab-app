@@ -252,6 +252,21 @@ describe('weighted slots', () => {
   });
 });
 
+describe('group quotas', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('spreads a group quota over distinct skills before a heavy skill takes a second slot', () => {
+    const bank = [
+      ...['M.SPELL.careful_copy', 'M.COMBINE.missing_words'].flatMap((s) => [mk(s + '-1', s), mk(s + '-2', s)]),
+      ...bigBank(),
+    ];
+    const heavy = Array.from({ length: 30 }, () => fakeMistake('M.SPELL.careful_copy', '2026-03-01'));
+    const plan = getTodayDrill(day(0), bank, [...heavy, fakeMistake('M.COMBINE.missing_words', '2026-03-01')]).map((i) => i.skillIds[0]);
+    expect(plan).toContain('M.COMBINE.missing_words');
+    expect(plan).toContain('M.SPELL.careful_copy');
+  });
+});
+
 describe('rounds of five', () => {
   beforeEach(() => localStorage.clear());
 
