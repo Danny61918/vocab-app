@@ -4099,5 +4099,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "The cake is covered with sweet chocolate and strawberries.",
         "The floor is covered with toys. Please clean up your room.",
         "Her face was covered with ice cream after lunch."
+    ],
+    1173: [
+        "The nurse checked my BPM after I ran around the playground.",
+        "A healthy child's BPM is higher than an adult's BPM.",
+        "My BPM goes down when I sleep at night.",
+        "The watch on my wrist shows my BPM all day.",
+        "Your BPM gets faster when you feel nervous or excited."
+    ],
+    1174: [
+        "Please put the baby down gently on the soft bed.",
+        "She gently touched the little rabbit's ears.",
+        "The teacher spoke gently to the crying boy.",
+        "Close the window gently because the glass is old.",
+        "The wind blew gently through the green trees."
+    ],
+    1175: [
+        "Fresh fruit and vegetables are healthy food for children.",
+        "My grandmother goes for a walk every morning, so she looks healthy.",
+        "Getting enough sleep makes you strong and healthy.",
+        "A healthy breakfast gives me energy for school.",
+        "The doctor says my little brother is very healthy."
+    ],
+    1176: [
+        "Please measure the window before you buy the curtains.",
+        "The nurse will measure my height and weight today.",
+        "We use a ruler to measure the length of the pencil.",
+        "Can you measure how much water is in the bottle?",
+        "Dad measures the room to see if the new bed can fit."
+    ],
+    1177: [
+        "We have enough chairs for everyone in the class.",
+        "Do you have enough money to buy the new storybook?",
+        "I don't get enough sleep on school nights.",
+        "There is enough food on the table for all of us.",
+        "She is old enough to ride a bike by herself."
+    ],
+    1178: [
+        "Mom is angry with me because I didn't clean my room.",
+        "Don't be angry with your friend. It was only an accident.",
+        "The teacher was angry with the boys for running in the hallway.",
+        "I was angry with my brother because he ate my cake.",
+        "Why are you angry with me? I didn't do anything wrong."
+    ],
+    1179: [
+        "Chips and soda are junk food, so we shouldn't have them every day.",
+        "My mother doesn't let me eat junk food before dinner.",
+        "Too much junk food can make you gain weight.",
+        "The doctor told him to eat less junk food and more vegetables.",
+        "Our school doesn't sell junk food in the cafeteria."
+    ],
+    1180: [
+        "I feel sick on a bus when the road is bumpy.",
+        "If you feel sick, please tell your teacher right away.",
+        "She felt sick this morning, so she stayed home.",
+        "Do you feel sick after riding the roller coaster?",
+        "My little brother feels sick when he eats too much ice cream."
+    ],
+    1181: [
+        "I have a sore throat, so I can't sing today.",
+        "Warm tea with honey is good for a sore throat.",
+        "A sore throat is a common problem in cold winter.",
+        "He shouted too loudly at the game and got a sore throat.",
+        "The doctor said my sore throat will be better in two days."
+    ],
+    1182: [
+        "The children are excited about the school trip tomorrow.",
+        "I was so excited that I couldn't fall asleep last night.",
+        "She felt excited when she opened her birthday present.",
+        "My dog gets excited when he sees the leash.",
+        "The excited fans shouted loudly at the concert."
+    ],
+    1183: [
+        "You look tired. You should rest for a while.",
+        "The doctor told me to rest at home for two days.",
+        "We stopped to rest under a big tree during the hike.",
+        "My grandfather rests in his chair after lunch.",
+        "Let's rest here and drink some water."
+    ],
+    1184: [
+        "I am anxious about the speech in front of the class.",
+        "He is anxious about his dog because it is sick.",
+        "Don't be anxious about the game. Just do your best.",
+        "My mother is anxious about my brother's long trip.",
+        "The students were anxious about the exam results."
+    ],
+    1185: [
+        "Flowers bloom everywhere in the spring.",
+        "The weather is warm and nice in spring.",
+        "We plant vegetables in the garden every spring.",
+        "Many birds come back to our town in the spring.",
+        "My family goes hiking in the mountains every spring."
+    ],
+    1186: [
+        "Please close the front door when you leave.",
+        "My seat is in the front row of the classroom.",
+        "The front yard of our house has a small tree.",
+        "Don't sit in the front seat of the car.",
+        "There is a big clock at the front of the hall."
+    ],
+    1187: [
+        "Police officers face dangers every day to keep us safe.",
+        "Explorers face dangers when they climb high mountains.",
+        "Sailors face dangers when a big storm comes.",
+        "Soldiers have to face dangers to protect their country.",
+        "Wild animals face dangers when people cut down the forest."
+    ],
+    1188: [
+        "I can't stay up for long because I'm very tired.",
+        "Did you wait for long at the bus stop?",
+        "She didn't talk on the phone for long.",
+        "The baby can't sit still for long.",
+        "We haven't lived in this town for long."
+    ],
+    1189: [
+        "Reading English books every day can increase your vocabulary and help you write better stories.",
+        "Exercise can increase your heart rate quickly.",
+        "The store will increase the price of milk next week.",
+        "Eating healthy food can increase your energy.",
+        "The number of students in our class will increase this year."
+    ],
+    1190: [
+        "The children are anxious to open their presents.",
+        "She is anxious to see her grandmother again.",
+        "I am anxious to know the result of the game.",
+        "He was anxious to go home and play with his dog.",
+        "We are anxious to start our summer vacation."
+    ],
+    1191: [
+        "The train went into a long tunnel.",
+        "It is dark inside the tunnel, so be careful.",
+        "Rabbits dig a tunnel under the ground to hide.",
+        "We drove through a tunnel to get to the other side of the mountain.",
+        "The kids ran through the tunnel and shouted for fun."
+    ],
+    1192: [
+        "Pizza is a popular food among children.",
+        "This cartoon is very popular in my class.",
+        "The new park is popular with families on weekends.",
+        "He is the most popular boy in our school.",
+        "That restaurant is popular, so we need to book a table."
+    ],
+    1193: [
+        "Don't scare the cat, or it will run away.",
+        "The loud thunder scared the little girl.",
+        "My brother likes to scare me with a toy spider.",
+        "The big dog scared the postman.",
+        "Spiders don't scare me, but snakes do."
+    ],
+    1194: [
+        "Flowers grow well in warm and sunny places.",
+        "Rice grows well in hot and wet weather.",
+        "Children need good food to grow well.",
+        "The tomatoes in our garden grow well this year.",
+        "Trees can't grow well without enough water."
+    ],
+    1195: [
+        "The school doesn't allow students to bring phones to class.",
+        "Please allow me to help you carry the bags.",
+        "My mother allows me to watch TV for one hour.",
+        "Dogs are not allowed in this restaurant.",
+        "The teacher allowed us to go home early today."
+    ],
+    1196: [
+        "The ground is covered with fallen leaves in autumn.",
+        "The table was covered with dust.",
+        "His hands were covered with paint after the art class.",
+        "The cake is covered with sweet cream.",
+        "The roof of the house is covered with snow."
     ]
 };

@@ -1191,7 +1191,31 @@ const serverData: Word[] = [
     { "id": 1169, "date": "2026-11-20", "english": "cause", "chinese": "造成", "part_of_speech": "(v.)", "example": "Eating too much candy can cause toothaches, so remember to brush your teeth every day." },
     { "id": 1170, "date": "2026-11-20", "english": "stick", "chinese": "黏住", "part_of_speech": "(v.)", "example": "My little sister likes to stick colorful stickers on her notebook." },
     { "id": 1171, "date": "2026-11-20", "english": "get out of", "chinese": "離開", "part_of_speech": "(ph.)", "example": "When frogs start to grow legs, they get out of the water." },
-    { "id": 1172, "date": "2026-11-20", "english": "be covered with", "chinese": "被…覆蓋", "part_of_speech": "(ph.)", "example": "My wooden desk is always covered with many fun storybooks." }
+    { "id": 1172, "date": "2026-11-20", "english": "be covered with", "chinese": "被…覆蓋", "part_of_speech": "(ph.)", "example": "My wooden desk is always covered with many fun storybooks." },
+    { "id": 1173, "date": "2026-11-23", "english": "BPM", "chinese": "每分鐘心跳次數", "part_of_speech": "(n.)", "example": "My BPM increases when I exercise because my heart needs to pump blood faster." },
+    { "id": 1174, "date": "2026-11-23", "english": "gently", "chinese": "輕柔地", "part_of_speech": "(adv.)", "example": "My younger sister is sleeping now. Please open the door gently, or you will wake her up." },
+    { "id": 1175, "date": "2026-11-23", "english": "healthy", "chinese": "健康的", "part_of_speech": "(adj.)", "example": "We should drink more water to stay healthy." },
+    { "id": 1176, "date": "2026-11-23", "english": "measure", "chinese": "測量", "part_of_speech": "(v.)", "example": "Before buying a new table, you should measure the length first." },
+    { "id": 1177, "date": "2026-11-23", "english": "enough", "chinese": "足夠的", "part_of_speech": "(adj.)", "example": "There aren't enough cookies for 20 children. Can you buy some more, please?" },
+    { "id": 1178, "date": "2026-11-23", "english": "be angry with", "chinese": "生某人的氣", "part_of_speech": "(ph.)", "example": "He is angry with his sister because she broke his toy." },
+    { "id": 1179, "date": "2026-11-25", "english": "junk food", "chinese": "垃圾食物", "part_of_speech": "(n.)", "example": "Eating too much junk food is bad for our health. We should eat some nutrient food to grow up." },
+    { "id": 1180, "date": "2026-11-25", "english": "feel sick", "chinese": "感覺不舒服", "part_of_speech": "(ph.)", "example": "I feel sick after eating too much sweet cake, and my stomach hurts a lot right now." },
+    { "id": 1181, "date": "2026-11-25", "english": "sore throat", "chinese": "喉嚨痛", "part_of_speech": "(n.)", "example": "The spicy food is burning my throat now. I have a sore throat after thirty minutes, so I drink some water to solve this problem." },
+    { "id": 1182, "date": "2026-11-25", "english": "excited", "chinese": "興奮的", "part_of_speech": "(adj.)", "example": "Tommy is excited for holidays. He can play outdoors with his friends in their free time." },
+    { "id": 1183, "date": "2026-11-25", "english": "rest", "chinese": "休息", "part_of_speech": "(v.)", "example": "After dinner, my father likes to rest on the sofa with our dog." },
+    { "id": 1184, "date": "2026-11-25", "english": "be anxious about", "chinese": "對某事感到擔心、焦慮", "part_of_speech": "(ph.)", "example": "She is anxious about her English test because she didn't study enough for it." },
+    { "id": 1185, "date": "2026-11-26", "english": "spring", "chinese": "春天", "part_of_speech": "(n.)", "example": "I love going on picnics in the spring. It's always sunny in that season." },
+    { "id": 1186, "date": "2026-11-26", "english": "front", "chinese": "前面的", "part_of_speech": "(adj.)", "example": "We entered through the front door to the department store. Let's go shopping now!" },
+    { "id": 1187, "date": "2026-11-26", "english": "face dangers", "chinese": "面臨危險", "part_of_speech": "(ph.)", "example": "Firefighters must face many dangers. They need to be trained and carry special equipment when they are in a fire." },
+    { "id": 1188, "date": "2026-11-26", "english": "for long", "chinese": "長時間", "part_of_speech": "(ph.)", "example": "We didn't stay at the zoo for long yesterday because it started to rain in the afternoon." },
+    { "id": 1189, "date": "2026-11-26", "english": "increase", "chinese": "增加", "part_of_speech": "(v.)", "example": "Reading books increases our knowledge about the world." },
+    { "id": 1190, "date": "2026-11-26", "english": "be anxious to", "chinese": "渴望做…", "part_of_speech": "(ph.)", "example": "I am anxious to visit Japan because I want to try its delicious food and learn about its culture." },
+    { "id": 1191, "date": "2026-11-27", "english": "tunnel", "chinese": "隧道", "part_of_speech": "(n.)", "example": "The road goes through a very dark tunnel in the mountain, so drivers must turn on their headlights." },
+    { "id": 1192, "date": "2026-11-27", "english": "popular", "chinese": "受歡迎的", "part_of_speech": "(adj.)", "example": "This singer is very popular among teenagers. It's always crowded at her concert." },
+    { "id": 1193, "date": "2026-11-27", "english": "scare", "chinese": "嚇到", "part_of_speech": "(v.)", "example": "The horror movie was so scary that it scared everyone at the theater." },
+    { "id": 1194, "date": "2026-11-27", "english": "grow well", "chinese": "生長良好", "part_of_speech": "(ph.)", "example": "With enough water and nutrients, the plants will grow well." },
+    { "id": 1195, "date": "2026-11-27", "english": "allow", "chinese": "允許", "part_of_speech": "(v.)", "example": "My parents allow me to choose my own after-school clubs because they want me to explore new hobbies." },
+    { "id": 1196, "date": "2026-11-27", "english": "be covered with", "chinese": "被…覆蓋", "part_of_speech": "(ph.)", "example": "The mountains are covered with snow, and they look beautiful during the winter." }
 ];
 
 export default serverData; 
