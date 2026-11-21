@@ -3,7 +3,8 @@ import { MistakeRecord } from '../types';
 // Imported from the parent's photos of the L7 Weekend Homework Week 11 (dated 2026-11-13). The parent did not check it
 // beforehand, so the marks are the teacher's marks on the child's first completed attempt. Red circle = deduction, then
 // corrected in blue ink (same reading as 2026-11-10 / 2026-11-17). Sections A and B1-B5, B7-B8, B10 had no deductions.
-// No total score is written on the paper. Section C (writing) is imported separately once the red marks are confirmed.
+// No total score is written on the paper. Section C (writing, 4 items): the paper shows only the corrected sentences and the parent cannot tell the original errors either,
+// so all four are recorded with an unknown original answer (red RW marks / circles on each); the error cause is not guessed.
 // See services/mistakeBook/types.ts for the import process.
 const data: MistakeRecord[] = [
   {
@@ -55,6 +56,66 @@ const data: MistakeRecord[] = [
     "teacherExplanation": "My grandfather 是第三人稱單數：(a) doesn't 後面動詞要用原形 have；(b) buy 去 y 加 ies 是 buies 拼錯，應為 buys；(c) 要用 doesn't。只有 (d) watches 正確（-ch 結尾加 es）。",
     "reviewAdvice": "四個選項都要檢查：doesn't 後面是原形；動詞字尾 y 前面是母音（buy）直接加 s，-ch／-sh／-x／-o 結尾加 es。",
     "questionType": "multiple_choice",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-13_lqx8qv",
+    "examDate": "2026-11-13",
+    "examName": "L7 Weekend Homework Week 11（L7WH-W11）",
+    "section": "C. Writing — combine with \"because\"",
+    "questionText": "Combine with \"because\": There will be tests. / My friends and I are studying.",
+    "studentAnswer": "未知（原答案看不到，只知道老師標了 RW 並圈出幾個字；紙上留下的是訂正後的句子）",
+    "correctAnswer": "My friends and I are studying because there will be tests.",
+    "errorCategory": "sentence_structure",
+    "rawErrorType": "because 合併句（老師標 RW，錯誤細節看不清楚）",
+    "teacherExplanation": "句型是「結果 because 原因」：My friends and I are studying（結果）because there will be tests（原因）。",
+    "reviewAdvice": "先找出哪句是原因、哪句是結果；結果放前面，because 接原因，寫完逐字檢查拼字與單複數。",
+    "questionType": "rewrite",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-13_1608hm8",
+    "examDate": "2026-11-13",
+    "examName": "L7 Weekend Homework Week 11（L7WH-W11）",
+    "section": "C. Writing — combine with \"because\"",
+    "questionText": "Combine with \"because\": Mr. Dixon is good at telling stories. / Mr. Dixon's students enjoy listening to his stories.（句首已印 Because）",
+    "studentAnswer": "未知（原答案看不到，紙上留下的是訂正後的句子；紅筆圈在 Mr 和 his students）",
+    "correctAnswer": "Because Mr. Dixon is good at telling stories, his students enjoy listening to his stories.",
+    "errorCategory": "sentence_structure",
+    "rawErrorType": "Because 放句首的合併句（老師紅筆圈出幾處，細節看不清楚）",
+    "teacherExplanation": "Because 放句首時，原因子句在前、後面加逗號，再接結果：Because Mr. Dixon is good at telling stories, his students enjoy listening to his stories。enjoy 後面接動詞要用 -ing（listening）。",
+    "reviewAdvice": "Because 放句首要在原因後加逗號；Mr. 後面有句點；enjoy＋V-ing。寫完把整句讀一遍。",
+    "questionType": "rewrite",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-13_rn8g9f",
+    "examDate": "2026-11-13",
+    "examName": "L7 Weekend Homework Week 11（L7WH-W11）",
+    "section": "C. Writing — combine with \"because\"",
+    "questionText": "Combine with \"because\": All my kids like me. / I am a very nice mother.",
+    "studentAnswer": "未知（原答案看不到，老師標了 RW；紙上留下的是訂正後的句子）",
+    "correctAnswer": "All my kids like me because I am a very nice mother.",
+    "errorCategory": "sentence_structure",
+    "rawErrorType": "because 合併句（老師標 RW，錯誤細節看不清楚）",
+    "teacherExplanation": "結果 because 原因：All my kids like me（結果）because I am a very nice mother（原因）。",
+    "reviewAdvice": "合併後把兩個分句再核對一次：主詞、動詞、拼字、句尾句號。",
+    "questionType": "rewrite",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-13_ri2nv3",
+    "examDate": "2026-11-13",
+    "examName": "L7 Weekend Homework Week 11（L7WH-W11）",
+    "section": "C. Writing — combine with \"because\"",
+    "questionText": "Combine with \"because\": Alice can't go camping with her family. / She is unhappy.",
+    "studentAnswer": "未知（原答案看不到，紅筆圈在句尾 with her family；紙上留下的是訂正後的句子）",
+    "correctAnswer": "Alice is unhappy because she can't go camping with her family.",
+    "errorCategory": "sentence_structure",
+    "rawErrorType": "because 合併句（老師紅圈句尾，錯誤細節看不清楚）",
+    "teacherExplanation": "Alice is unhappy（結果）because she can't go camping with her family（原因）。because 後面的 Alice 要換成代名詞 she。",
+    "reviewAdvice": "because 後面的人名要換成 she／he／they，句尾記得加句號。",
+    "questionType": "rewrite",
     "importedAt": "2026-11-21T12:00:00.000Z"
   }
 ];
