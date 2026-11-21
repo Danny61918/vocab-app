@@ -20,6 +20,7 @@ const CATEGORY_LABELS: Record<GrammarCategory, string> = {
   [GrammarCategory.TENSE_PRESENT_CONTINUOUS]: '現在進行式',
   [GrammarCategory.POSSESSIVE]: '所有格',
   [GrammarCategory.THERE_BE_SOME_ANY]: 'There is/are, Some/Any',
+  [GrammarCategory.FREQUENCY_ADVERB]: '頻率副詞',
 };
 
 const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
