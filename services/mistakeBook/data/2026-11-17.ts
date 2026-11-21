@@ -165,7 +165,7 @@ const data: MistakeRecord[] = [
     "errorCategory": "context_carelessness",
     "rawErrorType": "NOT 題：選到廣告有承諾的項目",
     "skills": [
-      "FMT.careless",
+      "FMT.not_question",
       "R.DETAIL"
     ],
     "teacherExplanation": "題目問的是 NOT promise（沒有承諾的事）。廣告有 15 到 30 percent 折扣（降價）、第一千位客人有獎品、種類很多；完全沒有提到免費寄送，所以選 (a)。",
@@ -262,7 +262,7 @@ const data: MistakeRecord[] = [
     "errorCategory": "context_carelessness",
     "rawErrorType": "NOT TRUE 題：要逐項回文章核對",
     "skills": [
-      "FMT.careless",
+      "FMT.not_question",
       "R.DETAIL"
     ],
     "teacherExplanation": "文章說 cook the bag in the microwave for two minutes（煮兩分鐘），不是不到一分鐘，所以 (a) 是不正確的敘述。其他三項文章都有支持。",
