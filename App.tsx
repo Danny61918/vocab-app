@@ -9,6 +9,7 @@ import Leaderboard from './components/Leaderboard';
 import DailyChallenge from './components/DailyChallenge';
 import GrammarChallenge from './components/GrammarChallenge';
 import { VocabAdventureMap } from './components/VocabAdventureMap';
+import { MonsterGallery } from './components/MonsterGallery';
 import PhraseChallenge from './components/PhraseChallenge';
 import AchievementsView from './components/AchievementsView';
 import CreativeWorkshop from './components/CreativeWorkshop';
@@ -19,7 +20,7 @@ import MistakeBookView from './components/MistakeBookView';
 import MistakeDrill from './components/MistakeDrill';
 import { getRoundDrill } from './services/mistakeBook/drillProgress';
 import { applySeedWordMistakes } from './services/mistakeBook/vocabLink';
-import { getStreak, getUserData } from './services/gamification';
+import { getStreak, getUserData, GACHA_COST } from './services/gamification';
 import { getActiveExamReviewSets, getWordsForExamSet, getWordsForDayGroup, ExamReviewSet } from './services/examReviewSets';
 import { getVisibleTopicReviewChapters } from './services/topicReview';
 import { bootCloudSync } from './services/cloudSync';
@@ -29,7 +30,7 @@ const APP_VERSION = '7.1'; // Level 6 Week 19-20 (2026/6/15~6/23) 單字更新 &
 
 // MENU = 小孩主畫面（練習入口 + 大考快速開始）；PARENT_TOOLS / CUSTOM_TRAINING
 // 是家長專區（分析、單字庫管理、錯題本、詳細練習設定），從 MENU 的齒輪圖示進入。
-type ViewState = 'MENU' | 'PARENT_TOOLS' | 'CUSTOM_TRAINING' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP' | 'PRACTICE' | 'TOPIC_REVIEW' | 'MISTAKE_BOOK' | 'MISTAKE_DRILL';
+type ViewState = 'MENU' | 'PARENT_TOOLS' | 'CUSTOM_TRAINING' | 'GAME' | 'MANAGER' | 'ANALYTICS' | 'LEADERBOARD' | 'DAILY_CHALLENGE' | 'GRAMMAR_CHALLENGE' | 'ADVENTURE_MAP' | 'GALLERY' | 'PHRASE_CHALLENGE' | 'ACHIEVEMENTS' | 'TUTORIAL' | 'CREATIVE_WORKSHOP' | 'PRACTICE' | 'TOPIC_REVIEW' | 'MISTAKE_BOOK' | 'MISTAKE_DRILL';
 
 function App() {
   const [currentView, setCurrentView] = useState<ViewState>('MENU');
@@ -176,6 +177,8 @@ function App() {
         );
       case 'ADVENTURE_MAP':
         return <VocabAdventureMap onBack={() => setCurrentView('MENU')} />;
+      case 'GALLERY':
+        return <MonsterGallery onBack={() => setCurrentView('MENU')} />;
       case 'GRAMMAR_CHALLENGE':
         return <GrammarChallenge onExit={() => setCurrentView('MENU')} />;
       case 'PHRASE_CHALLENGE':
@@ -503,6 +506,19 @@ function App() {
                               <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">⭐ 單字練習</span>
                           </div>
                           <h3 className="text-2xl font-black mb-2 drop-shadow-md">🏝️ 單字島大冒險</h3>
+                      </div>
+                  </button>
+
+                  {/* Direct shortcut to the gacha machine and monster collection */}
+                  <button onClick={() => setCurrentView('GALLERY')} className="relative overflow-hidden bg-gradient-to-br from-yellow-400 to-amber-600 text-white p-6 rounded-[2rem] shadow-xl hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-between group border-b-8 border-amber-800">
+                      <div className="absolute right-0 bottom-0 opacity-20 transform translate-x-4 translate-y-4"><Coins size={100} /></div>
+                      <div className="flex-1 text-left relative z-10">
+                          <div className="flex items-center gap-2 mb-2">
+                              <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest text-white shadow-inner">🥚 怪獸收集</span>
+                              {getUserData().coins >= GACHA_COST && <span className="bg-rose-500 px-3 py-1 rounded-full text-xs font-black text-white shadow-inner animate-pulse">可以抽了！</span>}
+                          </div>
+                          <h3 className="text-2xl font-black mb-2 drop-shadow-md">魔法扭蛋機</h3>
+                          <p className="text-amber-100 text-sm font-bold">{getUserData().coins} 金幣 · 已收集 {Object.keys(getUserData().ownedMonsters).length} 隻</p>
                       </div>
                   </button>
 

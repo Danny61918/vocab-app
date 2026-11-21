@@ -47,7 +47,7 @@ export const TutorialGuide: React.FC<Props> = ({ onBack }) => {
             <div className="flex-1 text-center md:text-left">
               <h2 className="text-4xl font-black text-indigo-600 mb-4">魔法扭蛋機抽怪獸！</h2>
               <p className="text-2xl text-slate-600 font-bold leading-relaxed">
-                存滿 500 金幣後，趕快點擊首頁的「單字島大冒險」，去左下角的「魔法扭蛋機」抽一顆魔法蛋吧！裡面藏了整整 <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded-lg">100 隻不同的怪獸</span> 等你收集！
+                存滿 500 金幣後，趕快點擊首頁的「魔法扭蛋機」抽一顆魔法蛋吧！裡面藏了上百隻不同的怪獸 等你收集！
               </p>
             </div>
           </div>

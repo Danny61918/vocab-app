@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { MONSTER_DATA } from '../services/monsterData';
 import { getUserData, drawGacha, GachaResult, GACHA_COST } from '../services/gamification';
 import { Coins, Sparkles, Star } from 'lucide-react';
+import { MONSTER_CARDS } from '../services/monsterCards';
+import { MonsterCardModal } from './MonsterCardModal';
 
 interface Props {
   onBack: () => void;
@@ -11,6 +13,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
   const [userData, setUserData] = useState(getUserData());
   const [gachaResult, setGachaResult] = useState<GachaResult | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  const [cardOpenId, setCardOpenId] = useState<number | null>(null);
 
   const monsters = Object.values(MONSTER_DATA);
   const ownedCount = Object.keys(userData.ownedMonsters).length;
@@ -58,14 +61,15 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
     return (
       <div 
         key={monster.id}
-        className={`relative rounded-3xl p-6 flex flex-col items-center transition-all duration-500 ${
+        onClick={isUnlocked && MONSTER_CARDS[monster.id] ? () => setCardOpenId(monster.id) : undefined}
+        className={`relative rounded-3xl p-6 ${isUnlocked && MONSTER_CARDS[monster.id] ? 'cursor-pointer hover:scale-[1.03]' : ''} flex flex-col items-center transition-all duration-500 ${
           isUnlocked 
             ? 'bg-gradient-to-b from-white to-blue-50 border-4 border-blue-200 shadow-xl' 
             : 'bg-gray-100 border-4 border-gray-200 opacity-60'
         } ${monster.isLegendary && isUnlocked ? 'from-yellow-100 to-orange-50 border-yellow-400 shadow-yellow-200 shadow-2xl' : ''}`}
       >
         <div className="text-xl font-bold text-gray-400 absolute top-4 left-4">
-          #{monster.id.toString().padStart(3, '0')}
+          #{monster.id.toString().padStart(3, '0')}{isUnlocked && MONSTER_CARDS[monster.id] && <span title="點一下翻開卡片"> 📖</span>}
         </div>
 
         {isUnlocked && (
@@ -129,6 +133,10 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
       </button>
 
       {/* Gacha Modal */}
+      {cardOpenId !== null && MONSTER_CARDS[cardOpenId] && (
+        <MonsterCardModal monster={MONSTER_DATA[cardOpenId]} card={MONSTER_CARDS[cardOpenId]} onClose={() => setCardOpenId(null)} />
+      )}
+
       {gachaResult && (
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in" onClick={closeGachaResult}>
           <div className="bg-white rounded-[3rem] p-10 max-w-lg w-full text-center border-8 border-yellow-400 shadow-[0_0_50px_rgba(255,215,0,0.5)] transform animate-bounce-short relative" onClick={e => e.stopPropagation()}>
@@ -187,7 +195,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
               {userData.coins} <span className="text-xl">金幣</span>
             </div>
             <p className="text-slate-500 font-bold px-2 text-left">
-              練習答對、完成錯題輪次、打贏魔王都有金幣。<br/>抽到重複的怪獸會退金幣、升級進化，而且下一次一定抽到新的！<br/>魔王和傳說怪獸要靠挑戰取得，抽不到喔。
+              練習答對、完成錯題輪次、打贏魔王都有金幣。<br/>抽到重複的怪獸會退金幣、升級進化，而且下一次一定抽到新的！<br/>魔王和傳說怪獸要靠挑戰取得，抽不到喔。<br/>有 📖 的怪獸，點一下可以翻開牠的卡片學英文！
             </p>
           </div>
           

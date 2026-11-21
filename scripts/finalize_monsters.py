@@ -22,7 +22,7 @@ from PIL import Image
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 PUBLIC = os.path.join(ROOT, "public", "monsters")
-CUT = os.path.join(HERE, "monster_raw", "batch7", "cut")
+CUT = os.path.join(HERE, "monster_raw", "batch8", "cut")
 DATA = os.path.join(ROOT, "services", "monsterData.ts")
 SIZE, MARGIN, QUALITY = 512, 0.06, 85
 
