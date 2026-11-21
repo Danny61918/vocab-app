@@ -13,12 +13,13 @@ import topupVocabScience from './supp/topupVocabScience';
 import topupReading from './supp/topupReading';
 import topupGaps from './supp/topupGaps';
 import retest from './retest';
+import { KID_EXPLAIN } from './kidExplain';
 
 // Flat list across every imported exam's drill file. Add a new drills/<exam-date>.ts + one
 // import line here for each new exam (mirrors services/mistakeBook/index.ts).
 // `supp/` files are supplementary banks for skills the exam-seeded drills don't cover
 // (ids look like `supp.<skillId>#vN`, no seed mistake).
-export const ALL_DRILLS: DrillItem[] = [
+const RAW_DRILLS: DrillItem[] = [
   // Newest exam first: ties inside a skill are broken by position in this list, so the most recent mistakes surface first.
   ...drills20261110,
   ...drills20261028,
@@ -35,3 +36,6 @@ export const ALL_DRILLS: DrillItem[] = [
   ...topupGaps,
   ...retest,
 ];
+
+// Merge the hand-checked monster explanations (kidExplain.ts) into the items they belong to.
+export const ALL_DRILLS: DrillItem[] = RAW_DRILLS.map((i) => (KID_EXPLAIN[i.id] ? { ...i, kidExplain: KID_EXPLAIN[i.id] } : i));
