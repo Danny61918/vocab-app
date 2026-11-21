@@ -252,6 +252,20 @@ describe('weighted slots', () => {
   });
 });
 
+describe('原題重考 ordering', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('shows an unseen retest item before the made-up variations of the same skill', () => {
+    const bank = [
+      mk('v-1', 'G.SVA.I_you_base', { difficulty: 1 }),
+      mk('v-2', 'G.SVA.I_you_base', { difficulty: 1 }),
+      { ...mk('retest.x', 'G.SVA.I_you_base', { difficulty: 3 }), id: 'retest.x#v0' },
+    ];
+    const plan = getTodayDrill(day(0), bank, []);
+    expect(plan[0].id).toBe('retest.x#v0');
+  });
+});
+
 describe('group quotas', () => {
   beforeEach(() => localStorage.clear());
 

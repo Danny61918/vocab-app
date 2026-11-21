@@ -12,6 +12,7 @@ import topupMisc from './supp/topupMisc';
 import topupVocabScience from './supp/topupVocabScience';
 import topupReading from './supp/topupReading';
 import topupGaps from './supp/topupGaps';
+import retest from './retest';
 
 // Flat list across every imported exam's drill file. Add a new drills/<exam-date>.ts + one
 // import line here for each new exam (mirrors services/mistakeBook/index.ts).
@@ -32,4 +33,5 @@ export const ALL_DRILLS: DrillItem[] = [
   ...topupVocabScience,
   ...topupReading,
   ...topupGaps,
+  ...retest,
 ];

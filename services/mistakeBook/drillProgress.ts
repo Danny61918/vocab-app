@@ -160,6 +160,11 @@ function orderItems(items: DrillItem[], p: SkillProgress | undefined): DrillItem
       const seenA = lastSeen.has(a.item.id) ? 1 : 0;
       const seenB = lastSeen.has(b.item.id) ? 1 : 0;
       if (seenA !== seenB) return seenA - seenB;
+      // The child's own exam questions (原題重考, ids start with 'retest.') come before made-up variations:
+      // the school re-uses questions, so seeing the exact question again is the best check.
+      const retestA = a.item.id.startsWith('retest.') ? 0 : 1;
+      const retestB = b.item.id.startsWith('retest.') ? 0 : 1;
+      if (retestA !== retestB) return retestA - retestB;
       const dist = Math.abs(a.item.difficulty - target) - Math.abs(b.item.difficulty - target);
       if (dist !== 0) return dist;
       const dateA = lastSeen.get(a.item.id) ?? '';
