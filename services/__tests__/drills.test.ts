@@ -151,7 +151,8 @@ describe('ALL_DRILLS 實際題庫', () => {
     const vocab = ALL_DRILLS.filter((i) => i.targetWords && i.targetWords.length > 0);
     expect(ALL_DRILLS.length - vocab.length).toBeGreaterThanOrEqual(15);
     // 2026-11-10: raised from 200 when the generated present-simple bank (supp/genPresentSimple.ts, 142 items) was added.
-    expect(ALL_DRILLS.length - vocab.length).toBeLessThanOrEqual(400);
+    // 2026-11-21: raised from 400 for the gap drills (supp/topupGaps.ts, 37) and the original-question retests (retest.ts, ~48).
+    expect(ALL_DRILLS.length - vocab.length).toBeLessThanOrEqual(500);
     expect(vocab.length).toBeGreaterThanOrEqual(16);
     expect(vocab.length).toBeLessThanOrEqual(60);
   });
