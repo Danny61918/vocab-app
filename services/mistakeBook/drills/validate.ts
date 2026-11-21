@@ -43,6 +43,14 @@ export function validateDrillItem(item: DrillItem): string[] {
   if ([item.stem, ...optionTexts].some((t) => CJK.test(t))) fail('stem/options must be English (found Chinese characters)');
   if (!CJK.test(item.explanation)) fail('explanation must be written in Chinese');
 
+  if (item.kidExplain) {
+    const k = item.kidExplain;
+    if (!CJK.test(k.why) || !CJK.test(k.how)) fail('kidExplain why/how must be written in Chinese');
+    if (!k.example.right.trim() || !k.example.wrong.trim()) fail('kidExplain example needs both a right and a wrong sentence');
+    if (norm(k.example.right) === norm(k.example.wrong)) fail('kidExplain example right and wrong must differ');
+    if (CJK.test(k.example.right) || CJK.test(k.example.wrong)) fail('kidExplain example sentences must be English');
+  }
+
   for (const w of item.targetWords ?? []) {
     if (w !== norm(w) || !KNOWN_WORDS.has(w)) fail(`targetWords "${w}" must be normalized and exist in the vocab list`);
   }

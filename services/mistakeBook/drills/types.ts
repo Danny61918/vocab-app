@@ -13,6 +13,13 @@ export interface DrillOption {
   misconception?: string; // 選到這個干擾項代表的迷思，例如 '3sg_s_on_plural'
 }
 
+// 答錯後怪獸分三步講解（kidExplain.ts）。why／how 是中文，example 是英文的對、錯一組。
+export interface KidExplain {
+  why: string;
+  how: string;
+  example: { right: string; wrong: string };
+}
+
 export interface DrillItem {
   id: string;                  // `${seedId}#v${n}`；不用文字 hash，改字不會讓進度變孤兒
   seedMistakeId?: string;
@@ -27,5 +34,6 @@ export interface DrillItem {
   clue?: DrillClue;
   difficulty: 1 | 2 | 3;
   variation: DrillVariation[];
-  explanation: string;         // 中文，答錯時顯示
+  explanation: string;         // 中文，答錯時顯示（沒有 kidExplain 時怪獸念這一句）
+  kidExplain?: KidExplain;     // 由 drills/index.ts 依 id 合併進來
 }

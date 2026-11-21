@@ -6,6 +6,7 @@ import { answerDrill } from '../services/mistakeBook/vocabLink';
 import { logAnswer, makeWordKey } from '../services/answerLog';
 import { awardCoins } from '../services/gamification';
 import { MONSTER_DATA } from '../services/monsterData';
+import MonsterExplainer from './MonsterExplainer';
 
 interface Props {
   onClose: () => void;
@@ -200,15 +201,7 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
             {after}
           </FitText>
 
-          {answered && !isCorrect && (
-            <div className="mt-[var(--fit-mb)] w-full bg-rose-50 border-2 border-rose-200 rounded-2xl p-4 md:p-5 text-left">
-              <p className="text-[length:var(--fit-body)] font-black text-rose-600 mb-1">正確答案：{item.answer}</p>
-              <p className="text-[length:var(--fit-body)] font-bold text-slate-700 leading-snug">{item.explanation}</p>
-              <button onClick={next} className="mt-3 w-full bg-rose-500 hover:bg-rose-600 text-white text-lg md:text-2xl font-black py-3 rounded-2xl">
-                知道了，下一題
-              </button>
-            </div>
-          )}
+          {answered && !isCorrect && <MonsterExplainer key={item.id} item={item} picked={picked ?? ''} onDone={next} />}
         </div>
 
         {/* Answers */}
