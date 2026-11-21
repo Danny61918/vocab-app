@@ -1,15 +1,19 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import {
   getRemainingDrill,
+  getRoundDrill,
+  getRoundsAfterCurrent,
   getTodayDrill,
   isGraduated,
   loadSkillProgress,
   MAX_PER_SKILL,
   MAX_PER_DAY,
+  ROUND_SIZE,
   presentOptions,
   recordDrillAnswer,
 } from '../mistakeBook/drillProgress';
 import { DrillItem } from '../mistakeBook/drills/types';
+import { MistakeRecord } from '../mistakeBook/types';
 import { DAY, fixedDeps, seededRng, T0 } from './helpers';
 
 const day = (n: number) => fixedDeps({ now: T0 + n * DAY });
@@ -45,7 +49,7 @@ beforeEach(() => {
 });
 
 describe('getTodayDrill 每日出題', () => {
-  it('returns at most 8 items, at most 2 per skill, with no duplicates', () => {
+  it('returns at most 10 items, at most 4 per skill, with no duplicates', () => {
     const plan = getTodayDrill(day(0), bigBank());
     expect(plan.length).toBe(MAX_PER_DAY);
     expect(new Set(plan.map((i) => i.id)).size).toBe(plan.length);
@@ -209,18 +213,106 @@ describe('presentOptions 選項打亂', () => {
 describe('brand-new skills are scheduled by how often the child got them wrong', () => {
   beforeEach(() => localStorage.clear());
 
-  it('on day 1 the most-missed grammar-type and vocab skills are both in the plan', async () => {
+  it('on day 1 the most-missed vocab skill and a verb-form skill are both in the plan', async () => {
     const { ALL_DRILLS } = await import('../mistakeBook/drills');
     const { ALL_MISTAKES } = await import('../mistakeBook');
     const count = new Map<string, number>();
     for (const m of ALL_MISTAKES) for (const s of m.skills ?? []) count.set(s, (count.get(s) ?? 0) + 1);
     const drilled = [...new Set(ALL_DRILLS.map((d) => d.skillIds[0]))];
-    const byCount = (a: string, b: string) => (count.get(b) ?? 0) - (count.get(a) ?? 0);
-    const topVocab = drilled.filter((s) => s.startsWith('V.')).sort(byCount)[0];
-    const topOther = drilled.filter((s) => !s.startsWith('V.')).sort(byCount)[0];
+    const topVocab = drilled.filter((s) => s.startsWith('V.')).sort((a, b) => (count.get(b) ?? 0) - (count.get(a) ?? 0))[0];
 
     const plan = getTodayDrill(day(0), ALL_DRILLS).map((i) => i.skillIds[0]);
     expect(plan).toContain(topVocab);
-    expect(plan).toContain(topOther);
+    expect(plan.some((s) => /^G\.(SVA|PS|NEG|PROG|MODAL)\./.test(s))).toBe(true);
+    expect(plan.length).toBe(MAX_PER_DAY);
+  });
+});
+
+
+const fakeMistake = (skill: string, examDate: string): MistakeRecord =>
+  ({ id: skill + examDate + Math.random(), examDate, skills: [skill] }) as unknown as MistakeRecord;
+
+describe('weighted slots', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('gives a skill with many recent mistakes more slots than the others', () => {
+    const mistakes = Array.from({ length: 12 }, () => fakeMistake('G.NEG.dont_doesnt', '2026-03-01'));
+    const plan = getTodayDrill(day(0), bigBank(), mistakes).map((i) => i.skillIds[0]);
+    const n = (s: string) => plan.filter((x) => x === s).length;
+    expect(n('G.NEG.dont_doesnt')).toBeGreaterThan(n('G.SVA.I_you_base'));
+    expect(n('G.NEG.dont_doesnt')).toBeLessThanOrEqual(MAX_PER_SKILL);
+  });
+
+  it('weights a recent mistake above an old one', () => {
+    const recent = [fakeMistake('V.COLLOC', '2026-03-01'), fakeMistake('V.COLLOC', '2026-03-01')];
+    const old = [fakeMistake('V.CONFUSE', '2025-01-01'), fakeMistake('V.CONFUSE', '2025-01-01')];
+    const plan = getTodayDrill(day(0), bigBank(), [...recent, ...old]).map((i) => i.skillIds[0]);
+    const n = (s: string) => plan.filter((x) => x === s).length;
+    expect(n('V.COLLOC')).toBeGreaterThanOrEqual(n('V.CONFUSE'));
+  });
+});
+
+describe('rounds of five', () => {
+  beforeEach(() => localStorage.clear());
+
+  it('shows round 1 first, and round 2 only after round 1 is answered', () => {
+    const bank = bigBank();
+    const plan = getTodayDrill(day(0), bank);
+    expect(plan.length).toBe(MAX_PER_DAY);
+    const r1 = getRoundDrill(day(0), bank);
+    expect(r1.map((i) => i.id)).toEqual(plan.slice(0, ROUND_SIZE).map((i) => i.id));
+    expect(getRoundsAfterCurrent(day(0), bank)).toBe(1);
+    for (const it of r1) recordDrillAnswer(it, it.answer, 3000, day(0));
+    const r2 = getRoundDrill(day(0), bank);
+    expect(r2.map((i) => i.id)).toEqual(plan.slice(ROUND_SIZE).map((i) => i.id));
+    expect(getRoundsAfterCurrent(day(0), bank)).toBe(0);
+    for (const it of r2) recordDrillAnswer(it, it.answer, 3000, day(0));
+    expect(getRoundDrill(day(0), bank)).toEqual([]);
+  });
+
+  it('resumes the unfinished part of a round', () => {
+    const bank = bigBank();
+    const r1 = getRoundDrill(day(0), bank);
+    recordDrillAnswer(r1[0], r1[0].answer, 3000, day(0));
+    recordDrillAnswer(r1[1], r1[1].answer, 3000, day(0));
+    const left = getRoundDrill(day(0), bank);
+    expect(left.length).toBe(ROUND_SIZE - 2);
+    expect(getRoundsAfterCurrent(day(0), bank)).toBe(1);
+  });
+});
+
+describe('a practised skill that goes wrong again on a later exam', () => {
+  beforeEach(() => localStorage.clear());
+  const bank = () => [mk('a-1', 'G.SVA.I_you_base'), mk('a-2', 'G.SVA.I_you_base'), mk('b-1', 'V.COLLOC'), mk('b-2', 'V.COLLOC')];
+
+  function practiseToBox3(items: DrillItem[]) {
+    for (let n = 0; n < 3; n++) {
+      const it = items[n % 2];
+      recordDrillAnswer(it, it.answer, 3000, day(n));
+    }
+  }
+
+  it('comes back at once when the exam date is after its last practice', () => {
+    const items = bank();
+    practiseToBox3(items); // last attempt on day(2); due again about a week later
+    const later = [fakeMistake('G.SVA.I_you_base', '2026-03-05')]; // today is 03-05, last practice 03-04
+    const plan = getTodayDrill(day(3), items, later).map((i) => i.skillIds[0]);
+    expect(plan).toContain('G.SVA.I_you_base');
+  });
+
+  it('does not come back for an exam dated after today', () => {
+    const items = bank();
+    practiseToBox3(items);
+    const future = [fakeMistake('G.SVA.I_you_base', '2026-03-20')];
+    const plan = getTodayDrill(day(3), items, future).map((i) => i.skillIds[0]);
+    expect(plan.every((s) => s === 'V.COLLOC')).toBe(true);
+  });
+
+  it('does not come back for an exam dated before its last practice', () => {
+    const items = bank();
+    practiseToBox3(items);
+    const old = [fakeMistake('G.SVA.I_you_base', '2026-03-01')];
+    const plan = getTodayDrill(day(3), items, old).map((i) => i.skillIds[0]);
+    expect(plan.every((s) => s === 'V.COLLOC')).toBe(true);
   });
 });
