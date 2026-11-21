@@ -4,7 +4,7 @@ import confetti from 'canvas-confetti';
 import { getRemainingDrill, getRoundDrill, getRoundsAfterCurrent, presentOptions } from '../services/mistakeBook/drillProgress';
 import { answerDrill } from '../services/mistakeBook/vocabLink';
 import { logAnswer, makeWordKey } from '../services/answerLog';
-import { awardCoins } from '../services/gamification';
+import { awardCoins, DRILL_ROUND_COINS } from '../services/gamification';
 import { MONSTER_DATA } from '../services/monsterData';
 import MonsterExplainer from './MonsterExplainer';
 
@@ -47,6 +47,7 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
 
   const finish = () => {
     if (correctRef.current > 0) confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+    awardCoins(DRILL_ROUND_COINS);
     // Round 1 is fully answered by now, so ask whether another round is waiting (not how many follow the current one).
     setRoundsAfter(getRoundDrill().length > 0 ? 1 : 0);
     setPhase('done');

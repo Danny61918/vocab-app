@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { MONSTER_DATA } from '../services/monsterData';
-import { getUserData, drawGacha } from '../services/gamification';
+import { getUserData, drawGacha, GachaResult, GACHA_COST } from '../services/gamification';
 import { Coins, Sparkles, Star } from 'lucide-react';
 
 interface Props {
@@ -9,14 +9,14 @@ interface Props {
 
 export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
   const [userData, setUserData] = useState(getUserData());
-  const [gachaResult, setGachaResult] = useState<{ monsterId: number; isNew: boolean; levelUp: boolean } | null>(null);
+  const [gachaResult, setGachaResult] = useState<GachaResult | null>(null);
   const [isDrawing, setIsDrawing] = useState(false);
 
   const monsters = Object.values(MONSTER_DATA);
   const ownedCount = Object.keys(userData.ownedMonsters).length;
 
   const handleDraw = () => {
-    if (userData.coins < 500 || isDrawing) return;
+    if (userData.coins < GACHA_COST || isDrawing) return;
     
     setIsDrawing(true);
     setGachaResult(null);
@@ -154,7 +154,8 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
             
             {!gachaResult.isNew && (
                <div className="text-emerald-600 text-2xl font-black mb-2 animate-pulse">
-                  +100 EXP
+                  +100 EXP　＋{gachaResult.refund} 金幣
+                  <div className="text-base text-slate-500">下一次一定抽到新怪獸！</div>
                </div>
             )}
             {gachaResult.levelUp && (
@@ -186,15 +187,15 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
               {userData.coins} <span className="text-xl">金幣</span>
             </div>
             <p className="text-slate-500 font-bold px-2 text-left">
-              完成任何單字測驗都會獎勵金幣。<br/>重複抽到相同怪獸可以讓牠們升級進化！
+              練習答對、完成錯題輪次、打贏魔王都有金幣。<br/>抽到重複的怪獸會退金幣、升級進化，而且下一次一定抽到新的！<br/>魔王和傳說怪獸要靠挑戰取得，抽不到喔。
             </p>
           </div>
           
           <button 
             onClick={handleDraw}
-            disabled={userData.coins < 500 || isDrawing}
+            disabled={userData.coins < GACHA_COST || isDrawing}
             className={`relative group overflow-hidden px-8 py-6 rounded-3xl font-black text-2xl shadow-xl transition-all duration-300 ${
-              userData.coins >= 500 
+              userData.coins >= GACHA_COST 
                 ? 'bg-gradient-to-b from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-white hover:scale-105 active:scale-95 cursor-pointer border-b-8 border-orange-600' 
                 : 'bg-gray-200 text-gray-400 cursor-not-allowed border-b-8 border-gray-300'
             }`}
@@ -207,7 +208,7 @@ export const MonsterGallery: React.FC<Props> = ({ onBack }) => {
               <span className="flex flex-col items-center gap-1">
                 <span>抽取魔法蛋</span>
                 <span className="text-sm font-bold bg-white/20 px-3 py-1 rounded-full flex items-center gap-1">
-                  <Coins size={16} /> 500
+                  <Coins size={16} /> {GACHA_COST}
                 </span>
               </span>
             )}

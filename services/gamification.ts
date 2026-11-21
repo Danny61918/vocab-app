@@ -1,6 +1,14 @@
 import { TestResult, StreakData, GameGlobalStats, Achievement, UserData, OwnedMonster } from '../types';
 import { getHistory } from './storage';
 import { MONSTER_DATA } from './monsterData';
+import { loadLevelProgress } from './srsStorage';
+
+export const GACHA_COST = 500;
+export const DUPLICATE_REFUND = 100;
+export const BOSS_WIN_COINS = 150;
+export const DRILL_ROUND_COINS = 50;
+// One-off bonus the day a streak reaches this length.
+export const STREAK_BONUS: Record<number, number> = { 3: 100, 7: 300 };
 
 const STORAGE_KEY_STREAK = 'vocab_app_streak';
 const STORAGE_KEY_ACHIEVEMENTS = 'vocab_app_achievements_unlocked';
@@ -64,7 +72,22 @@ export const getUnlockedAchievements = (): string[] => {
     return stored ? JSON.parse(stored) : [];
 };
 
-export const getUserData = (): UserData => {
+// Monsters unlocked by clearing levels, beating grammar bosses or mastering words are recorded in the level
+// progress, not in userData. Fold them in so the gallery (which reads ownedMonsters) shows them.
+const withUnlockedMonsters = (data: UserData): UserData => {
+    try {
+        for (const id of loadLevelProgress().unlockedMonsters) {
+            if (MONSTER_DATA[id] && !data.ownedMonsters[id]) data.ownedMonsters[id] = { id, level: 1, exp: 0 };
+        }
+    } catch {
+        // progress unreadable: show what userData has
+    }
+    return data;
+};
+
+export const getUserData = (): UserData => withUnlockedMonsters(readUserData());
+
+const readUserData = (): UserData => {
     const stored = localStorage.getItem(STORAGE_KEY_USER_DATA);
     if (stored) {
         const parsed = JSON.parse(stored);
@@ -76,6 +99,7 @@ export const getUserData = (): UserData => {
         return {
             coins: typeof parsed.coins === 'number' && Number.isFinite(parsed.coins) ? parsed.coins : 0,
             ownedMonsters: parsed.ownedMonsters && typeof parsed.ownedMonsters === 'object' ? parsed.ownedMonsters : {},
+            guaranteeNew: parsed.guaranteeNew === true,
         };
     }
 
@@ -110,30 +134,46 @@ export const awardCoins = (amount: number): void => {
     saveUserData(userData);
 };
 
-export const drawGacha = (): { monsterId: number; isNew: boolean; levelUp: boolean } | null => {
+export interface GachaResult {
+    monsterId: number;
+    isNew: boolean;
+    levelUp: boolean;
+    refund: number;
+}
+
+// Boss and milestone monsters are legendary: they are earned, never drawn.
+export const gachaPoolIds = (): number[] =>
+    Object.values(MONSTER_DATA).filter((m) => !m.isLegendary).map((m) => m.id);
+
+// A duplicate pays back DUPLICATE_REFUND coins plus 100 EXP, and the next draw is guaranteed to be new.
+export const drawGacha = (rng: () => number = Math.random): GachaResult | null => {
     const userData = getUserData();
-    if (userData.coins < 500) {
+    if (userData.coins < GACHA_COST) {
         return null;
     }
-    
-    userData.coins -= 500;
-    
-    // Pick random monster from MONSTER_DATA
-    const allMonsterIds = Object.keys(MONSTER_DATA).map(Number);
-    const randomId = allMonsterIds[Math.floor(Math.random() * allMonsterIds.length)];
-    
+
+    userData.coins -= GACHA_COST;
+
+    const pool = gachaPoolIds();
+    const unowned = pool.filter((id) => !userData.ownedMonsters[id]);
+    const candidates = userData.guaranteeNew && unowned.length > 0 ? unowned : pool;
+    const randomId = candidates[Math.floor(rng() * candidates.length)];
+
     let isNew = false;
     let levelUp = false;
+    let refund = 0;
 
     if (!userData.ownedMonsters[randomId]) {
         userData.ownedMonsters[randomId] = { id: randomId, level: 1, exp: 0 };
         isNew = true;
+        userData.guaranteeNew = false;
     } else {
-        // Duplicate: gain 100 EXP
         const m = userData.ownedMonsters[randomId];
         m.exp += 100;
-        
-        // Level up thresholds
+        refund = DUPLICATE_REFUND;
+        userData.coins += refund;
+        userData.guaranteeNew = true;
+
         if (m.exp >= 300 && m.level < 3) {
             m.level = 3;
             levelUp = true;
@@ -142,9 +182,9 @@ export const drawGacha = (): { monsterId: number; isNew: boolean; levelUp: boole
             levelUp = true;
         }
     }
-    
+
     saveUserData(userData);
-    return { monsterId: randomId, isNew, levelUp };
+    return { monsterId: randomId, isNew, levelUp, refund };
 };
 
 export const processGamification = (result: TestResult) => {
@@ -172,6 +212,8 @@ export const processGamification = (result: TestResult) => {
         if (streak.currentStreak > streak.bestStreak) {
             streak.bestStreak = streak.currentStreak;
         }
+        // Bonus for reaching a milestone streak (only on the day the streak first reaches it).
+        awardCoins(STREAK_BONUS[streak.currentStreak] ?? 0);
         
         localStorage.setItem(STORAGE_KEY_STREAK, JSON.stringify(streak));
     }

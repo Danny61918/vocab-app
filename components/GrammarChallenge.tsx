@@ -5,6 +5,7 @@ import { pickBattleQuestions } from '../services/grammarQueue';
 import { MONSTER_DATA } from '../services/monsterData';
 import { unlockMonster } from '../services/srsStorage';
 import { saveResult } from '../services/storage';
+import { awardCoins, BOSS_WIN_COINS } from '../services/gamification';
 import { logAnswer, makeWordKey } from '../services/answerLog';
 import { XCircle, ArrowRight, Home, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -148,6 +149,7 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
 
     if (wasCorrect && finalBossHp <= 0) {
        if (bossId) unlockMonster(bossId);
+       awardCoins(BOSS_WIN_COINS);
        setPhase('victory');
        confetti({ particleCount: 200, zIndex: 9999 });
        finishGrammarSession();
