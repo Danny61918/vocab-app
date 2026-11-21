@@ -17,7 +17,7 @@ import PracticeView from './components/PracticeView';
 import TopicReviewChallenge from './components/TopicReviewChallenge';
 import MistakeBookView from './components/MistakeBookView';
 import MistakeDrill from './components/MistakeDrill';
-import { getRemainingDrill } from './services/mistakeBook/drillProgress';
+import { getRoundDrill } from './services/mistakeBook/drillProgress';
 import { applySeedWordMistakes } from './services/mistakeBook/vocabLink';
 import { getStreak, getUserData } from './services/gamification';
 import { getActiveExamReviewSets, getWordsForExamSet, getWordsForDayGroup, ExamReviewSet } from './services/examReviewSets';
@@ -373,7 +373,7 @@ function App() {
       default: {
         const streak = getStreak();
         const userData = getUserData();
-        const drillLeft = getRemainingDrill().length;
+        const drillLeft = getRoundDrill().length;
         return (
           <div className="max-w-4xl mx-auto p-6 animate-fade-in pb-20">
             {/* Header */}

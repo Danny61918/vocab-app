@@ -15,7 +15,7 @@ import { getAllSentences, tryCreateCloze, findServerAudioId } from '../services/
 import { playAudio, preloadAudio } from '../services/audioPlayer';
 import { logAnswer, makeWordKey } from '../services/answerLog';
 import { awardCoins } from '../services/gamification';
-import { getRemainingDrill } from '../services/mistakeBook/drillProgress';
+import { getRoundDrill } from '../services/mistakeBook/drillProgress';
 import { getPlannedTargetWords } from '../services/mistakeBook/vocabLink';
 import { MistakeDrill } from './MistakeDrill';
 import { MONSTER_DATA } from '../services/monsterData';
@@ -660,7 +660,7 @@ export const SmartDailyReview: React.FC<Props> = ({ mode, levelId, onClose }) =>
   }
 
   // ── Summary ──
-  const drillLeft = mode === 'daily' ? getRemainingDrill().length : 0;
+  const drillLeft = mode === 'daily' ? getRoundDrill().length : 0;
   return (
     <div className="flex flex-col items-center justify-center min-h-[100dvh] landscape:h-[100dvh] p-4 text-center bg-yellow-50">
       <div className="w-[calc(var(--fit-monster)*0.6)] h-[calc(var(--fit-monster)*0.6)] mb-[var(--fit-mb)] flex items-center justify-center animate-bounce">

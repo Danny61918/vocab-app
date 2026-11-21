@@ -1,7 +1,7 @@
 import React, { useMemo, useRef, useState } from 'react';
 import FitText from './FitText';
 import confetti from 'canvas-confetti';
-import { getRemainingDrill, presentOptions } from '../services/mistakeBook/drillProgress';
+import { getRemainingDrill, getRoundDrill, getRoundsAfterCurrent, presentOptions } from '../services/mistakeBook/drillProgress';
 import { answerDrill } from '../services/mistakeBook/vocabLink';
 import { logAnswer, makeWordKey } from '../services/answerLog';
 import { awardCoins } from '../services/gamification';
@@ -16,11 +16,15 @@ type Phase = 'intro' | 'play' | 'done';
 const COINS_PER_CORRECT = 10;
 const SECONDS_PER_QUESTION = 40; // rough pace, only used for the "about N minutes" hint
 
-// 錯題小挑戰：今天排好的 ≤ 8 題（services/mistakeBook/drillProgress.ts），做完每日複習後接著做。
+// 錯題小挑戰：今天排好的 ≤ 10 題，分成每輪 5 題（services/mistakeBook/drillProgress.ts），做完每日複習後接著做。
+// 第一輪做完才會出現第二輪；中途離開，下次從還沒做完的那一輪繼續。
 // Sizes come from the fluid --fit-* tokens in index.html: two columns in landscape (sentence on
 // the left, answers on the right), stacked in portrait.
 export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
-  const [queue] = useState(() => getRemainingDrill());
+  const [queue, setQueue] = useState(() => getRoundDrill());
+  const [roundsAfter, setRoundsAfter] = useState(() => getRoundsAfterCurrent());
+  const [roundNo, setRoundNo] = useState(1);
+  const [totalToday] = useState(() => getRemainingDrill().length);
   const [phase, setPhase] = useState<Phase>('intro');
   const [idx, setIdx] = useState(0);
   const [picked, setPicked] = useState<string | null>(null);
@@ -42,7 +46,21 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
 
   const finish = () => {
     if (correctRef.current > 0) confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+    setRoundsAfter(getRoundsAfterCurrent());
     setPhase('done');
+  };
+
+  // Next round of 5: only offered on the summary after the current round is finished.
+  const startNextRound = () => {
+    setQueue(getRoundDrill());
+    setRoundsAfter(getRoundsAfterCurrent());
+    setRoundNo((n) => n + 1);
+    setIdx(0);
+    setPicked(null);
+    correctRef.current = 0;
+    setCorrectCount(0);
+    shownAtRef.current = Date.now();
+    setPhase('play');
   };
 
   const next = () => {
@@ -111,7 +129,8 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
           {monsterImg('animate-bounce')}
         </div>
         <h1 className="text-[length:var(--fit-word)] leading-tight font-black text-amber-700 mb-[var(--fit-mb)]">🛠️ 錯題小挑戰</h1>
-        <p className="text-[length:var(--fit-zh)] leading-tight text-amber-700 font-bold mb-2">今天有 {queue.length} 題，大約 {minutes} 分鐘</p>
+        <p className="text-[length:var(--fit-zh)] leading-tight text-amber-700 font-bold mb-2">這一輪 {queue.length} 題，大約 {minutes} 分鐘</p>
+        {roundsAfter > 0 && <p className="text-[length:var(--fit-body)] text-amber-600 font-bold mb-2">今天共 {totalToday} 題，做完這一輪再決定要不要繼續</p>}
         <p className="text-[length:var(--fit-body)] text-amber-600 font-bold mb-[var(--fit-gap)]">把之前會搞混的地方，一題一題練熟！</p>
         <button onClick={start} className={`bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 hover:scale-105 ${bigButton}`}>
           開始 (Start!)
@@ -130,13 +149,18 @@ export const MistakeDrill: React.FC<Props> = ({ onClose }) => {
         <div className="w-[calc(var(--fit-monster)*0.7)] h-[calc(var(--fit-monster)*0.7)] mb-[var(--fit-mb)] flex items-center justify-center animate-bounce">
           {monsterImg()}
         </div>
-        <h1 className="text-[length:var(--fit-word)] leading-tight font-black text-yellow-600 mb-[var(--fit-mb)]">挑戰完成！ 🏆</h1>
+        <h1 className="text-[length:var(--fit-word)] leading-tight font-black text-yellow-600 mb-[var(--fit-mb)]">{roundsAfter > 0 || roundNo > 1 ? `第 ${roundNo} 輪完成！ 🏆` : '挑戰完成！ 🏆'}</h1>
         <div className="flex flex-wrap justify-center gap-3 mb-[var(--fit-gap)] text-[length:var(--fit-body)] font-bold">
           <p className="text-emerald-700 bg-emerald-50 px-5 py-2 rounded-2xl border-2 border-emerald-200">答對 {correctCount} / {queue.length} 題</p>
           <p className="text-amber-700 bg-amber-50 px-5 py-2 rounded-2xl border-2 border-amber-200">🪙 獲得金幣：+{correctCount * COINS_PER_CORRECT}</p>
         </div>
+        {roundsAfter > 0 && (
+          <button onClick={startNextRound} className={`mb-[var(--fit-gap)] bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 hover:scale-105 ${bigButton}`}>
+            再來一輪（還有 {getRoundDrill().length} 題）
+          </button>
+        )}
         <button onClick={onClose} className={`bg-yellow-500 hover:bg-yellow-600 border-b-8 border-yellow-700 active:border-b-0 active:translate-y-2 ${bigButton}`}>
-          返回 (Back)
+          {roundsAfter > 0 ? '今天先到這裡' : '返回 (Back)'}
         </button>
       </div>
     );
