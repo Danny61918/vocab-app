@@ -3,9 +3,8 @@ import { GrammarCategory, GrammarQuestion, GameMode, GameType, TestResult } from
 import { GRAMMAR_QUESTIONS, GRAMMAR_BOSS_MAP } from '../services/grammarData';
 import { pickBattleQuestions } from '../services/grammarQueue';
 import { MONSTER_DATA } from '../services/monsterData';
-import { unlockMonster } from '../services/srsStorage';
 import { saveResult } from '../services/storage';
-import { awardCoins, BOSS_WIN_COINS } from '../services/gamification';
+import { awardCoins, BOSS_WIN_COINS, BOSS_DAYS_REQUIRED, bossDaysWon, getUserData, recordBossWin } from '../services/gamification';
 import { logAnswer, makeWordKey } from '../services/answerLog';
 import { XCircle, ArrowRight, Home, Heart } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -28,6 +27,7 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
   const [phase, setPhase] = useState<'select' | 'battle' | 'victory' | 'defeat'>('select');
   const [selectedCategory, setSelectedCategory] = useState<GrammarCategory | null>(null);
   const [bossId, setBossId] = useState<number | null>(null);
+  const [bossProgress, setBossProgress] = useState<{ days: number; required: number; owned: boolean; newlyUnlocked: boolean } | null>(null);
   
   // Battle states
   const [questions, setQuestions] = useState<GrammarQuestion[]>([]);
@@ -148,7 +148,7 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
     const finalPlayerHp = playerHpRef.current;
 
     if (wasCorrect && finalBossHp <= 0) {
-       if (bossId) unlockMonster(bossId);
+       if (bossId) setBossProgress(recordBossWin(bossId));
        awardCoins(BOSS_WIN_COINS);
        setPhase('victory');
        confetti({ particleCount: 200, zIndex: 9999 });
@@ -167,11 +167,13 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
           className="absolute top-4 left-4 bg-slate-200 text-slate-700 text-2xl font-bold py-3 px-6 rounded-2xl shadow-sm"
         >⬅️ 回大廳</button>
         <h1 className="text-5xl font-black text-rose-600 mb-4 mt-8 drop-shadow-md">⚔️ 文法大頭目討伐戰</h1>
-        <p className="text-xl text-slate-500 mb-8 font-bold">選擇你要討伐的魔王，答對 15 題把它抓回家！<br/>(注意：被打掉 3 顆愛心就輸囉)</p>
+        <p className="text-xl text-slate-500 mb-8 font-bold">選擇你要討伐的魔王，答對 15 題打倒魔王，在 {BOSS_DAYS_REQUIRED} 個不同的日子打贏牠，就能收服回家！<br/>(注意：被打掉 3 顆愛心就輸囉)</p>
         
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 w-full mt-4">
           {Object.entries(GRAMMAR_BOSS_MAP).map(([category, mId]) => {
             const monster = MONSTER_DATA[mId];
+            const owned = !!getUserData().ownedMonsters[mId];
+            const days = Math.min(bossDaysWon(mId), BOSS_DAYS_REQUIRED);
             return (
               <div key={category} onClick={() => startBattle(category as GrammarCategory)} className="bg-white rounded-[3rem] p-6 border-b-8 border-rose-300 shadow-xl cursor-pointer hover:bg-rose-50 hover:scale-[1.03] transition-all flex flex-col items-center border-4">
                  <div className="w-32 h-32 mb-6">
@@ -180,6 +182,9 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
                  <h2 className="text-2xl font-black text-rose-800 mb-3">{monster.name}</h2>
                  <span className="bg-rose-100 text-rose-600 px-3 py-1 rounded-xl font-bold text-sm">
                     {CATEGORY_LABELS[category as GrammarCategory]}
+                 </span>
+                 <span className={`mt-3 px-3 py-1 rounded-xl font-black text-sm ${owned ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                    {owned ? '✅ 已收服' : `收服進度 ${days} / ${BOSS_DAYS_REQUIRED} 天`}
                  </span>
               </div>
             )
@@ -303,7 +308,12 @@ const GrammarChallenge: React.FC<Props> = ({ onExit }) => {
         <div className="text-9xl mb-8 animate-bounce drop-shadow-md">🏆</div>
         <h1 className="text-7xl font-black text-yellow-600 mb-6 drop-shadow-sm font-['Outfit']">討伐成功！</h1>
         <p className="text-3xl text-yellow-800 font-bold mb-8 leading-relaxed">
-          你把「<span className="text-rose-600">{monster.name}</span>」打得落花流水！<br/>成功將牠收服到圖鑑囉！
+          你把「<span className="text-rose-600">{monster.name}</span>」打得落花流水！<br/>
+          {bossProgress?.newlyUnlocked
+            ? '五天的努力沒有白費，成功將牠收服到圖鑑囉！'
+            : bossProgress?.owned
+              ? '牠已經在你的圖鑑裡囉！'
+              : `收服進度：${bossProgress?.days ?? 1} / ${bossProgress?.required ?? BOSS_DAYS_REQUIRED} 天，明天再來挑戰！`}
         </p>
         <div className="relative mb-12">
            <div className="absolute inset-0 bg-yellow-200 blur-3xl rounded-full animate-pulse"></div>

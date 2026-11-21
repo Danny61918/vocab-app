@@ -35,6 +35,7 @@ interface CloudDocument {
   wishList: any[];       // P7 feature wish list
   skillProgress: Record<string, any>; // P9 mistake-drill skill progress
   seededMistakes: string[];           // P9 exam word-mistake seeds already applied
+  bossWins: Record<string, string[]>; // grammar boss id -> days it was beaten
   lastSyncedAt: any;    // serverTimestamp
 }
 
@@ -51,6 +52,7 @@ export const LS_KEYS = {
   wishList: 'vocab_wish_list',
   skillProgress: 'vocab_skill_progress',
   seededMistakes: 'vocab_seeded_mistakes',
+  bossWins: 'vocab_boss_wins',
 } as const;
 
 // ---- Helpers ----
@@ -83,6 +85,7 @@ const SYNC_FIELDS: [SyncedField, string, unknown][] = [
   ['wishList', LS_KEYS.wishList, []],
   ['skillProgress', LS_KEYS.skillProgress, {}],
   ['seededMistakes', LS_KEYS.seededMistakes, []],
+  ['bossWins', LS_KEYS.bossWins, {}],
 ];
 
 /** The cloud document as it would be pushed now (without the server timestamp). */
