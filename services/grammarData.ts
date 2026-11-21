@@ -384,5 +384,5 @@ export const GRAMMAR_BOSS_MAP: Record<GrammarCategory, number> = {
   [GrammarCategory.TENSE_PRESENT_CONTINUOUS]: 27, // 烈焰之舞
   [GrammarCategory.POSSESSIVE]: 30, // 格鬥鋼拳
   [GrammarCategory.THERE_BE_SOME_ANY]: 39, // 聖光獨角獸
-  [GrammarCategory.FREQUENCY_ADVERB]: 31, // 爆炎雙頭龍
+  [GrammarCategory.FREQUENCY_ADVERB]: 31, // 水晶蝙蝠
 };
