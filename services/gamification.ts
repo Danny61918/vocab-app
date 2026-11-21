@@ -1,11 +1,41 @@
 import { TestResult, StreakData, GameGlobalStats, Achievement, UserData, OwnedMonster } from '../types';
 import { getHistory } from './storage';
 import { MONSTER_DATA } from './monsterData';
-import { loadLevelProgress } from './srsStorage';
+import { loadLevelProgress, unlockMonster } from './srsStorage';
 
 export const GACHA_COST = 500;
 export const DUPLICATE_REFUND = 100;
 export const BOSS_WIN_COINS = 150;
+// A boss joins the collection only after it has been beaten on this many different days (not necessarily in a row).
+export const BOSS_DAYS_REQUIRED = 5;
+const STORAGE_KEY_BOSS_WINS = 'vocab_boss_wins';
+
+export const getBossWins = (): Record<string, string[]> => {
+    try {
+        const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY_BOSS_WINS) || '{}');
+        return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+    } catch {
+        return {};
+    }
+};
+
+export const bossDaysWon = (bossId: number): number => (getBossWins()[bossId] ?? []).length;
+
+// Records a victory over a boss. Several wins on the same day count as one day.
+export const recordBossWin = (
+    bossId: number,
+    today: string = new Date().toLocaleDateString('en-CA'),
+): { days: number; required: number; owned: boolean; newlyUnlocked: boolean } => {
+    const wins = getBossWins();
+    const days = new Set(wins[bossId] ?? []);
+    days.add(today);
+    wins[bossId] = [...days].sort();
+    localStorage.setItem(STORAGE_KEY_BOSS_WINS, JSON.stringify(wins));
+    const alreadyOwned = !!readUserData().ownedMonsters[bossId] || loadLevelProgress().unlockedMonsters.includes(bossId);
+    const newlyUnlocked = !alreadyOwned && days.size >= BOSS_DAYS_REQUIRED;
+    if (newlyUnlocked) unlockMonster(bossId);
+    return { days: days.size, required: BOSS_DAYS_REQUIRED, owned: alreadyOwned || newlyUnlocked, newlyUnlocked };
+};
 export const DRILL_ROUND_COINS = 50;
 // One-off bonus the day a streak reaches this length.
 export const STREAK_BONUS: Record<number, number> = { 3: 100, 7: 300 };
