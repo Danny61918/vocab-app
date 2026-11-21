@@ -54,6 +54,9 @@ export const ALL_SKILLS: SkillTag[] = [
   { id: 'FMT.careless', domain: 'FMT', label: '粗心：漏作答、重複作答、看錯題目', legacyCategory: 'context_carelessness' },
   { id: 'R.CLIL.numbers', domain: 'R', label: '數字、年份與日期的唸法', legacyCategory: 'content_comprehension' },
   { id: 'R.CLIL.landmarks', domain: 'R', label: '世界地標與常識（比薩斜塔、艾菲爾鐵塔）', legacyCategory: 'content_comprehension' },
+  { id: 'V.POS_LABEL', domain: 'V', label: '單字詞性標註（v.／n.／adj.／ph.）', legacyCategory: 'other' },
+  { id: 'G.ADV.frequency_position', domain: 'G', label: '頻率副詞的位置（be 動詞後、一般動詞前）', legacyCategory: 'sentence_structure' },
+  { id: 'G.PREP.time_on_at', domain: 'G', label: '時間介系詞（on＋星期、at＋鐘點、in＋時段）', legacyCategory: 'preposition' },
 ];
 
 export const SKILL_IDS: string[] = ALL_SKILLS.map((s) => s.id);

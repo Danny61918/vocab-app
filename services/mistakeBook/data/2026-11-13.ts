@@ -5,6 +5,7 @@ import { MistakeRecord } from '../types';
 // corrected in blue ink (same reading as 2026-11-10 / 2026-11-17). Sections A and B1-B5, B7-B8, B10 had no deductions.
 // No total score is written on the paper. Section C (writing, 4 items): the paper shows only the corrected sentences and the parent cannot tell the original errors either,
 // so all four are recorded with an unknown original answer (red RW marks / circles on each); the error cause is not guessed.
+// Same date, second paper: the L7 Week 11 daily quiz (26/30: A -3 with three red circles on scare / the rain / of, D -1).
 // See services/mistakeBook/types.ts for the import process.
 const data: MistakeRecord[] = [
   {
@@ -115,6 +116,78 @@ const data: MistakeRecord[] = [
     "rawErrorType": "because 合併句（老師紅圈句尾，錯誤細節看不清楚）",
     "teacherExplanation": "Alice is unhappy（結果）because she can't go camping with her family（原因）。because 後面的 Alice 要換成代名詞 she。",
     "reviewAdvice": "because 後面的人名要換成 she／he／they，句尾記得加句號。",
+    "questionType": "rewrite",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-13_ibhtpb",
+    "examDate": "2026-11-13",
+    "examName": "L7 Week 11 日常小考（11/13，26/30）",
+    "section": "A. Spelling Test（Spell out the words）",
+    "questionText": "拼字：使驚嚇 (v.)",
+    "studentAnswer": "未知（原答案看不到，紅圈圈住整個單字，已訂正）",
+    "correctAnswer": "scare",
+    "errorCategory": "spelling",
+    "rawErrorType": "拼字：scare",
+    "skills": [
+      "M.SPELL.careful_copy"
+    ],
+    "teacherExplanation": "scare（(v.)）的意思是「使驚嚇」，拼字要每個字母都正確。",
+    "reviewAdvice": "把單字拆成音節或小段，唸著抄寫；默寫完逐字母對照課本。",
+    "questionType": "fill_blank",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-13_djkc9m",
+    "examDate": "2026-11-13",
+    "examName": "L7 Week 11 日常小考（11/13，26/30）",
+    "section": "A. Spelling Test（Spell out the words）",
+    "questionText": "拼字：冒雨出去 (ph.)",
+    "studentAnswer": "未知（原答案看不到，紅圈圈在 the rain，已訂正）",
+    "correctAnswer": "go out in the rain",
+    "errorCategory": "spelling",
+    "rawErrorType": "拼字：go out in the rain",
+    "skills": [
+      "M.SPELL.careful_copy"
+    ],
+    "teacherExplanation": "go out in the rain（(ph.)）的意思是「冒雨出去」，拼字要每個字母都正確。",
+    "reviewAdvice": "把單字拆成音節或小段，唸著抄寫；默寫完逐字母對照課本。",
+    "questionType": "fill_blank",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-13_1007bkk",
+    "examDate": "2026-11-13",
+    "examName": "L7 Week 11 日常小考（11/13，26/30）",
+    "section": "A. Spelling Test（Spell out the words）",
+    "questionText": "拼字：害怕 (ph.)",
+    "studentAnswer": "未知（原答案看不到，紅圈圈在 of，已訂正）",
+    "correctAnswer": "be afraid of",
+    "errorCategory": "spelling",
+    "rawErrorType": "拼字：be afraid of",
+    "skills": [
+      "M.SPELL.careful_copy"
+    ],
+    "teacherExplanation": "be afraid of（(ph.)）的意思是「害怕」，拼字要每個字母都正確。",
+    "reviewAdvice": "把單字拆成音節或小段，唸著抄寫；默寫完逐字母對照課本。",
+    "questionType": "fill_blank",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-13_379r38",
+    "examDate": "2026-11-13",
+    "examName": "L7 Week 11 日常小考（11/13，26/30）",
+    "section": "D. Combine the sentences（... because ...）",
+    "questionText": "Combine with \"because\": Amy enjoys reading books. / Amy goes to the library every weekend.",
+    "studentAnswer": "未知（原答案看不到，紅圈圈在 because 後面的 she；推測原本沒有把 Amy 換成代名詞 she，已訂正）",
+    "correctAnswer": "Amy goes to the library every weekend because she enjoys reading books.",
+    "errorCategory": "sentence_structure",
+    "rawErrorType": "because 合併句（紅圈在 she，推測是漏了代名詞）",
+    "skills": [
+      "M.COMBINE.missing_words"
+    ],
+    "teacherExplanation": "結果 because 原因：because 後面要有完整的句子，Amy 換成 she，再接 enjoys reading books。",
+    "reviewAdvice": "合併完檢查 because 後面有沒有主詞，原句重複的人名要換成 she／he／they。",
     "questionType": "rewrite",
     "importedAt": "2026-11-21T12:00:00.000Z"
   }
