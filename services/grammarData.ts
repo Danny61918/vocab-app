@@ -5,6 +5,13 @@ import { PRESENT_SIMPLE_QUESTIONS } from './grammar/presentSimple';
 import { PRESENT_CONTINUOUS_QUESTIONS } from './grammar/presentContinuous';
 import { POSSESSIVE_QUESTIONS } from './grammar/possessive';
 import { THERE_BE_SOME_ANY_QUESTIONS } from './grammar/thereBeSomeAny';
+import { PREPOSITION_TIME_MORE_QUESTIONS } from './grammar/prepositionTimeMore';
+import { PREPOSITION_PLACE_MORE_QUESTIONS } from './grammar/prepositionPlaceMore';
+import { PRESENT_SIMPLE_MORE_QUESTIONS } from './grammar/presentSimpleMore';
+import { PRESENT_CONTINUOUS_MORE_QUESTIONS } from './grammar/presentContinuousMore';
+import { POSSESSIVE_MORE_QUESTIONS } from './grammar/possessiveMore';
+import { THERE_BE_SOME_ANY_MORE_QUESTIONS } from './grammar/thereBeSomeAnyMore';
+import { FREQUENCY_ADVERB_QUESTIONS } from './grammar/frequencyAdverb';
 
 const BASE_QUESTIONS: GrammarQuestion[] = [
   // ----------------------------------------------------
@@ -351,7 +358,8 @@ export const getRandomGrammarQuestions = (count: number = 10): GrammarQuestion[]
 };
 
 // Base questions plus the expanded per-category banks (~54 per category, enough
-// for three battles of up to 17 questions each without a repeat).
+// for three battles of up to 17 questions each without a repeat), plus the *More banks
+// (~30 more per category, about five battles) and the new frequency-adverb boss.
 export const GRAMMAR_QUESTIONS: GrammarQuestion[] = [
   ...BASE_QUESTIONS,
   ...PREPOSITION_TIME_QUESTIONS,
@@ -360,6 +368,13 @@ export const GRAMMAR_QUESTIONS: GrammarQuestion[] = [
   ...PRESENT_CONTINUOUS_QUESTIONS,
   ...POSSESSIVE_QUESTIONS,
   ...THERE_BE_SOME_ANY_QUESTIONS,
+  ...PREPOSITION_TIME_MORE_QUESTIONS,
+  ...PREPOSITION_PLACE_MORE_QUESTIONS,
+  ...PRESENT_SIMPLE_MORE_QUESTIONS,
+  ...PRESENT_CONTINUOUS_MORE_QUESTIONS,
+  ...POSSESSIVE_MORE_QUESTIONS,
+  ...THERE_BE_SOME_ANY_MORE_QUESTIONS,
+  ...FREQUENCY_ADVERB_QUESTIONS,
 ];
 
 export const GRAMMAR_BOSS_MAP: Record<GrammarCategory, number> = {
@@ -369,4 +384,5 @@ export const GRAMMAR_BOSS_MAP: Record<GrammarCategory, number> = {
   [GrammarCategory.TENSE_PRESENT_CONTINUOUS]: 27, // 烈焰之舞
   [GrammarCategory.POSSESSIVE]: 30, // 格鬥鋼拳
   [GrammarCategory.THERE_BE_SOME_ANY]: 39, // 聖光獨角獸
+  [GrammarCategory.FREQUENCY_ADVERB]: 31, // 爆炎雙頭龍
 };
