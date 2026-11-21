@@ -11,6 +11,7 @@ import { MistakeRecord } from '../types';
 //   - E: the first attempts are visible and are recorded as written. The "-5" is not split per question, and the red box
 //     around "Mark" in Q5 has no visible reason, so it is recorded as unclear.
 //   - Possible slip the teacher did not deduct: B #6 drive -> "drivies" (should be drives). Not imported as a mistake.
+// Same date, second paper: the L7 Week 12 vocabulary test (46/50, -2 at A-2 Q2 and -2 at A-2 Q9, both red-circled and corrected; A-1 and B had no deductions).
 // See services/mistakeBook/types.ts for the import process.
 const data: MistakeRecord[] = [
   {
@@ -321,6 +322,52 @@ const data: MistakeRecord[] = [
     "teacherExplanation": "Because 放句首時，原因子句後面加一個逗號，後面的結果句不需要再加逗號：he is going to bed early tonight。",
     "reviewAdvice": "Because A, B. 只在 A 和 B 之間放一個逗號；寫完把整句讀一遍，逗號只放在停頓的地方。",
     "questionType": "rewrite",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-17_m68697",
+    "examDate": "2026-11-17",
+    "examName": "L7 Week 12 單字測驗（L7VOC-W12）",
+    "section": "A-2 Choose the best answer",
+    "questionText": "I got a big ___ of fries. I couldn't eat them all.",
+    "options": [
+      "(a) toothache",
+      "(b) tunnel",
+      "(c) portion"
+    ],
+    "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 (c) portion）",
+    "correctAnswer": "(c) portion",
+    "errorCategory": "content_comprehension",
+    "rawErrorType": "單字：portion（一份、一部分食物）",
+    "skills": [
+      "V.CONTEXT"
+    ],
+    "teacherExplanation": "a big portion of fries 是「一大份薯條」，所以吃不完。toothache 是牙痛、tunnel 是隧道，放進句子都不通。",
+    "reviewAdvice": "portion ＝一份、一部分（食物）；看到 a big／small portion of ___ 就想到「分量」。",
+    "questionType": "multiple_choice",
+    "importedAt": "2026-11-21T12:00:00.000Z"
+  },
+  {
+    "id": "2026-11-17_1qh9a7p",
+    "examDate": "2026-11-17",
+    "examName": "L7 Week 12 單字測驗（L7VOC-W12）",
+    "section": "A-2 Choose the best answer",
+    "questionText": "We have a ___ tomorrow. I want to visit my grandma.",
+    "options": [
+      "(a) programme",
+      "(b) medicine",
+      "(c) holiday"
+    ],
+    "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 (c) holiday）",
+    "correctAnswer": "(c) holiday",
+    "errorCategory": "content_comprehension",
+    "rawErrorType": "單字：holiday（假日）",
+    "skills": [
+      "V.CONTEXT"
+    ],
+    "teacherExplanation": "明天放假（holiday）才有空去看奶奶。programme 是節目、medicine 是藥，都不符合「想去拜訪」的語意。",
+    "reviewAdvice": "用整句的線索選字：visit my grandma 需要有空，所以是假日 holiday。",
+    "questionType": "multiple_choice",
     "importedAt": "2026-11-21T12:00:00.000Z"
   }
 ];
