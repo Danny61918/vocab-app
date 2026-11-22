@@ -1,8 +1,8 @@
 """Batch monster generator: SDXL (GPU) -> border flood-fill cutout, three candidates per concept.
 
 Reads scripts/monster_batch_plan.json and, for every concept, makes candidates "a", "b" and "c":
-    scripts/monster_raw/batch8/<key>_a.png      raw 1024px white-background render
-    scripts/monster_raw/batch8/cut/<key>_a.png  transparent cutout
+    scripts/monster_raw/batch9/<key>_a.png      raw 1024px white-background render
+    scripts/monster_raw/batch9/cut/<key>_a.png  transparent cutout
 Resumable: existing files are skipped, so it can be stopped and started again.
 
 Usage (repo root, TTS venv python):
@@ -23,7 +23,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from cutout_monsters import cutout  # noqa: E402
 
-RAW = os.path.join(HERE, "monster_raw", "batch8")  # batch/, batch2/ = earlier tries (prompt was cut at 77 tokens)
+RAW = os.path.join(HERE, "monster_raw", "batch9")  # batch/, batch2/ = earlier tries (prompt was cut at 77 tokens)
 CUT = os.path.join(RAW, "cut")
 os.makedirs(CUT, exist_ok=True)
 

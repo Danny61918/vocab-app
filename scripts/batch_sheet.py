@@ -12,7 +12,7 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-CUT = os.path.join(HERE, "monster_raw", "batch8", "cut")
+CUT = os.path.join(HERE, "monster_raw", "batch9", "cut")
 PLAN = json.load(open(os.path.join(HERE, "monster_batch_plan.json"), encoding="utf-8"))["monsters"]
 
 start, end, outdir = int(sys.argv[1]), int(sys.argv[2]), sys.argv[3]

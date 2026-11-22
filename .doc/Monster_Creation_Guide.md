@@ -40,9 +40,9 @@ python scripts/gen_monster_batch.py 0 20     # 只跑企劃的第 0 到 19 筆
 ```
 
 - 每隻產生 A、B、C 三張候選，可以中斷後再跑（已存在的會跳過）。
-- 原圖在 `scripts/monster_raw/batch8/<key>_a.png`，去背後在 `scripts/monster_raw/batch8/cut/`。
+- 原圖在 `scripts/monster_raw/batch9/<key>_a.png`，去背後在 `scripts/monster_raw/batch9/cut/`。
 - `scripts/monster_raw/` 已被 gitignore，不會進版本庫。
-- 新一批請把三支腳本裡的 `batch8` 改成新的資料夾名（batch_sheet.py、finalize_monsters.py、gen_monster_batch.py），否則舊的會被當成「已完成」跳過。
+- 新一批請把三支腳本裡的 `batch9` 改成新的資料夾名（batch_sheet.py、finalize_monsters.py、gen_monster_batch.py），否則舊的會被當成「已完成」跳過。
 - 速度約 10–15 秒一張（RTX PRO 5000）。
 
 ### 3. 挑圖
