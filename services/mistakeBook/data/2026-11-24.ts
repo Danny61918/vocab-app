@@ -1,21 +1,24 @@
 import { MistakeRecord } from '../types';
 
 // Imported from the parent's photos of the L7 Week 13 weekly test of 2026-11-24 (Annie, 4A; Incredible English 4 U3,
-// New Round-Up 2 U6, Writing TB A1 U6). Paper score 73 = 100 - 27. Section G (reading) was all correct (10%).
-// Points lost, by section: A -8 (Q1, Q2, Q17, Q18), B -5 (Q2, Q3, Q5), C -2 (Q3, Q5), D -3 (Q2, Q4),
-// E -2 (Q2, Q9), F -7 = 27. Only -2 is written in F (next to Q1); Q3 and Q5 have no number but the parent
-// confirms both are wrong, which makes up the other 5 points (checked against the 73).
+// New Round-Up 2 U6, Writing TB A1 U6). Paper score 73. Section G (reading) was all correct (10%).
 // Red circle / red slash + blue-ink correction + green check = deducted and corrected, so the original
 // answers are not visible for A, B5, D, and the 'T' of E2/E9 is inferred (true/false). Original answers ARE
 // visible for C3 (are you going), C5 (drive), B2, B3, F5 (her own writing is still on the page).
+//
+// Score check (NOT fully reconciled): the visible red numbers add up to A -8, B -5, C -2, D -3, E -2, F -2 = 22,
+// which gives 78, not 73. A number written beside Q1 may be the section subtotal (B's -5 sits beside B1, which was
+// correct), so F's -2 may be the whole of F. The parent confirms F Q3 and F Q5 are both wrong; if their
+// deductions are unwritten and make up the other 5 points, the total works out, but that is unconfirmed and the
+// 5 points could be somewhere else. The 15 records below do not depend on it.
 //
 // Known ambiguities, none reused as-is for practice:
 //   - B2: no answer key on the paper; "Eason doesn't always get up late on Sundays." is inferred from the words.
 //   - B4: "The student are never nevous..." was accepted by the teacher (the parent confirmed B4 is correct),
 //     so it is NOT recorded.
 //   - D: -3 split as D2 -2 and D4 -1 (parent confirmed the reading).
-//   - F1: -2 but the answer itself reads correct; the parent guesses the task wanted both patterns
-//     (Because (1),(2) and (2) because (1)) and only one was written. Not recorded (no wrong answer to drill).
+//   - F1: a -2 is written beside it but the answer itself reads correct; the parent guesses the task wanted both
+//     patterns (Because (1),(2) and (2) because (1)) and only one was written. Unconfirmed; not recorded.
 //   - F3: the expected answer is inferred from the red "it" written over "the piano".
 // See services/mistakeBook/types.ts for the import process.
 const data: MistakeRecord[] = [
