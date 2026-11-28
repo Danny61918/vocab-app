@@ -23,7 +23,9 @@ import { MistakeRecord } from '../types';
 // Second paper of the same day: the L7 Week 13 vocabulary test (40/50). Points lost: A-1 -4 (Q6, Q9), A-2 -2 (Q8),
 // B -4 (Q2, Q4) = 10, which reconciles with the 40. Same reading as the weekly test: red circle (or red slash) plus a
 // blue-ink correction = deducted and corrected, so the original answers are not visible. A-1 Q6 (capital B, red note
-// "first letter") and A-1 Q9 (red circle on the s of "beats") suggest the originals, but those are inferred.
+// "first letter") and A-1 Q9 (red circle on the s of "beats", and the same s circled in the word box) suggest the
+// originals, but those are inferred. B Q2/Q4: the blue "phrase (ph.) 中文" notes appear on every corrected item, so they
+// do not show what she confused; the about/to contrast is kept in teacherExplanation only because it teaches well.
 // A-2 Q2 carries a big red mark, read as a tick (correct), because the A-2 total is only -2 (Q8).
 // See services/mistakeBook/types.ts for the import process.
 const data: MistakeRecord[] = [
@@ -413,7 +415,7 @@ const data: MistakeRecord[] = [
     "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 is anxious about）",
     "correctAnswer": "is anxious about",
     "errorCategory": "content_comprehension",
-    "rawErrorType": "片語辨析：be anxious about（擔心）vs be anxious to（渴望）",
+    "rawErrorType": "依句意選片語（原答案不可見）",
     "skills": [
       "V.PHRASE"
     ],
@@ -438,7 +440,7 @@ const data: MistakeRecord[] = [
     "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 is covered with）",
     "correctAnswer": "is covered with",
     "errorCategory": "content_comprehension",
-    "rawErrorType": "片語意思與句意配對（be covered with）",
+    "rawErrorType": "依句意選片語（原答案不可見）",
     "skills": [
       "V.PHRASE"
     ],
