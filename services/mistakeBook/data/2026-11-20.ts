@@ -8,7 +8,7 @@ import { MistakeRecord } from '../types';
 // handwriting of the "a" was too messy, so it is NOT a mistake). C3 and C4 carry red ticks. C1 and C2 (arrows) are recorded:
 // the originals are covered by the blue-ink correction, so studentAnswer is unknown (same reading as 2026-11-13).
 // C1: the teacher boxed "their" but what was wrong is not visible, so no skill is guessed. C2: the red "there" suggests the
-// child left it out, marked as an inference. The paper also has a stray X before the number of A2 that nobody could explain.
+// child left it out, marked as an inference. The X before the number of A2 is the child's own mark (A2 is correct, parent confirmed).
 // See services/mistakeBook/types.ts for the import process.
 const data: MistakeRecord[] = [
   {
