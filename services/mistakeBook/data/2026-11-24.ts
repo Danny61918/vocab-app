@@ -24,8 +24,8 @@ import { MistakeRecord } from '../types';
 // B -4 (Q2, Q4) = 10, which reconciles with the 40. Same reading as the weekly test: red circle (or red slash) plus a
 // blue-ink correction = deducted and corrected, so the original answers are not visible. A-1 Q6 (capital B, red note
 // "first letter") and A-1 Q9 (red circle on the s of "beats", and the same s circled in the word box) suggest the
-// originals, but those are inferred. B Q2/Q4: the blue "phrase (ph.) 中文" notes appear on every corrected item, so they
-// do not show what she confused; the about/to contrast is kept in teacherExplanation only because it teaches well.
+// originals, but those are inferred. B Q2/Q4: the parent read the original (partly legible) writing on the paper: Q2 was
+// "is covered with" and Q4 was "is anx... about", i.e. the two phrases were swapped. The blue "(ph.) 中文" notes are on every corrected item.
 // A-2 Q2 carries a big red mark, read as a tick (correct), because the A-2 total is only -2 (Q8).
 // See services/mistakeBook/types.ts for the import process.
 const data: MistakeRecord[] = [
@@ -412,14 +412,14 @@ const data: MistakeRecord[] = [
       "is covered with",
       "At first"
     ],
-    "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 is anxious about）",
+    "studentAnswer": "is covered with（家長讀紙上原跡；藍筆已訂正為 is anxious about，與 Q4 對調）",
     "correctAnswer": "is anxious about",
     "errorCategory": "content_comprehension",
-    "rawErrorType": "依句意選片語（原答案不可見）",
+    "rawErrorType": "兩個片語對調：沒有依句意與主詞配對（Q2 ⇄ Q4）",
     "skills": [
       "V.PHRASE"
     ],
-    "teacherExplanation": "be anxious about + 名詞（the weather）＝為某事擔心；be anxious to + 動詞＝渴望做某事。這句 Kenny 擔心天氣，所以用 is anxious about。",
+    "teacherExplanation": "be anxious about + 名詞（the weather）＝為某事擔心；be anxious to + 動詞＝渴望做某事。這句 Kenny 擔心天氣，所以用 is anxious about。她原本寫成 is covered with，變成「Kenny 被天氣覆蓋」，意思不通。",
     "reviewAdvice": "一起記一組對照：about 後面接事情（擔心），to 後面接動作（渴望）。Sherry is anxious to see the movie. / Kenny is anxious about the weather.",
     "questionType": "fill_blank",
     "importedAt": "2026-11-28T10:00:00.000Z"
@@ -437,14 +437,14 @@ const data: MistakeRecord[] = [
       "is covered with",
       "At first"
     ],
-    "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 is covered with）",
+    "studentAnswer": "is anxious about（家長讀紙上原跡，部分字跡不清；藍筆已訂正為 is covered with，與 Q2 對調）",
     "correctAnswer": "is covered with",
     "errorCategory": "content_comprehension",
-    "rawErrorType": "依句意選片語（原答案不可見）",
+    "rawErrorType": "兩個片語對調：東西（襯衫）不會「擔心」，要依主詞與句意配對（Q2 ⇄ Q4）",
     "skills": [
       "V.PHRASE"
     ],
-    "teacherExplanation": "be covered with 是「被…覆蓋」，襯衫沾滿油漆就是 is covered with paint。",
+    "teacherExplanation": "be covered with 是「被…覆蓋」，襯衫沾滿油漆就是 is covered with paint。她原本寫成 is anxious about，變成「襯衫擔心油漆」，但衣服是東西，不會擔心。",
     "reviewAdvice": "把 be covered with 和東西一起記：The table is covered with paper. 看到「被某物蓋滿」就想到它。",
     "questionType": "fill_blank",
     "importedAt": "2026-11-28T10:00:00.000Z"
