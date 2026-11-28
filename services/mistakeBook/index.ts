@@ -20,6 +20,7 @@ import data20261117 from './data/2026-11-17';
 import data20261118 from './data/2026-11-18';
 import data20261119 from './data/2026-11-19';
 import data20261120 from './data/2026-11-20';
+import data20261124 from './data/2026-11-24';
 
 // Flat list across every imported exam, newest exam last. Add a new
 // data/<exam-date>.ts + one import line here for each new exam (mirrors
@@ -46,6 +47,7 @@ export const ALL_MISTAKES: MistakeRecord[] = [
   ...data20261118,
   ...data20261119,
   ...data20261120,
+  ...data20261124,
 ];
 
 export function getMistakesByCategory(category: MistakeRecord['errorCategory']): MistakeRecord[] {
