@@ -20,6 +20,11 @@ import { MistakeRecord } from '../types';
 //   - F1: a -2 is written beside it but the answer itself reads correct; the parent guesses the task wanted both
 //     patterns (Because (1),(2) and (2) because (1)) and only one was written. Unconfirmed; not recorded.
 //   - F3: the expected answer is inferred from the red "it" written over "the piano".
+// Second paper of the same day: the L7 Week 13 vocabulary test (40/50). Points lost: A-1 -4 (Q6, Q9), A-2 -2 (Q8),
+// B -4 (Q2, Q4) = 10, which reconciles with the 40. Same reading as the weekly test: red circle (or red slash) plus a
+// blue-ink correction = deducted and corrected, so the original answers are not visible. A-1 Q6 (capital B, red note
+// "first letter") and A-1 Q9 (red circle on the s of "beats") suggest the originals, but those are inferred.
+// A-2 Q2 carries a big red mark, read as a tick (correct), because the A-2 total is only -2 (Q8).
 // See services/mistakeBook/types.ts for the import process.
 const data: MistakeRecord[] = [
   {
@@ -332,6 +337,115 @@ const data: MistakeRecord[] = [
     "reviewAdvice": "兩個檢查：1. every + 單數名詞，動詞加 s。2. 動詞後面的代名詞用 him / her / them。",
     "questionType": "rewrite",
     "importedAt": "2026-11-28T09:00:00.000Z"
+  },
+  {
+    "id": "2026-11-24_1l7vlu",
+    "examDate": "2026-11-24",
+    "examName": "L7 Week 13 單字測驗（11/24，40/50）",
+    "section": "A-1. Complete the sentences with the words from the box（20%）",
+    "questionText": "___ is red and warm. It moves through my body to keep me alive.",
+    "studentAnswer": "推測原本寫小寫 blood（老師在 B 上畫紅圈並寫 first letter，已訂正為 Blood）",
+    "correctAnswer": "Blood",
+    "errorCategory": "capitalization",
+    "rawErrorType": "句首第一個字母要大寫",
+    "skills": [
+      "M.CAP.letter_case"
+    ],
+    "teacherExplanation": "這個空格在句子的第一個字，所以 blood 的第一個字母要大寫：Blood。老師寫的 first letter 就是這個意思。（原答案是否為小寫是依老師的註記推測。）",
+    "reviewAdvice": "寫完一句話，先檢查「第一個字有沒有大寫」。單字框裡的字都是小寫，放在句首時要自己改成大寫。",
+    "questionType": "fill_blank",
+    "importedAt": "2026-11-28T10:00:00.000Z"
+  },
+  {
+    "id": "2026-11-24_ol6637",
+    "examDate": "2026-11-24",
+    "examName": "L7 Week 13 單字測驗（11/24，40/50）",
+    "section": "A-1. Complete the sentences with the words from the box（20%）",
+    "questionText": "Your heart ___ faster when you run and slower when you rest.",
+    "studentAnswer": "推測原本寫 beat（紅圈圈在 s 上，已訂正為 beats）",
+    "correctAnswer": "beats",
+    "errorCategory": "verb_tense",
+    "rawErrorType": "現在簡單式：第三人稱單數動詞加 -s",
+    "skills": [
+      "G.SVA.third_person_s"
+    ],
+    "teacherExplanation": "Your heart 是單數主詞（it），描述一般事實用現在簡單式，動詞要加 s：beats。（少了 s 是依紅圈位置推測。）",
+    "reviewAdvice": "單字測驗裡的動詞也要看主詞：heart = it，所以 beats。造一句：My heart beats faster when I run.",
+    "questionType": "fill_blank",
+    "importedAt": "2026-11-28T10:00:00.000Z"
+  },
+  {
+    "id": "2026-11-24_1t2a7mp",
+    "examDate": "2026-11-24",
+    "examName": "L7 Week 13 單字測驗（11/24，40/50）",
+    "section": "A-2. Choose the best answer to complete the sentence（20%）",
+    "questionText": "The sky ___ dark at night, and then the stars come out.",
+    "options": [
+      "(a) health",
+      "(b) portion",
+      "(c) becomes"
+    ],
+    "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 (c) becomes）",
+    "correctAnswer": "(c) becomes",
+    "errorCategory": "content_comprehension",
+    "rawErrorType": "詞性位置：空格要放動詞（become）",
+    "skills": [
+      "V.POS_SLOT"
+    ],
+    "teacherExplanation": "空格在主詞 The sky 後面，需要動詞；health 和 portion 都是名詞，放不進去。becomes 是「變成」，become + 形容詞：becomes dark。",
+    "reviewAdvice": "填空前先判斷空格要放哪一種詞：主詞後面通常是動詞。造一句：The sky becomes dark at night.",
+    "questionType": "multiple_choice",
+    "importedAt": "2026-11-28T10:00:00.000Z"
+  },
+  {
+    "id": "2026-11-24_1vu6eer",
+    "examDate": "2026-11-24",
+    "examName": "L7 Week 13 單字測驗（11/24，40/50）",
+    "section": "B. Choose the correct idioms or phrases（10%，Capitalize where necessary）",
+    "questionText": "Kenny ___ the weather for the trip tomorrow. He hopes it will be sunny and warm.",
+    "options": [
+      "is angry with",
+      "is anxious about",
+      "is anxious to",
+      "is covered with",
+      "At first"
+    ],
+    "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 is anxious about）",
+    "correctAnswer": "is anxious about",
+    "errorCategory": "content_comprehension",
+    "rawErrorType": "片語辨析：be anxious about（擔心）vs be anxious to（渴望）",
+    "skills": [
+      "V.PHRASE"
+    ],
+    "teacherExplanation": "be anxious about + 名詞（the weather）＝為某事擔心；be anxious to + 動詞＝渴望做某事。這句 Kenny 擔心天氣，所以用 is anxious about。",
+    "reviewAdvice": "一起記一組對照：about 後面接事情（擔心），to 後面接動作（渴望）。Sherry is anxious to see the movie. / Kenny is anxious about the weather.",
+    "questionType": "fill_blank",
+    "importedAt": "2026-11-28T10:00:00.000Z"
+  },
+  {
+    "id": "2026-11-24_4gccqi",
+    "examDate": "2026-11-24",
+    "examName": "L7 Week 13 單字測驗（11/24，40/50）",
+    "section": "B. Choose the correct idioms or phrases（10%，Capitalize where necessary）",
+    "questionText": "Jim's shirt ___ paint, but he doesn't mind. His mom will wash it for him.",
+    "options": [
+      "is angry with",
+      "is anxious about",
+      "is anxious to",
+      "is covered with",
+      "At first"
+    ],
+    "studentAnswer": "未知（原答案看不到，紅圈處已訂正為 is covered with）",
+    "correctAnswer": "is covered with",
+    "errorCategory": "content_comprehension",
+    "rawErrorType": "片語意思與句意配對（be covered with）",
+    "skills": [
+      "V.PHRASE"
+    ],
+    "teacherExplanation": "be covered with 是「被…覆蓋」，襯衫沾滿油漆就是 is covered with paint。",
+    "reviewAdvice": "把 be covered with 和東西一起記：The table is covered with paper. 看到「被某物蓋滿」就想到它。",
+    "questionType": "fill_blank",
+    "importedAt": "2026-11-28T10:00:00.000Z"
   }
 ];
 
