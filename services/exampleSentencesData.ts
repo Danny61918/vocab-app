@@ -4267,5 +4267,173 @@ export const EXTRA_SENTENCES: Record<number, string[]> = {
         "His hands were covered with paint after the art class.",
         "The cake is covered with sweet cream.",
         "The roof of the house is covered with snow."
+    ],
+    1197: [
+        "There is a big poster of a lion on my bedroom wall.",
+        "She drew a colorful poster for the school party.",
+        "I saw a movie poster at the bus stop this morning.",
+        "Please put the poster on the door so everyone can see it.",
+        "My brother bought a poster of his favorite soccer player."
+    ],
+    1198: [
+        "Our classroom is on the second floor.",
+        "The students clean the classroom after school.",
+        "There are thirty desks in my classroom.",
+        "Please walk quietly when you enter the classroom.",
+        "The teacher put some flowers on the table in the classroom."
+    ],
+    1199: [
+        "We have P.E. class on Tuesday and Thursday.",
+        "I wear my sports shoes to P.E. class.",
+        "Our P.E. teacher taught us how to play basketball.",
+        "P.E. is my favorite class because I can run and play.",
+        "We played games on the playground in P.E. class today."
+    ],
+    1200: [
+        "I learned about plants in science class today.",
+        "Science is interesting because we can do many experiments.",
+        "My sister likes science more than math.",
+        "The science teacher showed us how a magnet works.",
+        "We have a science test next Friday."
+    ],
+    1201: [
+        "We use colorful paint in art class.",
+        "My sister is good at art and she draws very well.",
+        "The art teacher put our pictures on the wall.",
+        "I want to go to the art museum with my family.",
+        "Art is my favorite subject because I like to draw."
+    ],
+    1202: [
+        "The night market is crowded with people on weekends.",
+        "The train was crowded with passengers this morning.",
+        "The beach is crowded with children in summer.",
+        "The shopping mall is crowded with shoppers before the holiday.",
+        "My classroom is crowded with desks and chairs."
+    ],
+    1203: [
+        "My teacher can speak Spanish and English.",
+        "People in Spain speak Spanish.",
+        "I learned some Spanish words from a song.",
+        "She is learning Spanish because she wants to visit Mexico.",
+        "Spanish is a beautiful language."
+    ],
+    1204: [
+        "We learned about old kings in history class today.",
+        "I like history because the stories are interesting.",
+        "There is a history book on my desk.",
+        "Our history teacher shows us old pictures.",
+        "My grandfather knows a lot about history."
+    ],
+    1205: [
+        "I listen to music when I do my homework.",
+        "We sing songs in music class every Wednesday.",
+        "My sister likes to dance to the music.",
+        "The music is too loud, so please turn it down.",
+        "He plays soft music before he goes to bed."
+    ],
+    1206: [
+        "I do my math homework after dinner.",
+        "My brother is very good at math.",
+        "We have a math test tomorrow, so I need to study.",
+        "The math teacher gave us ten questions.",
+        "Math is easy when you practice every day."
+    ],
+    1207: [
+        "We look at a big map in geography class.",
+        "My geography teacher has been to many countries.",
+        "I learned the names of rivers in geography class.",
+        "Geography helps us know where cities and mountains are.",
+        "She got a high score on the geography test."
+    ],
+    1208: [
+        "My new school is different from my old school.",
+        "Cats are different from dogs in many ways.",
+        "This game is different from the one we played yesterday.",
+        "Her idea is different from mine.",
+        "Summer in Taiwan is different from summer in Canada."
+    ],
+    1209: [
+        "I prefer apples to bananas.",
+        "My mom prefers tea to coffee.",
+        "Do you prefer summer or winter?",
+        "She prefers to read books at home on weekends.",
+        "We prefer to go to the park in the morning."
+    ],
+    1210: [
+        "I speak English with my teacher every day.",
+        "English is a useful language for traveling.",
+        "My brother is good at English.",
+        "We have an English test on Friday.",
+        "She reads an English storybook before bed."
+    ],
+    1211: [
+        "Please remember to bring your homework tomorrow.",
+        "I can't remember his name.",
+        "Do you remember our first day at school?",
+        "She always remembers to close the window at night.",
+        "I remember the song because I heard it many times."
+    ],
+    1212: [
+        "Tom was absent from class because he had a cold.",
+        "Who is absent today?",
+        "She was absent from the meeting yesterday.",
+        "The teacher wrote down the names of the absent students.",
+        "My brother was absent from school on Monday."
+    ],
+    1213: [
+        "Be careful not to break the glass.",
+        "Please don't break the toy.",
+        "Eggs break easily, so hold them gently.",
+        "I will break the chocolate into two pieces.",
+        "He did not mean to break the window."
+    ],
+    1214: [
+        "I was disappointed with my test score.",
+        "She is disappointed with the movie because it was boring.",
+        "He was disappointed with his birthday gift.",
+        "The teacher was disappointed with the noisy class.",
+        "We were disappointed with the weather on our trip."
+    ],
+    1215: [
+        "It is wrong to steal things from other people.",
+        "The fox tried to steal some food from the farm.",
+        "The police caught a man who wanted to steal a bike.",
+        "Never steal anything from a shop.",
+        "The thief came at night to steal the jewelry."
+    ],
+    1216: [
+        "We went to the science museum last Sunday.",
+        "The museum is open from nine to five.",
+        "There are many old paintings in the art museum.",
+        "My class visited a museum on Friday.",
+        "You can learn a lot from a museum."
+    ],
+    1217: [
+        "Please act like a good student in class.",
+        "He likes to act in school plays.",
+        "Children should act kindly to their friends.",
+        "Don't act like a baby.",
+        "She can act like a cat very well."
+    ],
+    1218: [
+        "He asked the teacher politely for help.",
+        "Please speak politely to the old man.",
+        "The boy politely said thank you.",
+        "She politely waited for her turn.",
+        "We should answer the phone politely."
+    ],
+    1219: [
+        "This bag is too expensive for me.",
+        "The restaurant is nice, but it is expensive.",
+        "My father bought an expensive watch for my mom.",
+        "Fresh fruit is sometimes expensive in winter.",
+        "I can't buy that toy because it is expensive."
+    ],
+    1220: [
+        "The class is divided into four groups.",
+        "The cake was divided into six pieces.",
+        "The book is divided into ten chapters.",
+        "The students were divided into two teams for the game.",
+        "The farm is divided into three parts."
     ]
 };

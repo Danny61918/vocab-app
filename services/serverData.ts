@@ -1215,7 +1215,31 @@ const serverData: Word[] = [
     { "id": 1193, "date": "2026-11-27", "english": "scare", "chinese": "嚇到", "part_of_speech": "(v.)", "example": "The horror movie was so scary that it scared everyone at the theater." },
     { "id": 1194, "date": "2026-11-27", "english": "grow well", "chinese": "生長良好", "part_of_speech": "(ph.)", "example": "With enough water and nutrients, the plants will grow well." },
     { "id": 1195, "date": "2026-11-27", "english": "allow", "chinese": "允許", "part_of_speech": "(v.)", "example": "My parents allow me to choose my own after-school clubs because they want me to explore new hobbies." },
-    { "id": 1196, "date": "2026-11-27", "english": "be covered with", "chinese": "被…覆蓋", "part_of_speech": "(ph.)", "example": "The mountains are covered with snow, and they look beautiful during the winter." }
+    { "id": 1196, "date": "2026-11-27", "english": "be covered with", "chinese": "被…覆蓋", "part_of_speech": "(ph.)", "example": "The mountains are covered with snow, and they look beautiful during the winter." },
+    { "id": 1197, "date": "2026-11-30", "english": "poster", "chinese": "海報", "part_of_speech": "(n.)", "example": "Tammy has 5 posters of his favorite Korean singers on the wall." },
+    { "id": 1198, "date": "2026-11-30", "english": "classroom", "chinese": "教室", "part_of_speech": "(n.)", "example": "Don't run in the classroom because there are many desks and chairs. You may bump into others." },
+    { "id": 1199, "date": "2026-11-30", "english": "P.E.", "chinese": "體育", "part_of_speech": "(n.)", "example": "The teacher always asks us to do warm-up exercises before P.E. class to prevent injuries." },
+    { "id": 1200, "date": "2026-11-30", "english": "science", "chinese": "自然科學", "part_of_speech": "(n.)", "example": "Mark studies science in the university. He wants to be a scientist in the future." },
+    { "id": 1201, "date": "2026-11-30", "english": "art", "chinese": "美術", "part_of_speech": "(n.)", "example": "Danny can draw very well. He is good at the subject of the art." },
+    { "id": 1202, "date": "2026-11-30", "english": "be crowded with", "chinese": "擁擠", "part_of_speech": "(ph.)", "example": "The playground is crowded with students because everyone wants to play on the slides." },
+    { "id": 1203, "date": "2026-12-02", "english": "Spanish", "chinese": "西班牙語", "part_of_speech": "(n.)", "example": "I want to choose Spanish as my second language when I go to university." },
+    { "id": 1204, "date": "2026-12-02", "english": "history", "chinese": "歷史", "part_of_speech": "(n.)", "example": "My mom is a history teacher at a local school. She tells us many fun stories from the past." },
+    { "id": 1205, "date": "2026-12-02", "english": "music", "chinese": "音樂", "part_of_speech": "(n.)", "example": "My teacher teaches me how to play different instruments in music class." },
+    { "id": 1206, "date": "2026-12-02", "english": "math", "chinese": "數學", "part_of_speech": "(n.)", "example": "Math is my favorite subject at school. I can calculate ten questions in one minute." },
+    { "id": 1207, "date": "2026-12-02", "english": "geography", "chinese": "地理", "part_of_speech": "(n.)", "example": "I hate studying geography because I don't want to memorize those places from different countries." },
+    { "id": 1208, "date": "2026-12-02", "english": "be different from", "chinese": "不同於", "part_of_speech": "(ph.)", "example": "A zebra is different from a horse." },
+    { "id": 1209, "date": "2026-12-03", "english": "prefer", "chinese": "更喜歡", "part_of_speech": "(v.)", "example": "A: Do you prefer hot or cold milk tea? B: I prefer cold one." },
+    { "id": 1210, "date": "2026-12-03", "english": "English", "chinese": "英語", "part_of_speech": "(n.)", "example": "She is learning English to travel abroad in the future." },
+    { "id": 1211, "date": "2026-12-03", "english": "remember", "chinese": "記得", "part_of_speech": "(v.)", "example": "I always remember my mom's birthday in May because I want to make a pretty card for her." },
+    { "id": 1212, "date": "2026-12-03", "english": "absent", "chinese": "缺席的", "part_of_speech": "(adj.)", "example": "Sandy was absent from school for three days because she was sick." },
+    { "id": 1213, "date": "2026-12-03", "english": "break", "chinese": "打破；弄壞", "part_of_speech": "(v.)", "example": "I dropped the vase and it broke into pieces." },
+    { "id": 1214, "date": "2026-12-03", "english": "be disappointed with", "chinese": "對…感到失望", "part_of_speech": "(ph.)", "example": "When we lost the big game today, the coach looked sad and was disappointed with my team." },
+    { "id": 1215, "date": "2026-12-04", "english": "steal", "chinese": "偷", "part_of_speech": "(v.)", "example": "The thief wanted to steal money from the convenience store, but a brave police officer caught him at the door." },
+    { "id": 1216, "date": "2026-12-04", "english": "museum", "chinese": "博物館", "part_of_speech": "(n.)", "example": "We saw many dinosaur fossils at the history museum." },
+    { "id": 1217, "date": "2026-12-04", "english": "act", "chinese": "表現", "part_of_speech": "(v.)", "example": "The teacher reminded us to act politely because there are many people in the history museum." },
+    { "id": 1218, "date": "2026-12-04", "english": "politely", "chinese": "有禮貌地", "part_of_speech": "(adv.)", "example": "We should ask the waiter politely for a glass of water instead of shouting loudly in the restaurant." },
+    { "id": 1219, "date": "2026-12-04", "english": "expensive", "chinese": "昂貴的", "part_of_speech": "(adj.)", "example": "We can't afford such an expensive car right now." },
+    { "id": 1220, "date": "2026-12-04", "english": "be divided into", "chinese": "被分成…", "part_of_speech": "(ph.)", "example": "The pizza is divided into eight pieces because there are eight of us, so everybody can have one." }
 ];
 
 export default serverData; 
